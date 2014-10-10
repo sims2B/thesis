@@ -1,0 +1,216 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[svgnames]{xcolor}
+
+\usepackage{array}
+
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\newcommand{\bb}{\underline{b}(i,t_1,t_2)}
+\newcommand{\wb}{\underline{w}(i,t_1,t_2)}
+\newcommand{\bmin}{b_i^{min}}
+\newcommand{\bmax}{b_i^{max}}
+\newcommand{\inter}[2]{{[}#1,#2{]}}
+\newcommand{\ga}{\gamma}
+
+\newtheorem{Th}{Théorème}
+\newtheorem{Lem}{Lemme}
+
+
+
+\begin{document}
+
+
+Le problème que nous cherchons à résoudre est le suivant: nous avons une quantité d'énergie $\wb$ à fournir à la tâche $i$ pendant un certain intervalle $I$ et nous voulons savoir quelle est la quantité minimale de ressource qui doit être consommée pour cela.\\
+
+La figure~\ref{notation} présente les notations qui nous seront utiles pour la suite.
+\begin{figure}[ht]
+	\begin{center}
+	\begin{tikzpicture}
+	[inner sep=0,scale=0.5]
+	
+	\node (O) at (0,0) {};
+	\node (A) at (2,3) {};
+	\node (B) at (5,4) {};
+	\node (C) at (7,6) {};
+	\node (D) at (8,10) {};
+	\node (E) at (12,11) {};
+	\node (F) at (13.5,12) {};
+	
+	\node[label={[shift={(0,-0.6)}]$\small b_i^{min}=\gamma_0$}] (ga0) at (2,0) {};
+	\node[label={[shift={(0,-0.6)}]$\small \ga_1$}] (ga1) at (5,0) {};
+	\node[label={[shift={(0,-0.6)}]$\small \ga_2$}] (ga2) at (7,0) {};
+	\node[label={[shift={(0,-0.6)}]$\small \ga_3$}] (ga3) at (8,0) {};
+	\node[label={[shift={(0,-0.6)}]$\small b_i^{max}=\ga_4$}] (ga4) at (12,0) {};
+	\node[label={[shift={(-0.8,0)}]$\small f_i(\ga_0)$}] (f0) at (0,3) {};
+	\node[label={[shift={(-0.8,0)}]$\small f_i(\ga_1)$}] (f1) at (0,4) {};
+	\node[label={[shift={(-0.8,0)}]$\small f_i(\ga_2)$}] (f2) at (0,6) {};
+	\node[label={[shift={(-0.8,0)}]$\small f_i(\ga_3)$}] (f3) at (0,10) {};
+	\node[label={[shift={(-0.8,0)}]$\small f_i(\ga_4)$}] (f4) at (0,11) {};
+	
+	
+	\draw[->] (O.center) -- (0,13);
+	\draw[->] (O.center) -- (15,0);
+	\draw (O.center) -- (A.center) -- (B.center) -- (C.center) -- (D.center) -- (E.center) -- (F.center);
+	
+	\draw[dashed,red] (2,0) -- (2,13);
+	\draw[dashed,red] (12,0) -- (12,13);
+	
+	\draw[dashed,Gainsboro] (5,0) -- (B.center);
+	\draw[dashed,Gainsboro] (7,0) -- (C.center);
+	\draw[dashed,Gainsboro] (8,0) -- (D.center);
+	
+	\draw[dashed,Gainsboro] (0,3) -- (A.center);
+	\draw[dashed,Gainsboro] (0,4) -- (B.center);
+	\draw[dashed,Gainsboro] (0,6) -- (C.center);
+	\draw[dashed,Gainsboro] (0,10) -- (D.center);
+	\draw[dashed,Gainsboro] (0,11) -- (E.center);
+	
+	\end{tikzpicture}
+	\caption{Quelques notations}
+	\label{notation}
+	\end{center}
+\end{figure}
+
+Dans le cas où la fonction $f_i$ est linéaire par morceaux, trouver la quantité minimale de ressource à consommer pour apporter l'énergie $\wb$ à $i$ dans l'intervalle $I$ est équivalent à résoudre le programme linéaire $(P)$ suivant :
+
+
+\begin{alignat}{3}
+	\text{minimiser  }   & \sum\limits_{l=0}^q x_l\ga_l & \\
+	\text{sous  } & \sum\limits_{l=0}^q x_lf_i(\ga_l) \ge \wb & \label{eq1}\\
+	& \sum\limits_{l=0}^q x_l \le |I|& \label{eq2}\\
+	& x_l \ge 0 & \ \forall 0\le i \le q
+\end{alignat}
+
+Dans ce programme les variables $x_l$ représentent la taille de l'intervalle pendant lequel on va ordonnancer la tâche $l$ à $\ga_l$. L'objectif est de minimiser la consommation  totale de la ressource sous les contraintes que l'énergie apportée à la tâche soit bien $\wb$ (contrainte (\ref{eq1})) et que cette quantité soit apporté dans l'intervalle $I$ (contrainte (\ref{eq2})).\\
+
+En fait, la valeur de la solution optimale de $(P)$ est exactement la valeur de $\bb$. Dans ce qui suit, nous allons essayer de dériver du programme $(P)$ une expression analytique de $\bb$. Comme, d'après le théorème de dualité forte, si $(P)$ possède une solution optimale alors son dual $(D)$ en possède une de même valeur (et inversement), nous pouvons chercher les solutions de $(D)$.\\
+Le dual de $(P)$ est le programme suivant:
+
+\begin{alignat*}{3}
+	\text{maximiser  }   & \wb y_1-|I|y_2 & \\
+	\text{sous  } & f_i(\ga_l)y_1 - y_2 \le \ga_l &\ \forall 0\le l \le q\\
+	& y_j \ge 0 & \ \forall 1 \le j \le 2
+\end{alignat*}
+
+Comme $(D)$ est un programme linéaire à seulement deux variables, nous pouvons 
+étudier graphiquement l'ensemble $S$ de ses solutions.\\
+
+Tout d'abord, nous savons que la solution optimale de $(D)$ se trouve sur un point extrême de l'enveloppe convexe de $S$, $conv(S)$. De plus, ces points extrêmes se trouvent à l'intersection de deux droites $f_i(\ga_l)y_1-\ga_l$ et $f_i(\ga_j)y_1-\ga_j,\ 1\le l \le q,\ 1 \le j \le q$. Donc, pour trouver les points de $conv(S)$, nous devons trouver, parmi ces points d'intersections, ceux qui sont réalisables.\\
+Avant d'enoncer le théorème caractérisant $conv(S)$, remarquons d'abord que les points d'intersections sont de la forme: 	
+\[
+\left(
+	\frac{\ga_l - \ga_{j}}{f_i(\ga_j)-f_i(\ga_{l})},
+	\frac{f_i(\ga_j)\ga_{l} - f_i(\ga_{l})\ga_j}
+	{f_i(\ga_j)-f_i(\ga_{l})}
+	\right)
+\]
+pour $1\le l \le q,\ 1 \le j \le q$.\\
+
+
+\begin{Th}
+	Supposons que $\frac{f_i(\ga_0)}{\ga_0} > \frac{f_i(\ga_1)}{\ga_1} > 
+	\dots > \frac{f_i(\ga_q)}{\ga_q}$ et $f_i(\ga_0) > f_i(\ga_1) > \dots > f_i(\ga_q)$. Les points extrêmes de $conv(S)$ sont:
+	\[
+	\left\{
+	(0,0),
+	\left( \frac{\ga_0}{f_i(\ga_0)}, 0
+	\right),
+	\left(
+	\frac{\ga_{j+1} - \ga_j}{f_i(\ga_j)-f_i(\ga_{j+1})},
+	\frac{f_i(\ga_j)\ga_{j+1} - f_i(\ga_{j+1})\ga_j}
+	{f_i(\ga_j)-f_i(\ga_{j+1})}
+	\right) 
+	: \forall 0 \le j \le q-1
+	\right\}
+	\]
+\end{Th}
+
+
+\begin{proof}
+	Dans un premier temps, montrons que le point $\left( \frac{\ga_0}
+	{f_i(\ga_0)}, 0\right)$ appartient à l'enveloppe convexe de $S$, notée 
+	$conv(S)$. Pour cela, il suffit de montrer qu'il vérifie toutes les 
+	contraintes de $(D)$, i.e. $\forall j \in \{0 \dots q\},\ 
+	f_i(\ga_j) \frac{\ga_0}{f_i(\ga_0)} \le \ga_j$. Et ceci est trivialement 
+	vérifié puisque $\frac{f_i(\ga_0)}{\ga_0} > \frac{f_i(\ga_j)}{\ga_j},\ 
+	\forall j \in \{1,\dots,q \}$.\\
+	 
+	Par l'absurde, supposons qu'il existe un point extrême de l'enveloppe 
+	convexe $x$ de la forme : $	\left(
+	\frac{\ga_k - \ga_j}{f_i(\ga_j)-f_i(\ga_{k})},
+	\frac{f_i(\ga_j)\ga_{k} - f_i(\ga_{k})\ga_j}
+	{f_i(\ga_j)-f_i(\ga_{k})}
+	\right)$ et qu'il existe $l \in \{0\dots q\} \setminus \{j,k\}$ tel que 
+	$\frac{f_i(\ga_j)}{\ga_j} < \frac{f_i(\ga_l)}{\ga_l} < 
+	\frac{f_i(\ga_k)}{\ga_k}$. Nous allons montrer que le point $x$, n'est pas
+	une solution de $(D)$.\\
+	Pour que $x$ soit une solution de $(D)$, il doit vérifier toutes ses 	
+	contraintes et, en particulier :
+	\[f_i(\ga_l) \frac{\ga_j-\ga_k}{f_i(\ga_j)-f_i(\ga_k)} - 
+	\frac{f_i(\ga_j)\ga_k-f_i(\ga_k)\ga_j}{f_i(\ga_j)-f_i(\ga_k)} \le \ga_l
+	\]
+	\[\Leftrightarrow f_i(\ga_l)\ga_j - f_i(\ga_j)\ga_l + 
+	f_i(\ga_k)\ga_l - f_i(\ga_l)\ga_k + f_i(\ga_k)\ga_j -f_i(\ga_j)\ga_k \le 0
+	\]
+	
+	Or, $f_i(\ga_j)\ga_l < f_i(\ga_l)\ga_j,\ f_i(\ga_l)\ga_k < f_i(\ga_k)\ga_l$ et $f_i(\ga_j)\ga_k < f_i(\ga_k)\ga_j$.\\
+	
+	
+	Donc:
+	\[f_i(\ga_l)\ga_j - f_i(\ga_j)\ga_l + 
+	f_i(\ga_k)\ga_l - f_i(\ga_l)\ga_k + f_i(\ga_k)\ga_j -f_i(\ga_j)\ga_k > 0
+	\]
+	Et donc, tous les points extrêmes de l'enveloppe convexe des solutions de 
+	$(D)$ sont de la forme: 
+	\[
+	\left\{
+	\left(
+	\frac{\ga_j - \ga_{j+1}}{f_i(\ga_j)-f_i(\ga_{j+1})},
+	\frac{f_i(\ga_j)\ga_{j+1} - f_i(\ga_{j+1})\ga_j}
+	{f_i(\ga_j)-f_i(\ga_{j+1})}
+	\right) 
+	, \forall 0 \le j \le q-1
+	\right\}
+	\]
+\end{proof}
+
+Maintenant que nous avons caractériser l'ensemble des solutions $(D)$, nous 
+savons que la solution optimale est de la forme :
+	\[ \max_{0\le j\le q-1} \left(
+	\frac{\ga_0}{f_i(\ga_0)}\wb ,
+	\frac{\ga_j - \ga_{j+1}}{f_i(\ga_j)-f_i(\ga_{j+1})} \wb -
+	\frac{f_i(\ga_j)\ga_{j+1} - f_i(\ga_{j+1})\ga_j}
+	{f_i(\ga_j)-f_i(\ga_{j+1})}|I|
+	\right)
+	\]
+	
+Si nous notons :
+	$f_i(b)= \left\{ 
+	\begin{array}{cc}
+	a_0b+c_0 & b \in \inter{\ga_0}{\ga_1}\\
+	a_1b+c_1 & b \in \inter{\ga_1}{\ga_2}\\
+	\vdots & \vdots \\
+	a_{q-1}b+c_{q-1} & b \in \inter{\ga_{q-1}}{\ga_q}
+	\end{array}
+	\right.
+	$
+
+nous pouvons réecrire cette expression de la manière suivante:
+	\[ \max_{0 \le j\le q-1} \left(
+	\frac{\ga_0}{f_i(\ga_0)}\wb ,
+	\frac{1}{a_j}(\wb -c_j|I|)
+	\right)
+	\]
+\end{document}

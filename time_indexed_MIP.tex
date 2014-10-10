@@ -1,0 +1,27 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{amsmath}
+
+\newcommand{\bmin}{b_i^{min}}
+\newcommand{\bmax}{b_i^{max}}
+
+\begin{document}
+
+\begin{eqnarray}
+\sum_{t=r_i}^{d_i-1} x_{it} = 1 & \ \forall i \in A\\
+\sum_{t=r_i+1}^{d_i} y_{it} = 1 & \ \forall i \in A\\
+\sum_{\tau=r_i+1}^{t} y_{i\tau}\bmin + b_{it} - \sum_{\tau=r_i}^{t} x_{i\tau}\bmin \ge 0 & \ \forall t \in \{r_i,\dots,d_i-1\},\ \forall i \in A\\
+\sum_{t=r_i}^{d_i} b_{it} \ge W_i & \ \forall i \in A\\
+\sum_{\tau=r_i}^{t} x_{i\tau}\bmax - b_{it} - \sum_{\tau=r_i+1}^{t} y_{i\tau}\bmax \ge 0 & \ \forall t \in \{0,\dots,d_i-1\},\ \forall i \in A\\
+\sum_{i \in A} b_{it} \le B & \ \forall t \in \{0,\dots,T\}\\
+\sum_{\tau=r_i+1}^{t} y_{i\tau}\bmax + b_{it}\ge \bmax & \ \forall t \in \{r_i,\dots,d_i-1\},\ \forall i \in A\\
+\sum_{\tau=r_i+1}^{t} y_{i\tau} - \sum_{\tau=r_i}^{t} x_{i\tau} \le 0 & \ \forall t \in \{r_i+1,\dots,d_i-1\},\ \forall i \in A\\
+\sum_{\tau=0}^{t} x_{i\tau}W_i - b_{it}\ge 0 & \ \forall t \in \{r_i,\dots,d_i-1\},\ \forall i \in A\\
+x_{it} = 0 & \ \forall t \not\in \{r_i,\dots,di-1\}, \forall i \in A\\
+y_{it} = 0 & \ \forall t \not\in \{r_i+1,\dots,di\}, \forall i \in A
+\end{eqnarray}
+
+\end{document}
