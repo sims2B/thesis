@@ -9,6 +9,8 @@
 
 \newcommandx{\bmin}[1][1=i]{b_{#1}^{min}}
 \newcommandx{\bmax}[1][1=i]{b_{#1}^{max}}
+\newcommandx{\emin}[1][1=i]{e_{#1}^{min}}
+\newcommandx{\smax}[1][1=i]{s_{#1}^{max}}
 \newcommandx{\inter}[2][1=t_1,2=t_2]{{[}#1,#2{]}}
 \newcommandx{\htd}[1][1=j]{\frac{d_{#1}(f_{#1}(\bmax[#1])-f_{#1}(\bmin[#1]))-r_{#1}f_{#1}(\bmin[#1])-W_{#1}}{f_{#1}(\bmax[#1])-2f_{#1}(\bmin[#1])}}
 \newcommandx{\htu}[1][1=i]{\frac{r_{#1}(f_{#1}(\bmax[#1])-f_{#1}(\bmin[#1]))-d_{#1}f_{#1}(\bmin[#1])+W_{#1}}{f_{#1}(\bmax[#1])-2f_{#1}(\bmin[#1])}}
@@ -28,66 +30,22 @@
 
 \begin{document}
 
-\begin{tabular}{|p{12cm}|p{6cm}	|}
-\hline
-\rule[-0.5cm]{0cm}{1.5cm}
-condition & intervalle\\
-\hline
-$(r_j \le r_i) \land (d_j \le r_j)$ 
-& 
-\rule[-0.5cm]{0cm}{1.3cm}
-$\inter[r_j][d_i]$\\
+\begin{itemize}
+\item $\bmin = \bmin[j] = 0$\\
 
-$\left(r_i \ge \bdp{d_i} \right) 
-\land (d_j \ge d_i \ge s_j^{max})
-\land (d_i \le e_j^{min})$ 
-& 
-\rule[-0.5cm]{0cm}{1.3cm}
-$\left[\bdp{d_i},d_i \right]$\\
+ si $r_j \le e_i^{min}$ et $d_i \ge s_i^{max}\ \longrightarrow\ \inter[r_j][d_i]$\\
+ 
+\item $\bmin=0$ et $W_j \le f_j(\bmin[j])(d_j-r_j)$\\
+si $r_j \le e_i^{min}$ et $d_i \ge d_j\ \longrightarrow\ \inter[r_j][d_i]$\\
+si $d_j+r_j-d_i \le \emin$ et $d_j \ge d_i \ge \smax[j]$ et $(\emin[j] \le \smax[j]$ ou $d_i \ge \htd)\ \longrightarrow\ \inter[r_j][d_i]$\\
+si $\bdp{d_i} \le \emin$ et $(d_i \ge \emin[j]$ ou $d_i \le \htd)$ et $d_j \ge d_i \ge \smax[j]\ \longrightarrow\ \inter[\bdp{d_i}][d_i]$\\
 
+%TODO bjmin=bjmax
 
-$(d_j \ge d_i \ge s_j^{max}) \land 
-\left(d_i \ge \itd \right) \land
-(r_j \le r_i) \land $
-&
-\rule[-0.5cm]{0cm}{1.3cm}
-\multirow{2}{*}{$\inter[r_j][d_i]$ et $\left[\bup{d_i},d_i\right]$}\\
-$\left(r_i \ge \bup{d_i} \right)$
-& \\
-
-\rule[-0.5cm]{0cm}{1.3cm}
-$(r_i \ge d_j+r_j-d_i) \land (d_j \ge d_i \ge s_j^{max}) \land
-(d_i \ge e_j^{min}) \land$\\
-&
-\multirow{4}{*}{$\inter[d_j+r_j-d_i][d_i]$}\\
-$\left[ 
-\left( (W_j \le f_j(\bmin[j])(d_j-r_j)) \land 
-( (e_j^{min} \le s_j^{max}) \lor \right. \right.$ & \\
-$\left. (d_i \ge \htd) \right) \lor $ & \\
-$\left. \left( (W_j \ge f_j(\bmin[j])(d_j-r_j)) \land (d_i \ge \htd) \right) 
-\right]$ & \\
-
-
-$(r_i \ge \bdp{d_i}) \land 
-(r_i \ge \bup{d_i}) \land$ 
-&
-\rule[-0.5cm]{0cm}{1.3cm}
-\multirow{2}{*}{$\inter[\bdp{d_i}][d_i]$}\\
-$(d_j \ge d_i \ge s_j^{max}) \land
-(d_i \ge e_j^{min}) \land$ & \\
-$(d_i \le \itd) \land
-((W_j \ge f_j(\bmin[j])(d_j-r_j))(d_i - \htd) \ge 0)$ & et $\inter[\bup{d_i}][d_i]$\\
-
-$(r_i \le r_j \le e_i^{min}) \land
-(r_j \le s_i^{max}) \land
-(d_j \le \bu{r_j})$
-&
-$\inter[r_j][\bu{r_j}]$\\
-
-
-\hline
-\end{tabular}
+\item $\bmin=0$ et $W_j \ge f_j(\bmax[j])(d_j-r_j)$\\
+ 
 
 
 
+\end{itemize}
 \end{document}
