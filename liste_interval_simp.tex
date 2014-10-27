@@ -57,12 +57,12 @@ $(\emin[j] \le \smax[j]$ ou $d_i \ge \htd)\ \longrightarrow\
 \inter[r_j][d_i]$\\
 \vspace{0.1cm}
 si $\bdp{d_i} \le \emin$ et $(d_i \ge \emin[j]$ ou $d_i \le \htd)$ 
-\linebreak et $d_j \ge d_i \ge \smax[j]\ \longrightarrow\ 
+  et $d_j \ge d_i \ge \smax[j]\ \longrightarrow\ 
 \inter[\bdp{d_i}][d_i]$\\
 
 \vspace{0.5cm}
 
-\item $\bmin=0$ et $W_j \ge f_j(\bmax[j])(d_j-r_j)$\\
+\item[-] $\bmin=0$ et $W_j \ge f_j(\bmax[j])(d_j-r_j)$\\
 \vspace{0.2cm}
 si $r_j \le \emin$ et $d_i \ge d_j\ \longrightarrow\ \inter[r_j][d_i]$\\
 \vspace{0.1cm}
@@ -73,11 +73,12 @@ si $d_j+r_j-d_i \le \emin$ et $d_j \ge d_i \ge \smax[j]$ et $d_i \le \htd\
 \longrightarrow\ \inter[d_j+r_j-d_i][d_i]$\\
 \vspace{0.1cm}
 si $\bdp{d_i} \le \emin$ et $d_j \ge d_i \ge \smax[j]$ et $d_i \le \itd$ et 
-\linebreak $d_i \ge \htd\ \longrightarrow\ \inter[\bdp{d_i}][d_i]$\\
+  $d_i \ge \htd\ \longrightarrow\ \inter[\bdp{d_i}][d_i]$\\
 
 \vspace{0.5cm}
 
-\item $W_i\le f_i(\bmax)(d_i-r_i)$ et $W_j\le f_j(\bmax[j])(d_j-r_j)$\\
+\item $W_i\le f_i(\bmax)(d_i-r_i)$ et $W_j\le f_j(\bmax[j])(d_j-r_j)$ 
+(si $\bmin=\bmax,\ \bu{t_1}=\emin$)\\
 \vspace{0.2cm}
 si $r_j \le d_i$ et $ d_i \ge d_j\ \longrightarrow\ \inter[r_j][d_i]$\\
 \vspace{0.1cm}
@@ -93,21 +94,20 @@ $d_i \ge d_j\ \longrightarrow\ \inter[r_j][r_i+d_i-r_j]$\\
 \vspace{0.1cm}
 si $r_i \ge r_j \ge \emin$ et $(\smax \le r_j$ ou $ r_j \ge \htu)$ et 
 $\bu{r_j} \ge d_j\ \longrightarrow\ \inter[r_j][\bu{r_j}]$\\
-
 \vspace{0.25cm}
 
 \underline{si $\bmin=\bmax$}\\
 \vspace{0.2cm}
 si $r_i \ge d_j+r_j-\emin \ge \emin$ et 
 $(\smax \le d_j+r_j-\emin$ ou $d_j+r_j-\emin \ge \htu)$ et 
-$d_j \ge \emin \ge \smax[j]$ et $(\emin[j] \le \smax[j]$ ou 
+$d_j \ge \emin \ge \smax[j]$ et \linebreak $(\emin[j] \le \smax[j]$ ou 
 $\emin \ge \htd\ \longrightarrow\ \inter[d_j+r_j-\emin][\emin]$\\
 \vspace{0.1cm}
-si $r_i \ge \bdp{\emin} \ge \emin$ et \linebreak
+si $r_i \ge \bdp{\emin} \ge \emin$ et  
 $(\smax \le \bdp{\emin}$ ou $\bdp{\emin} \ge \htu)$ et 
-$(\emin \ge \emin[j]$ ou $\emin \le \htd)$ et $d_j \ge \emin \ge \smax[j]\ 
-\longrightarrow\ \linebreak \inter[\bdp{\emin}][\emin]$\\
-
+$(\emin \ge \emin[j]$ ou $\emin \le \htd)$ et \linebreak 
+$d_j \ge \emin \ge \smax[j]\ 
+\longrightarrow\   \inter[\bdp{\emin}][\emin]$\\
 \vspace{0.25cm}
 
 \underline{si $\bmin[j]=\bmax[j]$}\\
@@ -115,11 +115,11 @@ $(\emin \ge \emin[j]$ ou $\emin \le \htd)$ et $d_j \ge \emin \ge \smax[j]\
 si $r_i \ge \smax[j] \ge \emin$ et $(\emin \le \smax$ ou $\smax[j] \le \htu)$ 
 et $(r_i+d_i-\smax[j] \ge \emin[j]$ ou $r_i+d_i-\smax[j] \le \htd)$ et 
 $d_j \ge r_i+d_i-\smax[j] \ge \smax[j]\ \longrightarrow\ 
-\inter[d_i+r_i-\smax[j]][\smax[j]]$\\
+\inter[{d_i+r_i-\smax[j]}][{\smax[j]}]$\\
 \vspace{0.1cm}
 si $r_i \ge \smax[j] \ge \emin$ et 
-$(\smax \le \smax[j]$ ou $\smax[j] \ge \htu)$ et \linebreak
-$(\bu{\smax[j]} \ge \emin[j]$ ou $\bu{\smax[j]} \le \htd)$ et 
+$(\smax \le \smax[j]$ ou $\smax[j] \ge \htu)$ et  
+$(\bu{\smax[j]} \ge \emin[j]$ ou $\bu{\smax[j]} \le \htd)$ et \linebreak
 $d_j \ge \bu{\smax[j]} \ge \smax[j]\ \longrightarrow\ 
 \inter[{\smax[j]} ][\bu{\smax[j]}]$\\
 
@@ -131,18 +131,18 @@ si $r_j \le d_i$ et $(d_i \ge d_j$ ou $(d_i \ge \smax[j]$ et $d_i \ge \itd))\
 \longrightarrow\ \inter[r_j][d_i]$\\
 \vspace{0.1cm}
 si $\bdp{d_i} \le r_i$ et $d_j \ge d_i \ge \smax[j]$ et $d_i \le \itd$ et
-\linebreak $(d_i \le \emin[j]$ ou $d_i \ge \htd)\ \longrightarrow\ 
+  $(d_i \le \emin[j]$ ou $d_i \ge \htd)\ \longrightarrow\ 
 \inter[\bdp{d_i}][d_i]$\\
 \vspace{0.1cm}
 si $d_j+r_j-d_i \le r_i$ et $d_j \ge d_i \ge \smax[j]$ et 
 $d_i\le \htd\ \longrightarrow\ \inter[d_j+r_j-d_i][d_i]$\\
 \vspace{0.1cm}
 si $r_i \ge r_j \ge \emin$ et $(\emin \le \smax$ ou $r_j\le \htu)$ et 
-\linebreak $(d_i+r_i-r_j \ge d_j$ ou $(d_i+r_i-r_j \ge \smax[j]$ et 
+  $(d_i+r_i-r_j \ge d_j$ ou $(d_i+r_i-r_j \ge \smax[j]$ et 
 $d_i+r_i-r_j \ge \itd))\ 
 \longrightarrow\ \inter[r_j][d_i+r_i-r_j]$\\
 \vspace{0.1cm}
-si $r_i \ge r_j \ge \emin$ et $(\smax \le r_j$ ou $ r_j \ge \htu)$ et \linebreak $(\bu{r_j} \ge d_j$ ou $(\bu{r_j} \ge \smax[j]$ et \linebreak
+si $r_i \ge r_j \ge \emin$ et $(\smax \le r_j$ ou $ r_j \ge \htu)$ et   $(\bu{r_j} \ge d_j$ ou $(\bu{r_j} \ge \smax[j]$ et  
 $\bu{r_j} \ge \itd))\ \longrightarrow\ \inter[r_j][\bu{r_j}]$\\
 
 \vspace{0.25cm}
@@ -150,10 +150,10 @@ $\bu{r_j} \ge \itd))\ \longrightarrow\ \inter[r_j][\bu{r_j}]$\\
 \underline{si $\bmin=\bmax$}\\
 \vspace{0.2cm}
 si $r_i \ge \bdp{\emin} \ge \emin$ et 
-$(\smax \le \bdp{\emin}$ ou \linebreak$ \bdp{\emin} \ge \htu)$ et 
-$d_j \ge \emin \ge \smax[j]$ et \linebreak $\emin \le \itd$ et 
+$(\smax \le \bdp{\emin}$ ou  $ \bdp{\emin} \ge \htu)$ et 
+$d_j \ge \emin \ge \smax[j]$ et   $\emin \le \itd$ et 
 $(\emin \le \emin[j]$ ou $\emin \ge \htd)\ \longrightarrow\ 
-\linebreak \inter[\bdp{\emin}][\emin]$\\
+  \inter[\bdp{\emin}][\emin]$\\
 \vspace{0.1cm}
 si $r_i \ge d_j+r_j-\emin \ge \emin$ et 
 $(\smax \le d_j+r_j-\emin$ ou $ d_j+r_j-\emin \ge \htu)$ et 
@@ -169,19 +169,19 @@ $(d_i \ge d_j$ ou $(d_i \ge \smax[j]$ et $d_i \ge \itd))\
 \longrightarrow\ \inter[r_j][d_i]$\\
 \vspace{0.1cm}
 si $\bdp{d_i} \le r_i$ et $d_j \ge d_i \ge \smax[j]$ et $d_i \le \itd$ et
-\linebreak $(d_i \le \emin[j]$ ou $d_i \ge \htd)\ \longrightarrow\ 
+  $(d_i \le \emin[j]$ ou $d_i \ge \htd)\ \longrightarrow\ 
 \inter[\bdp{d_i}][d_i]$\\
 \vspace{0.1cm}
 si $d_j+r_j-d_i \le r_i$ et $d_j \ge d_i \ge \smax[j]$ et 
 $d_i\le \htd\ \longrightarrow\ \inter[d_j+r_j-d_i][d_i]$\\
 \vspace{0.1cm}
 si $r_i \ge r_j \ge \emin$ et $r_j \ge \itu$ et 
-$(\smax \le r_j$ ou $ r_j \ge \htu)$ et \linebreak 
-$(\bu{r_j} \ge d_j$ ou $(\bu{r_j} \ge \smax[j]$ et  \linebreak 
+$(\smax \le r_j$ ou $ r_j \ge \htu)$ et   
+$(\bu{r_j} \ge d_j$ ou $(\bu{r_j} \ge \smax[j]$ et    
 $\bu{r_j} \ge \itd))\ \longrightarrow\ \inter[r_j][\bu{r_j}]$\\
 \vspace{0.1cm}
 si $r_i \ge r_j \ge \emin$ et $r_j \ge \htu$ et 
-$(d_i+r_i-r_j \ge d_j$ ou $(d_i+r_i-r_j \ge \smax[j]$ et \linebreak 
+$(d_i+r_i-r_j \ge d_j$ ou $(d_i+r_i-r_j \ge \smax[j]$ et   
 $d_i+r_i-r_j \ge \itd))\ \longrightarrow\ \inter[r_j][d_i+r_i-r_j]$\\
 
 
