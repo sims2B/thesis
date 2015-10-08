@@ -1,0 +1,106 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{xargs}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[svgnames]{xcolor}
+
+\usepackage{array}
+
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\input{/home/mnattaf/Documents/input_latex/usepackage.tex}
+\input{/home/mnattaf/Documents/input_latex/newcommand.tex}
+
+\newtheorem{Th}{Theorem}
+\newtheorem{Lem}{Lemma}
+
+\begin{document}
+
+We want to prove that the following set of inequalities: 
+\begin{align}
+z_{ie} \le z_{ie-1}+(1-\sum_{j\neq i}(z_{je}-z_{je-1})) & \forall
+i,\ \forall e \label{eq1}\\
+z_{ie} \le z_{ie-1}+(1-\sum_{j\neq i}(z_{je-1}-z_{je})) & \forall
+i,\ \forall e\label{eq2}\\
+z_{ie} \ge z_{ie-1}-(1-\sum_{j\neq i}(z_{je}-z_{je-1})) & \forall
+i,\ \forall e\label{eq3}\\
+z_{ie} \ge z_{ie-1}-(1-\sum_{j\neq i}(z_{je-1}-z_{je})) & \forall
+i,\ \forall e\label{eq4}
+\end{align}
+express the property that an event $e$ cannot corresponds to either
+two task starts, or two task ends, or a task start and a task end.
+
+First, we prove that if $e$ correspond to only one task start
+(resp. end) then the inequalities are verified.
+
+Suppose then that event $e$ is the start of task $i$. Inequality
+(\ref{eq1}) and (\ref{eq4}) can be rewritten as:
+\begin{align}
+\sum_{i\in A}(z_{ie}-z_{ie-1}) \le 1 &\forall e\label{eq5}\\
+\sum_{i\in A}(z_{ie-1}-z_{ie}) \le 1 &\forall e\label{eq6}
+\end{align}
+where $A=\{1,\dots,n\}$ is the set of all tasks. Clearly, these
+inequalities are satisfied.
+
+Now we prove that inequality (\ref{eq2}) is verified $\forall j\in
+A$. For task $i$, we have: $1 \le 0+1-0 \Rightarrow 1 \le 1$. For the
+other tasks, the inequality gives $z_{je}-z_{je-1}=0 \le 1+1
+\Rightarrow 0\le 2$. Thus, inequality (\ref{eq2}) is satisfied.
+
+Apply inequality (\ref{eq3}) on task $i$ gives $1 \ge 0 - 1 +0
+\Rightarrow 1 \ge 1$ which is true. For the other tasks, we have
+$z_{je}-z_{je-1}=0 \ge -1+1 \Rightarrow 0\le 0$. Therefore,
+(\ref{eq3}) is satisfied and if $e$ correspond to the start of one
+task only, inequalities (\ref{eq1})--(\ref{eq4}) are verified. We can
+prove in a similar way that if $e$ is the end of only one task these
+inequalities hold also.
+
+Now, we have to prove that if an event $e$ corresponds to either two
+task starts, or two task ends, or a task start and a task end then the
+inequalities are not satisfied. First, we recall that:
+\[(\ref{eq1})+(\ref{eq4}) \Rightarrow -1 \le \sum_{i\in A}(z_{ie}-z_{ie-1}) \le 1\]
+Therefore, we only have three cases to consider: 
+\begin{itemize}
+\item $e$ correspond to $l+1$ starts and to $l$ ends ($l\ge 1$)
+\item $e$ correspond to $l$ starts and to $l+1$ ends ($l\ge 1$)
+\item $e$ correspond to $l$ starts and to $l$ ends ($l\ge 1$)
+\end{itemize}
+
+For the first case, we denote by $i_1,\dots,i_{l+1}$
+(resp. $j_1,\dots,j_l$) the tasks starting (resp. ending) at event
+$e$. Then, considering task $j_1$ and inequality (\ref{eq3}), we have
+$z_{j_1e} \ge z_{j_1e-1} -1 - \sum_{k=j_2}^{j_l}(z_{ke-1}-z_{ke})+
+\sum_{k=i_1}^{i_{l+1}}(z_{ke}-z_{ke-1}) \Rightarrow 0 \ge
+1-1-l+1+l+1\Rightarrow 0\ge 2$ and then inequality (\ref{eq3}) is not
+satisfied.
+
+Similarly, for the second case, we denote by $i_1,\dots,i_{l}$
+(resp. $j_1,\dots,j_{l+1}$) the tasks starting (resp. ending) at event
+$e$. Then, considering task $i_1$ and inequality (\ref{eq2}), we have
+$z_{i_1e} \le z_{i_1e-1}+1 - \sum_{k=j_1}^{j_{l+1}}(z_{ke-1}-z_{ke})+
+\sum_{k=i_2}^{i_{l}}(z_{ke}-z_{ke-1}) \Rightarrow 1 \le
+0+1-l-1+l-1\Rightarrow 1\le 0$ and then inequality (\ref{eq2}) is not
+satisfied.
+
+Finallly, for the last case, we denote by $i_1,\dots,i_{l}$
+(resp. $j_1,\dots,j_{l}$) the tasks starting (resp. ending) at event
+$e$. Then, considering task $j_1$ and inequality (\ref{eq3}), we have
+$z_{j_1e} \ge z_{j_1e-1} -1 - \sum_{k=j_2}^{j_{l}}(z_{ke-1}-z_{ke})+
+\sum_{k=i_1}^{i_{l}}(z_{ke}-z_{ke-1}) \Rightarrow 0 \ge
+1-1+l-l+1\Rightarrow 0\ge 1$ and then inequality (\ref{eq3}) is not
+satisfied.
+
+Therefore, inequalities (\ref{eq1})--(\ref{eq4}) express the property
+that an event $e$ cannot corresponds to either two task starts, or two
+task ends, or a task start and a task end.
+\end{document}
