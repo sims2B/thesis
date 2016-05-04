@@ -1,0 +1,45 @@
+\newcommand\RCPSP{RCPSP}
+\newcommand\CECSP{CECSP}
+\newcommand\CUSP{CuSP}
+\newcommand\CuSP{probl{\`e}me cumulatif}
+\renewcommand\H{{\cal H}}
+\newcommand\A{{\cal A}}
+\renewcommand\P{{\cal P}}
+\renewcommand\S{{\cal S}}
+\newcommand\R{{\cal R}}
+\newcommand\I{{\cal I}}
+\newcommandx{\bmin}[1][1=i]{r_{#1}^{min}}
+\newcommandx{\bmax}[1][1=i]{r_{#1}^{max}}
+\newcommandx{\ES}[1][1=i]{est_{#1}}
+\newcommandx{\LS}[1][1=i]{lst_{#1}}
+\newcommandx{\EE}[1][1=i]{eet_{#1}}
+\newcommandx{\LE}[1][1=i]{let_{#1}}
+
+\newcommandx{\bb}[3][1=i,2=t_1,3=t_2]{\underline{b}(#1,#2,#3)}
+\newcommandx{\wb}[3][1=i,2=t_1,3=t_2]{\underline{w}(#1,#2,#3)}
+\newcommandx{\conv}[1][1=W_i]{CR\left(#1,t_1,t_2\right)}
+
+
+\newcommandx{\Em}[1][1=2n]{\E\setminus\{#1\}}
+\newcommand\E{{\cal E}}
+%%%%%%%%%% INDEX %%%%%%%%%%%%%%%
+
+\newcommand\CuSPidx{CuSP}
+\newcommand\RCPSPidx{RCPSP}
+%%%%%%%%%%%%% THEOREME %%%%%%%%%%%%%%%%
+
+\newtheorem{theo}{Théorème}[chapter]
+\newtheorem{defi}{Définition}[chapter]
+\newtheorem{coro}{Corollaire}[theo]
+\newtheorem{ex}{Exemple}[section]
+\newtheorem{lemma}{Lemme}[chapter]
+\newtheorem{prop}{Proposition}[chapter]
+%%%%%%%%%% TIKZ %%%%%%%%%%%%%
+
+\tikzset{every node/.style={circle,minimum size=0pt,node
+distance=3cm,inner sep=2pt}}
+
+%%%%%%%%%%%%%%%% ARRAY %%%%%%%%%%%
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{P}[1]{>{$}M{#1}<{$}}

@@ -1,0 +1,56 @@
+
+\documentclass[11pt,a4paper]{book}
+
+
+\input{usepackage.tex}
+\allowdisplaybreaks[2]
+ \renewcommand{\baselinestretch}{1.2} 
+\makeindex
+\input{newcommand.tex}
+ \parskip=7pt
+ \setcounter{topnumber}{1}
+ \setcounter{bottomnumber}{1}
+
+\hyphenation{ordon-nan-ce-ment}
+
+\title{\textbf{\large Ordonnancement sous contraintes d'énergie}}
+\author{Margaux NATTAF}
+\defencedate{30/09/2016}
+\lab{Laboratoire d'Analyse et d'Architecture des Système (LAAS)}
+
+
+\nboss{2}
+\makesomeone{boss}{2}{Christian ARTIGUES}{}{}  % Sera affiche en second
+\makesomeone{boss}{1}{Pierre LOPEZ}{}{} % Sera afiche en premier
+
+%% Referee
+\nreferee{2}
+\makesomeone{referee}{1}{Premier RAPPORTEUR}{}{}
+\makesomeone{referee}{2}{Second RAPPORTEUR}{}{}
+
+%% Judges
+\njudge{5}
+\makesomeone{judge}{1}{Premier MEMBRE}{Professeur d'Universit\'e}{Pr\'esident du Jury}
+\makesomeone{judge}{2}{Second MEMBRE}{Astronome Adjoint}{Membre du Jury}
+\makesomeone{judge}{3}{Troisi\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
+\makesomeone{judge}{4}{Quatri\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
+\makesomeone{judge}{5}{Ciqui\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
+
+% ============================================================
+% DOCUMENT
+\begin{document}
+\makeflyleaf
+\dominitoc
+\tableofcontents
+\listoffigures
+\listoftables
+\input{part1/chap1.tex}
+\input{part2/PPC.tex}
+\input{part3/PLNE.tex}
+% \input{modele_MILP/modele_these.tex}
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{main_file}
+\end{document}

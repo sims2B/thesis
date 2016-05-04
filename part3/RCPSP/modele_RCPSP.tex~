@@ -1,0 +1,423 @@
+%!TeX root =../main_file.tex 
+\section{Application à l'ordonnancement sous contraintes de ressource}  
+\label{sec:PLNE_ordo_res}
+
+La facilité de modélisation des problèmes d'ordonnancement sous
+contraintes de ressource à l'aide de la programmation linéaire en a
+fait une des principales méthodes de résolution pour ces
+derniers. De ce fait, de nombreuses techniques de modélisation ont été
+développées et la littérature sur ce sujet est très vaste. Dans 
+ 
+Une grande partie des techniques de résolution pour les problèmes
+d'ordonnancement sous contraintes de ressource reposent sur la
+programmation linéaire en nombres entiers, mixtes ou non. Ceci est
+principalement dû à la facilité de modélisation de ces
+problèmes. Parmi ces modélisations, on distingue plusieurs familles:
+\begin{itemize}
+\item les formulations indexées par le temps (ou à temps discret)
+sont, en général, des formulations purement discrètes. Ces
+formulations ont la particularité d'avoir les meilleures relaxations
+linéaires au détriment du nombre de variables;
+\item les formulations avec variables de séquencement sont des
+formulations qui ont l'avantage d'être plus compactes que celles
+indexées par le temps mais possèdent de moins bonnes relaxations
+linéaires que ces dernières;
+\item les formulations à événements possèdent aussi de faibles
+relaxations linéaires mais ont un nombre de variables polynomiales,
+moins élevé que pour les formulations à temps discret.
+\end{itemize}
+
+Dans cette section, nous présentons quelques modèles de
+programmation linéaire mixte développés pour les problèmes
+d'ordonnancement sous contraintes de ressource. Nous nous intéressons
+tout particulièrement aux modèles décrits dans~\cite{modele_RCPSP}
+pour le \RCPSP. En effet, ce sont ces modèles qui seront adaptés dans
+le cas du \CECSP. Nous commençons donc, dans un premier temps, par
+présenter les modèles indexés par le temps puis, dans un second temps, nous
+présentons les modèles à événement. Les modèles avec variables de
+séquencement ne sont pas traités ici. Des exemples de telles
+formulations dans le cadre du \RCPSP~sont décrites dans~\cite{ADN}.
+
+\subsection{Modèles à temps discret}
+\label{sec:time_RCPSP}
+
+Une des méthodes permettant la modélisation du \RCPSP~consiste à
+discrétiser l'horizon de temps. Ces modèles de programmation
+linéaire en nombres entiers indexés par le temps, aussi appelés
+modèles à temps discret, ont été largement étudiés dans le cadre
+des problèmes d'ordonnancement en général. Ceci étant
+principalement dû à leur forte relaxation linéaire et à la
+facilité d’extension à de nombreux objectifs et contraintes.
+
+Dans la formulation à temps discret étudiée, l'horizon de temps
+est discrétisé en intervalle de taille un et un ensemble de
+variables est défini pour modéliser le début d'une activité $i$.
+Plus précisément, nous définissons pour chaque activité $i$ et
+pour chaque instant $t$ (discret) de l'horizon de temps, une
+variable $x_{it} \in \{0,1\}$ qui prendra la valeur $1$ si et
+seulement si l'activité $i$ commence à l'instant $t$. Le nombre de
+ces variables dépend donc de la taille de l'horizon de temps
+du problème, qui peut être, pour certains problèmes, aussi grand que
+la somme de toutes les durées des activités. Le calcul d'une borne
+supérieure pour la durée du projet $T$ est donc indispensable.
+Dans la suite, nous dénoterons par ${\cal H}=\{0,\dots,T\}$
+l'horizon de temps du problème.
+
+En pratique, pour chaque activité, nous calculons l'ensemble des
+périodes de temps pendant lesquels l'activité peut commencer. Pour
+cela, nous ajoutons deux activités fictives au problème: $0$ et
+$n+1$. Ces activités ont les caractéristiques suivantes: leur
+durée est égale à 0, elles ne consomment aucune ressource durant
+leur exécution et l'activité $0$ (resp. $n+1$) doit être
+ordonnancée avant (resp. après) toutes les autres activités. Ces
+deux activités fictives vont nous permettre d'associer à chaque
+activité $i$, une date de début au plus tôt $\ES$ et une date de
+début au plus tard $\LS$. Donc, l'intervalle $[\ES,\LS]$ est la
+fenêtre de temps pendant laquelle l'activité $i$ peut commencer.
+
+Pour calculer ces fenêtres de temps, remarquons que, si chaque
+arête $(i,j)$ du graphe des précédences $G$ est pondérée par
+$p_i$, la date de début au plus tôt de $i$, $\ES$ peut prendre la
+valeur du plus long chemin entre l'activité $0$ et l'activité $i$
+et la date de début au plus tard $\LS$, $T$ moins la valeur du
+plus long chemin entre $i$ et $n+1$.
+
+Dans la suite, par ${\cal A}$ nous dénotons l'ensemble des
+activités réelles du projet et par $V={\cal A} \cup \{0,n+1\}$
+l'ensemble des activités réelles et fictives du projet.
+
+Nous pouvons maintenant exhiber la formulation à temps discret
+suivante~\cite{ex_RCPSP_discret}:
+{\small \begin{align} &\text{min }
+\sum_{t \in {\cal H}} tx_{n+1,t} \label{obj_RCPSP_discret}\\
+&\sum_{t \in \H} tx_{jt} - \sum_{t \in {\cal H}} tx_{it} \ge p_i &
+&\forall (i,j) \in E \label{prec_RCPSP_discret}\\ &\sum_{i \in
+V}\,\sum_{\tau=t-p_i+1}^t r_{ik}x_{i\tau} \le R_k& &\forall t\in
+{\cal H},\ \forall k \in {\cal R} \label{res_RCPSP_discret}\\
+&\sum_{t\in {\cal H}} x_{it}=1& & \forall i \in V
+\label{preem_RCPSP_discret}\\ & x_{it} \in \{0,1\} & &\forall i
+\in V,\ \forall t \in {\cal H} \end{align}
+ } 
+Dans cette formulation l'objectif est donné par
+l'équation~\eqref{obj_RCPSP_discret}. Cette équation signifie que
+l'on cherche à minimiser la date de début de l'activité $n+1$. Or
+comme cette activité est forcément placée à la fin de
+l'ordonnancement du fait des relations de précédences, ceci
+revient bien à minimiser la durée totale du projet.
+
+La contrainte~\eqref{prec_RCPSP_discret} modélise les relations de
+précédences entre les activités. En effet, toute paire d'activités
+$i$ et $j$ ayant la propriété que $i$ doit précéder $j$ vérifie la
+relation suivante: la date de début de $j$ est supérieure ou égale
+à la date de début de $i$ plus sa durée, i.e. la date de fin de
+$i$.
+
+La contrainte~\eqref{res_RCPSP_discret} formalise les contraintes
+de ressource. En effet, la contrainte s'assure que, pour chaque
+ressource $k \in {\cal R}$, la somme des consommations
+instantanées sur $k$ des activités en cours à l'instant $t$ est
+bien inférieure ou égale à la capacité de cette ressource.
+
+La contrainte~\eqref{preem_RCPSP_discret} s'assure de la
+non-préemption des activités. En effet, la contrainte impose que
+chaque activité n'ait qu'une et une seule date de début. Ceci
+revient à empêcher que l'activité soit interrompue et redémarrée
+plus tard dans l'ordonnancement final.
+
+Le modèle possède donc $(n+2)(T+1)$ variables binaires et
+$|E|+(T+1)*m+n$ contraintes.
+
+\subsection{Modèles à événements}
+\label{sec:event_RCPSP}
+Les modèles indexés par le temps
+pour le \RCPSP~sont, à ce jour, les modèles les plus efficaces
+pour sa résolution. Cependant, comme la taille de ces modèles, et
+donc leur complexité, dépend grandement de la taille de l'horizon
+de temps du problème, ces modèles peuvent s’avérer moins efficaces
+sur certains types d'instance~\cite{modele_RCPSP}. Pour palier à
+ce problème, des formulations basées sur des {\it événements} ont
+été mises en place.
+
+La notion d'événement permet de caractériser seulement les dates
+"importantes" de l'ordonnancement, i.e. les dates de début et de
+fin de chaque activité. Ainsi, la considération de chaque date de
+l'horizon de temps n'est plus nécessaire. Cela permet de réduire
+le nombre de variables qui ne dépend alors que du nombre
+d'activités à ordonnancer. De plus, pour le \RCPSP, seuls les
+événements correspondant au début d'une activité ont besoin d'être
+considérés. En effet, si on considère que les activités sont
+ordonnancées au plus tôt (sans temps de latence), alors la date de
+début de chaque activité correspond soit à l'instant $0$, soit à
+la date de fin d'une tâche.
+
+Les formulations à événements possèdent aussi la caractéristique
+suivante: elles permettent de résoudre des instances pouvant
+contenir des valeurs (de paramètre et/ou de solution) non
+entières.
+
+Nous allons présenter deux formulations à événements: une
+formulation dite start/end et une formulation dite on/off.
+
+\subsubsection{Modèle start/end}
+
+Dans cette formulation, la date de chaque événement est représentée
+par une variable continue $t_e$, pour tout $e \in {\cal E}$, avec
+${\cal E}$ l'ensemble des indices des événements. Afin d'associer
+ces dates aux débuts et fins des activités, nous définissons, pour
+toute activité $i \in \A$ et pour tout événement $e \in \E$, deux
+variables binaires, $x_{ie}$ et $y_{ie}$, ayant les propriétés
+suivantes: 
+\begin{itemize}
+ \item $x_{ie}=1$ si et seulement si
+l'activité $i$ commence à l'événement $e$, c'est à dire commence à
+la date $t_e$. 
+\item $y_{ie}=1$ si et seulement si l'activité $i$
+finit à l'événement $e$, c'est à dire finit à la date $t_e$.
+\end{itemize} 
+Notons que, les événements correspondant à la fin
+d'une activité correspondent aussi au début d'une autre activité
+(à l'exception de l'événement correspondant à la date de fin de la
+dernière activité), le nombre d'événements à considérer est $n+1$. De
+ce fait, nous avons comme ensemble d'événements ${\cal
+  E}=\{1,\dots,n+1\}$. 
+
+Nous définissons aussi une variable continue $b_{ek}$, pour chaque
+événement $e \in \E$ et pour chaque ressource $k \in \R$, modélisant
+la consommation totale de la ressource $k$ à l'événement $e$ (et
+donc durant tout l'intervalle compris entre $t_e$ et $t_{e+1}$).
+Ceci nous permet de présenter la formulation
+suivante~\cite{modele_RCPSP}: 
+{\small
+\begin{align} 
+& \text{min } t_{n+1}
+\label{obj_RCPSP_SE}\\ 
+& t_1 =0 & & \label{t0_RCPSP_SE}\\ 
+&t_e \le
+t_{e+1} & & \forall e \in {\cal E} \label{ordre_RCPSP_SE}\\
+&\sum_{e\in {\cal E}} x_{ie} =1 & & \forall i \in \A
+\label{start_RCPSP_SE}\\ 
+&\sum_{e\in {\cal E}} y_{ie} =1 & &
+\forall i \in \A\label{end_RCPSP_SE}\\ 
+&x_{ie}\ES \le t_e \le \LS
+x_{ie}+\LS[n+1]\left(1-x_{ie}\right) & & \forall i \in \A,\ \forall
+e \in {\cal E} \label{twx_RCPSP_SE}\\ 
+&\left(\LS+p_i\right)y_{ie}
++\left(1-y_{ie}\right)\LS[n+1] \ge t_e & & \forall i \in \A ,\
+\forall e \in {\cal E} \label{twy1_RCPSP_SE}\\ 
+& t_e \ge
+y_{ie}\left(\ES+p_i\right) & & \forall i \in \A ,\ \forall e \in
+{\cal E} \label{twy2_RCPSP_SE}\\ 
+&b_{1k} - \sum_{i \in \A}
+r_{ik}x_{i1}=0 & & \forall k \in {\cal R} \label{res0_RCPSP_SE}\\
+& b_{ek} - b_{e-1,k} + \sum_{i\in \A}r_{ik}
+\left(y_{ie}-x_{ie}\right)=0 & & \forall e \in {\cal E}
+\setminus{1},\ \forall k \in {\cal R} \label{resCons_RCPSP_SE}\\ 
+&
+b_{ek} \le R_k & & \forall e \in {\cal E},\ \forall k\in {\cal R}
+\label{res_RCPSP_SE}\\
+ &t_f \ge t_e + (x_{ie} + y_{if} -1) p_i & &
+\forall i \in \A,\ \forall (e,f) \in {\cal E}^2,\ f>e
+\label{dur_RCPSP_SE}\\ 
+&\sum_{f=1}^e y_{if} +\sum_{f=e}^n x_{if}
+\le 1 & & \forall i \in \A,\ \forall e \in {\cal E}
+\label{xby_RCPSP_SE}\\
+ &\sum_{f=e}^n y_{if} - \sum_{f=1}^{e-1}
+x_{jf} \le 1 & & \forall (i,j) \in E,\ \forall e \in {\cal E}
+\label{prec_RCPSP_SE}\\ 
+& \ES[n+1] \le t_n \le \LS[n+1]&
+&\label{Btn_RCPSP_SE}\\ 
+&t_e \ge 0 & & \forall e \in {\cal E}
+\label{Bte_RCPSP_SE}\\ 
+& b_{ek} \ge 0 & & \forall k \in {\cal R},\
+\forall e \in {\cal E} \label{Bbek_RCPSP_SE}\\ 
+&x_{ie} \in
+\{0,1\},\ y_{ie} \in \{0,1\} & & \forall i \in \A,\ \forall e \in
+{\cal E} \label{Bxy_RCPSP_SE} \end{align}
+ }
+Dans cette formulation, l'objectif est donné par
+l'équation~\eqref{obj_RCPSP_SE}. En effet, comme pour la
+formulation à temps discret, on cherche à minimiser la date de fin
+du projet. Or, l'activité fictive $n+1$ étant forcément
+ordonnancée en dernière, ceci est équivalent à minimiser la date de
+début de cette dernière.
+
+La contrainte~\eqref{t0_RCPSP_SE} fixe le premier événement à la date
+0, tandis que la contrainte~\eqref{ordre_RCPSP_SE} ordonne les dates
+des événements par ordre croissant.
+
+La contrainte~\eqref{start_RCPSP_SE} (resp.~\eqref{end_RCPSP_SE})
+stipule que chaque activité ne peut commencer (resp. finir) qu'une
+et une seule fois. En effet, chaque début (resp. fin) d'activité
+ne peut être associé qu'à un et un seul événement.
+ 
+La contrainte~\eqref{twx_RCPSP_SE} garantit que la date d'un
+événement correspondant au début d'une activité soit bien comprise
+dans sa fenêtre de temps, i.e. entre sa date de début au plus tôt
+$\ES$ et sa date de début au plus tard $\LS$. En effet, si
+l'événement $e$ correspond au début de l'activité $i$, i.e.
+$x_{ie}=1$, alors l'inégalité devient: $\ES \le t_e \le \LS$. Au
+contraire, si $x_{ie}=0$, i.e. $e$ ne correspond pas au début de
+$i$, alors l'inégalité devient: $0 \le t_e \le \LS[n+1]$ et, grâce
+aux contraintes~\eqref{ordre_RCPSP_SE} et~\eqref{Btn_RCPSP_SE},
+ceci est vrai pour tout $e \in {\cal E}$. De même, les
+contraintes~\eqref{twy1_RCPSP_SE} et~\eqref{twy2_RCPSP_SE}
+s'assurent que, si un événement $f$ correspond à la fin d'une
+activité $i$, alors $t_f$ est bien compris entre $\ES+p_i$ et
+$\LS+p_i$. 
+
+Les contraintes~\eqref{res0_RCPSP_SE}
+et~\eqref{resCons_RCPSP_SE} représentent les contraintes de
+conservation des ressources. La contrainte~\eqref{res0_RCPSP_SE}
+modélise la consommation totale de chaque ressource $k$ à
+l'événement $0$. Pour une ressource $k$, cette quantité est égale
+à la somme des consommations sur $k$ de chaque activité commençant
+à l'événement $0$. La contrainte \eqref{resCons_RCPSP_SE} donne
+la consommation totale de chaque ressource $k$ à l'événement $e$,
+$b_{ek}$. En effet, pour chaque événement $e$, cette quantité est
+égale à la consommation totale à l'événement $e-1$, i.e.
+$b_{e-1,k}$, à laquelle on retranche les consommations des
+activités finissant à l'événement $e$ et on ajoute les
+consommations de chaque activité commençant à l'événement $e$.
+Enfin, la contrainte~\eqref{res_RCPSP_SE} limite la demande totale
+sur chaque ressource à sa capacité.
+
+La contrainte~\eqref{dur_RCPSP_SE} assure que si l'activité $i$
+commence à l'événement $e$ et se termine à l'événement $f$, alors
+les dates correspondant à ces deux événements sont séparées par
+au moins la durée de cette tâche, i.e. $p_i$. Dans ce cas,
+l'inégalité s'écrit $t_f \ge t_e+p_i$, et pour toute autre
+combinaison de $x_{ie}$ et $y_{if}$, on obtient soit $t_f \ge
+t_e$ ou $t_f\ge t_e+p_i$ ce qui est vérifié par la
+contrainte~\eqref{ordre_RCPSP_SE}.
+
+La contrainte~\eqref{xby_RCPSP_SE} garantit qu'une activité ne
+peut se terminer avant d'avoir commencé. Si l'activité $i$ finit
+entre l'événement $0$ et $e$, alors elle ne peut pas commencer
+entre l'événement $e$ et $n$, et inversement.
+
+Enfin, la contrainte~\eqref{prec_RCPSP_SE} modélise les relations
+de précédences entre les activités: si une activité $i$, devant
+précéder une activité $j$, finit à l'événement $e$ ou après, alors
+l'activité $j$ ne peut commencer avant l'événement $e$, i.e.
+$\sum_{f=e}^n x_{if}=1 \Rightarrow \sum_{f=0}^{e-1} y_{jf}=0$.
+
+Le modèle possède $2n^2+n$ variables binaires, $n+1$ variables
+continues et $(n+1)(m+n^2/2+|E|)+3n$ contraintes. Le nombre de
+variables et de contraintes du modèle est donc bien polynomial en
+fonction du nombre d'activités.
+ 
+\subsubsection{Modèle on/off} Dans le modèle on/off, comme pour la
+formulation start/end, une variable $t_e$ qui représente la date
+de chaque événement, pour tout $e \in {\cal E}$. Pour associer ces
+dates aux débuts et fins de chaque activité, nous définissons, pour
+chaque activité $i \in \A$ et pour chaque événement $e \in \E$, la
+variable $z_{ie} \in \{0,1\}$. Cette variable prendra la valeur
+$1$ si et seulement si l'activité $i$ est en cours durant
+l'intervalle $[t_e,t_{e+1}]$, et 0 sinon. Ainsi, une activité
+commencera (resp. finira) à l'événement $e$ si
+$z_{ie}-z_{i,e-1}=1$ (resp.$z_{i,e-1}-z_{ie}=1$).
+
+Notons que, comme dans le cas du modèle start/end, nous pouvons
+limiter le nombre d'événements au début de chaque activité. Ainsi,
+${\cal E}=\{1,\dots,n\}$; l'utilisation d'activités fictives
+n'est, ici, plus nécessaire pour modéliser l'événement de fin de
+la dernière activité. De plus, la variable $z_{ie}$ modélisant le fait
+qu'un variable soit en cours entre $t_e$ et $t_{e+1}$, nous pouvons
+limiter le nombre de ces variables en ne les définissant que pour les
+événements $e \in \Em[n]$. Ceci conduit à la formulation
+suivante~\cite{modele_RCPSP}: {\small \begin{align} & \text{min } C_{max}
+\label{obj_RCPSP_OO}\\ &C_{max} \ge t_e+ (z_{ie}-z_{i,e-1})p_i & &
+\forall e \in {\cal E}\setminus\{1\},\ \forall i \in {\cal A}
+\label{Cmax_RCPSP_OO}\\ &t_1=0 & & \label{t0_RCPSP_OO}\\ &t_e \le
+t_{e+1} & &\forall e \in {\cal E}\setminus\{n\}
+\label{ordre_RCPSP_OO}\\ &\sum_{e \in \Em[n]} z_{ie} \ge 1 & &
+\forall i \in {\cal A} \label{start_RCPSP_OO}\\ & \ES z_{ie}\le
+t_e & & \forall e \in \Em[n],\ \forall i \in {\cal A}
+\label{ES_RCPSP_OO} \\ & t_e \le
+\LS(z_{ie}-z_{i,e-1})+(1-(z_{ie}-z_{i,e-1}))\LS[n+1] & & \forall e
+\in \Em[n]\setminus{1},\ \forall i \in {\cal A}
+\label{LS_RCPSP_OO}\\ &t_f\ge t_e
++\left((z_{ie}-z_{i,e-1})-(z_{if}-z_{i,f-1})-1\right)p_i & & \forall
+e>f \in (\Em[1,n])^2,\ \forall i \in {\cal
+A}\label{dur_RCPSP_OO}\\ &\sum_{f=1}^{e} z_{if} \le
+e(1-(z_{ie}-z_{i,e-1})) & & \forall e \in \Em[1,n],\
+\forall i \in {\cal A}\label{preem1_RCPSP_OO}\\ &\sum_{f=e}^{n-1}
+z_{if} \le (n-e)(1+(z_{ie}-z_{i,e-1})) & & \forall e \in \Em[1,n],\ 
+\forall i \in {\cal A}\label{preem2_RCPSP_OO}\\
+&\sum_{i \in {\cal A}} r_{ik}z_{ie} \le R_k & &\forall e \in \Em[n]
+,\ \forall k \in {\cal R} \label{res_RCPSP_OO}\\
+&z_{ie}+\sum_{f=1}^e z_{jf} \le 1 + (1-z_{ie})e & & \forall e \in
+\Em[1,n],\ \forall (i,j) \in E \label{prec_RCPSP_OO}
+\end{align}
+}
+L'objectif, donné par l'équation~\eqref{obj_RCPSP_OO}, 
+consiste à minimiser la date de fin du projet, ici
+représentée par la variable $C_{max}$. La
+contrainte~\eqref{Cmax_RCPSP_OO} s'assure que $C_{max}$ prend bien
+la valeur de la date de fin du projet.
+
+Les contraintes~\eqref{t0_RCPSP_OO} et~\eqref{ordre_RCPSP_OO} jouent
+le même rôle que dans la formulation start/end, à savoir, ordonner
+les événements.
+
+La contrainte~\eqref{start_RCPSP_OO} stipule que chaque activité
+doit être ordonnancée une fois dans toute la durée du projet.
+ 
+Les contraintes~\eqref{ES_RCPSP_OO} et~\eqref{LS_RCPSP_OO}
+garantissent que la date d'un événement correspondant au début
+d'une activité soit bien comprise dans sa fenêtre de temps, i.e.
+entre sa date de début au plus tôt $\ES$ et sa date de début au
+plus tard $\LS$. En effet, si l'événement $e$ correspond au début
+de l'activité$i$, i.e. $z_{ie}=1$ et $z_{i,e-1}=0$ , l'inégalité
+devient alors: $\ES \le t_e \le \LS$. Nous distinguons 3 autres
+cas: \begin{itemize} \item {\it $z_{ie}=z_{i,e-1}=1$ :} l'activité
+est en cours entre les événements $t_{e-1}$ ($z_{i,e-1}=1$) et
+$t_{e+1}$ ($z_{ie}=1$). L'inégalité devient: $\ES\le t_e \le
+\LS[n+1]$. Comme l'activité $i$ a déjà commencé à un événement $f
+<e$, on a: $\ES \le t_f \le t_e$. L'autre inégalité est triviale.
+\item {\it$z_{ie}=0$ et $z_{i,e-1}=1$:} l'activité se termine à
+l'événement $e$. L'inégalité donne alors $0 \le t_e \le
+2\LS[n+1]-\LS$. Or, $2\LS[n+1] -\LS \ge \LS[n+1]$. Donc
+l'inégalité est vérifiée. \item {\it $z_{ie}=z_{i,e-1}=0$:}
+l'activité n'est pas en cours entre les événements $t_{e-1}$ et
+$t_{e+1}$. L'inégalité devient $0 \le t_e \le \LS[n+1]$ et est
+trivialement vérifiée. \end{itemize}
+
+La contrainte~\eqref{dur_RCPSP_OO} assure une séparation
+suffisante, i.e. la durée de l'activité, entre un événement
+correspondant au début d'une activité et un événement
+correspondant à la fin de cette même activité. La validité de
+cette contrainte suit la même logique que pour la
+contrainte~\eqref{dur_RCPSP_SE} du modèle précédent.
+
+Les contraintes~\eqref{preem1_RCPSP_OO}
+et~\eqref{preem2_RCPSP_OO}, appelées {\it contraintes de
+contiguïté}, assure la non-préemption des activités. La validité
+de cette contrainte n'est pas détaillée ici mais une preuve
+formelle peut être trouvée dans~\cite{modele_RCPSP}.
+
+La contrainte~\eqref{res_RCPSP_OO} représente les limites de
+capacité de chaque ressource. En effet, une activité $i$ consomme
+une quantité $r_{ik}$ de la ressource $k$ entre $t_e$ et $t_{e+1}$
+si et seulement si elle est en cours entre ces deux dates, i.e.
+$z_{ie}=1$. On pourra remarquer que dans ce modèle le nombre de
+contraintes nécessaires pour modéliser les contraintes de capacité
+des ressources est nettement inférieur à celui du modèle précédent.
+
+Enfin, la contrainte~\eqref{prec_RCPSP_OO} modélise les relations
+de précédences entre les activités: si une activité $i$, devant
+précéder une activité $j$, est en cours entre les événements $e$
+et $e+1$, i.e. $z_{ie}=1$, alors l'activité $j$ ne peut être en
+cours avant l'événement $e$, i.e. $z_{ie}=1 \Rightarrow
+\sum_{f=0}^e z_{jf}=0 $.
+
+Le modèle possède $n^2$ variables binaires, deux fois moins que
+pour le modèle start/end, $n+1$ variables continues et
+$(n-1)(3+|E|+m+n^2/2)+n^2+n$ contraintes. Le nombre de variables
+et de contraintes du modèle est donc bien polynomial en fonction
+du nombre d'activités.
+
+
+
+\subsection{Approches polyèdrales et inégalités valides}
+\label{sec:ineg_RCPSP}

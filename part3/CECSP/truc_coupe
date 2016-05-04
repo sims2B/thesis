@@ -1,0 +1,46 @@
+fin TI :
+
+En réalite, cette inégalité nous assure que:
+\begin{itemize}
+\item il existe une solution pour le \CECSP~si et seulement le modèle
+  possède une solution.
+\item la valeur de la fonction objectif à l'optimal est la même pour
+  le modèle et le \CECSP.
+\item toute solution du modèle peut être transformée en une solution
+  du \CECSP.    
+\end{itemize} 
+
+Ces trois affirmations découlent directement du théorème suivant.
+
+\begin{theo}
+  Soit $S$ une solution du modèle décrit
+  par~\eqref{obj_CECSP_TI}--\eqref{bmax_CECSP_TI},
+  \eqref{nrj2_CECSP_TI}, \eqref{res_CECSP_TI}--\eqref{Bxy_CECSP_TI} et
+  \eqref{conv_CECSP_TI} et soit $S'$ la solution du \CECSP~obtenue
+  avec la tranformation suivante,$\forall (i,t) \in \A \times \H$:  
+  \begin{itemize}
+  \item si $x_{it}=1$ alors $st_i$ est fixé à $t$,
+  \item si $y_{it}=1$ alors $et_i$ est fixé à $t$,
+  \item $b_i(t)=\left\{ 
+      \begin{array}{ll} \max(\bmin,f_i^{-1}(w_{it})) & \text{si }
+                                                       w_{it}\neq 0 \\  
+        0 & \text{sinon} \end{array}\right.$.
+  \end{itemize}
+  Alors, $S$ est optimale si et seulement si $S'$ est
+  optimale pour le \CECSP.  
+\end{theo}
+                  
+\begin{proof}
+Supposons d'abord que $S'$ soit optimale pour le \CECSP et que $S$ ne
+soit pas optimale. Donc, il existe une solution $S''$ 
+Nous montrons maintenant que $c(S')\le
+c(S)$. L'inégalité~\eqref{conv_CECSP_TI} implique $w_{it} \le 
+f_i(b_{it})$ et donc $b_i(t) \le b_{it}$. Alors, $\sum_{t\in \H}
+\sum_{i \in \A} b_i(t) \le \sum_{t\in \H} \sum_{i \in \A} b_{it}$ et
+nous avons bien $c(S') \le c(S)$.
+\end{proof}
+
+Notons que l'ajout de la contrainte $\left(\sum_{\tau=\ES}^{t}
+x_{i\tau} -\sum_{\tau=\ES+1}^{t} y_{i\tau}\right)f_i(\bmin) \le
+w_{it},\ \forall t \in \{\ES,\dots,\LE-1\},\ \forall i \in \A$ nous
+permet de s'assurer que $c(S)=c(S')$.

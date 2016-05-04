@@ -1,0 +1,138 @@
+%!TeX root =../main_file.tex
+
+\section{La programmation linéaire en nombres entiers}
+
+Dans cette section, nous présentons les concepts de base de la
+programmation linéaire ainsi que les notions et outils qui seront
+utilisés dans la suite de cette partie. Cette présentation n'étant que
+partielle, nous renvoyons le lecteur à~\cite{LP} pour une description
+plus détaillée des différentes techniques existantes.
+
+\subsection{La programmation Linéaire}
+
+La programmation linéaire vise à résoudre des problèmes
+d'optimisation ayant la particularité de pouvoir s'exprimer à
+l'aide de contraintes, se présentant sous la forme d'inégalités
+et/ou d'égalités, linéaires en fonction des variables du problème.
+De plus, la fonction objectif du problème, i.e. ce que l'on
+cherche à maximiser/minimiser, s'écrit aussi sous la forme d'une
+fonction linéaire.
+
+De manière générale, un programme linéaire (PL) s'écrit de la manière
+suivante: 
+ \[ \begin{array}{lcl}
+\text{maximiser } & & \displaystyle cx\\ 
+\text{tel que }& & \displaystyle Ax \le b\\
+ & & \displaystyle x \in \mathbb{R}^n_+
+ \end{array}
+\]
+avec $c \in \mathbb{R}^n$, $b \in \mathbb{R}^m$ et $A \in
+\mathbb{R}^{m,n}$. 
+
+Nous pouvons supposer, sans perte de généralité, que les variables du
+problème sont positives et que la fonction objectif $x\rightarrow cx$
+doit être maximisée. Les vecteurs $x$ de $\mathbb{R}^n$ qui vérifient
+$Ax \le b$ sont appelés les solutions réalisables du problème et les
+vecteurs $x^*$ qui, en plus, maximise le critère $cx^*$ sont appelés
+solutions optimales.    
+
+La force de ces formulations repose sur le fait que l'ensemble des
+contraintes du problème définit alors un polyèdre convexe nommé
+polyèdre des solutions réalisables. De plus, si ce polyèdre est non
+vide, alors toute solution optimale se trouve forcément sur un sommet,
+appelé point extrême, de celui-ci. Les solutions optimales peuvent aussi
+se trouver sur une face du polyèdre, i.e. l'intersection de celui-ci
+avec un plan défini par une des contraintes du programme linéaire $\{x
+\in \mathbb{R}^n\ | \ A_jx=b_j\}$. 
+
+Ceci a permis la mise en place de plusieurs algorithmes pour résoudre ces
+programmes linéaires. Un des plus efficace en pratique et donc des plus
+utilisé est l'algorithme du Simplexe. Le principe de cet 
+algorithme est le parcours "intelligent" des points extrêmes du
+polyèdre des solutions admissibles: à chaque itération,
+l'algorithme se "déplace" vers un sommet adjacent de meilleur (ou
+même) coût. L'algorithme se termine donc lorsque tous les sommets
+adjacents possèdent un coût moins bon que le sommet courant.
+
+Un des inconvénients de cet algorithme est qu'il a, dans le pire des
+cas, une complexité exponentielle. D'autres algorithmes permettent de
+résoudre un programme linéaire en temps polynomial. Cependant, en
+pratique, l'algorithme du simplexe reste plus efficace et c'est
+souvent ce dernier qui est implémenté dans les solveurs d'optimisation
+linéaire. 
+
+\subsection{Contrainte d'intégrité}
+
+De nombreux problèmes d'optimisation combinatoire ne peuvent s'écrire
+sous la forme d'un programme linéaire. En effet, pour des problèmes
+tels que les problèmes d'ordonnancement, tout ou partie des
+variables doivent être restreintes à prendre des valeurs entières.  
+
+Quand toutes les variables du problème sont contraintes à prendre des
+valeurs entières, on parle de programme linéaire en nombres
+entiers (PLNE). Lorsque seulement une partie des variables sont
+autorisées à prendre des valeurs réelles, on parle de programme
+linéaire mixte (PLM). 
+
+De manière générale, un programme linéaire mixte 
+peut s'écrire de la façon suivante: 
+
+\[ \begin{array}{lcl}
+\text{maximiser } & & \displaystyle \sum_{i=1}^p c_ix_i +
+\sum_{j=1}^{n-p} f_jy_j\\ \text{tel que }& & \displaystyle
+\sum_{i=1}^p a_{ki}x_i + \sum_{j=1}^{n-p} d_{kj}y_j \le b_k, \quad
+k=1,\dots,m\\ & & \displaystyle x_i \ge0,\quad i=1,\dots,p\\ & &
+\displaystyle y_j \in \mathbb{Z}^+,\quad j=1,\dots,n-p 
+\end{array}
+\] $y_j,\ j=1,\dots,n-p$ sont les variables de décisions ne
+pouvant prendre que des valeurs entières tandis que les variables
+$x_i,\ i=1,\dots,p$ peuvent prendre n'importe quelles valeurs
+réelles positives.
+
+La difficulté de la résolution de ces programmes repose sur le fait
+que l'ensemble des solutions réalisables du problème ne forme plus un
+polyèdre convexe et les algorithmes traditionnels ne peuvent être
+appliqués directement dans ce cas. Le problème de décision associé à
+un PLNE ,ou à un PLM, est NP-complet~\cite{NP_bible}. De ce fait,
+plusieurs techniques permettant de trouver la solution optimale en
+temps raisonnable ont été développées.
+
+\subsection{Techniques de résolution}
+
+Parmi les techniques les plus utilisées, on retrouve les techniques
+utilisant des algorithmes de recherche arborescente par séparation et
+évaluation ainsi que des méthodes de coupes.
+
+Le principe de la {\it recherche arborescente par séparation et
+évaluation} repose sur deux idées principales: 
+\begin{itemize}
+\item {\bf la séparation} qui consiste à "séparer" l'ensemble des
+solutions en plusieurs sous-ensembles; 
+\item {\bf l'évaluation} qui
+consiste à "évaluer" les solutions d'un sous-ensemble de façon
+optimiste, i.e. trouver une borne supérieure (resp. inférieure) de 
+la meilleure solution de ce sous-ensemble lorsqu'il s'agit d'un
+problème de maximisation (resp. minimisation).
+\end{itemize} L’algorithme propose de parcourir l’arborescence des
+solutions possibles en évaluant chaque sous-ensemble de solutions de
+façon optimiste. Lors de ce parcours, il maintient la valeur de la
+meilleure solution trouvée jusqu’à présent. Quand l’évaluation d’un
+sous-ensemble donne une valeur plus faible (plus forte pour un
+problème de minimisation), il est inutile d’explorer
+plus loin ce sous-ensemble. L’ensemble des solutions admissibles est
+ainsi représenté par une arborescence dans laquelle un grand nombre de
+nœuds peuvent être éliminés. L’évaluation des sous-problèmes se fait
+typiquement par {\it relaxation linéaire} (on ignore la contrainte
+d’intégrité) en utilisant le Simplexe.
+
+Les {\it méthodes de coupes} cherchent à caractériser le plus petit
+polyèdre contenant l'ensemble de toutes les solutions
+admissibles. Pour cela, un ensemble de coupes, i.e. des inégalités
+permettant de supprimer une partie du polyèdre ne contenant que des
+solutions non entières, est généré. Si ces coupes sont assez fortes,
+le polyèdre des solutions admissibles du modèle devient alors
+exactement l'enveloppe convexe des solutions admissibles
+entières. Dans ce cas, la résolution de la relaxation du programme
+linéaire  réduit à cet ensemble donne une solution optimale
+entière.
+

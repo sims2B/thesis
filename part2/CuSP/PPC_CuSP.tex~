@@ -1,0 +1,27 @@
+\chapter{Algorithmes issus de la programmation par contraintes}
+
+Dans ce chapitre, nous décrivons des algorithmes et modèles issus de
+la programmtion par contrainte. Les deux premières sections sont
+dédiées à la présentation d'algorithmes de filtrage pour le problème
+de décision du \CECSP. En effet, ce problème étant NP-complet, un
+algorithme assurant la cohérence des bornes de chaque variable -
+assurant l'existance d'une solution où les valeurs de chaque 
+variables sont comprises dans ces bornes - ne peut s'exécuter en temps
+polynomial. Par conséquent, plusieurs relaxations sont proposées afin
+de supprimer les valeurs possibles de début et fin de tâches
+incohérentes en temps polynomial. 
+
+Les premières relaxations présentées sont basées sur le raisonnement
+Time-table pour le \CUSP~\cite{TTLah} tandis que la dernière se base
+sur le raisonnement énergétique défini pour ce même
+problème~\cite{RELopez}.
+
+Dans un second temps, nous présentons un modèle de programmation par
+contraintes permettant de résoudre le \CECSP~ discret, i.e. où les
+variables ne peuvent prendre que des valeurs discrètes. 
+
+\input{CECSP/time_filter.tex}
+
+\input{CECSP/ER_filter.tex}
+
+\input{CECSP/modele_PPC.tex}

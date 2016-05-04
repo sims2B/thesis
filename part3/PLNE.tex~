@@ -1,0 +1,12 @@
+%TODO justification modèle RCPSP discret + phrases de transition
+%entre modele discret et modele à evenement + justification
+%présentation des modèle
+
+%!TeX root =../main_file.tex 
+\part{Programmation linéaire en nombres entiers}
+
+
+
+\input{part3/RCPSP/PLNE_RCPSP.tex}
+
+\input{part3/CECSP/PLNE_CECSP.tex}

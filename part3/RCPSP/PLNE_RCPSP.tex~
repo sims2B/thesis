@@ -1,0 +1,17 @@
+
+
+\chapter{Le RCPSP}
+
+
+Dans cette partie, nous allons présenter les modèles de programmation
+linéaire mixte pour le \CECSP. Ces modèles découlant principalement
+des modèles mis en place pour le \RCPSP, nous commençons par
+introduire ces derniers avant de présenter les modèles du
+\CECSP. Enfin, la dernière partie de ce chapitre est consacrée à
+l'amélioration de ces modèles grâce à des inégalités valides et des
+études polyèdrale. 
+\input{part3/RCPSP/PL.tex}
+\input{part3/RCPSP/modele_RCPSP.tex}
+
+La partie suivante est consacrée à la présentation des modèles de
+programmation linéaire mixtes pour le \CECSP.

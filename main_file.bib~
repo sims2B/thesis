@@ -1,0 +1,322 @@
+﻿﻿@Inbook{Gay2015,
+author="Gay, Steven
+and Hartert, Renaud
+and Schaus, Pierre",
+chapter="Time-Table Disjunctive Reasoning for the Cumulative Constraint",
+title="Integration of AI and OR Techniques in Constraint Programming: 12th International Conference, CPAIOR 2015, Barcelona, Spain, May 18-22, 2015, Proceedings",
+year="2015",
+publisher="Springer International Publishing",
+address="Cham",
+pages="157--172",
+isbn="978-3-319-18008-3",
+doi="10.1007/978-3-319-18008-3_11",
+url="http://dx.doi.org/10.1007/978-3-319-18008-3_11"
+}
+
+@inproceedings{RELopez,
+author = "J. Erschler, P. Lopez, C. Thuriot",
+title = "Scheduling under time and resource constraints",
+booktitle = "Proc. of Workshop on Manufacturing Scheduling, 11th IJCAI",
+year = 1989,
+address = "Detroit, USA"
+} 
+@Article{TTLah,
+    Author = {Abdelkader {Lahrichi}},
+    Title = {{Ordonnancements. La notion de ''parties obligatoires'' et son application aux probl\`emes cumulatifs.}},
+    FJournal = {{RAIRO. Recherche Op\'erationnelle}},
+    Journal = {{RAIRO, Rech. Op\'er.}},
+    ISSN = {0399-0559},
+    Volume = {16},
+    Pages = {241--262},
+    Year = {1982},
+    Publisher = {Elsevier (Gauthier-Villars), Paris},
+    Language = {French},
+    MSC2010 = {90B35 65K05},
+    Zbl = {0491.90053}
+}
+
+@Article{Jensen,
+author="Jensen, J. L. W. V.",
+title="Sur les fonctions convexes et les in{\'e}galit{\'e}s entre les valeurs moyennes",
+journal="Acta Mathematica",
+volume="30",
+number="1",
+pages="175--193",
+issn="1871-2509",
+year= "1906",
+doi="10.1007/BF02418571",
+url="http://dx.doi.org/10.1007/BF02418571"
+}
+
+
+@inproceedings{Nattaf_CPDP,
+  TITLE = "Flow and energy based satisfiability tests for the Continuous 
+  Energy-Constrained Scheduling Problem with concave piecewise linear 
+  functions",
+  AUTHOR = "Nattaf, Margaux and Artigues, Christian and Lopez, Pierre",
+  BOOKTITLE = "CP Doctoral Program 2015",
+  ADDRESS = "Cork, Ireland",
+  PAGES = "70--81",
+  YEAR = "2015",
+  MONTH = Sep
+}
+
+﻿@Article{Nattaf_Constraints,
+author="Nattaf, Margaux
+and Artigues, Christian
+and Lopez, Pierre",
+title="A hybrid exact method for a scheduling problem with a continuous resource and energy constraints",
+journal="Constraints",
+year="2015",
+volume="20",
+number="3",
+pages="304--324",
+issn="1572-9354",
+doi="10.1007/s10601-015-9192-z",
+url="http://dx.doi.org/10.1007/s10601-015-9192-z"
+}
+
+@book{ADN,
+ author = {Artigues, Christian and Demassey, Sophie and Neron, Emmanuel},
+ title = {Resource-Constrained Project Scheduling: Models, Algorithms, Extensions and Applications},
+ year = {2007},
+ isbn = {190520972X},
+ publisher = {ISTE},
+} 
+
+@article{ArtiguesLopez,
+ author = {Artigues, Christian and Lopez, Pierre},
+ title = {Energetic Reasoning for Energy-constrained Scheduling with a Continuous Resource},
+ journal = {J. of Scheduling},
+ issue_date = {June      2015},
+ volume = {18},
+ number = {3},
+ month = jun,
+ year = {2015},
+ issn = {1094-6136},
+ pages = {225--241},
+ numpages = {17},
+ url = {http://dx.doi.org/10.1007/s10951-014-0404-y},
+ doi = {10.1007/s10951-014-0404-y},
+ acmid = {2775145},
+ publisher = {Kluwer Academic Publishers},
+ address = {Hingham, MA, USA},
+ keywords = {Complexity, Energetic reasoning satisfiability test, Energy requirement, Scheduling with continuous resources},
+} 
+
+
+@article{HaitArtiguesLopez,
+title = "The energy scheduling problem: Industrial case-study and constraint propagation techniques ",
+journal = "International Journal of Production Economics ",
+volume = "143",
+number = "1",
+pages = "13 - 23",
+year = "2013",
+note = "",
+issn = "0925-5273",
+doi = "http://dx.doi.org/10.1016/j.ijpe.2010.09.030",
+url = "http://www.sciencedirect.com/science/article/pii/S0925527310003683",
+author = "Christian Artigues and Pierre Lopez and Alain Haït",
+keywords = "Production scheduling",
+keywords = "Energy constraints",
+keywords = "Constraint propagation",
+keywords = "Energetic reasoning ",
+abstract = "This paper deals with production scheduling involving energy constraints, typically electrical energy. We start by an industrial case-study for which we propose a two-step integer/constraint programming method. From the industrial problem we derive a generic problem, the Energy Scheduling Problem (EnSP). We propose an extension of specific resource constraint propagation techniques to efficiently prune the search space for EnSP solving. We also present a branching scheme to solve the problem via tree search. Finally, computational results are provided. "
+}
+
+@article{CAVT,
+title = "Project scheduling with resource constraints: A branch and bound approach",
+journal = "European Journal of Operational Research",
+volume = "29",
+number = "3",
+pages = "262 - 273",
+year = "1987",
+note = "",
+issn = "0377-2217",
+doi = "http://dx.doi.org/10.1016/0377-2217(87)90240-2",
+url = "http://www.sciencedirect.com/science/article/pii/0377221787902402",
+author = "Nicos Christofides and R. Alvarez-Valdes and J.M. Tamarit",
+keywords = "Scheduling",
+keywords = "integer programming",
+keywords = "Lagrange multipliers"
+}
+
+@book{NP_bible,
+ author = {Garey, Michael R. and Johnson, David S.},
+ title = {Computers and Intractability: A Guide to the Theory of NP-Completeness},
+ year = {1979},
+ isbn = {0716710447},
+ publisher = {W. H. Freeman \& Co.},
+ address = {New York, NY, USA},
+} 
+
+@article{NP_RCPSP,
+title = "Scheduling subject to resource constraints: classification and complexity ",
+journal = "Discrete Applied Mathematics ",
+volume = "5",
+number = "1",
+pages = "11 - 24",
+year = "1983",
+note = "",
+issn = "0166-218X",
+doi = "http://dx.doi.org/10.1016/0166-218X(83)90012-4",
+url = "http://www.sciencedirect.com/science/article/pii/0166218X83900124",
+author = "J. Blazewicz and J.K. Lenstra and A.H.G.Rinnooy Kan",
+abstract = "In deterministic sequencing and scheduling problems, jobs are to be processed on machines of limited capacity. We consider an extension of this class of problems, in which the jobs require the use of additional scarce resources during their execution. A classification scheme for resource constraints is proposed and the computational complexity of the extended problem class is investigated in terms of this classification. Models involving parallel machines, unit-time jobs and the maximum completion time criterion are studied in detail; other models are briefly discussed. "
+}
+
+
+@article{modele_RCPSP,
+ author = {Kon{\'e}, Oumar and Artigues, Christian and Lopez, Pierre and Mongeau, Marcel},
+ title = {Event-based {MILP M}odels for {R}esource-constrained {P}roject {S}cheduling {P}roblems},
+ journal = {Comput. Oper. Res.},
+ issue_date = {January, 2011},
+ volume = {38},
+ number = {1},
+ month = jan,
+ year = {2011},
+ issn = {0305-0548},
+ pages = {3--13},
+ numpages = {11},
+ url = {http://dx.doi.org/10.1016/j.cor.2009.12.011},
+ doi = {10.1016/j.cor.2009.12.011},
+ acmid = {1851037},
+ publisher = {Elsevier Science Ltd.},
+ address = {Oxford, UK, UK},
+ keywords = {Mixed integer linear programming, Project management, Resource-constrained project scheduling},
+} 
+
+@phdthesis{theseOumar,
+  TITLE = {{Nouvelles approches pour la r{\'e}solution du probl{\`e}me d'ordonnancement de projet {\`a} moyens limit{\'e}s}},
+  AUTHOR = {Kon{\'e}, Oumar},
+  URL = {https://tel.archives-ouvertes.fr/tel-00446704},
+  HAL_LOCAL_REFERENCE = {Rapport LAAS n{\textdegree}09738},
+  SCHOOL = {{Universit{\'e} Paul Sabatier - Toulouse III}},
+  YEAR = {2009},
+  MONTH = Dec,
+  KEYWORDS = {Crossdocking ; Branch-and-Bound method ; Fronti{\`e}re de Pareto ; Resource-Constrained Project Scheduling Problem (RCPSP) ; Mixed integer programming ; Event-based models ; Pareto frontier ; Ordonnancement de projet {\`a} moyens limit{\'e}s ; RCPSP ; Programmation lin{\'e}aire en nombres entiers ; Mod{\`e}les bas{\'e}s {\'e}v{\'e}nements},
+  TYPE = {Theses},
+  PDF = {https://tel.archives-ouvertes.fr/tel-00446704/file/These.pdf},
+  HAL_ID = {tel-00446704},
+  HAL_VERSION = {v1},
+}
+
+@article{Nattaf_ORSpectrum,
+  TITLE = {{Energetic reasoning and mixed-integer linear programming for scheduling with a continuous resource and linear efficiency functions}},
+  AUTHOR = {Nattaf, Margaux and Artigues, Christian and Lopez, Pierre and Rivreau, David},
+  URL = {https://hal.archives-ouvertes.fr/hal-01234466},
+  JOURNAL = {{OR Spectrum}},
+  PUBLISHER = {{Springer}},
+  VOLUME = {38},
+  NUMBER = {2},
+  PAGES = {pp. 459-492},
+  YEAR = {2016},
+  MONTH = Mar,
+  HAL_ID = {hal-01234466},
+  HAL_VERSION = {v1},
+}
+
+@book{LP,
+  title={Integer programming},
+  author={Wolsey, Laurence A},
+  year={1998},
+  publisher={Wiley}
+}
+
+@article{ABKKLM,
+title = "A note on “event-based \{MILP\} models for resource-constrained project scheduling problems” ",
+journal = "Computers & Operations Research ",
+volume = "40",
+number = "4",
+pages = "1060 - 1063",
+year = "2013",
+note = "",
+issn = "0305-0548",
+doi = "http://dx.doi.org/10.1016/j.cor.2012.10.018",
+url = "http://www.sciencedirect.com/science/article/pii/S0305054812002304",
+author = "Christian Artigues and Peter Brucker and Sigrid Knust and Oumar Koné and Pierre Lopez and Marcel Mongeau",
+keywords = "Resource-constrained project scheduling",
+keywords = "MILP formulation",
+keywords = "Event "
+}
+
+
+@article{MMRB,
+ author = {Mingozzi, Aristide and Maniezzo, Vittorio and Ricciardelli, Salvatore and Bianco, Lucio},
+ title = {An Exact Algorithm for the Resource-Constrained Project Scheduling Problem Based on a New Mathematical Formulation},
+ journal = {Manage. Sci.},
+ issue_date = {May 1998},
+ volume = {44},
+ number = {5},
+ month = may,
+ year = {1998},
+ issn = {0025-1909},
+ pages = {714--729},
+ numpages = {16},
+ url = {http://dx.doi.org/10.1287/mnsc.44.5.714},
+ doi = {10.1287/mnsc.44.5.714},
+ acmid = {293907},
+ publisher = {INFORMS},
+ address = {Institute for Operations Research and the Management Sciences (INFORMS), Linthicum, Maryland, USA},
+ keywords = {Branch-and-Bound Methods, Lower Bounds, Networks/Graphs, Project Scheduling},
+} 
+
+
+
+@article{AMR,
+title = "Insertion techniques for static and dynamic resource-constrained project scheduling ",
+journal = "European Journal of Operational Research ",
+volume = "149",
+number = "2",
+pages = "249 - 267",
+year = "2003",
+note = "Sequencing and Scheduling ",
+issn = "0377-2217",
+doi = "http://dx.doi.org/10.1016/S0377-2217(02)00758-0",
+url = "http://www.sciencedirect.com/science/article/pii/S0377221702007580",
+author = "Christian Artigues and Philippe Michelon and Stéphane Reusser",
+keywords = "Resource-constrained project scheduling",
+keywords = "Activity-on-node/flow network",
+keywords = "Activity insertion",
+keywords = "Robust scheduling",
+keywords = "Tabu search "
+}
+
+
+@article{AVT,
+title = "The project scheduling polyhedron: Dimension, facets and lifting theorems",
+journal = "European Journal of Operational Research",
+volume = "67",
+number = "2",
+pages = "204 - 220",
+year = "1993",
+note = "",
+issn = "0377-2217",
+doi = "http://dx.doi.org/10.1016/0377-2217(93)90062-R",
+url = "http://www.sciencedirect.com/science/article/pii/037722179390062R",
+author = "Ramón Alvarez-Valdés Olaguíbel and JoséManuel Tamarit Goerlich",
+keywords = "Scheduling",
+keywords = "polyhedral combinatorics",
+keywords = "linear inequalities",
+keywords = "facets"
+}
+@article{ex_RCPSP_discret,
+author = {A. Alan B. Pritsker and Lawrence J. Waiters and Philip M. Wolfe},
+title = {Multiproject Scheduling with Limited Resources: A Zero-One Programming Approach},
+journal = {Management Science},
+volume = {16},
+number = {1},
+pages = {93-108},
+year = {1969},
+doi = {10.1287/mnsc.16.1.93},
+URL = {  http://dx.doi.org/10.1287/mnsc.16.1.93    },
+eprint = {  http://dx.doi.org/10.1287/mnsc.16.1.93    }
+}
+
+@mastersthesis{rapport_master_CECSP,
+    author    = "Alberto, Azc{\'a}rate Gonz{\'a}les",
+    title     = "Scheduling under Energetic consumption constraints",
+    school    = "INSA Toulouse",
+    type     = "Master thesis",
+    year      = "2012"
+}

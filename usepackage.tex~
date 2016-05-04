@@ -1,0 +1,23 @@
+\usepackage[hmargin=2.5cm,vmargin=3.5cm]{geometry}
+\usepackage[ED=EDSYS - Info, Ets=UT3]{tlsflyleaf}
+\usepackage{algpseudocode}
+\usepackage[french,ruled,vlined]{algorithm2e}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usetikzlibrary{patterns,shapes}
+\usepackage{array}
+\usepackage{xargs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage[small,compact]{titlesec} 
+\usepackage{makeidx}
+\usepackage{minitoc} 
+\usepackage{subcaption} 
+\captionsetup[subfigure]{font+=footnotesize}
