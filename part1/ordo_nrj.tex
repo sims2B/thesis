@@ -478,6 +478,75 @@ Cette fonction consiste en la minimisation de la consommation totale
 de ressource. Dans la suite, si rien n'est précisé, cela veut dire que
 nous considérons le \CECSP~ sans fonction objectif.
 
+
+
+ Pour le \CECSP, nous présentons un exemple d' une instance ne
+comprenant que des données entières et ne possédant que des solutions
+non-entières. Ceci permet, en plus des arguments présentés pour le
+\RCPSP, de démontrer l'importance de l'amélioration des modèles à
+événement.
+
+\begin{ex}
+  \label{exemple_NE}
+  Dans cet exemple, nous considérons une instance à deux activités et
+  une ressource de capacité $2$. Le tableau~\ref{instance_exemple_NE}
+  décrit les données de l'instance. 
+  \begin{table}[!htb]
+    \centering
+    \begin{tabularx}{12cm}{|>{\centering\arraybackslash}p{0.6cm}|
+        *5{>{\centering\arraybackslash}X}>{\centering\arraybackslash}p{2cm}|}
+      \hline
+      $i$ & $\ES$ & $\LE$ & $W_i$ & $\bmin$ & $\bmax$ & $f_i(b_i(t))$ \\
+      \hline
+      $1$ & $0$ & $2$ & $18$ & $2$ & $2$ & $3b_i(t)+6$\\
+      $2$ & $1$ & $3$ & $3$ & $1$ & $2$ & $b_i(t)$\\
+      \hline
+    \end{tabularx}
+    \caption{Données de l'instance de l'exemple~\ref{exemple_NE}}
+    \label{instance_exemple_NE}
+  \end{table}
+
+  La seule solution est décrite par la figure~\ref{figure_exemple_NE}.
+  \begin{figure}[!htb]
+    \centering
+    \begin{tikzpicture}
+      [xscale=2]
+      \node (O) at (0,0) {} node[below=0.1cm] {$0$};
+      \draw (1.5,0)  node[below=0.1cm] {$1.5$};
+      \draw (3,0) node[below=0.1cm] {$3$};
+      \node (T) at (3.5,0) {};
+      \node at (0.75,1) {0};
+      \node at (2.25,1) {1};
+      \draw[dashed] (-0.5,2) -- (3.5,2) node[right,node
+      distance=1.5pt] {$R=2$}; 
+      \draw (O) rectangle (1.5,2);
+      \draw (1.5,2) rectangle (3,0);
+      \draw[->] (-0.5,0) -- (T);
+    \end{tikzpicture}
+    \caption{Solution de l'instance de l'exemple~\ref{exemple_NE}}
+    \label{figure_exemple_NE}
+  \end{figure}
+
+Dans cette solution, la première activité doit finir au temps $t=1.5$
+pour que la seconde activité puisse finir avant sa date échue
+$\LE[2]=3$. En effet, l'activité $2$ doit commencer avant sa date de
+début au plus tard, ici $\LS[2]= \LE[2] - W_i/f_i(\bmax) = 3 - 3/2=
+1.5$, et l'activité $1$ ne peut finir avant sa date de fin au plus
+tôt, $\EE[1]= \ES[1] + W_i / f_i(\bmax) = 0 + 18/12 = 1.5$.
+\end{ex}
+
+De ce fait, l'espace des solutions peut être réduit par l'utilisation
+du modèle à temps discret et ceci peut conduire à des infaisabilité ou
+à des résultats sous-optimaux.
+
+Une solution pour palier à ce problème est de mettre à l'échelle les
+instances, i.e. multiplier les données par un certain coefficient $\alpha$
+afin de s'assurer de l'existence d'une solution optimale entière,
+avant de les résoudre. Cependant, l'utilisation d'un coefficient trop
+grand peut conduire à une augmentation de la taille des modèles trop
+importante pour permettre leur résolution. 
+
+
 Le théorème suivant présente une des propriétés majeures du \CECSP. En
 effet, il stipule que quelque soit l'instance considérée, il existe
 toujours une solution de cette instance où les fonctions $b_i(t)$ sont

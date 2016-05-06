@@ -1,0 +1,236 @@
+\[
+\begin{array}{ccc}
+  \begin{tikzpicture}
+  [scale=0.4]
+    \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{min}$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{max}$}] (bmax) at (0,4) {};
+    \node[label={[shift={(0,-0.8)}]$t_1$}] (t1) at (0.5,0) {};
+    \node[label={[shift={(0,-0.8)}]$t_2$}] (t2) at (1.5,0) {};
+    \node[label={[shift={(0,-0.8)}]$d_i$}] (di) at (7,0) {};
+    
+    \draw[->] (O.center) -- (8,0);
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw[fill=white] (3,0) rectangle (7,4);
+    \draw[pattern=north west lines] (3,0) rectangle (7,4);
+    \draw(di.south) -- (di.center);
+    \draw[thick] (t1.south) -- (0.5,4.1);
+    \draw[thick] (t2.south) -- (1.5,4.1);
+  \end{tikzpicture}
+
+
+&
+  \begin{tikzpicture}
+  [scale=0.4]
+   \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{min}$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{max}$}] (bmax) at (0,4) {};
+    \node[label={[shift={(0,-0.8)}]$t_1$}] (t1) at (6,0) {}; 
+    \node[label={[shift={(0,-0.8)}]$r_i$}] (ri) at (1,0) {};
+    \node[label={[shift={(0,-0.8)}]$t_2$}] (t2) at (7,0) {};
+
+    \draw[->] (O.center) -- (8,0);
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw(ri.south) -- (ri.center);
+    \draw[fill=white] (ri.center) rectangle (5,4);
+    \draw[pattern=north west lines] (ri.center) rectangle (5,4);
+    \draw[thick] (t1.south) -- (6,4.1);
+    \draw[thick] (t2.south) -- (7,4.1);
+  \end{tikzpicture}
+
+
+&
+\begin{tikzpicture}
+ [scale=0.4]
+ \node[] (O) at (0,0) {};
+ \node[label={[shift={(-0.4,-0.4)}]$b_i^{min}$}] (bmin) at (0,1) {};
+ \node[label={[shift={(-0.4,-0.4)}]$b_i^{max}$}] (bmax) at (0,4) {};
+ \node[label={[shift={(0,-0.8)}]$d_i$}] (di) at (7,0) {};
+ \node[label={[shift={(0,-0.8)}]$t_1$}] (t1) at (1,0) {}; 
+ \node[label={[shift={(0,-0.8)}]$r_i$}] (ri) at (2.5,0) {};
+ \node[label={[shift={(0,-0.8)}]$t_2$}] (t2) at (4,0) {};
+ 
+ \draw[->] (O.center) -- (8,0);
+ \draw (O.south) -- (bmax.north);
+ \draw (bmin.center) -- (8,1);
+ \draw (bmax.center) -- (8,4);
+ \draw(di.south) -- (di.center);
+ \draw(ri.south) -- (ri.center);
+ \draw[fill=white] (t2.center) rectangle (7,4);
+ \draw[pattern=north west lines] (t2.center) rectangle (7,4);
+ \draw[fill=white] (t2.center) rectangle (3.2,2);
+ \draw[pattern=north west lines] (t2.center) rectangle (3.2,2);
+ \draw[thick] (t1.south) -- (1,4.1);
+ \draw[thick] (t2.south) -- (4,4.1);
+
+ \end{tikzpicture}
+
+\\
+\text{(1)} &\text{(2)} &\text{(3)}
+\\
+
+  \begin{tikzpicture}
+  [scale=0.4]
+    \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{min}$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{max}$}] (bmax) at (0,4) {};
+    \node[label={[shift={(0,-0.8)}]$t_1$}] (t1) at (4,0) {};
+    \node[label={[shift={(0,-0.8)}]$t_2$}] (t2) at (7,0) {};
+    \node[label={[shift={(0,-0.8)}]$d_i$}] (di) at (6,0) {};
+    \node[label={[shift={(0,-0.8)}]$r_i$}] (ri) at (1,0) {};
+    
+    \draw[->] (O.center) -- (8,0);
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw[fill=white] (ri.center) rectangle (4,4);
+    \draw[pattern=north west lines] (ri.center) rectangle (4,4);
+    \draw[fill=white] (t1.center) rectangle (5,1.5);
+    \draw[pattern=north west lines] (t1.center) rectangle (5,1.5);
+    \draw(di.south) -- (di.center);
+    \draw(ri.south) -- (ri.center);
+    \draw[thick] (t1.south) -- (4,4.1);
+    \draw[thick] (t2.south) -- (7,4.1);
+  \end{tikzpicture}
+
+&
+  \begin{tikzpicture}
+  [scale=0.4]
+   \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{min}$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{max}$}] (bmax) at (0,4) {};
+    \node[label={[shift={(0,-0.8)}]$t_1$}] (t1) at (1,0) {}; 
+    \node[label={[shift={(0,-0.8)}]$r_i$}] (ri) at (2,0) {};
+    \node[label={[shift={(0,-0.8)}]$t_2$}] (t2) at (7,0) {};
+    \node[label={[shift={(0,-0.8)}]$d_i$}] (di) at (6,0) {};
+
+    \draw[->] (O.center) -- (8,0);
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw(ri.south) -- (ri.center);
+    \draw(di.south) -- (di.center);
+    \draw[fill=white] (2.5,0) rectangle (5.5,4);
+    \draw[pattern=north west lines] (2.5,0) rectangle (5.5,4);
+    \draw[thick] (t1.south) -- (1,4.1);
+    \draw[thick] (t2.south) -- (7,4.1);
+  \end{tikzpicture}
+
+
+&
+\begin{tikzpicture}
+ [scale=0.4]
+ \node[] (O) at (0,0) {};
+ \node[label={[shift={(-0.4,-0.4)}]$b_i^{min}$}] (bmin) at (0,1) {};
+ \node[label={[shift={(-0.4,-0.4)}]$b_i^{max}$}] (bmax) at (0,4) {};
+ \node[label={[shift={(0,-0.8)}]$d_i$}] (di) at (7,0) {};
+ \node[label={[shift={(0,-0.8)}]$t_1$}] (t1) at (2.5,0) {}; 
+ \node[label={[shift={(0,-0.8)}]$r_i$}] (ri) at (1,0) {};
+ \node[label={[shift={(0,-0.8)}]$t_2$}] (t2) at (4,0) {};
+ 
+ \draw[->] (O.center) -- (8,0);
+ \draw (O.south) -- (bmax.north);
+ \draw (bmin.center) -- (8,1);
+ \draw (bmax.center) -- (8,4);
+ \draw(di.south) -- (di.center);
+ \draw(ri.south) -- (ri.center);
+ \draw[fill=white] (t2.center) rectangle (7,4);
+ \draw[pattern=north west lines] (t2.center) rectangle (7,4);
+ \draw[fill=white] (t2.center) rectangle (3.2,1);
+ \draw[pattern=north west lines] (t2.center) rectangle (3.2,1);
+ \draw[thick] (t1.south) -- (2.5,4.1);
+ \draw[thick] (t2.south) -- (4,4.1);
+ \end{tikzpicture}
+
+
+\\
+\text{(4)} &\text{(5)} &\text{(6-a)}
+\\
+
+  \begin{tikzpicture}
+  [scale=0.4]
+    \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{min}$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{max}$}] (bmax) at (0,4) {};
+    \node[label={[shift={(0,-0.8)}]$t_1$}] (t1) at (3,0) {};
+    \node[label={[shift={(0,-0.8)}]$t_2$}] (t2) at (5,0) {};
+    \node[label={[shift={(0,-0.8)}]$d_i$}] (di) at (7,0) {};
+    \node[label={[shift={(0,-0.8)}]$r_i$}] (ri) at (1,0) {};
+    
+    \draw[->] (O.center) -- (8,0);
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw[fill=white] (t1.center) rectangle (1,4);
+    \draw[pattern=north west lines] (t1.center) rectangle (1,4);
+    \draw[fill=white] (t1.center) rectangle (3.7,1);
+    \draw[pattern=north west lines] (t1.center) rectangle (3.7,1);
+    \draw(di.south) -- (di.center);
+    \draw(ri.south) -- (ri.center);
+    \draw[thick] (t1.south) -- (3,4.1);
+    \draw[thick] (t2.south) -- (5,4.1);
+  \end{tikzpicture}
+
+&
+  \begin{tikzpicture}
+  [scale=0.4]
+   \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{min}$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$b_i^{max}$}] (bmax) at (0,4) {};
+    \node[label={[shift={(0,-0.8)}]$t_1$}] (t1) at (2.5,0) {}; 
+    \node[label={[shift={(0,-0.8)}]$r_i$}] (ri) at (1.5,0) {};
+    \node[label={[shift={(0,-0.8)}]$t_2$}] (t2) at (6,0) {};
+    \node[label={[shift={(0,-0.8)}]$d_i$}] (di) at (7,0) {};
+
+    \draw[->] (O.center) -- (8,0);
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw(ri.south) -- (ri.center);
+    \draw(di.south) -- (di.center);
+    \draw[fill=white] (2.5,0) rectangle (2,2.7);
+    \draw[pattern=north west lines] (2.5,0) rectangle (2,2.7);
+    \draw[fill=white] (2.5,0) rectangle (6,1);
+    \draw[pattern=north west lines] (2.5,0) rectangle (6,1);
+    \draw[fill=white] (6,0) rectangle (7,4);
+    \draw[pattern=north west lines] (6,0) rectangle (7,4);
+    \draw[thick] (t1.south) -- (2.5,4.1);
+    \draw[thick] (t2.south) -- (6,4.1);
+  \end{tikzpicture}
+
+
+&
+\begin{tikzpicture}
+ [scale=0.4]
+ \node[] (O) at (0,0) {};
+ \node[label={[shift={(-0.4,-0.4)}]$b_i^{min}$}] (bmin) at (0,1) {};
+ \node[label={[shift={(-0.4,-0.4)}]$b_i^{max}$}] (bmax) at (0,4) {};
+ \node[label={[shift={(0,-0.8)}]$t_1$}] (t1) at (2.5,0) {}; 
+ \node[label={[shift={(0,-0.8)}]$r_i$}] (ri) at (1.5,0) {};
+ \node[label={[shift={(0,-0.8)}]$t_2$}] (t2) at (6,0) {};
+ \node[label={[shift={(0,-0.8)}]$d_i$}] (di) at (7,0) {};
+ 
+  \draw[->] (O.center) -- (8,0);
+  \draw (O.south) -- (bmax.north);
+  \draw (bmin.center) -- (8,1);
+  \draw (bmax.center) -- (8,4);
+  \draw(ri.south) -- (ri.center);
+  \draw(di.south) -- (di.center);
+  \draw[fill=white] (2.5,0) rectangle (1.5,4);
+  \draw[pattern=north west lines] (2.5,0) rectangle (1.5,4);
+  \draw[fill=white] (2.5,0) rectangle (6,2);
+  \draw[pattern=north west lines] (2.5,0) rectangle (6,2);
+  \draw[fill=white] (6,0) rectangle (7,4);
+  \draw[pattern=north west lines] (6,0) rectangle (7,4);
+  \draw[thick] (t1.south) -- (2.5,4.1);
+  \draw[thick] (t2.south) -- (6,4.1);
+ \end{tikzpicture}
+\\
+\text{(6-a)} &\text{(6-a)} &\text{(6-b)}
+
+\end{array}
+\]

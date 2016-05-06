@@ -1,0 +1,146 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{MMRB98}
+
+\bibitem[ABK{\etalchar{+}}13]{ABKKLM}
+Christian Artigues, Peter Brucker, Sigrid Knust, Oumar Koné, Pierre Lopez, and
+  Marcel Mongeau.
+\newblock A note on “event-based \{MILP\} models for resource-constrained
+  project scheduling problems”.
+\newblock {\em Computers & Operations Research}, 40(4):1060 -- 1063, 2013.
+
+\bibitem[ADN07]{ADN}
+Christian Artigues, Sophie Demassey, and Emmanuel Neron.
+\newblock {\em Resource-Constrained Project Scheduling: Models, Algorithms,
+  Extensions and Applications}.
+\newblock ISTE, 2007.
+
+\bibitem[AL15]{ArtiguesLopez}
+Christian Artigues and Pierre Lopez.
+\newblock Energetic reasoning for energy-constrained scheduling with a
+  continuous resource.
+\newblock {\em J. of Scheduling}, 18(3):225--241, June 2015.
+
+\bibitem[ALH13]{HaitArtiguesLopez}
+Christian Artigues, Pierre Lopez, and Alain Haït.
+\newblock The energy scheduling problem: Industrial case-study and constraint
+  propagation techniques.
+\newblock {\em International Journal of Production Economics}, 143(1):13 -- 23,
+  2013.
+
+\bibitem[ALR12]{ALR}
+C.~Artigues, P.~Lopez, and D.~Rivreau.
+\newblock Integer programming and constraint propagation for scheduling under
+  energy constraints.
+\newblock In {\em 27th European Conference on Operational Research (EURO
+  2012)}, Vilnius, 2012.
+
+\bibitem[AMR03]{AMR}
+Christian Artigues, Philippe Michelon, and Stéphane Reusser.
+\newblock Insertion techniques for static and dynamic resource-constrained
+  project scheduling.
+\newblock {\em European Journal of Operational Research}, 149(2):249 -- 267,
+  2003.
+\newblock Sequencing and Scheduling.
+
+\bibitem[BLK83]{NP_RCPSP}
+J.~Blazewicz, J.K. Lenstra, and A.H.G.Rinnooy Kan.
+\newblock Scheduling subject to resource constraints: classification and
+  complexity.
+\newblock {\em Discrete Applied Mathematics}, 5(1):11 -- 24, 1983.
+
+\bibitem[CAVT87]{CAVT}
+Nicos Christofides, R.~Alvarez-Valdes, and J.M. Tamarit.
+\newblock Project scheduling with resource constraints: A branch and bound
+  approach.
+\newblock {\em European Journal of Operational Research}, 29(3):262 -- 273,
+  1987.
+
+\bibitem[GHS15]{Gay2015}
+Steven Gay, Renaud Hartert, and Pierre Schaus.
+\newblock {\em Integration of AI and OR Techniques in Constraint Programming:
+  12th International Conference, CPAIOR 2015, Barcelona, Spain, May 18-22,
+  2015, Proceedings}, chapter Time-Table Disjunctive Reasoning for the
+  Cumulative Constraint, pages 157--172.
+\newblock Springer International Publishing, 2015.
+
+\bibitem[GJ79]{NP_bible}
+Michael~R. Garey and David~S. Johnson.
+\newblock {\em Computers and Intractability: A Guide to the Theory of
+  NP-Completeness}.
+\newblock W. H. Freeman \& Co., New York, NY, USA, 1979.
+
+\bibitem[JE89]{RELopez}
+C.~Thuriot J.~Erschler, P.~Lopez.
+\newblock Scheduling under time and resource constraints.
+\newblock In {\em Proc. of Workshop on Manufacturing Scheduling, 11th IJCAI},
+  Detroit, USA, 1989.
+
+\bibitem[Jen06]{Jensen}
+J.~L. W.~V. Jensen.
+\newblock Sur les fonctions convexes et les in{\'e}galit{\'e}s entre les
+  valeurs moyennes.
+\newblock {\em Acta Mathematica}, 30(1):175--193, 1906.
+
+\bibitem[KALM11]{modele_RCPSP}
+Oumar Kon{\'e}, Christian Artigues, Pierre Lopez, and Marcel Mongeau.
+\newblock Event-based {MILP M}odels for {R}esource-constrained {P}roject
+  {S}cheduling {P}roblems.
+\newblock {\em Comput. Oper. Res.}, 38(1):3--13, January 2011.
+
+\bibitem[Kon09]{theseOumar}
+Oumar Kon{\'e}.
+\newblock {\em {Nouvelles approches pour la r{\'e}solution du probl{\`e}me
+  d'ordonnancement de projet {\`a} moyens limit{\'e}s}}.
+\newblock Theses, {Universit{\'e} Paul Sabatier - Toulouse III}, December 2009.
+
+\bibitem[{Lah}82]{TTLah}
+Abdelkader {Lahrichi}.
+\newblock {Ordonnancements. La notion de ''parties obligatoires'' et son
+  application aux probl\`emes cumulatifs.}
+\newblock {\em {RAIRO, Rech. Op\'er.}}, 16:241--262, 1982.
+
+\bibitem[MMRB98]{MMRB}
+Aristide Mingozzi, Vittorio Maniezzo, Salvatore Ricciardelli, and Lucio Bianco.
+\newblock An exact algorithm for the resource-constrained project scheduling
+  problem based on a new mathematical formulation.
+\newblock {\em Manage. Sci.}, 44(5):714--729, May 1998.
+
+\bibitem[NAL15a]{Nattaf_CPDP}
+Margaux Nattaf, Christian Artigues, and Pierre Lopez.
+\newblock Flow and energy based satisfiability tests for the continuous
+  energy-constrained scheduling problem with concave piecewise linear
+  functions.
+\newblock In {\em CP Doctoral Program 2015}, pages 70--81, Cork, Ireland,
+  September 2015.
+
+\bibitem[NAL15b]{Nattaf_Constraints}
+Margaux Nattaf, Christian Artigues, and Pierre Lopez.
+\newblock A hybrid exact method for a scheduling problem with a continuous
+  resource and energy constraints.
+\newblock {\em Constraints}, 20(3):304--324, 2015.
+
+\bibitem[NALR16]{Nattaf_ORSpectrum}
+Margaux Nattaf, Christian Artigues, Pierre Lopez, and David Rivreau.
+\newblock {Energetic reasoning and mixed-integer linear programming for
+  scheduling with a continuous resource and linear efficiency functions}.
+\newblock {\em {OR Spectrum}}, 38(2):pp. 459--492, March 2016.
+
+\bibitem[OG93]{AVT}
+Ramón Alvarez-Valdés Olaguíbel and JoséManuel~Tamarit Goerlich.
+\newblock The project scheduling polyhedron: Dimension, facets and lifting
+  theorems.
+\newblock {\em European Journal of Operational Research}, 67(2):204 -- 220,
+  1993.
+
+\bibitem[PWW69]{ex_RCPSP_discret}
+A.~Alan~B. Pritsker, Lawrence~J. Waiters, and Philip~M. Wolfe.
+\newblock Multiproject scheduling with limited resources: A zero-one
+  programming approach.
+\newblock {\em Management Science}, 16(1):93--108, 1969.
+
+\bibitem[Wol98]{LP}
+Laurence~A Wolsey.
+\newblock {\em Integer programming}.
+\newblock Wiley, 1998.
+
+\end{thebibliography}

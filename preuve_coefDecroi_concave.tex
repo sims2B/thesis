@@ -1,0 +1,73 @@
+\documentclass{article}
+
+\begin{document}
+
+The expression of the mandatory consumption is :
+\[ \underline{b}(i,t_1,t_2)= max( 
+b_i^{min} * \underline{w}(i,t_1,t_2)/f_i(b_i^{min}),
+max_p(1/a_{ip} (\underline{w}(i,t_1,t_2) -c_i{ip}|J|)))
+\]
+
+Hence, we know that whenever $\underline{b}(i,t_1,t_2)=
+b_i^{min} * \underline{w}(i,t_1,t_2)/f_i(b_i^{min})$ for the linear case, 
+$\underline{b}(i,t_1,t_2)$ has the same expression for the piecewise linear case. 
+
+Whenever $\underline{b}(i,t_1,t_2)=
+1/a_{i} (\underline{w}(i,t_1,t_2) -c_i{i}|J|$ for the linear case, 
+$\underline{b}(i,t_1,t_2)=
+max_p(1/a_{ip} (\underline{w}(i,t_1,t_2) -c_i{ip}|J|))$ for the piecewise 
+linear case.
+
+Thus, to prove that the relevant intervals for the linear case are the same 
+that for the piecewise concave linear case, we have to prove that function: 
+$max_p(1/a_{ip} (\underline{w}(i,t_1,t_2) -c_i{ip}|J|))$ is piecewise linear 
+and that the serie of slope of this function is increasing. Indeed, if this 
+serie is increasing, then the left derivative of the function cannot be greater 
+than its right.
+
+We first prove that the serie is of the form: $S_{ip}= \frac{f_i(b_i^{max})- c_{ip}}
+{a_{ip}}$ and then, we prove that the serie is increasing.
+
+{\color{red} \Huge TODO: proof (use efficiency ratio and concavity)}
+
+
+Now, we prove that the serie is increasing. To do so, we prove that 
+$\frac{f_i(b_i^{max}) - c_{ip}}{a_{ip}} < 
+\frac{f_i(b_i^{max}) - c_{ip+1}}{a_{ip+1}}$.
+
+We study the sign of $\frac{f_i(b_i^{max}) - c_{ip}}{a_{ip}} - 
+\frac{f_i(b_i^{max}) - c_{ip+1}}{a_{ip+1}}$.
+
+\begin{align*}
+ & & sign(\frac{f_i(b_i^{max}) - c_{ip}}{a_{ip}} - 
+\frac{f_i(b_i^{max}) - c_{ip+1}}{a_{ip+1}})\\
+ &=& sign(\frac{a_{ip+1}f_i(b_i^{max}) - a_{ip+1}c_{ip}-a_{ip}f_i(b_i^{max}) + a_{ip}c_{ip+1}}{a_{ip+1}a_{ip}})\\ 
+ &=& sign(a_{ip+1}f_i(b_i^{max}) - a_{ip+1}c_{ip}-a_{ip}f_i(b_i^{max}) + a_{ip}c_{ip+1})
+ \end{align*}
+
+Let ${[}\gamma_p,\gamma_{p+1}{]}$ and ${[}\gamma_{p+1},\gamma_{p+2}{]}$, with 
+$\gamma_{p+1}\neq b_i^{max}$, be 
+the interval over which the function $f_i$ is defined by $a_{ip}*b+c_{ip}$ and 
+$a_{ip+1}*b+c_{ip+1}$ respectively.
+
+Since, $f_i(b)$ is continuous, we have $f_i(\gamma_{p})=a_{ip}*\gamma_{p+1}+c_{ip}=
+a_{ip+1}*\gamma_{p+1}+c_{ip+1}$ and then $c_{ip+1}=
+(a_{ip}-a_{ip+1})*\gamma_{p+1}+c_{ip}$. 
+
+Therefore,
+\begin{align*}
+ & & sign(a_{ip+1}f_i(b_i^{max}) - a_{ip+1}c_{ip}-a_{ip}f_i(b_i^{max}) + a_{ip}c_{ip+1})\\
+ &=& sign(a_{ip+1}f_i(b_i^{max}) - a_{ip+1}c_{ip}-a_{ip}f_i(b_i^{max}) + a_{ip}((a_{ip}-a_{ip+1})*\gamma_{p+1}+c_{ip}))\\
+ &=& sign(a_{ip+1}f_i(b_i^{max}) - a_{ip+1}c_{ip}-a_{ip}f_i(b_i^{max}) + a_{ip}^2\gamma_{p+1}-a_{ip}a_{ip+1}\gamma_{p+1}+a_{ip}c_{ip}))\\
+ &=& sign(a_{ip+1}(f_i(b_i^{max}) -c_{ip}-a_{ip}\gamma_{p+1})-a_{ip}(f_i(b_i^{max}) - a_{ip}\gamma_{p+1}-a_{ip}c_{ip}))\\
+ &=& sign((a_{ip+1}-a_{ip})(f_i(b_i^{max})-f_i(\gamma_{p+1})))
+ \end{align*}
+ 
+And, since $f_i$ is concave, we have $a_{ip+1}<a_{ip}$ and, since $f_i$ is 
+non-decreasing and $\gamma_{p+1}< b_i^{max}$, we have $f_i(b_i^{max})>
+f_i(\gamma_{p+1})$. 
+
+Hence, $\frac{f_i(b_i^{max}) - c_{ip}}{a_{ip}} < 
+\frac{f_i(b_i^{max}) - c_{ip+1}}{a_{ip+1}}$ and this prove the property.
+
+\end{document}

@@ -6,7 +6,6 @@ chapter="Time-Table Disjunctive Reasoning for the Cumulative Constraint",
 title="Integration of AI and OR Techniques in Constraint Programming: 12th International Conference, CPAIOR 2015, Barcelona, Spain, May 18-22, 2015, Proceedings",
 year="2015",
 publisher="Springer International Publishing",
-address="Cham",
 pages="157--172",
 isbn="978-3-319-18008-3",
 doi="10.1007/978-3-319-18008-3_11",
@@ -20,6 +19,7 @@ booktitle = "Proc. of Workshop on Manufacturing Scheduling, 11th IJCAI",
 year = 1989,
 address = "Detroit, USA"
 } 
+
 @Article{TTLah,
     Author = {Abdelkader {Lahrichi}},
     Title = {{Ordonnancements. La notion de ''parties obligatoires'' et son application aux probl\`emes cumulatifs.}},
@@ -224,8 +224,8 @@ abstract = "In deterministic sequencing and scheduling problems, jobs are to be 
 }
 
 @article{ABKKLM,
-title = "A note on “event-based \{MILP\} models for resource-constrained project scheduling problems” ",
-journal = "Computers & Operations Research ",
+title = {A note on {\"a}event-based \{MILP\} models for resource-constrained project scheduling problems{\"a}},
+journal = {Computers & Operations Research},
 volume = "40",
 number = "4",
 pages = "1060 - 1063",
@@ -313,10 +313,10 @@ URL = {  http://dx.doi.org/10.1287/mnsc.16.1.93    },
 eprint = {  http://dx.doi.org/10.1287/mnsc.16.1.93    }
 }
 
-@mastersthesis{rapport_master_CECSP,
-    author    = "Alberto, Azc{\'a}rate Gonz{\'a}les",
-    title     = "Scheduling under Energetic consumption constraints",
-    school    = "INSA Toulouse",
-    type     = "Master thesis",
-    year      = "2012"
+@INPROCEEDINGS{ALR,
+  author = {C. Artigues and P. Lopez and D. Rivreau},
+  title = {Integer programming and constraint propagation for scheduling under energy constraints},
+  booktitle = {27th European Conference on Operational Research (EURO 2012)},
+  address = {Vilnius},
+  year = {2012}
 }

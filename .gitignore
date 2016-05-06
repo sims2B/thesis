@@ -5,16 +5,14 @@
 *.toc
 *.aux
 *.blg
-*.blg
+*.pdf
 *.ilg
 *.ind
-*.lof
-*.lot
-*.maf
-*.mtc
-*.mtc*
-*.pdf
+*.lo*
 *.ptc*
+*.mtc*
+*.maf
+
 ## Working files
 *HDR*
 

@@ -138,6 +138,16 @@ sur les ensembles réalisables de Mingozzi et al.~\cite{MMRB}.
 
 \subsection{Modèles à événements}
 \label{sec:event_RCPSP}
+
+Nous allons présenter deux formulations à événements: une formulation
+dite start/end et une formulation dite on/off.  Cette section montre,
+dans un premier temps, l'intérêt de l'utilisation des modèles à
+événement à la place des modèles à temps discret, en comparant
+notamment le nombre de variables et de contraintes de ces derniers.
+Dans un second temps, les modèles seront détaillés.
+
+\subsubsection{Motivations des modèles à événement}
+
 Parmi les formulations existantes pour le \RCPSP, celles basées sur des
 modèles indexés par le temps sont les plus utilisées dû au fait de la
 qualité (relative) de leur relaxation.  Cependant, comme la taille de
@@ -164,8 +174,41 @@ suivante: elles permettent de résoudre des instances pouvant
 contenir des valeurs (de paramètre et/ou de solution) non
 entières.
 
-Nous allons présenter deux formulations à événements: une
-formulation dite start/end et une formulation dite on/off.
+Dans~\cite{modele_RCPSP}, les auteurs montrent les limitations des
+modèles indexés par le temps pour le \RCPSP. Les instances considérées
+sont des instances pour lesquelles l'horizon de temps, i.e. $T$, est
+très grand. Dans ce cas là, le nombre de variables et de contraintes
+des modèles à temps discret est nettement supérieur à ceux des modèles
+à événements. 
+
+Par exemple, la famille d'instances KSD15\_d~\cite{theseOumar} possède
+480 instances de $15$ activités et avec $4$ ressources dont l'horizon
+de temps peut varier entre $187$ et $999$ et possédant entre $77$ et
+$144$ relations de précédence. Pour le \RCPSP, le modèle à temps
+discret peut alors posséder jusqu'à $17000$ variables binaires et
+entre $4200$ contraintes. Les modèles à événements possèdent quant à
+eux jusqu'à $500$ variables binaires, $16$ variables continues et
+$4200$ contraintes pour le modèle start/end et jusqu'à $250$ variables
+binaires, $16$ variables continues et $4000$ contraintes.
+
+Considérant des instances de taille similaire pour le \CECSP~ avec
+fonction de rendement affine, le modèle à temps discret peut alors
+posséder jusqu'à $30000$ variables binaires, le même nombre de
+variables continues et $90000$ contraintes.  Les modèles à événements
+possèdent quant à eux jusqu'à $900$ variables binaires, le même nombre
+de variables continues et $7200$ contraintes pour le modèle start/end
+et jusqu'à $450$ variables binaires, $900$ variables continues et
+$7100$ contraintes.
+
+Dans ce cas là, la faiblesse de la relaxation linéaires des modèles à
+événements est largement compensée par la grande différence de taille
+avec les modèles indexés par le temps. 
+
+Dans ce contexte, l'amélioration des modèles à événement s'avère être
+une direction de recherche nécessaire dans l'élaboration de méthode de
+résolution efficaces pour le \RCPSP. 
+
+
 
 \subsubsection{Modèle start/end}
 
@@ -315,7 +358,9 @@ continues et $(n+1)(m+n^2/2+|E|)+3n$ contraintes. Le nombre de
 variables et de contraintes du modèle est donc bien polynomial en
 fonction du nombre d'activités et de ressources.
  
-\subsubsection{Modèle on/off} Dans le modèle on/off, comme pour la
+\subsubsection{Modèle on/off} 
+
+Dans le modèle on/off, comme pour la
 formulation start/end, une variable $t_e$ qui représente la date
 de chaque événement, pour tout $e \in {\cal E}$. Pour associer ces
 dates aux débuts et fins de chaque activité, nous définissons, pour
