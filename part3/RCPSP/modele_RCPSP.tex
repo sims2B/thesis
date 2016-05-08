@@ -342,16 +342,17 @@ combinaison de $x_{ie}$ et $y_{if}$, on obtient soit $t_f \ge
 t_e$ ou $t_f\ge t_e- p_i$ ce qui est vérifié par la
 contrainte~\eqref{ordre_RCPSP_SE}.
 
-La contrainte~\eqref{xby_RCPSP_SE} garantit qu'une activité ne
-peut se terminer avant d'avoir commencé. Si l'activité $i$ finit
-entre l'événement $0$ et $e$, alors elle ne peut pas commencer
-entre l'événement $e$ et $n$, et inversement.
+La contrainte~\eqref{xby_RCPSP_SE} garantit qu'une activité ne peut se
+terminer avant d'avoir commencé. Si l'activité $i$ finit entre
+l'événement $1$ et $e$, i.e. $sum_{f=1}^{e} y_{if}=1$, alors elle ne
+peut pas commencer entre l'événement $e$ et $n$, i.e. $sum_{f=e}^{n}
+x_{if}=0$, et inversement.
 
 Enfin, la contrainte~\eqref{prec_RCPSP_SE} modélise les relations
 de précédences entre les activités: si une activité $i$, devant
 précéder une activité $j$, finit à l'événement $e$ ou après, alors
 l'activité $j$ ne peut commencer avant l'événement $e$, i.e.
-$\sum_{f=e}^n x_{if}=1 \Rightarrow \sum_{f=0}^{e-1} y_{jf}=0$.
+$\sum_{f=e}^n x_{if}=1 \Rightarrow \sum_{f=1}^{e-1} y_{jf}=0$.
 
 Le modèle possède $2n^2+n$ variables binaires, $n+1$ variables
 continues et $(n+1)(m+n^2/2+|E|)+3n$ contraintes. Le nombre de

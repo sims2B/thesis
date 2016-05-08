@@ -21,7 +21,7 @@ quantités sera valide pour le \CECSP.
 Dans cette section, nous commençons par décrire un modèle indexé par
 le temps, puis, nous présentons deux modèles à événement. Ces trois
 modèles sont adaptés des modèles pour le \RCPSP~présentés dans la
-section~\ref{section_modele_RCPSP} et sont présentés
+section~\ref{sec:PLNE_ordo_res} et sont présentés
 dans~\cite{Nattaf_ORSpectrum}.  
 
 
@@ -97,7 +97,7 @@ variables, i.e. $[\ES,\LS]$ pour $x_{it}$ au lieu de
 $[\ES,\LE-1]$ et $[\EE,\LE]$ pour $y_{it}$ au lieu de
 $[\ES-1,\LE]$. Ces fenêtres de temps pouvant être raffinées à
 l'aide d'heuristiques, de la programmation par contraintes (cf.
-Section~\ref{adjustment_tw}) ou par le biais d'autres méthodes,
+section~\ref{sec:adjustment_tw}) ou par le biais d'autres méthodes,
 ces modifications peuvent améliorer grandement les performances du
 modèle.
 
@@ -143,7 +143,16 @@ signifie que l'activité n'a pas encore débuté et les inégalités
 imposent que $b_{it} \le 0$ et donc $b_{it}=0$. Dans le second cas,
 l'équation devient $-\bmax \ge b_{it}$, ce qui est impossible. Notons
 que ce dernier cas nous assure ainsi qu'une activité ne peut finir avant
-d'avoir commencé.
+d'avoir commencé. Cependant, afin de renforcer la relaxation linéaire
+du modèle, des contraintes spécifiques, empêchant que le début d'une
+activité ne se produise avant sa fin, peuvent être ajoutées. Ces
+inégalités sont de la forme: 
+\begin{equation}
+ \sum_{\tau=\ES}^{t} x_{i\tau}
+-\sum_{\tau=\ES+1}^{t} y_{i\tau} \le 0 \quad \forall t \in \{\ES,\dots,\LE-1\}
+\end{equation}
+L'intérêt de l'ajout de ces équations sera discuté dans la
+section~\ref{section:expe}. 
 
 La contrainte~\eqref{nrj_CECSP_TI} modélise le fait qu'une activité
 doit recevoir au moins la quantité d'énergie requise par la donnée du
@@ -241,10 +250,27 @@ x_{i\tau}-\sum_{\tau=\ES+1}^t y_{i\tau}\right) \quad  \forall i \in
 Notons que l'utilisation d'une inégalité peut impliquer la variable
 $w_{it}$ ne représente pas exactement la quantité d'énergie apportée à
 $i$ dans la période $t$. Cependant, la contrainte nous assure que
-$w_{it} \le f_i(b_{it})$. De ce fait, la solution donnée par le modèle
-est toujours réalisable et le modèle possède une solution si et
-seulement s'il existe une solution pour le \CECSP~ayant des dates de
-début et de fin d'activité entières.
+$w_{it} \le f_i(b_{it})$. De ce fait, à une solution optimale donnée
+par le modèle correspond toujours une solution optimale du \CECSP à
+date de début et de fin entières. En effet, suposons que dans une
+solution optimale renvoyée par le PLNE, il existe $(i,t)$ tel que
+$w_{it} < f_i(b_{it})$, alors, deux cas sont possibles:
+\begin{itemize}
+\item $\bmin \ge f_i^{-1}(w_{it})$ et dans ce cas là, $b_{it}$ peut
+  prendre la valeur $f_i^{-1}(w_{it})$ et cette solution aura un coût,
+  i.e. une consommation totale de ressource, plus faible que la
+  solution précédente et ceci contredit l'optimalité de la solution.
+\item $\bmin < f_i^{-1}(w_{it})$ et dans ce cas là, $b_i(t)$ prend la
+  valeur $\bmin$ et $et_i=\min\{t \in\mathbb{N}\ |\ \int_{\tau=st_i}^{t}
+  f_i(b_i(t))dt \le W_i\}$. Ici, deux cas sont possibles: le premier
+  correspond au cas où $et_i=\{t\ | \ y_{it}=1\}$ et la solution
+  renvoyée par le PLNE est optimale; dans le second cas $et_i<\{t\ |\
+  y_{it}=1\}$ mais alors, $y_{it-1}$ peut prendre la valeur $1$ et
+  $y_{it}$ la valeur $0$ et cette solution est de plus faible coût que
+  la solution précédente et ceci contredit l'optimalité de la solution
+renvoyée par le PLNE.
+\end{itemize}
+
 
 Le modèle ainsi défini possède alors $2nT$ variables binaires, $2nT$
 variables continues et au plus $3n + (5n +nP+1)T$ contraintes, avec
@@ -334,7 +360,7 @@ A \label{start_CECSP_SE}\\
  &\sum_{i \in A} b_{ie} \le R \left(t_{e+1}- t_e\right) & & 
  \forall e \in \E\setminus\{2n\} \label{res_CECSP_SE}\\
  &t_f \ge t_e +  \left(x_{ie} + y_{if} -1\right) W_i/f_i(\bmax) & & \forall i \in A,\ 
- \forall e,f \in \E\ ; f>e \label{dur_CECSP_SE}\\
+ \forall e,f \in \E\ ; f\ge e \label{dur_CECSP_SE}\\
  &\sum_{e\in \E\setminus\{2n\}} b_{ie} = W_i  & & \forall i \in A 
  \label{nrj_CECSP_SE}\\
 &b_{ie} \ge \bmin \left(t_{e+1}-t_e\right) 
@@ -385,7 +411,7 @@ La contrainte~\eqref{dur_CECSP_SE} modélise le fait que si l'activité
 $i$ commence à l'événement $e$ et se termine à l'événement $f$, alors
 les dates correspondant à ces deux événements sont au moins séparées
 par la durée de cette tâche. Or, comme nous ne connaissons pas cette
-durée, nous utilisons une borne inférieure: $W_i/f_i(\bmax)$.
+durée, nous utilisons une borne inférieure: $W_i/f_i(\bmax)$. 
 
 La contrainte~\eqref{nrj_CECSP_SE} modélise le fait qu'une activité
 doit recevoir au moins la quantité d'énergie requise par la donnée du
@@ -410,7 +436,13 @@ s'écrit $M\ge b_{ie}$ quand $\sum_{f=0}^{e} x_{if}
 -\sum_{f=0}^{e}y_{if}=1$, i.e. quand l'activité $i$ est en cours, et
 s'écrit $0\ge b_{ie}$ quand $\sum_{f=0}^{e}
 x_{if}-\sum_{f=0}^{e}y_{if}=0$, i.e. quand l'activité $i$ n'est pas en
-cours.
+cours. Notons aussi que ces contraintes empêchent qu'une activité ne
+puisse commencée avant d'avoir finie. De plus, pour renforcer la
+formulation, nous pouvons ajouter les contraintes~\eqref{xby_RCPSP_SE}
+modélisant explicitement la fait qu'un événement ``début d'activité''
+se produit forcément avant l'événement ``fin d'activité'' lui
+correspondant. L'intérêt de l'ajout de telles contraintes sera discuté
+dans le chapitre~\ref{section:expe}.
 
 Cette formulation possède $4n^2$ variables binaires, $2n^2+n$
 variables continues et $2n^3+13n^2+4n-2$ contraintes.
@@ -553,9 +585,7 @@ On sait que $\exists (i,e) \in \A \times \E$ tel que:
 Donc nous avons bien $et_i > et_i'$ et ceci achève la démonstration.
 \end{proof}
 
-Ce théorème reste valide pour différents objectifs (somme des dates de
-fin, pondérée ou non). Cependant, pour certains objectif (minimisation
-de la date de fin du projet...), ce peut ne pas être le cas. Mais, la
+Notons que pour d'autres  objectifs ce peut ne pas être valide. Mais, la
 solution obtenue par le modèle peut toujours être transformée en une
 solution du \CECSP~en temps polynomial. Pour cela, il suffit de suivre
 la transformation proposée dans la preuve du théorème~\ref{th:conv}.
