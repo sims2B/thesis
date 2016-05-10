@@ -223,9 +223,25 @@ abstract = "In deterministic sequencing and scheduling problems, jobs are to be 
   publisher={Wiley}
 }
 
+@Article{BD,
+author="Baptiste, Philippe
+and Demassey, Sophie",
+title="Tight LP bounds for resource constrained project scheduling",
+journal="OR Spectrum",
+year="2004",
+volume="26",
+number="2",
+pages="251--262",
+abstract="The best lower bound for the Resource Constrained Project Scheduling Problem is currently based on the resolution of several large Linear Programs (Brucker {\&} Knust, EJOR, 107: 272-288, 1998). In this paper, we show that (1) intensive constraint propagation can be used to tighten the initial formulation of the linear programs and (2) we introduce several sets of valid cutting planes. These improvements allow us to ``close'' 16 new instances of the PSPLIB with 60 activities and to improve the best known lower bounds of 64 instances.",
+issn="1436-6304",
+doi="10.1007/s00291-003-0155-1",
+url="http://dx.doi.org/10.1007/s00291-003-0155-1"
+}
+
+
 @article{ABKKLM,
 title = {A note on {\"a}event-based \{MILP\} models for resource-constrained project scheduling problems{\"a}},
-journal = {Computers & Operations Research},
+journal = {Computers \& Operations Research},
 volume = "40",
 number = "4",
 pages = "1060 - 1063",

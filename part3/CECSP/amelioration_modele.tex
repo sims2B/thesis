@@ -9,7 +9,7 @@ discrets pour lesquels nous proposons des inégalités valides déduites
 directement du raisonnement énergétique présenté à la
 section~\ref{section:RE}. En effet, ces modèles restent les modèles
 les plus efficaces pour résoudre le \CECSP~ou le \RCPSP, ceci étant
-principalement dû à la qualité de leur relaxation. 
+principalement dû à la qualité relative de leur relaxation. 
 
 Cependant, les limitations de ces modèles nous ont poussé à nous
 intéresser plus particulièrement à l'amélioration des modèles à
@@ -19,14 +19,15 @@ taille peut donc s'avérer très importante si l'horizon de temps est grand.
 De plus, dans les modèles indexés par le temps du \CECSP~, la
 discrétisation de l'horizon de temps conduit à une réduction de
 l'espace des solutions et peut donc mener à des solutions
-sous-optimales. 
+sous-optimales (voir exemple~\ref{exemple_NE},
+page~\pageref{exemple_NE}). 
 
 Pour améliorer les relaxations linéaires des modèles à événement, nous
 avons étudié le polyèdre défini par l'ensemble de toutes les
-affectations possibles des variables binaires pour une seule
-activité, pour lequel nous exhibons un ensemble minimal d'inégalités
-permettant de le décrire. De plus, plusieurs ensembles d'inégalités valides
-sont proposées pour contribuer à l'amélioration des performances des
+affectations possibles des variables binaires pour une seule activité,
+pour lequel nous exhibons un ensemble minimal d'inégalités permettant
+de le décrire. De plus, plusieurs ensembles d'inégalités valides sont
+proposées pour contribuer à l'amélioration des performances des
 modèles à événement.
  
 \subsection{Amélioration des modèles indexés par le temps}
@@ -64,7 +65,6 @@ inégalités suivantes:
 & \hspace{9.55cm} \forall i \in {\cal A},\ \forall [t_1,t_2] \in \I
 \label{total}
 \end{align}
-
 
 L'inégalité~\eqref{total} représente le cas où l'intervalle
 $[\ES,\LE]$ est complètement inclus dans $[t_1,t_2]$. En effet,
@@ -166,10 +166,11 @@ R\left(t_2-t_1\right) \qquad \\ \forall i \in {\cal A},\ \forall k \in
 avec $p_i^+(t_1)$ et $p_i^-(t_2)$ comme définis dans la
 section~\ref{section:ERCuSP} pour le \CUSP.
 
-Ces inégalités sont ajoutées au modèle indexé par le temps du
-\CECSP~et du \RCPSP~et les performances de ces modèles avec ou sans
-ces inégalités sont évaluées dans la section~\ref{section:expe_TI} afin
-de montrer leur intérêt.
+De telles inégalités ont été proposées dans le cadre du modèle
+préemptif sur les ensembles admissibles~\cite{BD}. Ces inégalités sont
+ajoutées au modèle indexé par le temps du \CECSP~et du \RCPSP~et les
+performances de ces modèles avec ou sans ces inégalités sont évaluées
+dans le chapitre~\ref{sec:expe} afin de montrer leur intérêt.
  
 Les modèles à temps discret sont particulièrement efficaces pour le
 \RCPSP~et le \CECSP. Cependant, ces modèles possèdent des limitations
@@ -362,8 +363,7 @@ inégalités de $ZP_i$.
 
 Pour trouver les rayons extrêmes du cône~\eqref{kis4}, il suffit de
 considérer les trois cas suivant: 
-\begin{itemize}
-\item $\mu_0 > 0$ et quitte à normaliser, nous pouvons suppposer que
+\paragraph{\boldmath $\mu_0 > 0$.} Quitte à normaliser, nous pouvons suppposer que
   $\mu_0=1$. Dans ce cas là, pour tout $e \in \E^*$, nous avons
   $\mu_e \le -1$. En effet, ceci est déduit de~\eqref{kis4} en
   considérant l'équation pour $u=v=e$. Alors, en prenant
@@ -372,11 +372,11 @@ considérer les trois cas suivant:
 D'après le lemme de Farkas, ceci est une inégalité valide pour
 $ZQ_i$. On peut remarquer que ces inégalités sont équivalentes
 à~\eqref{start_CECSP_OO}. 
-\item $\mu_0=0$. Alors, nous avons toujours un cône dont les rayons
+\paragraph{\boldmath $\mu_0 = 0$.} Alors, nous avons toujours un cône dont les rayons
   extrêmes sont les vecteurs unité négatifs de $\mathbb{R}^{\E^*}$. Ces
   rayons extrêmes nous donnent les inégalités $z_{i,e} \ge 0$ qui sont
   les contraintes de non-negativité valides pour $ZQ_i$. 
-\item $\mu_0 < 0$ et quitte à normaliser, nous pouvons suppposer que
+\paragraph{\boldmath $\mu_0 < 0$.} Quitte à normaliser, nous pouvons suppposer que
   $\mu_0=-1$. Nous allons prouver que dans ce cas, il existe une
   bijection entre les points extrêmes du polyèdre $H$ défini par:
   \begin{equation} \sum_{e=u}^{v} \mu_e \le 1 \quad u \le
@@ -478,21 +478,20 @@ $ZQ_i$. On peut remarquer que ces inégalités sont équivalentes
   poursuivons cette argumentation tant que $\mu$ possède des
   coefficients non nuls après $u_3$, nous reconnaissons la suite de
 coefficients $1/-1$ présente dans~\eqref{non_preem_ineg}.
-\end{itemize}
 \end{proof}
 
 Nous avons donc définit un ensemble d'inégalités permettant une
 description complète du polyèdre formé par les vecteurs $z_i$ solution
 du modèle on/off. Cependant, nous ne pouvons ajouter directement ces
-inégalités au modèle car leur nombre est exponentiel. Dans la
-section~\ref{section_expe_TI}, nous présenterons un algorithme de
+inégalités au modèle car leur nombre est exponentiel. Dans le
+chapitre~\ref{sec:expe}, nous présenterons un algorithme de 
 séparation polynomial qui nous permettra de définir un algorithme de
 branch-and-cut pour le \CECSP~et le \RCPSP~(rappelons que les
 résultats si dessus sont valides dans le cas du \RCPSP~en posant
 $\E^*=\{1,\dots,n\}$). 
 
 Le paragraphe suivant présente d'autres inégalités valides pour le
-\CECSP~ et le \RCPSP. 
+\CECSP~et le \RCPSP. 
 
 \subsubsection{Autres inégalités valides}
 
@@ -521,10 +520,12 @@ trier les intervalles de $\cal D$ suivant la règle suivante:
 $[a,b] \le [c,d]
 \Leftrightarrow a<c \lor \left( a=c \land b\le d\right)$
 
-Alors, nous avons la propriété suivante:
+Alors, soit $\underline{{\cal D}_e}$ (resp. $\overline{{\cal D}_e}$)
+la borne inférieure (resp. supérieure) de l'intervalle ${\cal D}_e$,
+nous avons la propriété suivante:
 \begin{equation} \label{sep_CECSP_OO} 
-t_{e+1}-t_e \le |{\cal D}_e \cup
-{\cal D}_{e+1}| \qquad \forall e \in {\cal E}\setminus\{2n\}
+t_{e+1}-t_e \le \max(\overline{{\cal D}_e},\overline{{\cal D}_{e+1}}) -
+\min(\underline{{\cal D}_e},\underline{{\cal D}_{e+1}}) \qquad \forall e \in {\cal E}\setminus\{2n\}
 \end{equation}
 
 \begin{ex}
@@ -533,29 +534,29 @@ t_{e+1}-t_e \le |{\cal D}_e \cup
 \begin{tikzpicture} [yscale=0.8,xscale=0.6] \node (O) at (0,0) {};
 
 \draw[->] (0,0) -- (23,0);
- \draw (1,0) node {$[$} node[above=0.2cm]
-{$\ES[1]$}-- +(0:3cm)node {$]$} node[right=0.1cm,above=0.2cm]{$\LS[1]$};
+ \draw (1,0) node[red] {$[$} node[above=0.2cm,red]
+{$\ES[1]$}-- +(0:3cm)node[red] {$]$} node[right=0.1cm,above=0.2cm,red]{$\LS[1]$};
 
-\draw(7.05,0) node {$[$} node[above=0.2cm] {$\EE[1]$}-- +(0:3cm) node
-{$]$} node[above=0.2cm] {$\LE[1]$};
- \draw (3,0) node {$[$} node[below=0.3cm]
-{$\ES[2]$}-- +(0:4cm) node {$]$} node[below=0.2cm] {$\LS[2]$};
+\draw(7.05,0) node[red] {$[$} node[above=0.2cm,red] {$\EE[1]$}-- +(0:3cm) node[red]
+{$]$} node[above=0.2cm,red] {$\LE[1]$};
+ \draw (3,0) node[Green] {$[$} node[below=0.3cm,Green]
+{$\ES[2]$}-- +(0:4cm) node[Green] {$]$} node[below=0.2cm,Green] {$\LS[2]$};
  \draw
-(15,0) node {$[$} node[above=0.2cm] {$\EE[2]$}-- +(0:4cm) node {$]$}
-node[right=0.1cm,above=0.2cm] {$\LE[2]$};
- \draw(10.1,0) node {$[$}
-node[below=0.3cm] {$\ES[3]$}-- +(0:3cm) node {$]$} node[below=0.2cm]
+(16,0) node[Green] {$[$} node[above=0.2cm,Green] {$\EE[2]$}-- +(0:3cm) node[Green] {$]$}
+node[right=0.1cm,above=0.2cm,Green] {$\LE[2]$};
+ \draw(10.1,0) node[blue] {$[$}
+node[below=0.3cm,blue] {$\ES[3]$}-- +(0:3cm) node[blue] {$]$} node[below=0.2cm,blue]
 {$\LS[3]$};
- \draw (18,0) node {$[$} node[below=0.2cm] {$\EE[3]$}--
-+(0:4cm) node {$]$} node[below=0.25cm] {$\LE[3]$};
+ \draw (15,0) node[blue] {$[$} node[below=0.2cm,blue] {$\EE[3]$}--
++(0:7cm) node[blue] {$]$} node[below=0.25cm,blue] {$\LE[3]$};
 
 \end{tikzpicture}
 \end{center}
 
 Après avoir trié les intervalles, nous obtenons:
 $[\ES[1],\LS[1]] \le [\ES[2],\LS[2]] \le
-[\EE[1],\LE[1]] \le [\ES[3],\LS[3]]\le
-[\EE[2],\LE[2]] \le [\EE[3],\LE[3]]$.
+[\EE[1],\LE[1]] \le [\ES[3],\LS[3]] \le 
+[\EE[3],\LE[3]] \le [\EE[2],\LE[2]] $.
 
 Alors, nous avons l'ensemble de contraintes suivantes:
 
@@ -563,19 +564,33 @@ Alors, nous avons l'ensemble de contraintes suivantes:
 \item $t_2-t_1 \le \LS[2]-\ES[1]$
 \item $t_3-t_2 \le \LE[1]-\ES[2]$
 \item $t_4-t_3 \le \LS[3]-\EE[1]$
-\item $t_5-t_4 \le \LE[2]-\ES[3]$
-\item $t_6-t_5 \le \LE[3]-\EE[2]$
+\item $t_5-t_4 \le \LE[3]-\ES[3]$
+\item $t_6-t_5 \le \LE[3]-\EE[3]$
 \end{itemize}
+
+Notons aussi que l'ensemble d'inégalités
+$\underline{{\cal D}_e} \le t_e \le \overline{{\cal D}_e}$ peut ne pas
+être valides. En effet, ici $t_6$ peut correspondre à la fin de
+l'activité $3$ et $t_5$ à la fin de l'activité $2$, alors que
+${\cal D}_5=[\EE[3],\LE[3]] \le [\EE[2],\LE[2]]={\cal D}_6$. On aurait
+alors $\underline{{\cal D}_6} \le t_5 \le \overline{{\cal D}_6}$.
 \end{ex}
 
 
 Ces contraintes peuvent être ajoutées au modèle on/off ou utilisées
 comme borne supérieure sur la valeur de $\bmin(t_{e+}-t_e)$
 dans~\eqref{bmin_CECSP_OO}. L'inégalité se réécrit donc comme:
-\[ b_{ie} \ge \bmin(t_{e+}-t_e) - \bmin|{\cal S}_e \cup {\cal
-    S}_{e+1}|(1-z_{ie})\qquad \forall (i,e) \in {\cal A}\times{\cal
-    E}
-\] 
+\[ b_{ie} \ge \bmin(t_{e+}-t_e) - \bmin\left(\max(\overline{{\cal
+D}_e},\overline{{\cal D}_{e+1}}) - \min(\underline{{\cal
+D}_e},\underline{{\cal D}_{e+1}})\right)(1-z_{ie})\qquad \forall (i,e)
+\in {\cal A}\times{\cal E}
+\]
+
+Ces inégalités peuvent être généralisées à tout sous-ensemble de $k$
+intervalles ordonnés $\{{\cal D}_{e_1},\dots,{\cal D}_{e_k}\}$ avec
+$t_{e_k}-t_{e_1} \le \max(\overline{{\cal D}_{e_1}},\overline{{\cal
+D}_{e_k}}) - \min(\underline{{\cal D}_{e_k}},\underline{{\cal
+D}_{e_1}}) $.
 
 \paragraph{Date maximale d'un événement}
 
@@ -635,6 +650,26 @@ Le rendement minimal de chaque activité pouvant être positif, nous
 pouvons considérer les contraintes de type sac-à-dos suivantes pour
 tout $e \in \Em$ et les transformer facilement en inégalités valides: 
 \begin{equation}
-\sum_{i\in \A^+} \bmin z_{ie} \leq B, 
+\sum_{i\in \A^+} \bmin z_{ie} \leq B  \qquad  \forall e \in \E
 \end{equation}
 où $\A^+$ est le sous-ensemble d'activités avec $\bmin > 0$. 
+
+
+\paragraph{Inégalités de cliques}
+
+Les inégalités de clique permettent de modéliser le fait que plusieurs
+variables binaires $z_{ie}$ ne peuvent prendre la valeur $1$
+simultanément. Ces inégalités, déjà été établies dans le cas du
+\RCPSP~\cite{CAVT_clique}, correspondent aux sous-ensembles
+disjonctifs d'activités. Elles sont facilement adaptable au cas du
+\CECSP et sont définies de la manière suivante. Soit $C$ un ensemble
+minimal d'activité ne pouvant s'exécuter en parallèle, i.e. telles que
+$\sum_{i \in C} \bmin > B$, alors l'ensemble d'inégalités suivantes
+est valide pour le \CECSP: 
+\begin{equation} 
+\sum_{i\in C} z_{ie}  \le |C| -1 \qquad \forall C,\ \forall e \in \E
+\end{equation}
+
+
+Différentes techniques permettant l'intégration des inégalités
+ci-dessus seront présentées et comparées dans le Chapitre~\ref{sec:expe}.

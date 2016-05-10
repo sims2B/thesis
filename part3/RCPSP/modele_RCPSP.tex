@@ -29,15 +29,16 @@ discret~\cite{modele_RCPSP}.
 \end{itemize}
 
 Dans cette section, nous présentons quelques modèles de
-programmation linéaire mixte développés pour les problèmes
-d'ordonnancement sous contraintes de ressource. Nous nous intéressons
-particulièrement aux modèles décrits dans~\cite{modele_RCPSP} 
-pour le \RCPSP. En effet, ce sont ces modèles qui seront adaptés dans
-le cas du \CECSP. Nous commençons donc, dans un premier temps, par
-présenter les modèles indexés par le temps puis, dans un second temps, nous
-présentons les modèles à événement. Les modèles avec variables de
-séquencement ne sont pas traités ici. Des exemples de telles
-formulations dans le cadre du \RCPSP~sont décrites dans~\cite{ADN}.
+programmation linéaire en nombres entiers ou mixte développés pour les
+problèmes d'ordonnancement sous contraintes de ressource. Nous nous
+intéressons particulièrement aux modèles décrits
+dans~\cite{modele_RCPSP} pour le \RCPSP. En effet, ce sont ces modèles
+qui seront adaptés dans le cas du \CECSP. Nous commençons donc, dans
+un premier temps, par présenter les modèles indexés par le temps puis,
+dans un second temps, nous présentons les modèles à événement. Les
+modèles avec variables de séquencement ne sont pas traités ici. Des
+exemples de telles formulations dans le cadre du \RCPSP~sont décrites
+dans~\cite{ADN}.
 
 \subsection{Modèles indexés par le temps}
 \label{sec:time_RCPSP}
@@ -471,8 +472,3 @@ pour le modèle start/end, $n+1$ variables continues et
 $(n-1)(3+|E|+m+n^2/2)+n^2+n$ contraintes. Le nombre de variables
 et de contraintes du modèle est donc bien polynomial en fonction
 du nombre d'activités et de ressources.
-
-
-
-\subsection{Approches polyèdrales et inégalités valides}
-\label{sec:ineg_RCPSP}
