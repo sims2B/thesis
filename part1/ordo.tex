@@ -1,2 +1,116 @@
+\section{Ordonnancement et contraintes de ressources}
+\subsection{L'ordonnancement}
 
-\section{L'ordonnancement}
+La théorie de l'ordonnancement s'intéresse au calcul de dates
+d'exécution d'un ensemble d'activités. Dans cette optique,
+l'utilisation d'une ou plusieurs ressources peut être nécessaire et
+l'exécution d'une activité implique souvent une telle consommation. Un
+problème d'ordonnancement peut alors être vu comme l'organisation dans
+le temps de la réalisation d'activités soumises à des contraintes de
+temps et de ressource. Dans la plupart des cas, un ou plusieurs
+objectifs sont définis et une solution au problème d'ordonnancement 
+vise l'optimisation de ces objectifs.
+ 
+\subsubsection{Les activités}
+
+Une activité peut être définie par une date de début $st_i$ et/ou une date
+de fin $ft_i$ et une durée $p_i$ vérifiant $ft_i=st_i+p_i$. Si
+l'activité utilise une ou plusieurs ressources durant son exécution, il
+est nécessaire d'ajouter à cette définition une fonction d'allocation
+de ressource propres à chaque activité $i$ et à chaque
+ressource $k$. Si cette fonction est donnée dans les paramètres du
+problème, on la note $r_{ik}(t)$. Si, au contraire, elle fait partie
+des variables de décision du problème, on la note $b_{ik}(t)$. Enfin,
+si cette fonction ne dépend pas du temps, i.e. est constante, le
+paramètre $t$ pourra être omis. 
+
+Selon les problèmes, une activité peut être contrainte à s'exécuter en
+un seul morceau. On parle alors d'activité non-préemptive et dans le
+cas contraire, i.e. les activités peuvent être exécutées en morceaux,
+on parle d'activité préemptive. 
+
+Une activité peut être utilisée pour représenter, par exemple, une
+opération dans un processus de production, le décollage/atterrissage
+d'un avion ou encore une étape d'un projet de construction...
+
+\subsubsection{Les ressources}
+
+Une ressource $k$ est un moyen technique ou humain requis pour la
+réalisation d'une activité et est disponible en quantité limitée $B_k$. 
+Les ressources utilisées par les activités peuvent être de nature
+diverse. Parmi elles, on peut distinguer: 
+\begin{itemize}
+\item les ressources renouvelables: ces ressources peuvent être
+réutilisées dès lors qu'elles sont libérées. Il s'agit, en fait, de
+ressources qui, après avoir été utilisées par une ou plusieurs
+activités, sont de nouveau disponible en même quantité. Ces ressources
+peuvent, par exemple, représenter la main d'oeuvre d'une entreprise,
+des machines, de l'électricité ou des équipements.
+\item à l'inverse, les ressources consommables sont des ressources
+dont la consommation globale est limitée au cours du temps. Il peut
+s'agir, par exemple, de matières premières ou d'un budget.
+\end{itemize}
+
+Parmi les ressources renouvelables, on distingue par ailleurs, les
+ressources disjonctives qui ne peuvent exécuter qu'une activité à la
+fois - e.g. pistes de décollage, salles... - et les ressources cumulatives
+qui peuvent, elles,  être utilisées par plusieurs activités en
+parallèle mais disponible en quantité limitée - e.g. main d'oeuvre,
+processeurs...
+
+\subsubsection{Les contraintes}
+
+Une contrainte permet d'exprimer des restrictions sur les valeurs que
+peuvent prendre une ou plusieurs variables du problème. Parmi les
+principales, on distingue:
+\begin{itemize}
+\item les contraintes de temps: elles intègrent les contraintes de
+  temps alloué, issues généralement d'impératifs de gestion et
+  relatives aux dates limites des activités (e.g. dates
+    de livraison) ou à la durée totale d'un projet mais aussi les
+    contraintes d'enchaînement qui décrivent des
+    positionnements relatifs devant être respectés entre les
+    activités. Ces contraintes peuvent, par exemple, modéliser des
+    contraintes de précédence entre les activités, i.e. une activité
+    ne peut commencer avant qu'une autre ait été achevée, ou des temps
+    de transition à respecter entre les activités.
+
+    {\'E}tant donné une activité $i$, on notera $\ES$ la date à partir
+de laquelle l'activité $i$ peut être exécutée, cette date est aussi
+appelée {\it date de début au plus tôt}. De même, la date avant
+laquelle l'activité $i$ doit avoir été complètement exécutée sera
+dénotée par $\LE$ et appelée {\it date de fin au plus tard}.
+
+\item les contraintes de ressources:  ce sont des contraintes d'utilisation
+  des ressources qui expriment la nature et la quantité de moyens
+  utilisés par les activités, ainsi que les caractéristiques
+  d'utilisation de ces moyens. Ces contraintes peuvent aussi représentée
+  des contraintes de disponibilité des ressources qui précisent la
+  nature et la quantité de moyens disponibles au cours du temps.
+\end{itemize}
+
+\subsubsection{Les objectifs}
+
+Lors de la résolution d'un problème d'ordonnancement, deux buts
+différents peuvent exister. Le premier cherche à trouver une solution
+réalisable pour le problème tandis que le second cherche à optimiser
+un ou plusieurs critères ou objectifs. 
+
+Ces objectifs peuvent être liés à différents aspect de la solution. On
+distingue par exemple:
+\begin{itemize}
+\item les objectifs liés au temps: le temps total d'exécution ou le temps moyen
+  d'achèvement d'un ensemble d'activités peut être minimisé, mais
+  aussi  les retards (maximum, moyen, somme...) par rapport
+  aux dates de fin au plus tard fixées par le problème.
+\item les objectifs liés aux ressources: la quantité (maximale,
+  moyenne, pondérée...) de ressources nécessaires pour réaliser un
+  ensemble d'activités peut, par exemple, être minimisée.
+\item les objectifs liés aux coûts de lancement, de production, de
+  transport, de stockage ou liés aux revenus, aux retours
+  d'investissements... 
+\item les objectifs liés à une énergie, un débit...
+\end{itemize}
+
+Dans la section suivante, nous présentons deux exemples problèmes
+d'ordonnancement: le \RCPSP~et le \CUSP.

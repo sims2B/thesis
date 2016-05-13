@@ -1,9 +1,18 @@
 \documentclass[11pt,a4paper,svgnames]{book}
 
-
 \input{usepackage.tex}
 \allowdisplaybreaks
  \renewcommand{\baselinestretch}{1.2} 
+\usepackage{fancyhdr}
+\fancyhead{}
+\fancyhead[LO]{\rightmark}
+\fancyhead[RE]{\leftmark}
+\pagestyle{fancy}
+\fancypagestyle{plain}{
+\fancyhead{}
+\fancyhead[LO]{\rightmark}
+\fancyhead[RE]{\leftmark}
+}
 \makeindex
 \input{newcommand.tex}
  \parskip=7pt
@@ -24,8 +33,8 @@
 
 %% Referee
 \nreferee{2}
-\makesomeone{referee}{1}{Premier RAPPORTEUR}{}{}
-\makesomeone{referee}{2}{Second RAPPORTEUR}{}{}
+\makesomeone{referee}{1}{Philippe BAPTISTE}{}{}
+\makesomeone{referee}{2}{Claude-Guy QUIMPER}{}{}
 
 %% Judges
 \njudge{5}

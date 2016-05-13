@@ -223,6 +223,23 @@ abstract = "In deterministic sequencing and scheduling problems, jobs are to be 
   publisher={Wiley}
 }
 
+@article{CAVT_clique,
+title = "Project scheduling with resource constraints: A branch and bound approach",
+journal = "European Journal of Operational Research",
+volume = "29",
+number = "3",
+pages = "262 - 273",
+year = "1987",
+note = "",
+issn = "0377-2217",
+doi = "http://dx.doi.org/10.1016/0377-2217(87)90240-2",
+url = "http://www.sciencedirect.com/science/article/pii/0377221787902402",
+author = "Nicos Christofides and R. Alvarez-Valdes and J.M. Tamarit",
+keywords = "Scheduling",
+keywords = "integer programming",
+keywords = "Lagrange multipliers"
+}
+
 @Article{BD,
 author="Baptiste, Philippe
 and Demassey, Sophie",
