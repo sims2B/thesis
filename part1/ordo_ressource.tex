@@ -236,17 +236,8 @@ optimale à ce problème.
 
 \paragraph{Le problème cumulatif}
 
-En ordonnancement avec contraintes de ressources, on distingue deux
-types de ressources:
-\begin{itemize}
-\item les ressources disjonctives qui ont la particularité que, à un
-  instant $t$, une et une seule activité peut utiliser la ressource.
-\item à l'inverse, les ressources cumulatives se distinguent par le
-  fait que plusieurs activités peuvent utiliser la ressource
-  simultanément à la condition que la consommation totale n'excède pas
-  la capacité de la ressource.
-\end{itemize}
-Le problème d'ordonnancement cumulatif (CuSP)\index{\CuSPidx} permet
+\index{\CuSPidx}
+Le problème d'ordonnancement cumulatif (CuSP) permet
 de caractériser le fait qu'une ressource (ou un sous-ensemble) soit de
 type cumulative dans un projet. Il s'agit en fait d'un cas particulier
 du \RCPSP.
@@ -372,37 +363,47 @@ méthodes de résolution pour ce problème utilisant la programmation par
 contrainte. 
 
 \subsubsection{Limites et extensions des problèmes cumulatifs}
-
+\label{sec:limit_CUSP}
 Une des principales limitations du \CUSP~et du \RCPSP~est que, dans
 ces problèmes, chaque activité consomme une quantité de ressource
 fixe, connues à l'avance, durant toute sa durée d'exécution. De plus,
-cette durée est supposée fixe. Cependant, pour de nombreux problèmes
+cette durée est aussi supposée fixe. Cependant, pour de nombreux problèmes
 pratiques, ces suppositions reviennent à sur-contraindre le
-problème. 
-
-Un exemple pouvant intervenir dans le milieu de la construction est
-décrit dans~\cite{FT}. Dans cette exemple, une activité représentant
+problème. En effet, considérons l'exemple suivant, décrit dans~\cite{FT}.
+Dans cette exemple, une activité représentant
 la peinture d'un bateau est considérée. Pour cette activité, la durée
 est remplacée par une quantité de travail représentant le travail de
 $3$ personnes sur une journée. Cette activité peut, au choix, être
 exécutée en $3$ jours par $1$ personne, ou en $2$ jours par $2$
 personnes le premier jour et $1$ personne le second, ou encore par $3$
-personnes en seulement un jour. Cet exemple peut facilement être
-généralisé à de nombreux cas pratiques.
+personnes en seulement un jour. Si l'on avait supposé une consommation
+et une durée fixe, l'espace des solutions aurait été réduit. 
 
-Un autre exemple venant d'un problème industriel est présenté
-dans~\cite{HaitArtiguesLopez}. Dans cet article, une application dans
-une fonderie où du métal est fondu dans des fournaises à induction est
-détaillé. La puissance de chaque fournaise utilisée pour faire fondre
-le métal peut être réglée, à tout moment, afin d'éviter un dépassement
-d'un certain niveau d'énergie (généralement dû à une limite suggérée
-par le fournisseur d'énergie). De ce fait, si chaque opération de
-fonte est vue comme une activité, nous avons besoin de pouvoir moduler
-la quantité d'énergie donnée à cette activité à chaque instant et la
-durée de l'activité dépend de cette quantité d'énergie. 
+L'exemple décrit ci-dessus peut facilement être généralisé à de
+nombreux cas pratiques. Un autre exemple venant d'un problème
+industriel est présenté dans~\cite{HaitArtiguesLopez}. Dans cet
+article, une application dans une fonderie où du métal est fondu dans
+des fournaises à induction est détaillé. La puissance de chaque
+fournaise utilisée pour faire fondre le métal peut être réglée, à tout
+moment, afin d'éviter un dépassement d'un certain niveau d'énergie
+(généralement dû à une limite suggérée par le fournisseur
+d'énergie). De ce fait, si chaque opération de fonte est vue comme une
+activité, nous avons besoin de pouvoir moduler la quantité d'énergie
+donnée à cette activité à chaque instant et la durée de l'activité
+dépend de cette quantité d'énergie.
 
-La modélisation de ce problème à l'aide d'une ressource continue
-s'avère donc être un choix judicieux. En effet, de nombreux exemples
-de ressource continue existent. C'est la cas de l'électricité, des
-sources d'énergie hydrauliques, de l'essence ou encore de la mémoire
-d'un ordinateur.
+Pour représenter ces variations dans le profil de consommation des
+activités, nous avons choisi de modéliser la ressource comme une
+ressource continue. En effet, de nombreux exemples de ressource
+continue existent. C'est la cas de l'électricité, des sources
+d'énergie hydrauliques, de l'essence ou encore de la mémoire d'un
+ordinateur. D'autres ressources telles que des employés ou des
+machines, qui sont normalement modélisées à l'aide de ressources
+discrètes, peuvent être modélisées par des ressources continues si
+l'on suppose qu'un employé ou une machine peut exécuter plusieurs
+activités en parallèle.
+
+Le reste de la modélisation du problème est décrit dans la section
+suivante. Cette modélisation sera ensuite comparée aux extensions du
+\CUSP~et du \RCPSP, déjà existantes dans la littérature.
+

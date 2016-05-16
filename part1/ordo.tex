@@ -58,6 +58,20 @@ qui peuvent, elles,  être utilisées par plusieurs activités en
 parallèle mais disponible en quantité limitée - e.g. main d'oeuvre,
 processeurs...
 
+
+Du point de vue de leur divisibilité, les ressources peuvent aussi
+être divisées selon deux catégories: 
+\begin{itemize}
+\item les ressources continues, i.e. divisible en temps continu: ces
+  ressources ont la propriété de pouvoir être réallouées à tout
+  instant $t \in [0,T]$, où $T$ est une borne supérieure sur la date de
+  fin de l'ordonnacement, e.g. l'électricité, l'essence, énergie
+  hydraulique...
+\item les ressources discrètes, i.e. divisible en temps discret: à
+  l'inverse, la réallocation d'une ressource discrète ne peut être
+  exécutée que pour des temps discret $t \in \{0,\dots,T\}$,
+  e.g. employées, machines...
+\end{itemize}
 \subsubsection{Les contraintes}
 
 Une contrainte permet d'exprimer des restrictions sur les valeurs que

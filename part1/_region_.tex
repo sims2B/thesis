@@ -1,0 +1,56 @@
+\message{ !name(ordo_nrj.tex)}
+\message{ !name(ordo_nrj.tex) !offset(431) }
+\subsubsection{Contexte}
+
+
+Dans un premier temps, nous nous intéressons aux extensions du
+\RCPSP. Une des extensions les plus célèbres est le \RCPSP~multimode 
+(MRCPSP). Dans ce problème, un choix de différents modes est
+disponible pour chaque activité et une activité doit être exécutée
+selon un de ces modes. Un mode correspond à une combinaison formée
+d'un temps d'exécution constant et d'une consommation de ressource qui
+permet d'apporter à l'activité au moins la quantité d'énergie
+requise. Même si de nombreux problèmes basés sur ce concept de mode
+existent~\cite{DDH,RK,RDK,DD} et que des méthodes de résolution
+efficaces ont été mises en place pour résoudre le MRCPSP~\cite{PV},
+cette modélisation peut amener à une mauvaise allocation de la
+ressource. 
+
+Si nous reprenons l'exemple de la peinture d'un bateau,
+décrit au paragraphe~\ref{sec:limit_CUSP}, l'activité avait besoin de
+$3$ unités d'énergie pour s'exécuter. Dans le contexte du MRCPSP,
+seulement $3$ modes seraient décrits: $(3,1),\ (2,2)$ et $(1,3)$. Or,
+dans le second cas, on donne une unité de trop à l'activité et la
+possibilité d'allouer $2$ unités de ressource pendant une période de
+temps et $1$ unité pendant la seconde n'est pas représentée ici. 
+
+La principale limitation du MRCPSP est donc que les activités sont
+contraintes à être rectangulaire, i.e. consommation de ressource
+constante. 
+
+D'autres extensions du \RCPSP~existent. C'est le cas par exemple des
+problèmes d'ordonnancement de projet avec une ressource de type {\it
+  work-content}~\cite{FT} ou du problème d'ordonnancement de projet
+avec des profils de ressource flexibles (FRCPSP)~\cite{NK}. 
+
+
+\begin{table}[!htb]
+  \centering
+  \begin{tabular}{|c|cc>{\centering\arraybackslash} p{2cm}>{\centering\arraybackslash} p{2cm}>{\centering\arraybackslash} p{2cm}>{\centering\arraybackslash} p{2cm}>{\centering\arraybackslash} p{2cm}|}
+    \hline    
+    Problème & $\bmin$ & $\bmax$ & fonction de rendement ($f_i$) &
+                                                                 énergie
+                                                                   ($W_i$)
+    & ressource continue & autre différence \\
+\hline
+    
+
+  \end{tabular}
+  \caption{Principales différences entre les extensions des problèmes
+    cumulatifs et le \CECSP.}
+  \label{tab:dif_CECSP}
+\end{table}
+Le paragraphe suivant présente des propriétés du \CECSP~qui seront 
+utilisées dans la suite de ce manuscrit. 
+
+\message{ !name(ordo_nrj.tex) !offset(-56) }
