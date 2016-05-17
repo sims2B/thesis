@@ -9,12 +9,12 @@ problème d'ordonnancement peut alors être vu comme l'organisation dans
 le temps de la réalisation d'activités soumises à des contraintes de
 temps et de ressource. Dans la plupart des cas, un ou plusieurs
 objectifs sont définis et une solution au problème d'ordonnancement 
-vise l'optimisation de ces objectifs.
+vise à optimiser ces objectifs.
  
 \subsubsection{Les activités}
 
 Une activité peut être définie par une date de début $st_i$ et/ou une date
-de fin $ft_i$ et une durée $p_i$ vérifiant $ft_i=st_i+p_i$. Si
+de fin $et_i$ et une durée $p_i$ vérifiant $et_i=st_i+p_i$. Si
 l'activité utilise une ou plusieurs ressources durant son exécution, il
 est nécessaire d'ajouter à cette définition une fonction d'allocation
 de ressource propres à chaque activité $i$ et à chaque
@@ -26,8 +26,8 @@ paramètre $t$ pourra être omis.
 
 Selon les problèmes, une activité peut être contrainte à s'exécuter en
 un seul morceau. On parle alors d'activité non-préemptive et dans le
-cas contraire, i.e. les activités peuvent être exécutées en morceaux,
-on parle d'activité préemptive. 
+cas contraire, i.e. les activités peuvent être exécutées en plusieurs
+morceaux, on parle d'activité préemptive.
 
 Une activité peut être utilisée pour représenter, par exemple, une
 opération dans un processus de production, le décollage/atterrissage
@@ -36,7 +36,7 @@ d'un avion ou encore une étape d'un projet de construction...
 \subsubsection{Les ressources}
 
 Une ressource $k$ est un moyen technique ou humain requis pour la
-réalisation d'une activité et est disponible en quantité limitée $B_k$. 
+réalisation d'une activité et est disponible en quantité limitée $R_k$. 
 Les ressources utilisées par les activités peuvent être de nature
 diverse. Parmi elles, on peut distinguer: 
 \begin{itemize}
@@ -69,8 +69,8 @@ Du point de vue de leur divisibilité, les ressources peuvent aussi
   hydraulique...
 \item les ressources discrètes, i.e. divisible en temps discret: à
   l'inverse, la réallocation d'une ressource discrète ne peut être
-  exécutée que pour des temps discret $t \in \{0,\dots,T\}$,
-  e.g. employées, machines...
+  exécutée que pour des temps discrets $t \in \{0,\dots,T\}$,
+  e.g. employés, machines...
 \end{itemize}
 \subsubsection{Les contraintes}
 
@@ -106,9 +106,9 @@ dénotée par $\LE$ et appelée {\it date de fin au plus tard}.
 \subsubsection{Les objectifs}
 
 Lors de la résolution d'un problème d'ordonnancement, deux buts
-différents peuvent exister. Le premier cherche à trouver une solution
-réalisable pour le problème tandis que le second cherche à optimiser
-un ou plusieurs critères ou objectifs. 
+différents peuvent exister. Le premier vise à trouver une solution
+réalisable pour le problème tandis que le second cherche à trouver une
+solution optimisant un ou plusieurs critères ou objectifs.
 
 Ces objectifs peuvent être liés à différents aspect de la solution. On
 distingue par exemple:
@@ -126,5 +126,5 @@ distingue par exemple:
 \item les objectifs liés à une énergie, un débit...
 \end{itemize}
 
-Dans la section suivante, nous présentons deux exemples problèmes
-d'ordonnancement: le \RCPSP~et le \CUSP.
+Deux exemples de problèmes d'ordonnancement sont présentés dans la
+section suivante: le \RCPSP~et le \CUSP.

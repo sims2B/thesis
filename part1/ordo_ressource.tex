@@ -7,9 +7,11 @@ d'ordonnancement cumulatifs. Parmi ces derniers, deux des plus
 ressource (RCPSP) et le problème cumulatif (CuSP). Nous allons donc
 commencer par présenter ces deux problèmes. En effet, beaucoup des
 travaux décrits dans ce manuscrit s'appuient sur des résultats mis en
-place pour l'un d'entre eux. Dans un second temps, nous montrerons les
-limites de ces problèmes et les solutions mises en place dans la
-littérature pour palier ces limitations. 
+place pour l'un d'entre eux. 
+
+Dans un second temps, nous montrerons les limites de ces problèmes et
+les solutions mises en place dans la littérature pour palier ces
+limitations.
 
 \subsubsection{Problèmes cumulatifs}
 \paragraph{Le problème d'ordonnancement  de projet à contraintes de
@@ -27,23 +29,23 @@ quantités telles que la durée totale du projet, le retard ou les coûts
 peuvent être minimiser.
 
 Formellement, le \RCPSP~est défini de la manière suivante: nous
-considérons un ensemble d'activités non-préemptives
-$\A=\{1,\dots,n\}$ à ordonnancer et un ensemble $\R$ de ressources
+considérons un ensemble d'activités non-préemptives $\A=\{1,\dots,n\}$
+à ordonnancer et un ensemble $\R$ de ressources cumulatives et
 renouvelables. Chacune de ces ressources $k \in \R$ est disponible
 tout au long du projet en quantité $R_k$ et, durant son exécution, une
-activité consomme une quantité $r_{ik}$ (pouvant être nulle) de cette
-ressource. Dans ce problème, une activité $i \in \A$ a une durée fixe
-$p_i$ et des relations de précédence lient les activités entre
-elles. Ces relations sont souvent modélisées à l'aide d'un graphe
-$G=(V,E)$, appelé graphe de précédence, dans lequel l'ensemble des
-arcs $(i,j) \in E$ représente les relations de précédence, i.e. $(i,j)
-\in E \Leftrightarrow i $ doit être ordonnancer avant $j$ dans toute
-solution. Dans ce graphe, l'ensemble des sommets, dénoté par
-$V=\{0,\dots,n+1\}$, correspond aux $n$ activités auxquelles on ajoute
-deux activités fictives $0$ et $n+1$ qui représentent respectivement
-le début et la fin du projet. Ces activités fictives ne consomment pas
-de ressource et ont une durée d'exécution nulle. De plus, $E$ contient
-les arcs suivants: 
+activité consomme une quantité constante $r_{ik}$ (pouvant être nulle)
+de cette ressource. Dans ce problème, une activité $i \in \A$ a une
+durée fixe $p_i$ et des relations de précédence lient les activités
+entre elles. Ces relations sont souvent modélisées à l'aide d'un
+graphe $G=(V,E)$, appelé graphe de précédence, dans lequel l'ensemble
+des arcs $(i,j) \in E$ représente les relations de précédence,
+i.e. $(i,j) \in E \Leftrightarrow i $ doit être ordonnancée avant $j$
+dans toute solution. Dans ce graphe, l'ensemble des sommets, dénoté
+par $V=\{0,\dots,n+1\}$, correspond aux $n$ activités auxquelles on
+ajoute deux activités fictives $0$ et $n+1$ qui représentent
+respectivement le début et la fin du projet. Ces activités fictives ne
+consomment pas de ressource et ont une durée d'exécution nulle. De
+plus, $E$ contient les arcs suivants:
 \begin{itemize}
 \item $(0,i),\ \forall i \in \A$,
 \item $(i,n+1),\ \forall i \in \A$.
@@ -63,8 +65,8 @@ de chaque activité $i\in \A$ de telle sorte que:
   capacité $R_{k}$ de cette dernière, i.e.
   \begin{equation}\forall t \in \H, \forall k \in \R,\sum_{\substack{i\in \A\\ t \in
         [st_i,st_i+p_i]}} r_{ik} \le R_k\end{equation} 
-  avec $\H=\{0,\dots,T\}$ défini l'horizon de temps du projet, où $T$
-  est une borne supérieure sur la date de fin du projet.
+  avec $\H=\{0,\dots,T\}$ définissant l'horizon de temps du projet. $T$
+  est donc une borne supérieure sur la date de fin du projet.
 \item les contraintes de précédence sont satisfaites, i.e. 
   \begin{equation} \forall (i,j) \in E,\ s_i+p_i \le p_j \end{equation}
 \item la date de fin du projet $C_{max}= \max_{i \in \A} s_i+p_i$
@@ -242,17 +244,17 @@ de caractériser le fait qu'une ressource (ou un sous-ensemble) soit de
 type cumulative dans un projet. Il s'agit en fait d'un cas particulier
 du \RCPSP.
 
-Formellement, le \CUSP~prend en entrée un ensemble $
-\A=\{1,\dots,n\}$ d'activités non-préemptives à ordonnancer. Pour s'exécuter, une
+Formellement, le \CUSP~prend en entrée un ensemble $ \A=\{1,\dots,n\}$
+d'activités non-préemptives à ordonnancer. Pour s'exécuter, une
 activité doit consommer une partie de la ressource $r_i$ et ce jusqu'à
 l'arrêt de celle-ci, i.e. après un temps $p_i$ correspondant à la
 durée de l'activité $i$. Cette ressource est de type cumulative et
-renouvelable, disponible en quantité $R$. 
+renouvelable, disponible en quantité $R$.
 
 De plus, chaque activité dispose d'une fenêtre de temps $[\ES,\LE]$
-dans laquelle l'activité doit obligatoirement s'exécuter. On appelle $\ES$ 
-la date de début au plus tôt de $i$ et $\LE$ sa date de
-fin au plus tard. 
+dans laquelle l'activité doit obligatoirement s'exécuter. Nous
+rappellons que $\ES$ correspond à la date de début au plus tôt de $i$
+et $\LE$ à sa date de fin au plus tard.
 
 L'objectif du \CUSP~est donc de déterminer la date de début $st_i$ de
 chaque activité $i \in \A$ telle que:
@@ -362,22 +364,23 @@ Dans la section~\ref{sec:cumu}, nous présenterons des
 méthodes de résolution pour ce problème utilisant la programmation par
 contrainte. 
 
-\subsubsection{Limites et extensions des problèmes cumulatifs}
+\subsubsection{Limites des problèmes cumulatifs}
 \label{sec:limit_CUSP}
 Une des principales limitations du \CUSP~et du \RCPSP~est que, dans
 ces problèmes, chaque activité consomme une quantité de ressource
 fixe, connues à l'avance, durant toute sa durée d'exécution. De plus,
-cette durée est aussi supposée fixe. Cependant, pour de nombreux problèmes
-pratiques, ces suppositions reviennent à sur-contraindre le
-problème. En effet, considérons l'exemple suivant, décrit dans~\cite{FT}.
-Dans cette exemple, une activité représentant
-la peinture d'un bateau est considérée. Pour cette activité, la durée
-est remplacée par une quantité de travail représentant le travail de
-$3$ personnes sur une journée. Cette activité peut, au choix, être
-exécutée en $3$ jours par $1$ personne, ou en $2$ jours par $2$
-personnes le premier jour et $1$ personne le second, ou encore par $3$
-personnes en seulement un jour. Si l'on avait supposé une consommation
-et une durée fixe, l'espace des solutions aurait été réduit. 
+cette durée est aussi supposée fixe. Cependant, pour de nombreux
+problèmes pratiques, ces suppositions reviennent à sur-contraindre le
+problème. En effet, considérons l'exemple suivant, décrit
+dans~\cite{FT}.  Dans cette exemple, une activité représentant la
+peinture d'un bateau est considérée. Pour cette activité, la durée est
+remplacée par une quantité de travail , ou énergie, représentant le
+travail de $3$ personnes sur une journée. Cette activité peut, au
+choix, être exécutée en $3$ jours par $1$ personne, ou en $2$ jours
+par $2$ personnes le premier jour et $1$ personne le second, ou encore
+par $3$ personnes en seulement un jour. Si l'on avait supposé une
+consommation et une durée fixe, l'espace des solutions aurait été
+réduit.
 
 L'exemple décrit ci-dessus peut facilement être généralisé à de
 nombreux cas pratiques. Un autre exemple venant d'un problème
@@ -403,7 +406,15 @@ discrètes, peuvent être modélisées par des ressources continues si
 l'on suppose qu'un employé ou une machine peut exécuter plusieurs
 activités en parallèle.
 
-Le reste de la modélisation du problème est décrit dans la section
+De plus, les problèmes à ressources continues peuvent aussi servir de
+relaxation pour les problèmes avec des ressources discrètes. En effet,
+le caractère discret du problème peut parfois amener à considérer de
+nombreuses possibilités d'affectation de la ressource. Ce grand nombre
+d'affectation peut grandement complexifier le problème. Donc,
+considérer des ressources continues peut permettre l'aggrégation des
+raisonnements dédiés à ces problèmes. 
+
+La modélisation complète du problème est décrit dans la section
 suivante. Cette modélisation sera ensuite comparée aux extensions du
 \CUSP~et du \RCPSP, déjà existantes dans la littérature.
 

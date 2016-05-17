@@ -17,7 +17,7 @@ d'une activité correspond au moment où cette dernière a reçu une
 certaine quantité d'énergie $W_i$. Cette énergie est reçue via la
 ressource et calculée à l'aide d'une fonction $f_i: \{0\} \cup
 [\bmin,\bmax]\longrightarrow\{0\} \cup [f(\bmin),f(\bmax)]$, supposée
-continue et croissante et appelée fonction de rendement. La quantité
+continue et strictement croissante et appelée fonction de rendement. La quantité
 d'énergie reçue par $i$ à l'instant $t$ est donc $\int_{0}^t
 f_i(b_i(s))ds$. La dernière contrainte du problème précise que chaque activité doit
 être exécutée dans sa fenêtre de temps $[\ES,\LE]$.
@@ -86,22 +86,22 @@ manière suivante:
 \[f_i(b)=\left\{
     \begin{array}{ll}
       0 & \quad \text{if }b=0\\
-      a_{ip_1}*b+c_{ip_1} &\quad \text{si }\bmin=0\text{ et }b \in ]\bmin,x_{p_2}] \\
-      a_{ip_1}*b+c_{ip_1} &\quad \text{si }\bmin\neq 0 \text{ et }b \in
-                            [\bmin,x_{p_2}] \\
-      a_{ip_\ell}*b+c_{ip_\ell} &\quad \text{si } b \in
-                                  ]x_{p_\ell},x_{p_{\ell+1}}], \ell \in \P_i=\{2,\dots,P_i-1\} 
+      a_{i1}*b+c_{i1} &\quad \text{si }\bmin=0\text{ et }b \in ]\bmin,x_{2}] \\
+      a_{i1}*b+c_{i1} &\quad \text{si }\bmin\neq 0 \text{ et }b \in
+                            [\bmin,x_{2}] \\
+      a_{i\ell}*b+c_{i\ell} &\quad \text{si } b \in
+                                  ]x_{\ell},x_{\ell+1}], \ell \in \P_i=\{2,\dots,P_i-1\} 
     \end{array}
   \right.\]
 De plus, nous considérons que la fonction $f_i$ satisfait les
 propriétés suivantes: 
 \begin{itemize}
-\item $a_{ip_1} >a_{ip_2} > \dots > a_{ip_{P_i}}>0$ et $c_{ip_1}
-  <c_{ip_2} < \dots < c_{ip_{P_i}}$ pour assurer la croissance et la
+\item $a_{i1} >a_{i2} > \dots > a_{iP_i}>0$ et $c_{i1}
+  <c_{i2} < \dots < c_{iP_i}$ pour assurer la croissance et la
   concavité de la fonction; 
-\item $-a_{ip_1}*\bmin \ge c_{ip_1}$  afin de s'assurer que $f_i(b) \ge
+\item $-a_{i1}*\bmin \ge c_{i1}$  afin de s'assurer que $f_i(b) \ge
   0,\ \forall b \in [\bmin,\bmax]$;
-\item $a_{ip_\ell}*b+c_{ip_\ell}=a_{ip_{\ell+1}}*b+c_{ip_{\ell+1}}$
+\item $a_{i\ell}*b+c_{i\ell}=a_{i\ell+1}*b+c_{i\ell+1}$
   pour assurer la continuité de la fonction.
 \end{itemize}
 
