@@ -475,7 +475,7 @@ problèmes, plusieurs types de ressources sont considérées:
   utilisations doivent être synchrone. 
 \end{itemize}
 Bien que plusieurs différences existent entre ces problèmes et le
-\CECSP - l'utilisation de plusieurs ressources, le temps discret
+\CECSP - l'utilisation de plusieurs ressources, ressource/temps discret
 pour~\cite{FT}... - les principales sont les suivantes: la longueur
 minimale des blocs et les fonctions de rendements. La première
 correspond au temps minimal qu'il faut attendre entre deux
@@ -510,7 +510,8 @@ séquence de sous-activités trapézoïdales ayant des durées et hauteurs
 (consommations) variables. Enfin, Vil{\`i}m~\cite{V09} considère des
 activités pour lesquelles la durée et la hauteur sont définies par des
 intervalles. Pour ces deux problèmes, aucune demande en énergie n'est
-définie pour les activités. 
+définie pour les activités. De plus, dans le second, l'énergie
+manquante peut être acheter moyennant un certain coût.
 
 Enfin, le \CECSP~ est aussi lié à d'autres problèmes à contraintes
 d'énergie avec ressources continues~\cite{Blaz,Wali}.
@@ -526,11 +527,11 @@ continuellement au cours du temps et donc ces fonctions sont
 \CECSP. De plus, dans~\cite{Blaz,Wali}, l'énergie est calculée en
 intégrant une fonction de rendement sur tout l'horizon de temps.
 Cependant, aucune contrainte de rendement maximum et minimum n'est
-considérée dans ces problèmes.
+considérée dans ces problèmes. Dans~\cite{Wali}, un epartie des
+ressources est continue et une partie est discrète.
 
 Le tableau~\ref{tab:dif_CECSP} récapitule les principales différences
 entre tous ces problèmes et le \CECSP. 
-
 
 \begin{table}[!htb]
   \centering
@@ -577,7 +578,7 @@ techniques existantes peuvent être adaptées dans le cadre du
 \CECSP. Ces techniques seront présentées plus tard dans le manuscrit.
 
 Le paragraphe suivant présente des propriétés du \CECSP~qui seront 
-utilisées dans la suite de ce manuscrit. 
+utilisées dans le cadre de sa résolution. 
 
 \subsubsection{Propriétés du \CECSP}
 
@@ -601,9 +602,9 @@ la manière suivante, $\forall i \in \A$:
 \item $R,\ \ES$ and $\LE$ restent inchangés. 
 \end{itemize}
 
-Il reste à montrer que $\Pi$ est une instance positive du \CUSP~si
-et seulement si $\Pi'$ est une instance positive du \CECSP. Et ceci
-est trivialement vrai. 
+On peut facilement vérifier  que $\Pi$ est une instance positive du \CUSP~si
+et seulement si $\Pi'$ est une instance positive du \CECSP. Le
+\CECSP~est donc NP-complet.
 \end{proof}
 
 Le problème de décision associé au \CECSP~est donc NP-complet. Dans ce
@@ -614,13 +615,9 @@ Cette fonction consiste en la minimisation de la consommation totale
 de ressource. Dans la suite, si rien n'est précisé, cela veut dire que
 nous considérons le \CECSP~ sans fonction objectif.
 
-
-
- Pour le \CECSP, nous présentons un exemple d'une instance ne
-comprenant que des données entières et ne possédant que des solutions
-non-entières. Ceci permet, en plus des arguments présentés pour le
-\RCPSP, de démontrer l'importance de l'amélioration des modèles à
-événement.
+Nous présentons un exemple d'instance ne comprenant que des données
+entières et ne possédant que des solutions non-entières. Ceci permet
+de justifier l'utilisation de modèle à temps continu.
 
 \begin{ex}
   \label{exemple_NE}
