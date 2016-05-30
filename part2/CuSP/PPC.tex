@@ -25,6 +25,7 @@ la donnée d'un triplet $Q=(\X,\D,\C)$ où:
   cartésien des domaines des variables sur lesquelles elle porte:
   $C_j(X_{j1},X_{j2},\dots,X_{jk}) \subseteq D_{j1} \times D_{j2}
   \times \dots \times D_{jk}$
+\end{itemize}
 
 La notion de domaine désigne l'ensemble des valeurs que peut prendre
 une variable. La nature de ces domaines peut potentiellement être très
@@ -40,11 +41,11 @@ différente. Par exemple:
 Formellement, une contrainte peut être définit comme une relation
 définit sur un ensemble de variables. 
 
-Une fois les variable définit, nous pouvons ajouter des contraintes
+Une fois les variable définies, nous pouvons ajouter des contraintes
 les liant entre elles. Ici aussi, plusieurs types de contraintes
 existent. Nous détaillons trois d'entre elles. 
 
-Le premières contraintes présentées sont les contraintes en {\it
+Les premières contraintes présentées sont les contraintes en {\it
   extension}. Pour ces contraintes, étant donnée un sous-ensemble de
 variables, on définit explicitement la liste des tuples
 autorisés. Suivant les cas, ces contraintes peuvent aussi être définit
@@ -60,12 +61,15 @@ valeurs dans $\mathbb{R}$ alors une définition en extension de la
 contraintes peut comprendre un nombre infini de tuples.
 
 \begin{ex}
+\label{ex:contrainte}
   Soient trois variables $x_0,\ x_1$ et $x_2$ de domaine $D_0=[0,2],\
   D_1=[0,2]$ et $D_2=[1,2]$. 
   Nous considérons les contraintes $c_0,\ c_1$ et $c_2$ suivantes:
   \begin{itemize}
-  \item $c_0$ est décrite en intention: $x_0 < x_1$;
-  \item $c_1$ est décrite en extension: $\{(0,1) , (0,2), (1,2)\}$
+  \item $c_0$ porte sur les variable $x_0$ et $x_1$ et est décrite en
+    intention: $x_0 \le x_1$; 
+  \item $c_1$ porte sur $x_1$ et $x_2$ et est décrite en extension:
+    $\{(0,1) , (0,2), (1,2), (2,2)\}$; 
   \item $c_2$ est une contrainte  globale portant sur les variable
     $x_0,x_1$ et $x_2$: allDifferent$(x_0,x_1,x_2)$. Cette contrainte
     stipule que les valeurs affectées à chaque variable soient
@@ -85,19 +89,17 @@ centraux: le filtrage des domaines et l'exploration de l'espace de
 recherche. Ces deux concepts sont donc décrits dans les paragraphes
 suivants.
 
+
+
 \subsection{Exploration de l'espace de recherche}
 \label{sec:PPC_rech}
 
 {\'E}tant donné un CSP, différentes techniques d'exploration de
 l'espace de recherche peuvent être employées pour trouver des
-solutions. Parmi elles, on trouve les techniques de recherche dites
-systématiques. Celles-ci consistent à tester successivement toutes les
-instanciations possibles des variables, jusqu'à trouver une solution
-ou une incohérence remettant en cause la dernière instanciation
-effectuée. Dans le second cas, on continue la recherche en supprimant
-cette instanciations de l'espace de recherche. Ces combinaisons
-peuvent être générées de différentes manière et donc testées dans des
-ordres différents. 
+solutions. Cette exploration se fait en général par {\it séparation et
+  évaluation}, i.e. on sépare le problème difficile à résoudre en deux
+sous-problèmes, plus petit, jusqu'à obtenir un problème que l'on sera
+capable de résoudre en temps raisonnable.  
 
 Une représentation usuelle du processus de recherche d'une solution
 est l'{\it arbre de recherche}. La racine de cette arbre représente le
@@ -106,27 +108,25 @@ réduits, obtenus en décomposant le domaine d'une des variables du
 problème père. Les feuilles de cet arbre correspondent donc à des
 instanciations de toutes les variables du problèmes.
 
-Une première approche alors à générer tous les tuples de valeurs
-possibles et de tester s'ils sont solutions du problème, i.e. si cette
-instanciation satisfait bien toutes les contraintes du problème.  Cela
-revient à considérer toutes les affectations possibles des variables
-et ce nombre, qui peut ne pas être fini dans le cas des variables
-continues, est égal au produit cartésien du cardinal des domaines des
-variables impliquées dans le CSP pour des variables dans
-$\mathbb{Z}$.
+Une première approche consiste alors à générer tous les
+tuples de valeurs possibles et de tester s'ils sont solutions du
+problème, i.e. si cette instanciation satisfait bien toutes les
+contraintes du problème. Cela revient à considérer toutes les
+affectations possibles des variables et ce nombre, qui peut ne pas
+être fini dans le cas des variables continues, est égal au produit
+cartésien du cardinal des domaines des variables impliquées dans le
+CSP pour des variables dans $\mathbb{Z}$.
 
-La seconde méthode, le {\it backtracking}, cherche à étendre
-progressivement une solution partielle en instanciant, à chaque
-étape, une nouvelle variable à une valeur de son domaine. Si la
-nouvelle instanciation partielle ainsi obtenue n'est pas une solution
-partielle, on effectue un {\it backtrack} sur $X_i$, i.e. $X_i$ est
-instanciée à une autre valeur de son domaine. Dans le cas où le
-domaine de $X_i$ ne contient plus de valeurs non testées, alors il y a
-deux possibilités: les domaine de toutes les autres variables sont
-vides et, dans ce cas, le problème est insatisfiable; sinon, on
-effectue un nouveau backtrack sur la dernière variable instanciée du
-problème. Le processus se poursuit ainsi jusqu'à ce qu'une solution
-complète soit trouvée. 
+Classiquement, une méthode de séparation, ou de branchement, consiste
+à fixer une variable à une valeur pour le premier sous-problème et de
+retirer cette valeur du domaine de la variable dans le second
+sous-problème. On va alors, à l'aide d'un parcours en profondeur, crée
+un premier tuple, i.e. une solution candidate, qui pourra ainsi être
+évalué. SI le tuple satisfait toutes les contraintes du problème,
+alors c'est une solution et l'algorithme peut s'arrêter. Dans le cas 
+contraire, on évaluera le second-sous problème crée lors de la
+dernière séparation. Un tel parcours est décrit dans
+l'exemple~\ref{ex:brachement}.
 
 Dans le cas de CSP comprenant des variables continues, l'énumération
 de tous les domaines des variables n'est pas possible. Une première
@@ -134,23 +134,9 @@ approche serait de considérer qu'une variable est instanciée quand son
 domaine est réduit à un intervalle de taille suffisamment petite. Mais
 même avec cette restriction supplémentaire, il est très coûteux
 d'énumérer chacun de ces intervalles. L'idée est alors la suivante: au
-lieu, à chaque étape de l'algorithme de backtracking, d'instancier une
+lieu, à chaque étape de l'algorithme de séparation, d'instancier une
 variable à une valeur de son domaine, nous séparons le domaine de
 cette variable en deux (ou plusieurs) sous-domaines.
-
-consiste alors à parcourir l'arbre de recherche
-jusqu'à arriver à une feuille et si cette feuille ne correspond pas à
-une instanciation valide, alors l'exploration d'autre branche de
-l'arbre de recherche est alors nécessaire. Si, au contraire,
-l'instanciation des variables correspondant à cette feuille satisfait
-toutes les contraintes du problème, alors une solution a été trouvée
-et l'algorithme peut s'arrêter. Cependant, en pratique, une telle
-méthode ne peut être appliquée. En effet, dans le pire des cas, il
-faudrait parcourir tout l'arbre de recherche. Cela revient à
-considérer toutes les affectations possibles des variables et ce
-nombre, qui peut ne pas être fini dans le cas des variables continues,
-est de l'ordre de $O(|\X|^{|\D|})$ pour des variables dans
-$\mathbb{Z}$.
 
 Plusieurs techniques de séparation du problème en sous-problème, aussi
 appelées techniques de {\it branchement}, existent. Parmi les plus
@@ -180,9 +166,12 @@ valeur différente.
   \end{figure}
 \end{ex}
 
+%TODO : heuristique
+Ces combinaisons peuvent être générées de différentes manière et donc
+testées dans des ordres différents. 
+
+
 
 \subsection{Filtrage et propagation}
 \label{sec:PPC_propag}
-
-Pour accélérer le processus de résolution, des techniques de filtrages 
 
