@@ -2,13 +2,13 @@
 
 \section{La programmation linéaire en nombres entiers}
 
-Dans cette section, nous présentons les concepts de base de la
+Dans ce paragraphe, nous présentons les concepts de base de la
 programmation linéaire ainsi que les notions et outils qui seront
 utilisés dans la suite de cette partie. Cette présentation n'étant que
 partielle, nous renvoyons le lecteur à~\cite{LP} pour une description
 plus détaillée des différentes techniques existantes.
 
-\subsection{La programmation Linéaire}
+\subsection{La programmation linéaire}
 
 La programmation linéaire vise à résoudre des problèmes
 d'optimisation ayant la particularité de pouvoir s'exprimer à
@@ -18,7 +18,7 @@ De plus, la fonction objectif du problème, i.e. ce que l'on
 cherche à maximiser/minimiser, s'écrit aussi sous la forme d'une
 fonction linéaire.
 
-De manière générale, un programme linéaire (PL) s'écrit de la manière
+Sous forme canonique, un programme linéaire (PL) s'écrit de la manière
 suivante: 
  \[ \begin{array}{lcl}
 \text{maximiser } & & \displaystyle cx\\ 
@@ -33,7 +33,7 @@ Nous pouvons supposer, sans perte de généralité, que les variables du
 problème sont positives et que la fonction objectif $x\rightarrow cx$
 doit être maximisée. Les vecteurs $x$ de $\mathbb{R}^n$ qui vérifient
 $Ax \le b$ sont appelés les solutions réalisables du problème et les
-vecteurs $x^*$ qui, en plus, maximise le critère $cx^*$ sont appelés
+vecteurs $x^*$ qui, en plus, maximisent le critère $cx^*$ sont appelés
 solutions optimales.    
 
 La force de ces formulations repose sur le fait que l'ensemble des
@@ -45,14 +45,14 @@ se trouver sur une face du polyèdre, i.e. l'intersection de celui-ci
 avec un plan défini par une des contraintes du programme linéaire $\{x
 \in \mathbb{R}^n\ | \ A_jx=b_j\}$. 
 
-Ceci a permis la mise en place de plusieurs algorithmes pour résoudre ces
-programmes linéaires. Un des plus efficace en pratique et donc des plus
-utilisé est l'algorithme du Simplexe. Le principe de cet 
+Ceci a permis la mise en place de plusieurs algorithmes pour résoudre
+ces programmes linéaires. Un des plus efficaces en pratique et donc
+des plus utilisés est l'algorithme du Simplexe. Le principe de cet
 algorithme est le parcours "intelligent" des points extrêmes du
-polyèdre des solutions admissibles: à chaque itération,
-l'algorithme se "déplace" vers un sommet adjacent de meilleur (ou
-même) coût. L'algorithme se termine donc lorsque tous les sommets
-adjacents possèdent un coût moins bon que le sommet courant.
+polyèdre des solutions admissibles: à chaque itération, l'algorithme
+se "déplace" vers un sommet adjacent de meilleur (ou même)
+coût. L'algorithme se termine donc lorsque tous les sommets adjacents
+possèdent un coût moins bon que le sommet courant.
 
 Un des inconvénients de cet algorithme est qu'il a, dans le pire des
 cas, une complexité exponentielle. D'autres algorithmes permettent de
@@ -82,7 +82,7 @@ peut s'écrire de la façon suivante:
 \sum_{j=1}^{n-p} f_jy_j\\ \text{tel que }& & \displaystyle
 \sum_{i=1}^p a_{ki}x_i + \sum_{j=1}^{n-p} d_{kj}y_j \le b_k, \quad
 k=1,\dots,m\\ & & \displaystyle x_i \ge0,\quad i=1,\dots,p\\ & &
-\displaystyle y_j \in \mathbb{Z}^+,\quad j=1,\dots,n-p 
+\displaystyle y_j \in \mathbb{N},\quad j=1,\dots,n-p 
 \end{array}
 \] $y_j,\ j=1,\dots,n-p$ sont les variables de décisions ne
 pouvant prendre que des valeurs entières tandis que les variables
@@ -93,7 +93,7 @@ La difficulté de la résolution de ces programmes repose sur le fait
 que l'ensemble des solutions réalisables du problème ne forme plus un
 polyèdre convexe et les algorithmes traditionnels ne peuvent être
 appliqués directement dans ce cas. Le problème de décision associé à
-un PLNE ,ou à un PLM, est NP-complet~\cite{NP_bible}. De ce fait,
+un PLNE, ou à un PLM, est NP-complet~\cite{NP_bible}. De ce fait,
 plusieurs techniques permettant de trouver la solution optimale en
 temps raisonnable ont été développées.
 
@@ -106,22 +106,23 @@ utilisant des algorithmes de recherche arborescente par séparation et
 Le principe de la {\it recherche arborescente par séparation et
 évaluation} repose sur deux idées principales: 
 \begin{itemize}
-\item {\bf la séparation} qui consiste à "séparer" l'ensemble des
-solutions en plusieurs sous-ensembles; 
-\item {\bf l'évaluation} qui
-consiste à "évaluer" les solutions d'un sous-ensemble de façon
-optimiste, i.e. trouver une borne supérieure (resp. inférieure) de 
-la meilleure solution de ce sous-ensemble lorsqu'il s'agit d'un
-problème de maximisation (resp. minimisation).
-\end{itemize} L’algorithme propose de parcourir l’arborescence des
-solutions possibles en évaluant chaque sous-ensemble de solutions de
-façon optimiste. Lors de ce parcours, il maintient la valeur de la
-meilleure solution trouvée jusqu’à présent. Quand l’évaluation d’un
+\item {\bf la séparation} qui consiste à décomposer selon une
+partition l'ensemble des solutions en plusieurs sous-ensembles;
+\item {\bf l'évaluation} qui consiste à examiner la qualité des
+solutions d'un sous-ensemble de façon optimiste, i.e. trouver une
+borne supérieure (resp. inférieure) de la meilleure solution de ce
+sous-ensemble lorsqu'il s'agit d'un problème de maximisation
+(resp. minimisation).
+\end{itemize} 
+L’algorithme propose de parcourir l’arborescence des solutions
+possibles en évaluant chaque sous-ensemble de solutions de façon
+optimiste. Lors de ce parcours, il maintient la valeur de la meilleure
+solution trouvée jusqu’à présent. Quand l’évaluation d’un
 sous-ensemble donne une valeur plus faible (plus forte pour un
-problème de minimisation), il est inutile d’explorer
-plus loin ce sous-ensemble. L’ensemble des solutions admissibles est
-ainsi représenté par une arborescence dans laquelle un grand nombre de
-nœuds peuvent être éliminés. L’évaluation des sous-problèmes se fait
+problème de minimisation) ou égale, il est inutile d’explorer plus loin ce
+sous-ensemble. L’ensemble des solutions admissibles est ainsi
+représenté par une arborescence dans laquelle un grand nombre de nœuds
+peuvent être éliminés. L’évaluation des sous-problèmes se fait
 typiquement par {\it relaxation linéaire} (on ignore la contrainte
 d’intégrité) en utilisant le Simplexe.
 

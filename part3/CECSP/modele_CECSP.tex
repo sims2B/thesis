@@ -2,9 +2,9 @@
 \section{Modèles de programmation linéaire mixte pour le
 \CECSP}
 
-Le \CECSP ~et le \RCPSP~étant deux problèmes relativement proches -
+Le \CECSP ~et le \RCPSP~étant deux problèmes relativement proches --
 utilisation d'une ou plusieurs ressources cumulatives, de fenêtres de
-temps - la modélisation du \CECSP~à l'aide de la programmation
+temps -- la modélisation du \CECSP~à l'aide de la programmation
 linéaire mixte est une approche naturelle pour
 sa résolution. 
 
@@ -18,27 +18,26 @@ ni leur date de fin, ni leur consommation totale de ressource, tout modèle
 ayant un objectif impliquant seulement la minimisation de ces trois
 quantités sera valide pour le \CECSP.
 
-Dans cette section, nous commençons par décrire un modèle indexé par
-le temps, puis, nous présentons deux modèles à événement. Ces trois
-modèles sont adaptés des modèles pour le \RCPSP~présentés dans la
-section~\ref{sec:PLNE_ordo_res} et sont présentés
-dans~\cite{Nattaf_ORSpectrum}.  
+Dans ce paragraphe, nous commençons par décrire un modèle indexé par
+le temps, puis, nous présentons deux modèles à événements. Ces trois
+modèles sont adaptés des modèles pour le \RCPSP~présentés dans le
+paragraphe~\ref{sec:PLNE_ordo_res} et sont présentés
+dans~\cite{Nattaf_ORSpectrum}.   
 
 
 \subsection{Modèle indexé par le temps}
 
-La première formulation proposée est une formulation indexée par
-le temps. Comme pour le modèle à temps discret du le \RCPSP,
-ici, l'horizon de temps est divisé en intervalles de taille unitaire. Le
-calcul d'une borne supérieure $T$ sur la durée totale du projet
-est ici trivial: il suffit de prendre la plus grande date échue,
-i.e. $T=\max_{i \in \A} \LE$. L'horizon de temps, noté
-$\H$, peut donc être défini par: $\H=\{0,\dots,T\}$.
-Notons que, par translation, nous pouvons toujours supposer que
-$\min_{i\in \A} \ES=0$.
+La première formulation proposée est une formulation indexée par le
+temps. Comme pour le modèle à temps discret du \RCPSP l'horizon de
+temps est ici divisé en périodes de taille unitaire. Le calcul d'une
+borne supérieure $T$ sur la durée totale du projet est trivial: il
+suffit de prendre la plus grande date échue, i.e. $T=\max_{i \in \A}
+\LE$. L'ensemble des périodes, noté $\H$, peut donc être défini par:
+$\H=\{0,\dots,T-1\}$.  Notons que, par translation, nous pouvons
+toujours supposer que $\min_{i\in \A} \ES=0$.
 
 Une des principales différences entre le modèle à temps discret du
-\RCPSP~et de celui du \CECSP~ repose sur le fait que, dans le
+\RCPSP~et celui du \CECSP~ repose sur le fait que, dans le
 second, la durée des activités n'est pas connue à l'avance et doit
 être déterminée par le modèle. De ce fait, nous devons définir,
 pour chaque activité $i \in \A$ et pour chaque instant $t
@@ -48,7 +47,7 @@ modéliser le début et la fin des activités. La variable $x_{it}$
 l'activité $i$ commence (finit) à l'instant $t$.
 
 Une seconde différence entre les deux modèles est le calcul des 
-fenêtres de temps est effectué de manière triviale pour le \CECSP. 
+fenêtres de temps, effectué de manière triviale pour le \CECSP. 
 En effet, pour une activité $i$,
 la fenêtre correspondante à sa date de début est $[\ES,\LS]$, avec
 $\LS=\LE-W_i/f_i(\bmax)$, et celle correspondante à sa date de fin
@@ -89,30 +88,28 @@ Ceci conduit à la formulation suivante:
 \in \H; \forall i \in \A \label{Bb_CECSP_TI}\\
 &x_{it}\in \{0,1\},\ y_{it} \in \{0,1\} & & \forall t \in {\cal
 H},\ \forall i \in \A \label{Bxy_CECSP_TI} \end{align}
-}
-Ce modèle s'inspire grandement du modèle
-de~\cite{ALR}, la principale différence résidant
-dans la considération de fenêtres de temps plus fine pour les
-variables, i.e. $[\ES,\LS]$ pour $x_{it}$ au lieu de
+} 
+Ce modèle s'inspire grandement du modèle de~\cite{ALR}, la principale
+différence résidant dans la considération de fenêtres de temps plus
+fine pour les variables, i.e. $[\ES,\LS]$ pour $x_{it}$ au lieu de
 $[\ES,\LE-1]$ et $[\EE,\LE]$ pour $y_{it}$ au lieu de
-$[\ES-1,\LE]$. Ces fenêtres de temps pouvant être raffinées à
-l'aide d'heuristiques, de la programmation par contraintes (cf.
-section~\ref{sec:adjustment_tw}) ou par le biais d'autres méthodes,
-ces modifications peuvent améliorer grandement les performances du
+$[\ES-1,\LE]$. Ces fenêtres de temps pouvant être raffinées à l'aide
+d'heuristiques, de la programmation par contraintes (cf.
+paragraphe~\ref{sec:adjustment_tw}) ou par le biais d'autres méthodes,
+ces modifications peuvent grandement améliorer les performances du
 modèle.
 
-Dans cette formulation, l'objectif est décrit
-par~\eqref{obj_CECSP_TI}. Ici, l'objectif est de minimiser la
+Dans cette formulation, l'objectif est décrit par
+l'équation~\eqref{obj_CECSP_TI}. Ici, l'objectif est de minimiser la
 consommation totale de la ressource durant tout le projet. Cet
-objectif a moins d'impact dans le cas où la fonction de rendement
-de chaque activité est la fonction identité mais se révèle très
-pertinent pour d'autres types de fonctions de rendement.
-Cependant, comme la formulation à temps discret ne nous permet pas
-de s'assurer que la quantité de ressource consommée par une
-activité soit exactement égale à la quantité nécessaire pour
-apporter l'énergie requise, i.e. $\sum_{t=\ES}^{\LE} b_{it} \ge
-W_i$, cet objectif reste valide dans le cas des fonctions
-identités.
+objectif a moins d'impact dans le cas où la fonction de rendement de
+chaque activité est la fonction identité mais se révèle très pertinent
+pour d'autres types de fonctions de rendement.  Cependant, comme la
+formulation à temps discret ne nous permet pas de s'assurer que la
+quantité de ressource consommée par une activité soit exactement égale
+à la quantité nécessaire pour apporter l'énergie requise,
+i.e. $\sum_{t=\ES}^{\LE} b_{it} \ge W_i$, cet objectif reste valide
+dans le cas des fonctions identités.
 
 Si l'on souhaite modifier l'objectif pour minimiser la date de fin
 du projet, il suffit d'introduire une variable $C_{max}$ ainsi que
@@ -151,8 +148,8 @@ inégalités sont de la forme:
  \sum_{\tau=\ES}^{t} x_{i\tau}
 -\sum_{\tau=\ES+1}^{t} y_{i\tau} \le 0 \quad \forall t \in \{\ES,\dots,\LE-1\}
 \end{equation}
-L'intérêt de l'ajout de ces équations sera discuté dans la
-section~\ref{section:expe}. 
+L'intérêt de l'ajout de ces équations sera discuté dans le
+chapitre~\ref{sec:expe}.  
 
 La contrainte~\eqref{nrj_CECSP_TI} modélise le fait qu'une activité
 doit recevoir au moins la quantité d'énergie requise par la donnée du
@@ -171,9 +168,9 @@ continues et au plus $3n+T*(5n+1)$ contraintes.
 
 \paragraph{Fonction de rendement affine}
 
-Dans le cas où les fonctions de rendement étaient toutes la fonction
+Dans le cas où les fonctions de rendement sont toutes la fonction
 identité, l'énergie apportée à une activité durant une certaine
-période était égale à la quantité de ressource consommée par celle-ci
+période est égale à la quantité de ressource consommée par celle-ci
 durant la même période de temps. Or, lorsque les fonctions de
 rendement deviennent affines, ce n'est plus le cas.  Pour s'assurer
 qu'une activité $i$ reçoive bien l'énergie requise, nous devons
@@ -216,8 +213,8 @@ x_{i\tau}-\sum_{\tau=\ES+1}^t y_{i\tau}\right) \quad \forall t\in
 Cette contrainte nous permet de modéliser la fonction de rendement
 $f_i,\ \forall i \in \A$. En effet, $\left(\sum_{\tau=\ES}^t
 x_{i\tau}-\sum_{\tau=\ES+1}^t y_{i\tau}\right) $ est égale à $1$ si et
-seulement si l'activité $i$ est en cours à l'instant $t$.  Dans ce cas
-là, la valeur de l'énergie apportée à $i$ est bien
+seulement si l'activité $i$ est en cours à l'instant $t$.  Dans ce
+cas-là, la valeur de l'énergie apportée à $i$ est bien
 $w_{it}=a_ib_{it}+c_i$. Le second cas se produit quand l'activité $i$
 n'est pas en cours à $t$. Dans ce cas, la
 contrainte~\eqref{bmax_CECSP_TI} nous dit que $b_{it}=0$ et donc
@@ -226,7 +223,7 @@ $w_{it}=0$.
 Le modèle possède donc $2nT$ variables binaires, $2nT$ variables
 continues et au plus $3n+T*(6n+1)$ contraintes.
 
-\paragraph{Fonction de rendement concaves affines par morceaux}
+\paragraph{Fonction de rendement concave affine par morceaux}
 
 Lorsque les fonctions de rendements sont des fonctions concaves
 affines par morceaux, nous utilisons aussi la variable $w_{it}$ pour
@@ -238,56 +235,59 @@ son exécution.
 Pour s'assurer de la bonne conversion entre la quantité de ressource
 consommée par une activité $i$ dans une période $t$ et la quantité
 d'énergie reçue par cette dernière dans la même période,
-l'inégalité~\eqref{conv_CECSP_TI} est remplacée par l'inégalité
+l'égalité~\eqref{conv_CECSP_TI} est remplacée par l'inégalité
 suivante: 
 \begin{equation}
 w_{it} \le a_{ip}b_{it} + c_{ip}\left(\sum_{\tau=\ES}^t
 x_{i\tau}-\sum_{\tau=\ES+1}^t y_{i\tau}\right) \quad  \forall i \in
 \A,\ \forall p \in \P_i,\ \forall t \in \H 
-\label{conv_CECSP_TI}
+\label{conv_CECSP_TI2}
 \end{equation}
+avec $\P_i$ l'ensemble des intervalles de définition de la fonction
+$f_i$.
 
-Notons que l'utilisation d'une inégalité peut impliquer la variable
-$w_{it}$ ne représente pas exactement la quantité d'énergie apportée à
-$i$ dans la période $t$. Cependant, la contrainte nous assure que
-$w_{it} \le f_i(b_{it})$. De ce fait, à une solution optimale donnée
-par le modèle correspond toujours une solution optimale du \CECSP à
-date de début et de fin entières. En effet, suposons que dans une
-solution optimale renvoyée par le PLNE, il existe $(i,t)$ tel que
-$w_{it} < f_i(b_{it})$, alors, deux cas sont possibles:
+Notons que l'utilisation d'une inégalité peut impliquer que la
+variable $w_{it}$ ne représente pas exactement la quantité d'énergie
+apportée à $i$ dans la période $t$. Cependant, la contrainte nous
+assure que $w_{it} \le f_i(b_{it})$. De ce fait, à une solution
+optimale donnée par le modèle correspond toujours une solution
+optimale du \CECSP~à dates de début et de fin entières. En effet,
+supposons que dans une solution optimale renvoyée par le PLNE, il
+existe $(i,t)$ tel que $w_{it} < f_i(b_{it})$, alors, deux cas sont
+possibles:
 \begin{itemize}
-\item $\bmin \ge f_i^{-1}(w_{it})$ et dans ce cas là, $b_{it}$ peut
-  prendre la valeur $f_i^{-1}(w_{it})$ et cette solution aura un coût,
-  i.e. une consommation totale de ressource, plus faible que la
-  solution précédente et ceci contredit l'optimalité de la solution.
-\item $\bmin < f_i^{-1}(w_{it})$ et dans ce cas là, $b_i(t)$ prend la
-  valeur $\bmin$ et $et_i=\min\{t \in\mathbb{N}\ |\ \int_{\tau=st_i}^{t}
-  f_i(b_i(t))dt \le W_i\}$. Ici, deux cas sont possibles: le premier
-  correspond au cas où $et_i=\{t\ | \ y_{it}=1\}$ et la solution
-  renvoyée par le PLNE est optimale; dans le second cas $et_i<\{t\ |\
-  y_{it}=1\}$ mais alors, $y_{it-1}$ peut prendre la valeur $1$ et
-  $y_{it}$ la valeur $0$ et cette solution est de plus faible coût que
-  la solution précédente et ceci contredit l'optimalité de la solution
-renvoyée par le PLNE.
+\item $\bmin \ge f_i^{-1}(w_{it})$ et dans ce cas-là, $b_{it}$ peut
+prendre la valeur $f_i^{-1}(w_{it})$ et cette solution aura un coût,
+i.e. une consommation totale de ressource, plus faible que la solution
+précédente et ceci contredit l'optimalité de la solution.
+\item $\bmin < f_i^{-1}(w_{it})$ et dans ce cas-là, $b_i(t)$ prend la
+valeur $\bmin$ et $et_i=\min \{t \in\mathbb{N}\ |\ \\
+\int_{\tau=st_i}^{t} f_i(b_i(t))dt \le W_i\}$. Ici, deux cas sont
+possibles: le premier correspond au cas où $et_i=\{t\ | \ y_{it}=1\}$
+et la solution renvoyée par le PLNE est optimale; dans le second cas
+$et_i<\{t\ |\ y_{it}=1\}$ mais alors, $y_{it-1}$ peut prendre la
+valeur $1$ et $y_{it}$ la valeur $0$ et cette solution est de plus
+faible coût que la solution précédente et ceci contredit l'optimalité
+de la solution renvoyée par le PLNE.
 \end{itemize}
 
 
 Le modèle ainsi défini possède alors $2nT$ variables binaires, $2nT$
 variables continues et au plus $3n + (5n +nP+1)T$ contraintes, avec
-$P=max_{i\in A}|\P_i|$.  
+$P=\max_{i\in A}|\P_i|$.  
 
-\subsection{Modèles à événement}
+\subsection{Modèles à événements}
 
-Dans cette section, nous proposons deux formulations à événement pour
+Dans ce paragraphe, nous proposons deux formulations à événements pour
 le \CECSP. Ces deux formulations sont grandement inspirées des
-formulations start/end et on/off du \RCPSP, présentées dans la
-section~\ref{sec:PLNE_ordo_res} et issues
+formulations start/end et on/off du \RCPSP, présentées dans le
+paragraphe~\ref{sec:PLNE_ordo_res} et issues
 de~\cite{modele_RCPSP}. Comme dans le cas du \RCPSP, ces modèles se
 justifient par leur nombres polynomial de variables et de contraintes
-qui peut s'avérer très pertinent dans la cas de grand horizon de
+qui peut s'avérer très pertinent dans la cas de grands horizons de
 temps. Pour le \CECSP, un argument supplémentaire vient s'ajouter pour
 le \CECSP. En effet, il peut arriver qu'une instance de ce problème ne
-possède que des solutions à valeur non entières et ce, même si toutes
+possède que des solutions à valeurs non entières et ce, même si toutes
 les données sont entières (voir exemple~\ref{exemple_NE},
 page~\pageref{exemple_NE}).
 
@@ -301,9 +301,9 @@ indexés par l'ensemble $\E=\{1,\dots,2n\}$, sont représentés par un
 ensemble de variables continues, notées $t_e$.
 
 Nous rappelons aussi les notations suivantes: $T=\max_{i \in \A}
-\LE$ est une borne supérieure sur la date de fin du projet,
-$[\ES,\LS]$, avec $\LS= \LE-W_i/f_i(\bmax)$ est la fenêtre de temps
-dans laquelle l'activité $i$ peut débuter et, de même, $[\EE,\LE]$,
+\LE$ est une borne supérieure sur la date de fin du projet;
+$[\ES,\LS]$, avec $\LS= \LE-W_i/f_i(\bmax)$, est la fenêtre de temps
+dans laquelle l'activité $i$ peut débuter; de même, $[\EE,\LE]$,
 avec $\EE=\ES + W_i/f_i(\bmax)$, la fenêtre de temps durant laquelle
 l'activité $i$ peut finir.
 
@@ -327,19 +327,18 @@ correspond à la fin de l'activité $i$, et vaudra $0$ sinon.
 
 \paragraph{Fonction de rendement identité}
 
-Dans la cas où toutes les fonctions de rendement sont la fonction
+Dans le cas où toutes les fonctions de rendement sont la fonction
 identité, un seul ensemble de variables est nécessaire pour modéliser
 la consommation de la ressource. En effet, comme la quantité de
 ressource consommée par une activité $i$ est égale à la quantité
 d'énergie apportée à cette même activité, il n'est pas utile de
 définir une variable représentant cette quantité d'énergie.
 
-Un ensemble de variables supplémentaire, $b_{ie}$, est donc
-défini. Cet ensemble de variables représente la quantité de ressource
-consommée par une activité $i$ entre les dates $t_e$ et
-$t_{e+1}$. Notons que nous avons seulement besoin de définir $b_{ie},\
-\forall i \in \A$ et $\forall e \in \E \setminus\{2n\}$. Ceci nous permet de
-modéliser le problème de la façon suivante:
+Un ensemble de variables supplémentaires, $b_{ie}$, $\forall (i,e) \in
+\A\times \Em$, est donc défini. La variable $b_{ie}$ représente la
+quantité de ressource consommée par une activité $i$ entre les dates
+$t_e$ et $t_{e+1}$.  Ceci nous permet de modéliser le problème de la
+façon suivante:
 {\small
 \begin{align}
 & \text{min } \sum_{i\in A}\ \sum_{e\in \E\setminus\{2n\}} b_{ie} 
@@ -377,6 +376,7 @@ A \label{start_CECSP_SE}\\
 \forall i \in A,\ \forall e \in \E \label{eq39}
 \end{align}
 }
+
 L'objectif, décrit par l'équation~\eqref{obj_CECSP_SE}, est de
 minimiser la consommation totale de la ressource, i.e. la somme des
 consommations de toutes les tâches. On peut facilement modifier cet
@@ -430,19 +430,20 @@ suffisamment grande pour dépasser $\bmin(t_{e+1}-t_e)$.
 
 La contrainte~\eqref{res0_CECSP_SE} garantit que si l'activité $i$
 n'est pas en cours entre les événements $e$ et $e+1$, alors
-$b_{ie}=0$. En effet, soit $M$ est une constante suffisamment grande
-pour servir de borne supérieure à $b_{ie}$, alors la contrainte
-s'écrit $M\ge b_{ie}$ quand $\sum_{f=0}^{e} x_{if}
--\sum_{f=0}^{e}y_{if}=1$, i.e. quand l'activité $i$ est en cours, et
-s'écrit $0\ge b_{ie}$ quand $\sum_{f=0}^{e}
-x_{if}-\sum_{f=0}^{e}y_{if}=0$, i.e. quand l'activité $i$ n'est pas en
-cours. Notons aussi que ces contraintes empêchent qu'une activité ne
-puisse commencée avant d'avoir finie. De plus, pour renforcer la
-formulation, nous pouvons ajouter les contraintes~\eqref{xby_RCPSP_SE}
-modélisant explicitement la fait qu'un événement ``début d'activité''
-se produit forcément avant l'événement ``fin d'activité'' lui
+$b_{ie}=0$. En effet, si l'activité $i$ n'est pas en cours,
+i.e. $\sum_{f=0}^{e} x_{if}-\sum_{f=0}^{e}y_{if}=0$, la contrainte
+s'écrit $0\ge b_{ie}$ et donc on a bien $b_{ie} =0$. Dans le cas où
+l'activité $i$ est en cours, i.e. $\sum_{f=0}^{e} x_{if}
+-\sum_{f=0}^{e}y_{if}=1$, la contrainte s'écrit $M\ge b_{ie}$ et, si
+$M$ est une constante suffisamment grande pour servir de borne
+supérieure à $b_{ie}$, alors la contrainte est valide. Notons aussi
+que ces contraintes empêchent qu'une activité ne puisse commencer
+avant d'avoir fini. De plus, pour renforcer la formulation, nous
+pouvons ajouter les contraintes~\eqref{xby_RCPSP_SE} modélisant
+explicitement le fait qu'un événement ``début d'activité'' se produit
+forcément avant l'événement ``fin d'activité'' lui
 correspondant. L'intérêt de l'ajout de telles contraintes sera discuté
-dans le chapitre~\ref{section:expe}.
+dans le chapitre~\ref{sec:expe}.
 
 Cette formulation possède $4n^2$ variables binaires, $2n^2+n$
 variables continues et $2n^3+13n^2+4n-2$ contraintes.
@@ -465,7 +466,7 @@ capacité de la ressource, n'est pas modifiée. De même, les
 contraintes~\eqref{bmin_CECSP_SE} et~\eqref{bmax_CECSP_SE},
 garantissant la contrainte de consommation maximale et minimale de la
 ressource, restent inchangées. Enfin, la
-contrainte~\eqref{res0_CECSP_SE}, s'assurant de la non-consommation de
+contrainte~\eqref{res0_CECSP_SE}, s'assurant de la non consommation de
 ressource des activités en dehors de leur exécution, ne nécessite
 aucun changement.
 
@@ -516,11 +517,11 @@ l'objectif~\eqref{obj_CECSP_SE}, ceci ne peut arriver.
 \begin{theo}
   \label{th:conv}
   Soit $S$ une solution optimale du modèle décrit
-  par~\eqref{obj_CECSP_SE} -- \eqref{dur_CECSP_SE},
+  par~\eqref{obj_CECSP_SE}--\eqref{dur_CECSP_SE},
   \eqref{nrj2_CECSP_SE} et
   \eqref{bmin_CECSP_SE}--\eqref{Bw_CECSP_SE}. Alors $S$ vérifie la
-  condition suivante: $\forall i \in \A,\ \forall e \in \E\setminus\{2n\},\
-  w_{ie}=f_i\left(\frac{b_{ie}}{t_{e+1}-t_e}\right)(t_{e+1}-t_e)$.
+  condition suivante: \[\forall i \in \A,\ \forall e \in \E\setminus\{2n\},\
+  w_{ie}=f_i\left(\frac{b_{ie}}{t_{e+1}-t_e}\right)(t_{e+1}-t_e)\]
 \end{theo}
 
 \begin{proof}
@@ -585,7 +586,7 @@ On sait que $\exists (i,e) \in \A \times \E$ tel que:
 Donc nous avons bien $et_i > et_i'$ et ceci achève la démonstration.
 \end{proof}
 
-Notons que pour d'autres  objectifs ce peut ne pas être valide. Mais, la
+Notons que pour d'autres objectifs cela peut ne pas être valide. Mais, la
 solution obtenue par le modèle peut toujours être transformée en une
 solution du \CECSP~en temps polynomial. Pour cela, il suffit de suivre
 la transformation proposée dans la preuve du théorème~\ref{th:conv}.
@@ -614,12 +615,13 @@ w_{ie} \le a_{ip}b_{ie} + c_{ip}\left( t_{e+1} - t_e\right) \quad
 \end{equation}
 
 Notons que la même argumentation que celle de la preuve du
-théorème~\ref{th:conv} permet de nous assurer de la bonne conversion
-entre énergie et ressource du modèle. 
+théorème~\ref{th:conv} permet de nous assurer que la conversion faite
+par le modèle entre la quantité d'énergie reçue par l'activité et la
+quantité de ressource consommée par cette dernière est valide.
 
 Le modèle ainsi défini possède $4n^2$ variables binaires, $4n^2$
 variables continues et $2n^3+ (15 + 2P)n^2+\left(1-P\right)n-2$
-contraintes, avec $P=max_{i\in A}|\P_i|$.
+contraintes, avec $P=\max_{i\in A}|\P_i|$.
 
 \subsubsection{Modèle on/off}
 \label{sssection:OO_CECSP}
@@ -636,7 +638,7 @@ formulation start/end.
 Dans le cas où les fonctions de rendement sont la fonction identité,
 nous définissons la variable $b_{ie}$ qui modélise la quantité de
 ressource consommée par l'activité $i$ entre les dates $t_e$ et
-$t_{e+1}$. Comme pour le modèle start/end, nous avons seulement besion
+$t_{e+1}$. Comme pour le modèle start/end, nous avons seulement besoin
 de définir la variable $b_{ie},\ \forall i \in \A$ et $\forall e \in
 \Em$. Ceci conduit à la formulation suivante: 
 {\small
@@ -707,7 +709,7 @@ $z_{i,e-1}-z_{ie}$ est remplacé par $z_{ie}$. De même, les
 contraintes~\eqref{twy1_CECSP_OO} et~\eqref{twy2_CECSP_OO}
 garantissent qu'un événement correspondant à la fin d'une activité
 soit bien compris entre $\EE$ et $\LE$. Ici, il n'est pas
-n'écessaire de considérer le cas $e=1$ car cet événement ne peut pas
+nécessaire de considérer le cas $e=1$ car cet événement ne peut pas
 correspondre à la fin d'une activité. 
 
 La contrainte~\eqref{dur_CECSP_OO} assure une séparation suffisante
@@ -719,19 +721,19 @@ de remplacer $z_{i,e-1}-z_{ie}$ par $z_{ie}$.
 
 Les contraintes~\eqref{preem1_CECSP_OO} et~\eqref{preem2_CECSP_OO},
 appelées {\it contraintes de contiguïté}, assure la non-préemption des
-activités. Une preuve formelle de la validité de ces contraintes peut
-être trouvée dans~\cite{modele_RCPSP}. Ici aussi, le cas $e=1$ ,est
+activités. Une preuve formelle de la validité de ces contraintes est
+décrite dans~\cite{modele_RCPSP}. Ici aussi, le cas $e=1$, est 
 traité en remplaçant $z_{i,e-1}-z_{ie}$ par $z_{ie}$.
 
-La contrainte~\eqref{res_CECSP_OO} représente la limite de capacité de
+La contrainte~\eqref{res_CECSP_OO} représente la capacité de
 la ressource tandis que la contrainte~\eqref{nrj_CECSP_OO} s'assure
 que chaque activité reçoit bien la quantité d'énergie requise par la
 donnée du problème.
 
 Les contraintes~\eqref{bmin_CECSP_OO},~\eqref{bmax_CECSP_OO} et
-\eqref{res0_CECSP_OO} - permettant respectivement de modéliser les
+\eqref{res0_CECSP_OO} -- permettant respectivement de modéliser les
 contraintes de consommation minimale, de consommation maximale et de
-consommation nulle en dehors de l'intervalle d'exécution de $i$ - se
+consommation nulle en dehors de l'intervalle d'exécution de $i$ -- se
 déduisent directement des
 contraintes~\eqref{bmin_CECSP_SE},~\eqref{bmax_CECSP_SE} et
 \eqref{res0_CECSP_SE}. Dans un premier temps, remarquons que nous
@@ -742,7 +744,7 @@ z_{ie} = \sum_{f=1}^e x_{if} -  \sum_{f=1}^e y_{if} \quad \forall i
 \in \A,\ \forall e\in \Em
 \end{equation}
 En effet, $z_{ie}$ vaut $1$ si et seulement si l'activité $i$ est en
-cours entre $t_e$ et $t_{e+1}$, c'est à dire si l'activité a commencé à
+cours entre $t_e$ et $t_{e+1}$, c'est-à-dire si l'activité a commencé à
 l'événement $e$ ou avant, i.e. $\sum_{f=1}^ex_{if}=1$, et si elle
 ne finit pas à l'événement $e$ ou avant, i.e. $\sum_{f=1}^ey_{if}=
 0$. Dans ce cas, nous avons bien $\sum_{f=1}^ex_{if} -
@@ -772,12 +774,13 @@ contrainte suivante:
 \tag{\ref{nrj_CECSP_OO}'}
 \end{equation}
 
-Dans un second temps nous écrivons les contraintes liant les variables
+Dans un second temps, nous écrivons les contraintes liant les variables
 $b_{ie}$ et $w_{ie}$:
 \begin{align}
   &w_{ie} \le a_ib_{ie}+c_i(t_{e+1}-t_e) & & \forall i \in A,\ \forall
   e \in \E \setminus\{2n\} \label{conv1_CECSP_OO}\\
-  &w_{ie} \le W_i z_{ie} & & \forall i \in A,\ \forall e \in \E\setminus\{2n\} \label{conv2_CECSP_OO}\\
+  &w_{ie} \le W_i z_{ie} & & \forall i \in A,\ \forall e \in
+                             \E\setminus\{2n\} \label{conv2_CECSP_OO}\\ 
   & w_{ie} \ge 0 & & \forall i \in A,\ \forall e \in \E\setminus\{2n\}
   \label{Bw_CECSP_OO}
 \end{align}
@@ -791,7 +794,7 @@ variables continues et $2n^3+17n^2-3n-2$ contraintes.
 
 \paragraph{Fonction de rendement affine par morceaux}
 
-Lorsque les fonctions de rendements sont des fonctions concaves
+Lorsque les fonctions de rendement sont des fonctions concaves
 affines par morceaux, nous utilisons aussi la variable $w_{ie}$ pour
 représenter l'énergie reçue par l'activité $i$ dans la période
 $[t_e,t_{e+1}]$. La contrainte~\eqref{nrj2_CECSP_SE} est utilisée pour
@@ -811,4 +814,4 @@ w_{ie} \le a_{ip}b_{ie} + c_{ip}\left( t_{e+1} - t_e\right) \quad
 
 Le modèle ainsi défini possède $2n^2-n$ variables binaires, $4n^2$
 variables continues et $2n^3+(15 + 2P)n^2+\left(2-P\right)n-2$
-contraintes, avec $P=max_{i\in A}|\P_i|$.    
+contraintes, avec $P=\max_{i\in A}|\P_i|$.    

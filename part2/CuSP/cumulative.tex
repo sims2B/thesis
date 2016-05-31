@@ -1,10 +1,98 @@
-\section{L'ordonnancement cumulative}
+\section{L'ordonnancement cumulatif}
 \label{sec:cumu}
+
 \subsection{L'ordonnancement en programmation par contrainte}
 \label{sec:cumu_ordo}
 
+Les problèmes d'ordonnancement étudiés en programmation par
+contraintes sont majoritairement regroupés en trois catégories: les
+problème préemptifs, les problèmes non préemptifs et les problèmes
+élastiques. Les problèmes préemptifs, respectivement non préemptifs,
+sont des problèmes pour lesquels la préemption des activités est
+autorisée, respectivement non autorisée. Une définition d'une activité
+préemptive peut être trouvée dans le paragraphe~\ref{sec:ordo}. Les
+{\it problèmes d'ordonnancement élastiques} correspondent aux
+problèmes où la quantité de ressource attribuée à une activité peut
+varier, à tout instant $t$ de l'horizon de temps, avec la contrainte
+que la quantité totale de ressource consommée par l'activité durant
+son exécution soit égale à une certaine valeur appelée {\it
+  énergie}. Cette dernière notion peut aisément être étendue dans le
+cas où l'énergie reçue par une activité n'est pas égale à la quantité
+de ressource consommée mais où des fonctions de rendement modélisent 
+cette conversion. Clairement, le \CECSP est un exemple typique d'un
+tel problème. 
+
+La majorité des problèmes d'ordonnancement non-préemptifs classiques
+peuvent être modélisés à l'aide d'un problème de satisfaction de
+contraintes. En général, trois variables représentant respectivement
+la date de début d'une activité, notée $st_i$, sa date de fin, notée
+$et_i$ et sa durée, notée $p_i$, sont définies. Les domaines de
+chacune de ces variables sont définis par les données du problème. En
+effet, pour chaque activité, nous pouvons calculer une date de début
+au plus tôt, $\ES$, et au plus tard, $\LS$; ainsi, le domaine de la
+variable $st_i$ est $[\ES,\LS]$. De même, le domaine de la variable
+$et_i$ est $[\EE,\LE]$, avec $\EE$ la date de fin au plus tôt de $i$
+et $\LE$ sa date de fin au plus tard. La durée d'une activité est
+quant à elle définie comme la différence entre sa date de fin et sa
+date de début, i.e. $p_i=et_i-st_i$.
+
+Les problèmes préemptifs sont plus difficiles à modéliser. En effet,
+dans ce cas-là, un ordonnancement valide ne peut seulement être
+représenté par une date de début, de fin et une durée pour chaque
+activité. Pour ces problèmes, au moins deux modélisations différentes
+existent. La première consiste à associer à chaque activité une
+variable d'ensemble, i.e. une variable dont la valeur sera un
+ensemble. Cet variable représente l'ensemble des instants $t$ où
+l'activité est en cours, définie comme un ensemble d'intervalles ou de
+temps $t$ discret. Une second possibilité est de définir une variable
+binaire, pour chaque activité et chaque instant $t$, qui prendra la
+valeur $1$ si l'activité est en cours à l'instant $t$. Notons que,
+dans le cas d'un problème d'ordonnancement continu, une telle solution
+ne peut être envisageable car cela conduirait à un nombre infini de
+telles variables.
+
+Les problèmes élastiques sont, quant à eux modéliser, à travers les
+contraintes de ressources. Il existe deux principaux types de
+contraintes de ressource en PPC. Le premier permet de modéliser les
+ressources disjonctives, i.e. qui ne peuvent exécuter qu'une activité
+en parallèle, et le second sert à la modélisation des ressources
+cumulatives. Ici, nous nous intéressons seulement au second cas.
+
+{\'E}tant donné une activité et une ressource de capacité $R$, une
+variable $r_i$ sert généralement à modéliser la consommation de
+l'activité sur cette ressource. Dans le cas des tâches élastiques,
+cette variable est remplacée par une variable $W_i$ représentant
+l'énergie requise par l'activité. Pour représenter un ordonnancement,
+un ensemble de variables représentant la quantité de ressource
+utilisée par une activité à l'instant $t$ est introduit. Ces variables
+sont ensuite liés entre elles par un ensemble de contraintes
+modélisant le fait que chaque activité doit recevoir une énergie
+$W_i$. 
+
+Ces différents concepts peuvent être étendus pour modéliser d'autre
+types de contraintes telles que des contraintes de ressources
+alternatives, des temps de préparation entre les activités, des
+activités optionnelles ou des contraintes de réservoirs.
+
+Dans la suite de ce manuscrit, nous nous intéressons aux problèmes
+d'ordonnancement non-préemptifs avec ressource cumulative et aux
+problèmes d'ordonnancement élastiques. Le premier cas correspond au
+\CUSP, décrit dans le paragraphe~\ref{sec:ordo_res}. En PPC, le
+problème est modélisé à l'aide d'une contrainte globale appelées
+contrainte cumulative. Cette contrainte ainsi que différents
+algorithmes de filtrage mis en place pour cette dernière sont
+présentés dans les deux paragraphes suivant. 
+
+Les problèmes d'ordonnancement élastiques seront représentés par le
+\CECSP, pour lequel une partie des algorithmes de filtrage pour la
+contrainte cumulative sont adaptés et un modèle de PPC dans le cas de
+la restriction discrète du \CECSP~seront présentés dans le
+chapitre~\ref{sec:PPC_CECSP}.   
+
 \subsection{La contrainte cumulative}
 \label{sec:cumu_cume}
+
+En PPC, le \CUSP~est modélisé par la contrainte cumulative. 
 
 \subsection{Les filtrages de la contrainte cumulative}
 \label{sec:cumu_propag}

@@ -1,41 +1,41 @@
 \section{Renforcement des modèles}
 
-Dans cette section, nous présentons des améliorations mises en place
+Dans ce paragraphe, nous présentons des améliorations mises en place
 pour les modèles indexés par le temps et les modèles à événements du
 \RCPSP~et du \CECSP. 
 
-Dans un premier temps, nous nous sommes intéressés aux modèles à temps
-discrets pour lesquels nous proposons des inégalités valides déduites
-directement du raisonnement énergétique présenté à la
-section~\ref{section:RE}. En effet, ces modèles restent les modèles
+Dans un premier temps, nous nous sommes intéressé aux modèles à temps
+discret pour lesquels nous proposons des inégalités valides déduites
+directement du raisonnement énergétique présenté au
+paragraphe~\ref{section:RE}. En effet, ces modèles restent les modèles 
 les plus efficaces pour résoudre le \CECSP~ou le \RCPSP, ceci étant
 principalement dû à la qualité relative de leur relaxation. 
 
 Cependant, les limitations de ces modèles nous ont poussé à nous
 intéresser plus particulièrement à l'amélioration des modèles à
-événement. En effet, le nombre de variables et de contraintes de ces
-modèles dépendent de la taille de l'horizon de temps du problème. Leur
-taille peut donc s'avérer très importante si l'horizon de temps est grand.
+événements. En effet, le nombre de variables et de contraintes de ces
+modèles dépend de la taille de l'horizon de temps du problème. Ce
+nombre peut donc s'avérer très important si l'horizon de temps est grand.
 De plus, dans les modèles indexés par le temps du \CECSP~, la
 discrétisation de l'horizon de temps conduit à une réduction de
 l'espace des solutions et peut donc mener à des solutions
 sous-optimales (voir exemple~\ref{exemple_NE},
 page~\pageref{exemple_NE}). 
 
-Pour améliorer les relaxations linéaires des modèles à événement, nous
+Pour améliorer les relaxations linéaires des modèles à événements, nous
 avons étudié le polyèdre défini par l'ensemble de toutes les
 affectations possibles des variables binaires pour une seule activité,
 pour lequel nous exhibons un ensemble minimal d'inégalités permettant
 de le décrire. De plus, plusieurs ensembles d'inégalités valides sont
 proposées pour contribuer à l'amélioration des performances des
-modèles à événement.
+modèles à événements.
  
 \subsection{Amélioration des modèles indexés par le temps}
 
-Dans cette section, nous montrons comment nous utilisons le
-raisonnement énergétique décrit à la section~\ref{section:RE} pour
+Dans ce paragraphe, nous montrons comment est utilisé le
+raisonnement énergétique décrit au paragraphe~\ref{section:RE} pour
 exhiber des inégalités valides pour les modèles de programmation
-linéaires mixtes indexés par le temps du \RCPSP~et du \CECSP. Nous
+linéaire mixte indexés par le temps du \RCPSP~et du \CECSP. Nous
 commençons par détailler le cas du \CECSP~avant de montrer comment
 appliquer le même raisonnement pour le \RCPSP.
 
@@ -71,11 +71,13 @@ $[\ES,\LE]$ est complètement inclus dans $[t_1,t_2]$. En effet,
 les différents cas possibles sont: 
 \begin{itemize}
 \item l'activité commence après $t_1$ et finit avant $t_2$. Dans ce
-  cas là, l'inégalité devient: $\conv[W_i] +\sum_{j\neq i} \bb[j] \le
+  cas-là, l'inégalité devient: 
+
+$\conv[W_i] +\sum_{j\neq i} \bb[j] \le
   R(t_2-t_1)$. Ceci correspond au cas où la contrainte est activée. 
 \item l'activité commence avant $t_1$ et finit avant $t_2$. Ici,
   l'inégalité devient: $\sum_{j\neq i} \bb[j] \le R(t_2-t_1)$ et ceci
-  est vérifié quelque soit $i$ et $[t_1,t_2]$. Ce cas correspond au
+  est vérifié quel que soit $i$ et $[t_1,t_2]$. Ce cas correspond au
   cas où la contrainte n'est pas activée. 
 \item l'activité commence après $t_1$ et finit après $t_2$. Ce cas est
   similaire au précédent. 
@@ -163,8 +165,8 @@ R\left(t_2-t_1\right) \qquad \\ \forall i \in {\cal A},\ \forall k \in
 \R ,\ \forall [t_1,t_2] \in \I
     \label{RCPSP_min}
 \end{multline}
-avec $p_i^+(t_1)$ et $p_i^-(t_2)$ comme définis dans la
-section~\ref{section:ERCuSP} pour le \CUSP.
+avec $p_i^+(t_1)$ et $p_i^-(t_2)$ comme définis dans le
+paragraphe~\ref{sec:cumu_propag} pour le \CUSP. 
 
 De telles inégalités ont été proposées dans le cadre du modèle
 préemptif sur les ensembles admissibles~\cite{BD}. Ces inégalités sont
@@ -178,10 +180,10 @@ qui sont décrites dans la section suivante.
 
 
 
-\subsection{Amélioration des modèles à événement}
+\subsection{Amélioration des modèles à événements}
 
-Dans cette section, nous présentons les améliorations possibles des
-modèles à événement. Dans un premier temps, nous montrons que le
+Dans ce paragraphe, nous présentons les améliorations possibles des
+modèles à événements. Dans un premier temps, nous montrons que le
 modèle start/end possède de meilleures relaxations que le modèle
 on/off, puis nous présentons un ensemble d'inégalités que nous pouvons
 rajouter au modèle on/off pour renforcer sa relaxation. Cet ensemble
@@ -189,25 +191,25 @@ d'inégalités est ensuite utilisé pour donner une description minimale
 du polyèdre défini par l'ensemble de toutes les affectations possibles
 des variables binaires $z_{ie}$ pour une seule activité. 
 
-D'autres ensembles d'inégalités sont ensuite présentées permettant
-l'ajout de nouvelles contraintes au modèle, la suppression des
+D'autres ensembles d'inégalités, permettant l'ajout de nouvelles
+contraintes au modèle, sont ensuite présentées , la suppression des
 coefficients big-$M$ dans les contraintes existantes ou l'amélioration
-des contraintes existantes. Dans cette section, nous présentons les
+des contraintes existantes. Dans ce paragraphe, nous présentons les
 résultats pour le \CECSP~car, dans la plupart des cas, le remplacement
-de $\Em=\{1,\dots,2n-1\}$ par $\{1,\dots,n\}$ suffit à l'adaptation
-de la preuve au \RCPSP. Cependant, lorsque ce n'est pas le cas ou que
-le résultat n'a pas été prouvé pour le \RCPSP, nous le précisons. 
+de $\Em=\{1,\dots,2n-1\}$ par $\{1,\dots,n\}$ suffit à l'adaptation de
+la preuve au \RCPSP. Cependant, lorsque ce n'est pas le cas ou que le
+résultat n'a pas été prouvé pour le \RCPSP, nous le précisons.
 
 \subsubsection{Comparaison des relaxations linéaires}
 
 Pour montrer que le modèle start/end possède de meilleures relaxations
 linéaires que le modèle on/off, nous commençons par montrer que le
-modèle start/end possède des relaxations au moins aussi bonne que
-celle du modèle on/off. Pour cela, il suffit de  montrer que toute solution du 
+modèle start/end possède des relaxations au moins aussi bonnes que
+celles du modèle on/off. Pour cela, il suffit de  montrer que toute solution du 
 modèle start/end, entière ou non, est solution du modèle on/off. Ceci
 peut être fait en écrivant les variables $z_{ie}$ en fonction des
 variables $x_{ie}$ et $y_{ie}$ et nous avons la relation suivante,
-décrite le paragraphe~\ref{sssection:OO_CECSP}: 
+décrite dans le paragraphe~\ref{sssection:OO_CECSP}: 
 \begin{equation}
 \label{SEversOO}
 z_{ie} = \sum_{f=1}^e x_{if} -  \sum_{f=1}^e y_{if} \quad \forall i
@@ -228,21 +230,21 @@ Considérons le sous-modèle formé des
 y_{if} +\sum_{f=e}^n x_{if}\le 1,\ \forall i \in \A$. Clairement, si
 nous trouvons une solution pour le premier sous-modèle qui n'en est
 pas une pour le second, ceci montrera bien que les relaxations du modèle
-on/off ne sont pas aussi bonnes que celles de smodèles start/end. En
+on/off ne sont pas aussi bonnes que celles des modèles start/end. En
 effet, toute solution d'un des sous-modèles est solution du modèle
 entier (start/end ou on/off) en considérant l'instance suivante:
 $\forall i \in \A,\ \ES=0,\ \LE=T,\ \bmin=0,\ \bmax=1,\ W_i=1,\
 f_i(b_i(t))=b_i(t)$ et $B=n$. 
 
-Nous nous plaçons dans le cas où le nombre d'activité est de 2. Alors,
-nous avons $|\E|=4$.  Dans la suite, les tâches sont dénotées par les
-indices $a,\ b$ et $c$ et les évênements par $0,\ 1,\ 2$ et $3$.
+Nous nous plaçons dans le cas où le nombre d'activités est de 2. Alors,
+nous avons $|\E|=4$.  Dans la suite, les tâches sont notées par les
+indices $a$ et $b$ et les événements par $0,\ 1,\ 2$ et $3$.
 
-Nous constatons tout d'abord que $z_a=(0,6;0;0,7;0)$ est bien une
+Nous constatons tout d'abord que $z_a=(0,6\,;\,0\,;\,0,7\,;\,0)$ est bien une
 solution du sous-modèle on/off. 
 
 Nous devons maintenant montrer que le sous modèle start/end ne possède
-pas de solution avec $z_a=(0,6;0;0,7;0)$. Pour cela, étudions les contraintes du
+pas de solution avec $z_a=(0,6\,;\,0\,;\,0,7\,;\,0)$. Pour cela, étudions les contraintes du
 modèle qui n'impliquent que l'activité $a$:
 
 \begin{align} &x_{a0}+x_{a1}+x_{a2}+x_{a3}= 1 \label{c9}\\
@@ -259,18 +261,18 @@ modèle qui n'impliquent que l'activité $a$:
 
 Clairement, dans le modèle start/end, nous avons les contraintes
 suivantes: $x_{a3}=0$ et $y_{a0}=0$. Donc, les contraintes~(\ref{c17})
-et~(\ref{c20}) impliquent que $x_{a0}=0.6$ et $y_{a3}=0.7$. 
+et~(\ref{c20}) impliquent que $x_{a0}=0,6$ et $y_{a3}=0,7$. 
 
-Or, la contrainte~(\ref{c18}) implique $y_{a1}=0.6+x_{a1}$
-et la contrainte~(\ref{c9}) implique $0.6+x_{a1}+x_{a2}=1 \Rightarrow
-x_{a2}=0.4-x_{a1}$. 
+Or, la contrainte~(\ref{c18}) implique $y_{a1}=0,6+x_{a1}$
+et la contrainte~(\ref{c9}) implique $0,6+x_{a1}+x_{a2}=1 \Rightarrow
+x_{a2}=0,4-x_{a1}$. 
 
 La contrainte~(\ref{c12}) peut donc s'écrire
-$0.6+2x_{a1}+x_{a2}\le 1 \Rightarrow 1+x_{a1}\le 1 \Rightarrow
+$0,6+2x_{a1}+x_{a2}\le 1 \Rightarrow 1+x_{a1}\le 1 \Rightarrow
 x_{a1}=0$. 
 
-Ceci implique $x_{a2}=0.4$ et $y_{a1}=0.6$, et l'on obtient
-une contradiction avec la contrainte~(\ref{c10}) puisque $0+0.6+y_{a2}+0.7>1$.
+Ceci implique $x_{a2}=0,4$ et $y_{a1}=0,6$, et l'on obtient
+une contradiction avec la contrainte~(\ref{c10}) puisque $0+0,6+y_{a2}+0,7>1$.
 
 Donc, nous avons bien montré que le modèle start/end possède en
 théorie de meilleures relaxations que le modèle on/off. Cependant, si
@@ -279,14 +281,14 @@ n'est plus le cas. Ces inégalités sont décrites dans le paragraphe
 suivant.
 
 
-\subsubsection{Inégalités de non-préemption}
+\subsubsection{Inégalités de non préemption}
 
 Dans ce paragraphe, nous présentons un ensemble d'inégalités que nous
 utilisons pour donner une description minimale du polyèdre défini par
 l'ensemble de toutes les affectations possibles des variables binaires
 $z_{ie}$ pour une seule activité. 
 
-L'ensemble d'inégalités, appelées inégalités de non-préemption, est
+L'ensemble d'inégalités, appelées inégalités de non préemption, est
 défini comme suit. Puisque, dans tout ordonnancement réalisable,
 chaque activité doit être exécutée sans préemption, $z_{ie}$ doit
 satisfaire:
@@ -304,7 +306,7 @@ $ZQ_i=\mathrm{conv}\{z_i \in \{0,1\}^{\E^*}\ | \ z_i\text{ satisfait
 \eqref{preem2_CECSP_OO}}\}$. Nous allons montrer le théorème suivant: 
 
 \begin{theo}
-$ZP_i=ZQ_i$
+$ZP_i=ZQ_i$.
 \end{theo}
 
 \begin{proof}
@@ -362,33 +364,35 @@ rayons extrêmes du cône~\eqref{kis4} vérifiant~\eqref{kis5} et les
 inégalités de $ZP_i$.
 
 Pour trouver les rayons extrêmes du cône~\eqref{kis4}, il suffit de
-considérer les trois cas suivant: 
-\paragraph{\boldmath $\mu_0 > 0$.} Quitte à normaliser, nous pouvons suppposer que
-  $\mu_0=1$. Dans ce cas là, pour tout $e \in \E^*$, nous avons
-  $\mu_e \le -1$. En effet, ceci est déduit de~\eqref{kis4} en
-  considérant l'équation pour $u=v=e$. Alors, en prenant
-  $\mu_e=-1,\forall e \in \E^*$, ~\eqref{kis5} implique:
-\[ \sum_{e \in \E^*} - \overline{z}_{i,e} \le -1 \]
-D'après le lemme de Farkas, ceci est une inégalité valide pour
-$ZQ_i$. On peut remarquer que ces inégalités sont équivalentes
+considérer les trois cas suivants: 
+\paragraph{\boldmath $\mu_0 > 0$.} Quitte à normaliser, nous pouvons
+suppposer que $\mu_0=1$. Dans ce cas-là, pour tout $e \in \E^*$, nous
+avons $\mu_e \le -1$. En effet, ceci est déduit de~\eqref{kis4} en
+considérant l'équation pour $u=v=e$. Alors, en prenant
+$\mu_e=-1,\forall e \in \E^*$, ~\eqref{kis5} implique:
+\[ \sum_{e \in \E^*} - \overline{z}_{i,e} \le -1 \] D'après le lemme
+de Farkas, ceci est une inégalité valide pour $ZQ_i$. On peut
+remarquer que ces inégalités sont équivalentes
 à~\eqref{start_CECSP_OO}. 
-\paragraph{\boldmath $\mu_0 = 0$.} Alors, nous avons toujours un cône dont les rayons
-  extrêmes sont les vecteurs unité négatifs de $\mathbb{R}^{\E^*}$. Ces
-  rayons extrêmes nous donnent les inégalités $z_{i,e} \ge 0$ qui sont
-  les contraintes de non-negativité valides pour $ZQ_i$. 
-\paragraph{\boldmath $\mu_0 < 0$.} Quitte à normaliser, nous pouvons suppposer que
-  $\mu_0=-1$. Nous allons prouver que dans ce cas, il existe une
-  bijection entre les points extrêmes du polyèdre $H$ défini par:
+\paragraph{\boldmath $\mu_0 = 0$.} Alors, nous avons toujours un cône
+dont les rayons extrêmes sont les vecteurs unité négatifs de
+$\mathbb{R}^{\E^*}$. Ces rayons extrêmes nous donnent les inégalités
+$z_{i,e} \ge 0$ qui sont les contraintes de non négativité valides
+pour $ZQ_i$.
+\paragraph{\boldmath $\mu_0 < 0$.} Quitte à normaliser, nous pouvons
+supposer que $\mu_0=-1$. Nous allons prouver que dans ce cas, il
+existe une bijection entre les points extrêmes du polyèdre $H$ défini
+par:
   \begin{equation} \sum_{e=u}^{v} \mu_e \le 1 \quad u \le
     v \label{kis6}
-  \end{equation} et les
-  inégalités~\eqref{non_preem_ineg}. Comme~\eqref{kis6}
-  implique~\eqref{kis5}, ceci montrera bien la bijection
-  entre les rayons extrêmes de~\eqref{kis4} vérifiant~\eqref{kis5} et
-  les inégalités~\eqref{non_preem_ineg}.
+  \end{equation} 
+et les inégalités~\eqref{non_preem_ineg}. Comme~\eqref{kis6}
+implique~\eqref{kis5}, ceci montrera bien la bijection entre les
+rayons extrêmes de~\eqref{kis4} vérifiant~\eqref{kis5} et les
+inégalités~\eqref{non_preem_ineg}.
 
   Dans un premier temps, nous montrons que le vecteur formé des
-  coefficients de la partie gauche de chaque inégalités
+  coefficients de la partie gauche de chaque inégalité
   de~\eqref{non_preem_ineg} est une solution de~\eqref{kis6}
   correspondant à un point extrême de $H$. 
 
@@ -433,7 +437,7 @@ $ZQ_i$. On peut remarquer que ces inégalités sont équivalentes
   de~\eqref{non_preem_ineg}. Dans un premier temps, remarquons que la
   matrice formée par les coefficients de la partie gauche
   de~\eqref{kis6} est totalement unimodulaire. En effet, les colonnes
-  de cette matrice peuvent être réordonner de telle sorte que chaque
+  de cette matrice peuvent être réordonnées de telle sorte que chaque
   ligne ne contienne que des $1$ consécutifs. Donc, tout sommet de
   ce polyèdre est un vecteur à valeurs entières. Nous remarquons aussi
   que $\overline{\mu}_e\le 1,\ \forall e \in \E$, puisque $\mu_e \le 1$
@@ -458,7 +462,7 @@ $ZQ_i$. On peut remarquer que ces inégalités sont équivalentes
   \le 1$, nous avons que $\overline{\mu}$ doit contenir au moins deux
   coordonnées $q_1$ et $q_2$ tels que $ u_1 \le q_1 \le q_2 \le v_1$
   avec $\overline{\mu}_{q_1}=\overline{\mu}_{q_2}=1$ et
-  $\overline{\mu}_{e}=0$ pour $q_1 < e < q_2$. Mais, dans ce cas là,
+  $\overline{\mu}_{e}=0$ pour $q_1 < e < q_2$. Mais, dans ce cas-là,
   $\overline{\mu}$ violerait l'inégalité $\sum_{e=q_1}^{q_2} \mu_e \le
   1$ et ceci est une contradiction. Donc, la première coordonnée non
   nulle de $\overline{\mu}$ doit 
@@ -467,7 +471,7 @@ $ZQ_i$. On peut remarquer que ces inégalités sont équivalentes
   La seconde coordonnée non nulle, disons
   $u_2$, ne peut prendre la valeur $1$ par le même raisonnement que
   précédemment. Donc, cette valeur doit être négative et
-  entière. Mais, dans ce cas là, nous pouvons suivre la même
+  entière. Mais, dans ce cas-là, nous pouvons suivre la même
   argumentation que précédemment pour montrer que $u_2$ doit
   apparaître dans une des inégalités de $\ell \in L$ et aboutir à la même
   contradiction que précédemment. Donc, la seconde coordonnée non nulle
@@ -480,14 +484,14 @@ $ZQ_i$. On peut remarquer que ces inégalités sont équivalentes
 coefficients $1/-1$ présente dans~\eqref{non_preem_ineg}.
 \end{proof}
 
-Nous avons donc définit un ensemble d'inégalités permettant une
+Nous avons donc défini un ensemble d'inégalités permettant une
 description complète du polyèdre formé par les vecteurs $z_i$ solution
 du modèle on/off. Cependant, nous ne pouvons ajouter directement ces
 inégalités au modèle car leur nombre est exponentiel. Dans le
 chapitre~\ref{sec:expe}, nous présenterons un algorithme de 
 séparation polynomial qui nous permettra de définir un algorithme de
 branch-and-cut pour le \CECSP~et le \RCPSP~(rappelons que les
-résultats si dessus sont valides dans le cas du \RCPSP~en posant
+résultats ci-dessus sont valides dans le cas du \RCPSP~en posant
 $\E^*=\{1,\dots,n\}$). 
 
 Le paragraphe suivant présente d'autres inégalités valides pour le
@@ -495,7 +499,7 @@ Le paragraphe suivant présente d'autres inégalités valides pour le
 
 \subsubsection{Autres inégalités valides}
 
-Dans ce paragraphe nous décrivons plusieurs ensembles d'inégalités
+Dans ce paragraphe, nous décrivons plusieurs ensembles d'inégalités
 valides pour le \RCPSP~ et le \CECSP. Dans la suite, nous considérons
 qu'un événement correspond à une et une seule date de début/fin,
 i.e. $\forall e \in \Em[1]$, il existe une et une seule activité $i$
@@ -505,7 +509,7 @@ supposition ne change pas la véracité de ce qui précède.
 
 \paragraph{Séparation maximale entre deux événements} 
 
-Les inégalités définies dans cette section sont des inégalités bornant
+Les inégalités définies dans ce paragraphe sont des inégalités bornant
 supérieurement la valeur de $t_{e+1}- t_e, \forall e\in \Em$. Pour
 définir ces inégalités, nous étudions les fenêtres de temps de chaque
 date de début et de fin d'une activité, i.e. $[\ES,\LS]$ et
@@ -514,7 +518,7 @@ que, dans chacun de ces intervalles, un événement doit forcément avoir
 lieu. De ce fait, nous savons qu'il y a au moins deux événements
 consécutifs dans l'union de deux fenêtres de temps consécutives. 
 
-Soit ${\cal D}$ l'ensemble de toutes les fenêtre de temps, i.e. ${\cal
+Soit ${\cal D}$ l'ensemble de toutes les fenêtres de temps, i.e. ${\cal
 D}=\{[\ES,\LS] , [\EE,\LE],\ \forall i \in \A\}$. Nous commençons par
 trier les intervalles de $\cal D$ suivant la règle suivante: 
 $[a,b] \le [c,d]
@@ -568,14 +572,14 @@ Alors, nous avons l'ensemble de contraintes suivantes:
 \item $t_6-t_5 \le \LE[3]-\EE[3]$
 \end{itemize}
 
+\end{ex}
+
 Notons aussi que l'ensemble d'inégalités
 $\underline{{\cal D}_e} \le t_e \le \overline{{\cal D}_e}$ peut ne pas
-être valides. En effet, ici $t_6$ peut correspondre à la fin de
+être valide. En effet, ici $t_6$ peut correspondre à la fin de
 l'activité $3$ et $t_5$ à la fin de l'activité $2$, alors que
 ${\cal D}_5=[\EE[3],\LE[3]] \le [\EE[2],\LE[2]]={\cal D}_6$. On aurait
 alors $\underline{{\cal D}_6} \le t_5 \le \overline{{\cal D}_6}$.
-\end{ex}
-
 
 Ces contraintes peuvent être ajoutées au modèle on/off ou utilisées
 comme borne supérieure sur la valeur de $\bmin(t_{e+}-t_e)$
@@ -614,7 +618,7 @@ propriété suivante:
 \end{equation}
 
 \begin{ex} 
-Considérons les intervalles définie dans
+Considérons les intervalles définis dans
 l'exemple~\ref{ex:evt_sep}. Alors, nous pouvons déduire l'ensemble de
 contraintes suivantes:
 
@@ -641,10 +645,10 @@ et\eqref{twy2_CECSP_OO}. Les contraintes s'écrivent alors:
    A}
 \end{align*}
 
-Pour le \RCPSP, $t_n$ correspond comme borne supérieure sur la durée
+Pour le \RCPSP, $t_n$ correspond à borne supérieure sur la durée
 totale du projet, i.e. sur $T$.
 
-\paragraph{Inégalités valides dérivées du problème de sac à dos}
+\paragraph{Inégalités valides dérivées du problème de sac-à-dos}
 
 Le rendement minimal de chaque activité pouvant être positif, nous
 pouvons considérer les contraintes de type sac-à-dos suivantes pour
@@ -659,11 +663,11 @@ où $\A^+$ est le sous-ensemble d'activités avec $\bmin > 0$.
 
 Les inégalités de clique permettent de modéliser le fait que plusieurs
 variables binaires $z_{ie}$ ne peuvent prendre la valeur $1$
-simultanément. Ces inégalités, déjà été établies dans le cas du
+simultanément. Ces inégalités, déjà établies dans le cas du
 \RCPSP~\cite{CAVT_clique}, correspondent aux sous-ensembles
-disjonctifs d'activités. Elles sont facilement adaptable au cas du
-\CECSP et sont définies de la manière suivante. Soit $C$ un ensemble
-minimal d'activité ne pouvant s'exécuter en parallèle, i.e. telles que
+disjonctifs d'activités. Elles sont facilement adaptables au cas du
+\CECSP~et sont définies de la manière suivante. Soit $C$ un ensemble
+minimal d'activités ne pouvant s'exécuter en parallèle, i.e. telles que
 $\sum_{i \in C} \bmin > B$, alors l'ensemble d'inégalités suivantes
 est valide pour le \CECSP: 
 \begin{equation} 
@@ -672,4 +676,5 @@ est valide pour le \CECSP:
 
 
 Différentes techniques permettant l'intégration des inégalités
-ci-dessus seront présentées et comparées dans le Chapitre~\ref{sec:expe}.
+ci-dessus seront présentées et comparées dans le
+chapitre~\ref{sec:expe}.

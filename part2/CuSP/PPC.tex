@@ -122,11 +122,11 @@ Classiquement, une méthode de séparation, ou de branchement, consiste
 retirer cette valeur du domaine de la variable dans le second
 sous-problème. On va alors, à l'aide d'un parcours en profondeur, crée
 un premier tuple, i.e. une solution candidate, qui pourra ainsi être
-évalué. SI le tuple satisfait toutes les contraintes du problème,
+évalué. Si le tuple satisfait toutes les contraintes du problème,
 alors c'est une solution et l'algorithme peut s'arrêter. Dans le cas 
 contraire, on évaluera le second-sous problème crée lors de la
 dernière séparation. Un tel parcours est décrit dans
-l'exemple~\ref{ex:brachement}.
+l'exemple~\ref{ex:branchement}.
 
 Dans le cas de CSP comprenant des variables continues, l'énumération
 de tous les domaines des variables n'est pas possible. Une première
@@ -138,40 +138,330 @@ lieu, à chaque étape de l'algorithme de séparation, d'instancier une
 variable à une valeur de son domaine, nous séparons le domaine de
 cette variable en deux (ou plusieurs) sous-domaines.
 
-Plusieurs techniques de séparation du problème en sous-problème, aussi
-appelées techniques de {\it branchement}, existent. Parmi les plus
-classiques on trouve:
-\begin{itemize}
-\item l'affectation d'une valeur du domaine à une variable pour la
-  première branche et la suppression de cette valeur du domaine pour
-  la seconde branche. L'arbre de recherche est alors un arbre binaire.
-\item la séparation du domaine en plusieurs sous-domaine, e.g. si,
-dans un problème, une variable $x$ a le domaine $[0,6]$ alors on peut
-crée $3$ sous-problèmes où $x$ a pour domaine respectif $[0,2[$,
-$[2,4[$ et $[4,6[$. 
-\end{itemize}
-
 \begin{ex}
-Soient $3$ variables, $x,\ y$ et $z$, de domaine
-respectifs: $\{1,2\},\ \{1,2\},\ \{1,2,3\}$. Nous considérons la
-contrainte AllDifferent($x,y,z$): chaque variable doit prendre une
-valeur différente.   
+  \label{ex:branchement}
+  Soient $3$ variables, $x_0,\ x_1$ et $x_2$, de domaine
+  respectifs: $\{1,2\},\ \{1,2\},\ \{1,2,3\}$. Nous considérons les
+  contraintes suivantes: $c_0: x_0<x_1$ et $c_1 : x_1 <x_2$.   
   \begin{figure}[!htb]
     \centering
     \begin{tikzpicture}
-      \node (O) at (0,0) {};    
+      [level 1/.style={sibling distance=7cm,level distance=1.8cm},
+      level 2/.style={sibling distance=3.5cm,level distance=1.8cm},
+      level 3/.style={sibling distance=2.5cm,level distance=1.8cm},
+      level 4/.style={sibling distance=1.5cm,level distance=1.8cm},
+      every node/.style={color=black},%
+      dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,%
+        outer sep=-1pt},
+      cross/.style={path picture={ 
+          \draw
+          (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);
+        }}]
+
+      \node[tree] {} %racine
+      child{ node [tree]{}  %l1
+        child{ node[tree] {}%l2
+          child{ node[leaf,cross] {} %l3
+         edge from parent node[sloped,above]{$x_2=1$}}
+          child{ node[tree] {} %l3
+            child{ node[leaf,cross] {}
+              edge from parent node[sloped,above]{$x_2=2$}}
+            child{ node[leaf,cross] {}
+              edge from parent node[sloped,above]{$x_2=3$}}
+            edge from parent node[sloped,above]{$x_2\neq 1$}
+          }
+          edge from parent node[sloped,above]{$x_1=1$} }
+        child{ node[tree] {} %l2
+          child{ node[leaf,cross] {}%l3
+            edge from parent node[sloped,above]{$x_2=1$}
+          }
+          child{ node[tree] {}%l3
+            child{ node[leaf,cross] {}
+              edge from parent node[sloped,above]{$x_2=2$}
+            }
+            child{ node[sol] {$\checkmark$}
+              edge from parent node[sloped,above]{$x_2=3$}
+            }          
+            edge from parent node[sloped,above]{$x_2 \neq 1$}}
+          edge from parent node[sloped,above]{$x_1=2$} 
+        }
+        % etc.
+        edge from parent node[sloped,above] {$x_0=1$}
+      }
+      child{ node [tree]{}  %l1
+        child{ node[tree] {}%l2
+          child{ node[leaf,cross] {} %l3
+         edge from parent node[sloped,above]{$x_2=1$}}
+          child{ node[tree] {} %l3
+            child{ node[leaf,cross] {}
+              edge from parent node[sloped,above]{$x_2=2$}}
+            child{ node[leaf,cross] {}
+              edge from parent node[sloped,above]{$x_2=3$}}
+            edge from parent node[sloped,above]{$x_2\neq 1$}
+          }
+          edge from parent node[sloped,above]{$x_1=1$} }
+        child{ node[tree] {} %l2
+          child{ node[leaf,cross] {}%l3
+            edge from parent node[sloped,above]{$x_2=1$}
+          }
+          child{ node[tree] {}%l3
+            child{ node[leaf,cross] {}
+              edge from parent node[sloped,above]{$x_2=2$}
+            }
+            child{ node[leaf,cross] {}
+              edge from parent node[sloped,above]{$x_2=3$}
+            }          
+            edge from parent node[sloped,above]{$x_2 \neq 1$}}
+          edge from parent node[sloped,above]{$x_1=2$} 
+        }
+        edge from parent node[sloped,above]{$x_0=2$}
+        % etc.
+      };
     \end{tikzpicture}
     \caption{Exemple de parcours d'un arbre de recherche}
     \label{fig:ex_tree}
   \end{figure}
+
+La figure~\ref{fig:ex_tree} montre un parcours complet de l'espace de
+recherche. Les noeuds internes de l'arbre (en gris) sont les noeuds
+pour lesquels toutes les variables ne sont pas instanciées. Les
+feuilles de l'arbre correspondent bien à des instanciations complètes
+des variables. Parmi celles-ci, celles marquées d'une croix sont celles
+qui ne satisfont pas la contrainte, tandis que celle représentée par
+un noeud carré correspond à une solution réalisable du problème.
 \end{ex}
 
-%TODO : heuristique
 Ces combinaisons peuvent être générées de différentes manière et donc
-testées dans des ordres différents. 
+testées dans des ordres différents. Cet ordre peut avoir une influence
+déterminante dans le processus de résolution d'un problème. Pour
+définir cet ordre, on utilise des {\it heuristiques} de choix de
+variable et de valeur. Une {\it heuristique de choix de
+  variable} détermine la variable que l'on va instancier
+prioritairement. Une {\it heuristique de choix de
+  valeur} détermine la ou les valeurs à affecter en priorité à
+cette variable. 
 
+Nous donnons ci-après des exemples de telles heuristiques. 
+\begin{description}
+\item[Heuristiques de choix de variable]~
 
+  \begin{itemize}
+  \item instanciation des variables dans l'ordre lexicographique,
+    c'est l'heuristique utilisée dans la figure~\ref{fig:ex_tree};
+  \item instancitaion des variables suivant un ordre aléatoire;
+  \item instanciation de la variable de plus petit domaine...
+  \end{itemize}
+\item[Heuristiques de choix de valeur] ~
 
-\subsection{Filtrage et propagation}
+  \begin{itemize}
+  \item sélectionner la valeur minimale (resp. maximale) du domaine de
+    la variable courante, c'est l'heuristique utilisée dans la
+    figure~\ref{fig:ex_tree}; 
+  \item sélectionner une valeur aléatoire dans le domaine de la
+    variable courante;
+  \item dans le cas de variables continues, on peut chosir de séparer
+    l'intervalle en deux ou plus de morceaux et le séparer au milieu,
+    au tiers...
+  \end{itemize}
+\end{description}
+Dans la suite du manuscrit, nous présenterons d'autres heuristiques
+que nous appliquerons dans notre processus de recherche. 
+
+Même si plusieurs heuristiques efficaces existent, on ne peut être sûr
+de ne pas devoir explorer tout l'espace de recherche pour trouver une
+solution. Comme il n'est pas concevable, en pratique, de devoir
+explorer un tel espace, des techniques permettant de réduire l'arbre
+de recherche ont donc été mises en place. Les techniques la plus
+célèbres permettant une telle réduction sont les algorithmes de
+filtrage. Ces algorithmes sont décrits dans la section suivante.
+
+\subsection{Détection d'incohérence et Filtrage}
 \label{sec:PPC_propag}
 
+Afin de réduire l'espace de recherche en programmation par contraintes,
+il est indispensable de mettre en place des techniques permettant de
+vérifier la validité d'une solution afin de ne pas considérer un tuple
+comme étant cohérent s'il ne l'est pas. Ces {\it algorithmes de
+détection d'incohérences}, aussi appelés checker, permettent de
+refuser une instanciation des variables si cette dernière n'est pas
+cohérente. Ils peuvent aussi être étendus de manière à détecter une
+incohérence en cours de recherche si aucune solution n'est contenu
+dans le sous-arbre courant.
+\begin{ex}
+\label{ex:ex_checker}  Soit l'instance définie dans
+l'exemple~\ref{ex:branchement}.    
+  \begin{figure}[!htb]
+
+    \centering
+    \begin{tikzpicture}
+      [level 1/.style={sibling distance=7cm,level distance=1.8cm},
+      level 2/.style={sibling distance=3.5cm,level distance=1.8cm},
+      level 3/.style={sibling distance=2.5cm,level distance=1.8cm},
+      level 4/.style={sibling distance=1.5cm,level distance=1.8cm},
+      every node/.style={color=black},%
+      dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,%
+        outer sep=-1pt},
+      cross/.style={path picture={ 
+          \draw
+          (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);
+        }}]
+
+      \node[tree] {} %racine
+      child{ node [tree]{}  %l1
+        child{ node[tree,fill=black] {}%l2
+          edge from parent node[sloped,above]{$x_1=1$}}
+        child{ node[tree] {} %l2
+          child{ node[leaf,cross] {}%l3
+            edge from parent node[sloped,above]{$x_2=1$}
+          }
+          child{ node[tree] {}%l3
+            child{ node[leaf,cross] {}
+              edge from parent node[sloped,above]{$x_2=2$}
+            }
+            child{ node[sol] {$\checkmark$}
+              edge from parent node[sloped,above]{$x_2=3$}
+            }          
+            edge from parent node[sloped,above]{$x_2 \neq 1$}}
+          edge from parent node[sloped,above]{$x_1=2$} 
+        }
+        % etc.
+        edge from parent node[sloped,above] {$x_0=1$}
+      }
+      child{ node [tree]{}  %l1
+        child{ node[tree,fill=black] {}%l2
+          edge from parent node[sloped,above]{$x_1=1$} }
+        child{ node[tree,fill=black] {} %l2
+          edge from parent node[sloped,above]{$x_1=2$} 
+        }
+        edge from parent node[sloped,above]{$x_0=2$}
+        % etc.
+      };
+    \end{tikzpicture}
+    \caption{Exemple de parcours d'un arbre de recherche avec
+      détection d'incohérences}
+    \label{fig:ex_tree_check}
+  \end{figure}
+
+La figure~\ref{fig:ex_tree_check} montre un parcours de l'espace de
+recherche si l'algorithme utilisé est muni d'un algorithme de
+détection d'incohérence. Les noeuds noirs correspondent à des noeuds
+pour lesquels aucune solution ne peut exister dans les sous-arbres
+ayant un de ces noeuds pour racine. En effet, l'instanciation
+partielle des variables faites à ce niveau est déjà incohérente avec
+les contraintes $c_0$ et $c_1$.
+\end{ex}
+
+
+Une deuxième technique permettant la réduction de l'espace de
+recherche est l'utilisation d'algortihme de {\it filtrage}. Un
+algorithme de filtrage est défini pour chaque contrainte et cet
+algorithme consiste à détecter et à retirer des domaines
+des variables, des valeurs qui ne sont pas cohérentes avec la
+contrainte.
+
+ La mise en place de techniques de filtrage performantes,
+i.e. qui retirent un maximum de valeurs du domaine des variables,
+jouent un rôle important dans la résolution de problème en
+programmation par contraintes. Un exemple simple de filtrage est
+présenté dans l'exemple~\ref{ex:ex_filtrage}.
+
+\begin{ex}
+\label{ex:ex_filtrage}  Soit l'instance définie dans
+l'exemple~\ref{ex:branchement}.       
+  \begin{figure}[!htb]
+
+    \centering
+    \begin{tikzpicture}
+      [level 1/.style={sibling distance=7cm,level distance=1.8cm},
+      level 2/.style={sibling distance=3.5cm,level distance=1.8cm},
+      level 3/.style={sibling distance=2.5cm,level distance=1.8cm},
+      level 4/.style={sibling distance=1.5cm,level distance=1.8cm},
+      every node/.style={color=black},%
+      dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,%
+        outer sep=-1pt},
+      cross/.style={path picture={ 
+          \draw
+          (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);
+        }}]
+
+      \node[tree] {} %racine
+      child{ node [tree]{}  %l1
+        child{ node[] {}%l2
+          edge from parent[white]
+          node[rectangle, draw,above left=1cm,text width=2.6cm,align=center] (exp1) {la valeur $1$ est supprimée des
+            domaines de $x_1$ et $x_2$} {};
+          \draw[->] (exp1.east) -- (\tikzparentnode.west);}
+        child{ node[tree] {} %l2
+          child{ node[] {}%l3
+            edge from parent[white] {}
+          }
+          child{ node[tree] {}%l3
+            child{ node[] {}
+              edge from parent[white] {} 
+            }
+            child{ node[sol] {$\checkmark$}
+              edge from parent node[sloped,above]{$x_2=3$}
+            }          
+            edge from parent node[sloped,above]{$x_2 \neq 1$}}
+          edge from parent node[sloped,above]{$x_1=2$} 
+        }
+        % etc.
+        edge from parent node[sloped,above] {$x_0=1$} 
+      }
+      child{ node [tree]{}  %l1
+        child{ node[] {}
+          edge from parent[white]
+          node[rectangle, draw,above right=0.75cm and 2.55cm,text
+          width=2.6cm,align=center] (exp2) {les valeurs $1$ et $2$ sont supprimées du
+            domaine de  $x_1$} {};
+          \draw[->] (exp2.west) -- (\tikzparentnode.east);}
+        child{ node[] {}
+          edge from parent[white]}
+        edge from parent node[sloped,above]{$x_0=2$}
+        % etc.
+      };
+    \end{tikzpicture}
+    \caption{Exemple de parcours d'un arbre de recherche avec fitrage
+      des domaines}
+    \label{fig:ex_tree_filtrage}
+  \end{figure}
+
+La figure~\ref{fig:ex_tree_filtrage} montre un parcours de l'espace de
+recherche si l'algorithme utilisé est muni d'un algorithme de filtrage
+des domaines. Les contraintes sont considérées une par une.  A
+la racine, on ne peut rien déduire, mais une fois que $x_0$ est
+instancié à $1$, alors nous pouvons retirer cette valeur du domaine
+des autres variables car, pour satisfaire la contrainte $c_0$ et
+$c_1$, les variables $x_1$ et $x_2$ doivent être strictement
+supérieure à $1$. Puis, on instancie $x_1$ à $2$ et on supprime cette
+valeur du domaine de $x_2$. La seule valeur possible pour $x_2$ est
+alors $3$ et on obtient une solution.
+
+L'autre cas correspond à l'instanciation de $x_0$ à $2$. Dans ce cas
+là, les valeurs $1$ et $2$ sont rétirées du domaines de $x_1$ qui
+devient vide. Donc il n'existe pas de solution avec $x_0=2$.
+\end{ex}
+
+Dans l'exemple~\ref{ex:ex_filtrage}, nous pouvons remarquer que si on
+avaient considéré simultanément les $2$ contraintes, on
+aurait pu déduire la solution au noeud racine. 
+
+Quand les contraintes sont binaires, i.e. elles ne concernent que deux
+variables à la fois, on peut représenter schématiquement le CSP par un
+graphe. Dans ce graphe, chaque noeud correspond à une variable et
+chaque arc à une contraintes. Si on vérifie la cohérence des
+contraintes une par une, on parle alors de cohérence d'arcs. Cette
+notion peut être généralisée à la considération simultanée de
+plusieurs contraintes mais aussi à des contraintes contenant plus de
+deux variables.
+
+Enfin, pour certains problèmes, il n'est pas possible de retirer
+toutes les valeurs incohérentes du domaines des variables en temps
+raisonnable. En effet, il peut arriver que les problèmes sous-jacents
+des contraintes que l'on ait amenée à résoudre soit NP-complet. Dans
+ce cas là, assurer de retirer les valeurs incohérentes signifie que
+les valeurs restantes sont cohérentes, donc qu'il existe une
+solution, ce qui ne peut être fait en temps raisonnable puisque le
+problèmes est NP-complet.  Dans ce cas, il devient crucial de mettre
+en place des algorithmes qui s'exécutent en temps raisonnable mais qui
+n'assure pas un filtrage total du domaine des variables. 
