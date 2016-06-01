@@ -262,7 +262,9 @@ chaque activité $i \in \A$ telle que:
 \item la capacité de la ressource n'est excédée à aucun moment du
   projet, i.e.
   \begin{equation} \forall t \in \H,\sum_{\substack{i\in \A\\ t \in
-        [st_i,st_i+p_i]}} r_{i} \le  R\end{equation}
+        [st_i,st_i+p_i]}} r_{i} \le  R
+\label{eq:CUSP_res}
+\end{equation}
   où $\H=\{0,\dots,T\}$ est l'horizon de temps du projet et $T=\max_{i
     \in \A} \LE$.
 \item la fenêtre de temps de chaque activité est respectée, i.e. 

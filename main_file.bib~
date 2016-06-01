@@ -257,7 +257,7 @@ url="http://dx.doi.org/10.1023/A:1018995000688"
 }
 
 @book{Blaz,
- author = { J. B{\l}a{\.z}ewicz and K. H. Ecker and E. Pesch and
+ author = { J. B{\l}a{\.z}ewicz and K. H. Ecker and E. Pesch and 
 G. Schmidt and J. W{\c e}glarz},
  title = {Scheduling Computer and Manufacturing Processes},
  year = {2001},
@@ -294,6 +294,21 @@ url="http://dx.doi.org/10.1007/s10589-010-9343-5"
 }
 
 
+@Inbook{GHS,
+author="Gay, Steven
+and Hartert, Renaud
+and Schaus, Pierre",
+chapter="Simple and Scalable Time-Table Filtering for the Cumulative Constraint",
+title="Principles and Practice of Constraint Programming: 21st International Conference, CP 2015, Cork, Ireland, August 31 -- September 4, 2015, Proceedings",
+year="2015",
+publisher="Springer International Publishing",
+address="Cham",
+pages="149--157",
+isbn="978-3-319-23219-5",
+doi="10.1007/978-3-319-23219-5_11",
+url="http://dx.doi.org/10.1007/978-3-319-23219-5_11"
+}
+
 
 @incollection{BP,
   title={A continuous multi-resources cumulative constraint with positive-negative resource consumption-production},
@@ -303,6 +318,52 @@ url="http://dx.doi.org/10.1007/s10589-010-9343-5"
   year={2007},
   publisher={Springer Berlin Heidelberg}
 }
+
+@Inbook{BC,
+author="Beldiceanu, Nicolas
+and Carlsson, Mats",
+chapter="A New Multi-resource cumulatives Constraint with Negative Heights",
+title="Principles and Practice of Constraint Programming - CP 2002: 8th International Conference, CP 2002 Ithaca, NY, USA, September 9--13, 2002 Proceedings",
+year="2002",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="63--79",
+isbn="978-3-540-46135-7",
+doi="10.1007/3-540-46135-3_5",
+url="http://dx.doi.org/10.1007/3-540-46135-3_5"
+}
+
+
+@Inbook{LBC,
+author="Letort, Arnaud
+and Beldiceanu, Nicolas
+and Carlsson, Mats",
+chapter="A Scalable Sweep Algorithm for the cumulative Constraint",
+title="Principles and Practice of Constraint Programming: 18th International Conference, CP 2012, Qu{\'e}bec City, QC, Canada, October 8-12, 2012. Proceedings",
+year="2012",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="439--454",
+isbn="978-3-642-33558-7",
+doi="10.1007/978-3-642-33558-7_33",
+url="http://dx.doi.org/10.1007/978-3-642-33558-7_33"
+}
+
+
+@Inbook{OQ,
+author="Ouellet, Pierre
+and Quimper, Claude-Guy",
+chapter="Time-Table Extended-Edge-Finding for the Cumulative Constraint",
+title="Principles and Practice of Constraint Programming: 19th International Conference, CP 2013, Uppsala, Sweden, September 16-20, 2013. Proceedings",
+year="2013",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="562--577",
+isbn="978-3-642-40627-0",
+doi="10.1007/978-3-642-40627-0_42",
+url="http://dx.doi.org/10.1007/978-3-642-40627-0_42"
+}
+
 
 @Inbook{V09,
 author="Vil{\'i}m, Petr",
@@ -454,6 +515,49 @@ keywords = "Variable resource usage",
 keywords = "Work content",
 keywords = "Priority-rule method "
 }
+
+@Inbook{VilimEF,
+author="Vil{\'i}m, Petr",
+chapter="Edge Finding Filtering Algorithm for Discrete Cumulative Resources in {$O(kn{\,}\log{n})$}",
+title="Principles and Practice of Constraint Programming - CP 2009: 15th International Conference, CP 2009 Lisbon, Portugal, September 20-24, 2009 Proceedings",
+year="2009",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="802--816",
+isbn="978-3-642-04244-7",
+doi="10.1007/978-3-642-04244-7_62",
+url="http://dx.doi.org/10.1007/978-3-642-04244-7_62"
+}
+
+
+@Inbook{DHP,
+author="Dorndorf, Ulrich
+and Huy, To{\`a}n Phan
+and Pesch, Erwin",
+chapter="A Survey of Interval Capacity Consistency Tests for Time- and Resource-Constrained Scheduling",
+title="Project Scheduling: Recent Models, Algorithms and Applications",
+year="1999",
+publisher="Springer US",
+address="Boston, MA",
+pages="213--238",
+isbn="978-1-4615-5533-9",
+doi="10.1007/978-1-4615-5533-9_10",
+url="http://dx.doi.org/10.1007/978-1-4615-5533-9_10"
+}
+
+
+@book{BLPN,
+   title = "Constraint-based scheduling : applying constraint programming to scheduling problems",
+   author = "Baptiste, Philippe and Le Pape, Claude and Nuijten, Wim",
+   series = "International series in operations research \& management science",
+   publisher = "Kluwer Academic",
+   address = "Boston",
+   url = "http://opac.inria.fr/record=b1099395",
+   isbn = "0-7923-7408-8",
+   note = "Réimpression : 2003",
+   year = 2001
+}
+
 
 @Article{BD,
 author="Baptiste, Philippe
