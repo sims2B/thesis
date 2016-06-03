@@ -424,19 +424,20 @@ Cette propriété nous permet d'améliorer les bornes des variables de
 début d'activité selon la règle suivante:
 \begin{reg}
   Soient $i,\ j \in \A$, $i\neq j$ telles que $b_i+b_j > R$ et $\LS
-  \le \EE[j]$. Alors la date de début au plus tôt de l'activité peut
+  <\EE[j]$. Alors la date de début au plus tôt de l'activité peut
   être ajustée et on a: $ \ES[j] \ge \EE$. 
 \end{reg}
 
 \begin{ex}
+\label{ex:disj_CUSP}
 Soient $i$ et $j$ les deux activités suivantes: 
 \begin{center}
-  \begin{tabular}{|P{1cm}P{1cm}P{1cm}P{1cm}|}
+  \begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}|}
     \hline
-    \ES & \LE & p_i & b_i  \\
+    act & \ES & \LE & p_i & b_i  \\
     \hline
-    1 & 14 & 8 & 2 \\
-    1 & 14 & 8 & 2 \\    
+   i & 2 & 11 & 4 & 2 \\
+   j & 1 & 20 & 7 & 2 \\    
     \hline
   \end{tabular}
 \end{center}
@@ -444,34 +445,109 @@ Soient $i$ et $j$ les deux activités suivantes:
   \begin{figure}[htb!]
     \centering
     \begin{tikzpicture}
-      [yscale=0.45,xscale=0.6]
+     \begin{scope} [yscale=0.45,xscale=0.4]
       \node (O) at (0,0) {};
-      \foreach \i in {0,2,...,13} {
-        \draw (\i-1,0) -- (\i-1,-0.1) node[below] {$\i$};
+      \foreach \i in {0,5,...,10} {
+        \draw (\i,0) -- (\i,-0.1) node[below] {\small $\i$};
       }
+      \fill[gray!50] (2,0) rectangle (11,2.4);
+      \fill[gray!50] (1,2.6) rectangle (14,5);
       
-      \fill[draw=black,gray!50] (0,0) rectangle (8,3) node[midway,above,color=black]
-      {$st_i=\ES$};
+      \draw[fill=white] (7,0.2) rectangle (11,2.2) node[midway]
+      {$i$};
+      \draw[fill=white] (1,2.8) rectangle (8,4.8) node[midway]
+      {$j$};
+      \draw[white, pattern=north west lines] (7,0) rectangle (8,5.5);
 
-      \draw[->] (-1,0) -- (12.5,0);
-      \draw[dashed] (-1,5) -- (12.5,5);
-      \draw[->] (-1,0) -- (-1,3.5) node[left] {$R=3$};
-      \draw[very thick=3pt] (0,-0.1) node[below=0.4cm] {$\ES$}-- (0,5.5);
-      \draw[very thick=3pt] (5,-0.1) node[below=0.3cm] {$\ES^{'}$}-- (5,5.5);
-      \draw[->] (0.8,-1.8) -- (4.2,-1.8);
-    \end{tikzpicture}
-    \caption{Raisonnement disjonctif}
-    \label{fig:disj_CUSP}
-  \end{figure}
+      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (0,5.5) ;
+      \draw (0,3) node[left] {$R=3$};
+      \draw[densely dotted] (1,-0.1) -- (1,5.5) node[above] {$\ES[j]$};
+      \draw[densely dotted] (8,-0.1) -- (8,5.5) node[above] {$\EE[j]$};
+      \draw[densely dotted] (2,-0.1)  node[below] {$\ES$}-- (2,5.5);
+      \draw[densely dotted] (6,-0.1 ) node[below=0.4cm] {$\EE$}-- (6,5.5) ;
+      \draw[densely dotted] (7,-0.1) node[below] {$\LS$} -- (7,5.5) ;
+      \draw[densely dotted] (11,-0.1) node[below right] {$\LE$} -- (11,5.5) ;
+      % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};
+      % \draw[->] (1.8,5.8) -- (5.2,5.8);
+    \end{scope}     
+    \begin{scope} [yscale=0.45,xscale=0.4,xshift=20cm]
+      \node (O) at (0,0) {};
+      \foreach \i in {0,5,...,10} {
+        \draw (\i,0) -- (\i,-0.1) node[below] {\small $\i$};
+      }
+      \fill[gray!50] (2,0) rectangle (11,2.4);
+      \fill[gray!50] (6,2.6) rectangle (14,5);
+
+      
+      \draw[fill=white] (2,0.2) rectangle (6,2.2) node[midway]
+      {$i$};
+      \draw[fill=white] (6,2.8) rectangle (13,4.8) node[midway]
+      {$j$};
+
+      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (0,5.5) ;
+      \draw (0,3) node[left] {$R=3$};
+      \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]$};
+      \draw[densely dotted] (13,-0.1) -- (13,5.5) node[above] {$\EE[j]$};
+      \draw[densely dotted] (2,-0.1)  node[below] {$\ES$}-- (2,5.5);
+      \draw[densely dotted] (6,-0.1 ) node[below=0.4cm] {$\EE$}-- (6,5.5) ;
+      \draw[densely dotted] (7,-0.1) node[below] {$\LS$} -- (7,5.5) ;
+      \draw[densely dotted] (11,-0.1) node[below right] {$\LE$} -- (11,5.5) ;
+      % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};
+      % \draw[->] (1.8,5.8) -- (5.2,5.8);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Raisonnement disjonctif}
+  \label{fig:disj_CUSP}
+\end{figure}
+Dans l'exemple ci-dessus, nous avons $b_i+b_j=4 > 3$. Donc $i$ et $j$
+ne peuvent s'exécuter en parallèle. Comme $\EE[j] = 8 > 7=\LS$, $i$
+doit forcément être exécuter avant $j$. En effet, $i$ doit forcément
+démarrer avant $\LS=7$ et $j$ ne peut finir avant $\EE=8$. Donc $j$ ne
+peut commencer avant $\EE=6$.
 \end{ex}
 
+L'exemple~\ref{ex:disj_CUSP} montre que, dans certains cas, le
+raisonnement disjonctif est plus fort que le Time-Table. En effet,
+dans cette exemple, aucune des activités ne possèdent de partie
+obligatoire. Aucun ajustement n'est donc détecté par la
+règle~\ref{reg:TT}. 
 
+{\`A}l'inverse, dans certains cas, le raisonnement Time-Table va
+procéder à plus d'ajustements que le raisonnement disjonctif. En
+effet, le raisonnement disjonctif présenté ici ne raisonne que sur des
+paires d'activités tandis que le Time-Table est capable de détecter
+des ajustements déduits de n-uplets d'activités. Il faut cependant que
+les activités possèdent une partie obligatoire.
 
+Dans le paragraphe~\ref{sec:mix_CUSP}, nous montrerons comme il est
+possible de coupler ces deux raisonnements pour en obtenir un nouveau,
+le Time-Table disjonctif. 
+
+Le paragraphe suivant est dédié aux règles de filtrage utilisant le
+concept d'{\it énergie}. 
+ 
 \subsubsection{Règles de filtrage énergétiques}
- et le raisonnement
-Edge-Finding~\cite{VilimEF}
+ 
+Parmi les règles de filtrage utilisant le concept d'énergie on
+retrouve le Edge-Finding\cite{VilimEF,theseNuijten}, le raisonnement
+énergétique~\cite{RELopez} ou encore les activités
+élastiques~\cite{BLPN}.  Nous présenterons en détail le second cas,
+tandis que les autres cas seront brièvement discutés. La raison
+principale étant que nous adapterons le raisonnement énergétique dans
+le cas du \CECSP.
+
+Le raisonnement Edge-Finding est un raisonnement s'appliquant sur un
+sous-ensemble d'activités $\Omega \subseteq \A$. Le but étant de
+décider si une activité $i$ doit commencer avant (resp. finir après)
+$\Omega$. L'énergie d'une activité $i$ représente, dans ce cas, la
+charge de travail $W_i$. Cette charge de travail est simplement
+exprimée comme $W_i=p_i\times b_i$. 
+
+
+
 \subsubsection{Règles de filtrage étendues}
-
-
+\label{sec:mix_CUSP}
 
 
