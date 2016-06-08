@@ -577,8 +577,41 @@ raisonnement énergétique, ils ne sont pas détaillés dans ce
 manuscrit. Une description de ces ajustements peut être trouvé
 dans~\cite{BLN}. 
 
+Le raisonnement énergétique, introduit par~\cite{RELopez}, est un des
+raisonnements les plus forts existant pour la contrainte
+cumulative. Le principe est de considérer un intervalle $[t_1,t_2]$
+et de calculer l'énergie minimale $\wb$ que doit utiliser une activité à
+l'intérieur de cet intervalle. Cette énergie est ensuite comparée à la
+quantité de ressource disponible dans l'intervalle $[t_1,t_2]$, i.e. $R
+(t_2-t_1)$, et si cette quantité n'est pas suffisante pour ordonnancer
+les consommations minimales de toutes las activités, une incohérence
+est détecter.
 
+L'énergie minimale, ou requise, pour une activité correspond à l'aire
+minimale, parmi tous les ordonnancements possibles de cette activité,
+occupée par cette dernière à l'intérieur de l'intervalle
+$[t_1,t_2]$. Pour atteindre ce minimum, seulement trois configurations
+sont possibles et sont décrites ci-dessous:
+\begin{itemize}
+\item l'activité est {\it calée à gauche}: l'activité démarre à $\ES$; 
+\item l'activité est {\it  calée à droite}: l'activité finit à $\LE$;
+\item l'activité est {\it centrée}: elle occupe tout l'intervalle $[t_1,t_2]$.
+\end{itemize}
+Parmi ces trois cas, celui conduisant à la consommation minimale
+d'énergie est celui dont l'intersection avec l'intervalle $[t_1,t_2]$
+est minimale. 
 
+Pour donner l'expression mathématique de ces quantités, nous intrduisons trois
+notations. $\wbLS$ (respectivement $\wbRS$ et $\wbCS$) correspond à la
+quantité d'énergie requise par l'activité $i$ dans l'intervalle
+$[t_1,t_2]$ quand l'activité est calée à gauche (respectivement calée
+à droite et centrée). Formellement, ces trois quantités peuvent être
+exprimer de la manière suivante: 
+\begin{itemize}
+\item $\wbLS=b_i * \max(0,p_i- \max(0,t_1 - \ES))$
+\item l'activité est calée à droite: 
+\item l'activité est centrée 
+\end{itemize}
 \subsubsection{Règles de filtrage étendues}
 \label{sec:mix_CUSP}
 
