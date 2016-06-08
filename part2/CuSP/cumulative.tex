@@ -514,7 +514,7 @@ dans cette exemple, aucune des activités ne possèdent de partie
 obligatoire. Aucun ajustement n'est donc détecté par la
 règle~\ref{reg:TT}. 
 
-{\`A}l'inverse, dans certains cas, le raisonnement Time-Table va
+{\`A} l'inverse, dans certains cas, le raisonnement Time-Table va
 procéder à plus d'ajustements que le raisonnement disjonctif. En
 effet, le raisonnement disjonctif présenté ici ne raisonne que sur des
 paires d'activités tandis que le Time-Table est capable de détecter
@@ -538,12 +538,44 @@ tandis que les autres cas seront brièvement discutés. La raison
 principale étant que nous adapterons le raisonnement énergétique dans
 le cas du \CECSP.
 
-Le raisonnement Edge-Finding est un raisonnement s'appliquant sur un
-sous-ensemble d'activités $\Omega \subseteq \A$. Le but étant de
-décider si une activité $i$ doit commencer avant (resp. finir après)
-$\Omega$. L'énergie d'une activité $i$ représente, dans ce cas, la
-charge de travail $W_i$. Cette charge de travail est simplement
-exprimée comme $W_i=p_i\times b_i$. 
+L'idée principale des raisonnements énergétique est de comparer la
+quantité de ressource disponible dans un intervalle avec l'énergie que
+doit consommer un ensemble de tâches à l'intérieur de ce même
+intervalle. Les raisonnements diffèrent principalement sur la manière
+de calculer cette énergie et sur les intervalles considérés. 
+
+ Le raisonnement Edge-Finding s'applique sur un sous-ensemble
+d'activités $\Omega \subseteq \A$, le but étant de décider si une
+activité $j$ doit commencer avant $\Omega$ dans toute solution
+réalisable. Dans ce cas, l'énergie d'une activité $i$ représente sa
+charge de travail $W_i$ et est simplement exprimée comme
+$W_i=p_i\times b_i$. L'énergie nécessaire pour un ensemble d'activité
+$\Omega$ est alors $\sum_{i\in \Omega} W_i$. Les intervalles
+considérés dans ce raisonnement correspondent au fenêtre de temps des
+activités $[\ES,\LE]$. Cette notion est étendue à $\Omega$ de la façon
+suivante: $[\ES[\Omega],\LE[\Omega]=[\min_{j \in \Omega}\ES[j],\max_{j
+\in \Omega} \LE[j] ]$. L'idée du raisonnement est alors  de vérifier
+que la ressource disponible permet de faire débuter l'activité $i$
+dans la fenêtre de temps correspondant à $\Omega$. Pour cela,
+l'énergie requise par $\Omega \cup \{ i\}$ est comparée à la quantité
+de ressource disponible dans l'intervalle $[\ES[\Omega],\LE[\Omega\cup
+\{i\}]]$. Si la quantité de ressource n'est pas suffisante, alors
+l'activité $i$ doit commencer avant $\ES[\Omega]$ et un ajustement
+peut être effectué.
+
+Dans le cas des activités partiellement et totalement élastiques, les
+contraintes de consommation de ressource sont relâchées et une
+activité n'est plus contrainte de consommer une quantité constante de
+la ressource au cours du temps. Suivant que l'activité est totalement
+ou partiellement élastique, ces contraintes sont plus ou moins
+relâchées et la consommation de ressource des activités peut subir des
+variations plus ou moins grande au cours du temps. L'avantage de ces
+relaxations est que l'existence d'une solution peut être décider en
+temps polynomial. La façon dont les ajustements sont calculés étant
+très similaire à celle dont ils sont calculés dans le cadre du
+raisonnement énergétique, ils ne sont pas détaillés dans ce
+manuscrit. Une description de ces ajustements peut être trouvé
+dans~\cite{BLN}. 
 
 
 
