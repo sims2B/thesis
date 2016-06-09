@@ -579,16 +579,16 @@ dans~\cite{BLN}.
 
 Le raisonnement énergétique, introduit par~\cite{RELopez}, est un des
 raisonnements les plus forts existant pour la contrainte
-cumulative. Le principe est de considérer un intervalle $[t_1,t_2]$ et
+cumulative. Le principe est de considérer un intervalle $[t_1,t_2[$ et
 de calculer l'énergie minimale $\wb$ que doit utiliser une activité à
 l'intérieur de cet intervalle. Cette énergie est ensuite utilisée pour
 calculer la fonction de marge $SL(t_1-t_2)$ correspondant à la
 différence entre l'énergie requise par toutes les activités à
-l'intérieur de $[t_1,t_2]$ et la quantité de ressource disponible dans
+l'intérieur de $[t_1,t_2[$ et la quantité de ressource disponible dans
 ce même intervalle, $R (t_2-t_1)$. Si cette quantité est négative pour
-un intervalle $[t_1,t_2]$, alors une incohérence est détectée. En
+un intervalle $[t_1,t_2[$, alors une incohérence est détectée. En
 effet, si c'est le cas, alors cela signifie que la quantité de
-ressource disponible dans $[t_1,t_2]$ n'est pas suffisante pour
+ressource disponible dans $[t_1,t_2[$ n'est pas suffisante pour
 ordonnancer les consommations minimales de toutes las activités.
 
 \begin{defi}
@@ -612,33 +612,33 @@ possède pas de solution, i.e.
 \end{theo}
 
 Pour calculer cette fonction de marge, il faut pouvoir calculer
-l'énergie requise par une activité dans l'intervalle $[t_1,t_2]$,
+l'énergie requise par une activité dans l'intervalle $[t_1,t_2[$,
 $\wb$. {\'E}tant donnée une activité $i$, cette énergie correspond à
 l'aire minimale, parmi tous les ordonnancements possibles de $i$,
 occupée par cette dernière à l'intérieur de l'intervalle
-$[t_1,t_2]$. Pour atteindre ce minimum, seulement trois configurations
+$[t_1,t_2[$. Pour atteindre ce minimum, seulement trois configurations
 sont possibles et sont décrites ci-dessous:
 \begin{itemize}
 \item l'activité est {\it calée à gauche}: l'activité démarre à $\ES$; 
 \item l'activité est {\it  calée à droite}: l'activité finit à $\LE$;
 \item l'activité est {\it centrée}: elle occupe tout l'intervalle
-  $[t_1,t_2]$.
+  $[t_1,t_2[$.
 \end{itemize}
 Parmi ces trois cas, celui conduisant à la consommation minimale
-d'énergie est celui dont l'intersection avec l'intervalle $[t_1,t_2]$
+d'énergie est celui dont l'intersection avec l'intervalle $[t_1,t_2[$
 est minimale. 
 
 Pour donner l'expression mathématique de ces quantités, nous
-intrduisons trois notations. $\wbLS$ (respectivement $\wbRS$ et
+introduisons trois notations. $\wbLS$ (respectivement $\wbRS$ et
 $\wbCS$) correspond à la quantité d'énergie requise par l'activité $i$
-dans l'intervalle $[t_1,t_2]$ quand l'activité est calée à gauche
+dans l'intervalle $[t_1,t_2[$  quand l'activité est calée à gauche
 (respectivement calée à droite et centrée). Formellement, ces trois
 quantités peuvent être exprimer de la manière suivante: 
-\begin{itemize}
-\item $\wbLS=b_i * \max(0,p_i- \max(0,t_1 - \ES))$
-\item $\wbRS=b_i * \max(0,p_i- \max(0, \LE-t_2))$
-\item $\wbCS=b_i * (t_2-t_1)$
-\end{itemize}
+\begin{align}
+\wbLS&=b_i * \max(0,p_i- \max(0,t_1 - \ES)) \label{eq:LS_CUSP}\\
+\wbRS&=b_i * \max(0,p_i- \max(0, \LE-t_2))\label{eq:RS_CUSP}\\
+\wbCS&=b_i * (t_2-t_1)\label{eq:CS_CUSP}
+\end{align}
 Alors, l'expression de l'énergie minimale est le minimum de ces trois
 quantités, i.e.
 \begin{equation}
@@ -647,13 +647,14 @@ quantités, i.e.
 
 
 \begin{ex}
-Considérons l'instance suivante:
+Considérons une ressource de capacité $R=4$ et les $4$ activités
+suivantes: 
 \begin{center}
   \begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}|}
     \hline
     act & \ES & \LE & p_i & b_i  \\
     \hline
-    1 & 0 & 3 & 3 & 1 \\
+    1 & 0 & 6 & 3 & 1 \\
     2 & 1 & 6 &  5 & 2 \\    
     3 & 2 & 8 &  4 & 1 \\    
     4 & 2 & 8 &  5 & 1 \\    
@@ -664,7 +665,8 @@ Considérons l'instance suivante:
 Nous montrons comment appliquer le raisonnement énergétique sur
 l'intervalle $[3,6]$. Nous commençons par présenter le calcul de la
 consommation minimale de chaque activité. Dans la
-figure~\ref{fig:ex_ER_CUSP}, nous représentons graphiquement é
+figure~\ref{fig:ex_ER_CUSP}, nous représentons graphiquement les
+activités calées à gauche ($LS$), à droite ($RS$) et centrées ($CS$).
 
 \begin{figure}[!ht]
   \centering
@@ -676,11 +678,11 @@ figure~\ref{fig:ex_ER_CUSP}, nous représentons graphiquement é
    \draw[dotted] (6.5,0) -- (6.5,8);
    \draw[dotted] (3.5,0) -- (3.5,8);
    \draw[->] (0,0) -- (9,0);
-   \draw[thick] (3.5,0) node[below] {$\LE[1]$} -- (3.5, 8.5);
+   \draw[thick] (6.5,0) node[below] {$\LE[1]$} -- (6.5, 8.5);
    \draw[thick] (0.5,0) node[below] {$\ES[1]$} -- (0.5, 8.5);
    \draw (0.5,0) rectangle (3.5,1) node[midway] {\small $LS$};
-   \draw (0.5,3) rectangle (3.5,4) node[midway] {\small $RS$};
-   \draw (0.5,6) rectangle (3.5,7) node[midway] {\small $CS$}; 
+   \draw (3.5,3) rectangle (6.5,4) node[midway] {\small $RS$};
+   \draw (3.5,6) rectangle (6.5,7) node[midway] {\small $CS$}; 
 
 \foreach \i in {0.5,...,8.5} {
  \draw[thick] (\i,-0.1) -- (\i,0);
@@ -747,22 +749,63 @@ figure~\ref{fig:ex_ER_CUSP}, nous représentons graphiquement é
 \end{figure}
 
 Le tableau suivant présente le calcul de l'énergie minimale de chaque
-activité. 
+activité. Ces valeurs sont calculées à partir des
+équations~\eqref{eq:LS_CUSP},~\eqref{eq:RS_CUSP}
+et~\eqref{eq:CS_CUSP}.
+
 \begin{center}
   \begin{tabular}{|P{1cm}|P{4cm}P{4cm}P{3.5cm}P{1.5cm}|}
     \hline
     act & \wbLS[i][3][6] & \wbRS[i][3][6] & \wbCS[i][3][6] & \wb[i][3][6]\\
     \hline
-    1 & 1*\max(0,p_i)=0 & 1*\max(0,p_i)=0 & 1*(6-3)=3 & 0 \\
+    1 & 1*(3-(3-0))=0 & 1*(3-(6-3))=3 & 1*(6-3)=3 & 0 \\
     2 & 2*(5-(3-1))=6 & 2*(5-(6-6))=10 & 2*(6-3)=6 & 6 \\    
     3 & 2*(4-(3-2))=6 & 2*(4-(8-6))=4 & 2*(6-3)=6 & 4 \\    
     4 & 1*(5-(3-2))=3 & 1*(4-(8-6))=3 & 1*(6-3)=3 & 3 \\    
     \hline
   \end{tabular}
 \end{center}
+La valeur de la fonction de marge $SL(3,6)$ est donc: 
+\[\Big( 4*(6-3) \Big) - \Big( 0+6+4+3\Big) = 12 - 13 = -1 <0  \] 
 
-
+L'instance n'est donc pas réalisable et une incohérence est détectée. 
 \end{ex}
+
+La règle de détection d'incohérence décrite par le
+Théorème~\ref{th:centerRE} impose le calcul de la fonction de marge
+pour tout intervalle $[t_1,t_2[ \in \mathbb{N}^2$, ce qui n'est pas
+envisageable en pratique. Cependant, Baptiste {\it et al.} ont proposé
+une caractérisation des intervalles sur lesquels il est suffisant
+d'appliquer le raisonnement énergétique. Par suffisant, nous entendons
+que, si une incohérence n'est pas détectée sur cet ensemble
+d'intervalle, alors aucun autre intervalle ne pourra conduire à une à
+prouver l'insatisfiabilité de l'instance. La taille de cet ensemble
+d'intervalle d'{\it intérêt} est de l'ordre de $O(n^2)$.
+
+Récemment, Derrien{\it et al.} ont proposé une caractérisation plus
+fine de l'ensemble des intervalles d'intérêt pour le raisonnement
+énergétique. L'ordre de grandeur de la taille de cet ensemble
+d'intervalle n'est pas modifié et est toujours de l'ordre de $n^2$
+mais le nombre d'intervalles considérés est divisé par $7$. En effet,
+la caractérisation de Baptiste{\it et al.} considère, pour chaque
+paire d'activités, $15$ intervalles tandis que la caractérisation de
+Derrien {\it et al.} n'en considère que $2$.
+
+
+Ces caractérisations se basent toutes les deux sur l'idée suivante:
+pour décider de l'existence d'un point $(t_1,t_2)$ pour lequel la
+fonction de marge évaluée en ce point $SL(t_1,t_2)$ est négative, il
+suffit d'évaluer la fonction en ses minimums locaux. La principale
+différence entre ces deux caractérisation est la caractérisation plus
+ou moins fini de ces minimums. 
+
+Nous allons brièvement détailler la caractérisation de Derrien {\it et
+al.} que nous adapterons dans le cadre du \CECSP~dans le
+chapitre~\ref{sec:PPC_CECSP}.
+
+
+
+
 \subsubsection{Règles de filtrage étendues}
 \label{sec:mix_CUSP}
 
