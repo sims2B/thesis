@@ -579,39 +579,190 @@ dans~\cite{BLN}.
 
 Le raisonnement énergétique, introduit par~\cite{RELopez}, est un des
 raisonnements les plus forts existant pour la contrainte
-cumulative. Le principe est de considérer un intervalle $[t_1,t_2]$
-et de calculer l'énergie minimale $\wb$ que doit utiliser une activité à
-l'intérieur de cet intervalle. Cette énergie est ensuite comparée à la
-quantité de ressource disponible dans l'intervalle $[t_1,t_2]$, i.e. $R
-(t_2-t_1)$, et si cette quantité n'est pas suffisante pour ordonnancer
-les consommations minimales de toutes las activités, une incohérence
-est détecter.
+cumulative. Le principe est de considérer un intervalle $[t_1,t_2]$ et
+de calculer l'énergie minimale $\wb$ que doit utiliser une activité à
+l'intérieur de cet intervalle. Cette énergie est ensuite utilisée pour
+calculer la fonction de marge $SL(t_1-t_2)$ correspondant à la
+différence entre l'énergie requise par toutes les activités à
+l'intérieur de $[t_1,t_2]$ et la quantité de ressource disponible dans
+ce même intervalle, $R (t_2-t_1)$. Si cette quantité est négative pour
+un intervalle $[t_1,t_2]$, alors une incohérence est détectée. En
+effet, si c'est le cas, alors cela signifie que la quantité de
+ressource disponible dans $[t_1,t_2]$ n'est pas suffisante pour
+ordonnancer les consommations minimales de toutes las activités.
 
-L'énergie minimale, ou requise, pour une activité correspond à l'aire
-minimale, parmi tous les ordonnancements possibles de cette activité,
+\begin{defi}
+La fonction de marge $SL(t_1,t_2)$ est définie de la façon suivante: 
+\[  SL(t_1,t_2) = R (t_2-t_1) - \sum_{i \in \A} \wb \]
+\end{defi}
+
+Avec cette définition, nous pouvons maintenant énoncer le théorème
+central du raisonnement énergétique:
+ 
+\begin{theo}
+\label{th:centerRE}
+Soit $\I$ une instance de la contrainte cumulative. S'il existe
+$t_1 < t_2 \in \mathbb{R}^2$ tel que $SL(t_1,t_2) <0$ alors $\I$ ne
+possède pas de solution, i.e.
+\begin{equation}
+\exists t_1 < t_2 \in \mathbb{R}^2 , SL(t_1,t_2) <0 \Rightarrow \I
+\text{ ne possède pas de solution}
+\label{eq:centerRE}
+\end{equation}
+\end{theo}
+
+Pour calculer cette fonction de marge, il faut pouvoir calculer
+l'énergie requise par une activité dans l'intervalle $[t_1,t_2]$,
+$\wb$. {\'E}tant donnée une activité $i$, cette énergie correspond à
+l'aire minimale, parmi tous les ordonnancements possibles de $i$,
 occupée par cette dernière à l'intérieur de l'intervalle
 $[t_1,t_2]$. Pour atteindre ce minimum, seulement trois configurations
 sont possibles et sont décrites ci-dessous:
 \begin{itemize}
 \item l'activité est {\it calée à gauche}: l'activité démarre à $\ES$; 
 \item l'activité est {\it  calée à droite}: l'activité finit à $\LE$;
-\item l'activité est {\it centrée}: elle occupe tout l'intervalle $[t_1,t_2]$.
+\item l'activité est {\it centrée}: elle occupe tout l'intervalle
+  $[t_1,t_2]$.
 \end{itemize}
 Parmi ces trois cas, celui conduisant à la consommation minimale
 d'énergie est celui dont l'intersection avec l'intervalle $[t_1,t_2]$
 est minimale. 
 
-Pour donner l'expression mathématique de ces quantités, nous intrduisons trois
-notations. $\wbLS$ (respectivement $\wbRS$ et $\wbCS$) correspond à la
-quantité d'énergie requise par l'activité $i$ dans l'intervalle
-$[t_1,t_2]$ quand l'activité est calée à gauche (respectivement calée
-à droite et centrée). Formellement, ces trois quantités peuvent être
-exprimer de la manière suivante: 
+Pour donner l'expression mathématique de ces quantités, nous
+intrduisons trois notations. $\wbLS$ (respectivement $\wbRS$ et
+$\wbCS$) correspond à la quantité d'énergie requise par l'activité $i$
+dans l'intervalle $[t_1,t_2]$ quand l'activité est calée à gauche
+(respectivement calée à droite et centrée). Formellement, ces trois
+quantités peuvent être exprimer de la manière suivante: 
 \begin{itemize}
 \item $\wbLS=b_i * \max(0,p_i- \max(0,t_1 - \ES))$
-\item l'activité est calée à droite: 
-\item l'activité est centrée 
+\item $\wbRS=b_i * \max(0,p_i- \max(0, \LE-t_2))$
+\item $\wbCS=b_i * (t_2-t_1)$
 \end{itemize}
+Alors, l'expression de l'énergie minimale est le minimum de ces trois
+quantités, i.e.
+\begin{equation}
+\wb=\min\left(\, \wbLS\, ,\,\wbRS\, ,\,\wbCS \, \right)
+\end{equation} 
+
+
+\begin{ex}
+Considérons l'instance suivante:
+\begin{center}
+  \begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}|}
+    \hline
+    act & \ES & \LE & p_i & b_i  \\
+    \hline
+    1 & 0 & 3 & 3 & 1 \\
+    2 & 1 & 6 &  5 & 2 \\    
+    3 & 2 & 8 &  4 & 1 \\    
+    4 & 2 & 8 &  5 & 1 \\    
+    \hline
+  \end{tabular}
+\end{center}
+
+Nous montrons comment appliquer le raisonnement énergétique sur
+l'intervalle $[3,6]$. Nous commençons par présenter le calcul de la
+consommation minimale de chaque activité. Dans la
+figure~\ref{fig:ex_ER_CUSP}, nous représentons graphiquement é
+
+\begin{figure}[!ht]
+  \centering
+  \subcaptionbox{activité $1$}[0.2\linewidth]{
+  \begin{tikzpicture}[xscale=0.35,yscale=0.5]
+   \node (O) at (0,0) {};
+   \fill[gray!20!] (3.5,8) node[black,above] {$t_1$} node{} +(0,-8) 
+   rectangle (6.5,8)  node[above,black] {$t_2$};
+   \draw[dotted] (6.5,0) -- (6.5,8);
+   \draw[dotted] (3.5,0) -- (3.5,8);
+   \draw[->] (0,0) -- (9,0);
+   \draw[thick] (3.5,0) node[below] {$\LE[1]$} -- (3.5, 8.5);
+   \draw[thick] (0.5,0) node[below] {$\ES[1]$} -- (0.5, 8.5);
+   \draw (0.5,0) rectangle (3.5,1) node[midway] {\small $LS$};
+   \draw (0.5,3) rectangle (3.5,4) node[midway] {\small $RS$};
+   \draw (0.5,6) rectangle (3.5,7) node[midway] {\small $CS$}; 
+
+\foreach \i in {0.5,...,8.5} {
+ \draw[thick] (\i,-0.1) -- (\i,0);
+}
+\end{tikzpicture}}
+\hfill
+  \subcaptionbox{activité $2$}[0.2\linewidth]{
+  \begin{tikzpicture}[xscale=0.35,yscale=0.5]
+    \node (O) at (0,0) {};
+    \fill[gray!20!] (3.5,8) node[black,above] {$t_1$} node{} +(0,-8) 
+    rectangle (6.5,8)  node[above,black] {$t_2$};
+    \draw[dotted] (6.5,0) -- (6.5,8);
+    \draw[dotted] (3.5,0) -- (3.5,8);
+    \draw[->] (0,0) -- (9,0);
+    \draw[thick] (6.5,0) node[below] {$\LE[2]$} -- (6.5, 8.5);
+    \draw[thick] (1.5,0) node[below] {$\ES[2]$} -- (1.5, 8.5);
+    \draw (1.5,0) rectangle (6.5,2) node[midway] {\small $LS$};
+    \draw (1.5,3) rectangle (6.5,5) node[midway] {\small $RS$};
+    \draw (1.5,6) rectangle (6.5,8) node[midway] {\small $CS$}; 
+
+    \foreach \i in {0.5,...,8.5} {
+      \draw[thick] (\i,-0.1) -- (\i,0);
+    } 
+  \end{tikzpicture}}
+\hfill
+\subcaptionbox{activité $3$}[0.2\linewidth]{
+  \begin{tikzpicture}[xscale=0.35,yscale=0.5]
+    \node (O) at (0,0) {};
+    \fill[gray!20!] (3.5,8) node[black,above] {$t_1$} node{} +(0,-8) 
+    rectangle (6.5,8)  node[above,black] {$t_2$};
+    \draw[dotted] (6.5,0) -- (6.5,8);
+    \draw[dotted] (3.5,0) -- (3.5,8);
+    \draw[->](0,0) -- (9,0);
+    \draw[thick] (8.5,0) node[below] {$\LE[3]$} -- (8.5, 8.5);
+    \draw[thick] (2.5,0) node[below] {$\ES[3]$} -- (2.5, 8.5);
+    \draw (2.5,0) rectangle (6.5,2) node[midway] {\small $LS$};
+    \draw (4.5,3) rectangle (8.5,5) node[midway] {\small $RS$};
+    \draw (3,6) rectangle (7,8) node[midway] {\small $CS$}; 
+
+    \foreach \i in {0.5,...,8.5} {
+      \draw[thick] (\i,-0.1) -- (\i,0);
+    } 
+  \end{tikzpicture}}
+\hfill
+\subcaptionbox{activité $4$}[0.2\linewidth]{
+  \begin{tikzpicture}[xscale=0.35,yscale=0.5]
+    \node (O) at (0,0) {};
+    \fill[gray!20!] (3.5,8) node[black,above] {$t_1$} node{} +(0,-8) 
+    rectangle (6.5,8)  node[above,black] {$t_2$};
+    \draw[dotted] (6.5,0) -- (6.5,8);
+    \draw[dotted] (3.5,0) -- (3.5,8);
+    \draw[->](0,0) -- (9,0);
+    \draw[thick] (8.5,0) node[below] {$\LE[4]$} -- (8.5, 8.5);
+    \draw[thick] (2.5,0) node[below] {$\ES[4]$} -- (2.5, 8.5);
+    \draw (2.5,0) rectangle (7.5,1) node[midway] {\small $LS$};
+    \draw (3.5,3) rectangle (8.5,4) node[midway] {\small $RS$};
+    \draw (2.5,6) rectangle (7.5,7) node[midway] {\small $CS$};
+    \foreach \i in {0.5,...,8.5} {
+      \draw[thick] (\i,-0.1) -- (\i,0);
+    } 
+  \end{tikzpicture}}
+\caption{Calcul de l'énergie minimale}
+\label{fig:ex_ER_CUSP}
+\end{figure}
+
+Le tableau suivant présente le calcul de l'énergie minimale de chaque
+activité. 
+\begin{center}
+  \begin{tabular}{|P{1cm}|P{4cm}P{4cm}P{3.5cm}P{1.5cm}|}
+    \hline
+    act & \wbLS[i][3][6] & \wbRS[i][3][6] & \wbCS[i][3][6] & \wb[i][3][6]\\
+    \hline
+    1 & 1*\max(0,p_i)=0 & 1*\max(0,p_i)=0 & 1*(6-3)=3 & 0 \\
+    2 & 2*(5-(3-1))=6 & 2*(5-(6-6))=10 & 2*(6-3)=6 & 6 \\    
+    3 & 2*(4-(3-2))=6 & 2*(4-(8-6))=4 & 2*(6-3)=6 & 4 \\    
+    4 & 1*(5-(3-2))=3 & 1*(4-(8-6))=3 & 1*(6-3)=3 & 3 \\    
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\end{ex}
 \subsubsection{Règles de filtrage étendues}
 \label{sec:mix_CUSP}
 

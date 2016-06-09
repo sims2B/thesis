@@ -41,7 +41,7 @@ appliquer le même raisonnement pour le \RCPSP.
 
 Pour intégrer le raisonnement énergétique dans les modèles indexés par
 le temps, nous utilisons l'équation qui se trouve au centre de ce
-raisonnement (cf. équation~\ref{centreRE}). Soit $\I$ l'ensemble des
+raisonnement (cf. équation~\ref{eq:centreRE}). Soit $\I$ l'ensemble des
 intervalles d'intérêt du raisonnement énergétique, alors l'équation
 s'écrit:  
 \begin{align} 
@@ -60,10 +60,10 @@ $x_{it}$ et $y_{it}$ pour activer ou non l'équation correspondant à la
 consommation minimale de ressource dans $[t_1,t_2]$, nous obtenons les
 inégalités suivantes: 
 \begin{align}
-&\left(1-\sum_{t\le t_1}x_{it} - \sum_{t\ge t_2}y_{it}\right) \, \conv[W_i] +
-\sum_{j\neq i} \bb[j] \le R(t_2-t_1) \nonumber\\
-& \hspace{9.55cm} \forall i \in {\cal A},\ \forall [t_1,t_2] \in \I
-\label{total}
+  &\left(1-\sum_{t\le t_1}x_{it} - \sum_{t\ge t_2}y_{it}\right) \, \conv[W_i] +
+    \sum_{j\neq i} \bb[j] \le R(t_2-t_1) \nonumber\\
+  & \hspace{9.55cm} \forall i \in \A,\ \forall [t_1,t_2] \in \I
+    \label{total}
 \end{align}
 
 L'inégalité~\eqref{total} représente le cas où l'intervalle
