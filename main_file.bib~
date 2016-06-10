@@ -208,6 +208,21 @@ abstract = "In deterministic sequencing and scheduling problems, jobs are to be 
   YEAR = {1994}
 }
 
+@Inbook{DP,
+author="Derrien, Alban
+and Petit, Thierry",
+title="A New Characterization of Relevant Intervals for Energetic Reasoning",
+bookTitle="Principles and Practice of Constraint Programming: 20th International Conference, CP 2014, Lyon, France, September 8-12, 2014. Proceedings",
+year="2014",
+publisher="Springer International Publishing",
+address="Cham",
+pages="289--297",
+isbn="978-3-319-10428-7",
+doi="10.1007/978-3-319-10428-7_22",
+url="http://dx.doi.org/10.1007/978-3-319-10428-7_22"
+}
+
+
 @article{Nattaf_ORSpectrum,
   TITLE = {{Energetic reasoning and mixed-integer linear programming for scheduling with a continuous resource and linear efficiency functions}},
   AUTHOR = {Nattaf, Margaux and Artigues, Christian and Lopez, Pierre and Rivreau, David},

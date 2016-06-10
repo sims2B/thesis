@@ -778,18 +778,18 @@ envisageable en pratique. Cependant, Baptiste {\it et al.} ont proposé
 une caractérisation des intervalles sur lesquels il est suffisant
 d'appliquer le raisonnement énergétique. Par suffisant, nous entendons
 que, si une incohérence n'est pas détectée sur cet ensemble
-d'intervalle, alors aucun autre intervalle ne pourra conduire à une à
-prouver l'insatisfiabilité de l'instance. La taille de cet ensemble
+d'intervalle, alors aucun autre intervalle ne pourra conduire à
+l'insatisfiabilité de l'instance. La taille de cet ensemble
 d'intervalle d'{\it intérêt} est de l'ordre de $O(n^2)$.
 
-Récemment, Derrien{\it et al.} ont proposé une caractérisation plus
-fine de l'ensemble des intervalles d'intérêt pour le raisonnement
-énergétique. L'ordre de grandeur de la taille de cet ensemble
-d'intervalle n'est pas modifié et est toujours de l'ordre de $n^2$
-mais le nombre d'intervalles considérés est divisé par $7$. En effet,
-la caractérisation de Baptiste{\it et al.} considère, pour chaque
-paire d'activités, $15$ intervalles tandis que la caractérisation de
-Derrien {\it et al.} n'en considère que $2$.
+Récemment, Derrien {\it et al.}~\cite{DP} ont proposé une
+caractérisation plus fine de l'ensemble des intervalles d'intérêt pour
+le raisonnement énergétique. L'ordre de grandeur de la taille de cet
+ensemble d'intervalle n'est pas modifié et est toujours de l'ordre de
+$n^2$ mais le nombre d'intervalles considérés est divisé par $7$. En
+effet, la caractérisation de Baptiste {\it et al.} considère, pour
+chaque paire d'activités, $15$ intervalles tandis que la
+caractérisation de Derrien {\it et al.} n'en considère que $2$.
 
 
 Ces caractérisations se basent toutes les deux sur l'idée suivante:
@@ -797,16 +797,224 @@ pour décider de l'existence d'un point $(t_1,t_2)$ pour lequel la
 fonction de marge évaluée en ce point $SL(t_1,t_2)$ est négative, il
 suffit d'évaluer la fonction en ses minimums locaux. La principale
 différence entre ces deux caractérisation est la caractérisation plus
-ou moins fini de ces minimums. 
+ou moins fine de ces minimums.
 
 Nous allons brièvement détailler la caractérisation de Derrien {\it et
 al.} que nous adapterons dans le cadre du \CECSP~dans le
 chapitre~\ref{sec:PPC_CECSP}.
 
+Pour étudier les minimums locaux de la fonction de marge, les auteurs
+de~\cite{DP} étudient les variations de cette dernière. De plus, tous
+les changements de variation de la fonction ne peuvent impliquer un
+minimum local 
 
 
+\begin{lemma}
+La fonction de marge $SL(t_1,t_2)$ est localement minimale seulement
+s'il existe deux activités $i$ et $j$ telles que les conditions
+ci-dessous sont satisfaites. 
+\begin{align} \frac{\delta^{-}\wb}{\delta t_1} &>
+\frac{\delta^{+}\wb}{\delta t_1} \label{eq:deriv1_CUSP}\\ 
+\frac{\delta^{-}\wb[j]}{\delta t_2}
+& > \frac{\delta^{+}\wb[j]}{\delta t_2} \label{eq:deriv2_CUSP}
+\end{align}
+\end{lemma}
 
-\subsubsection{Règles de filtrage étendues}
+\begin{proof}
+Soit $(t_1,t_2) \in \mathbb{N}^2$ tel qu'il n'existe aucune activité
+$i$ vérifiant la condition~\eqref{eq:deriv1_CUSP}. Alors, $\sum_{i \in
+  \A} \wb$ a sa dérivée à gauche supérieure à sa dérivé à droite. Par
+le test de la seconde dérivé, un minimum local d'une fonction ne peut
+exister que si la dérivé à gauche est plus grande que la dérivé à
+droite. Donc $(t_1,t_2)$ ne peut pas être un minimum local. 
+
+De la même façon, on peut prouver que si la
+condition~\eqref{eq:deriv2_CUSP} n'est pas vérifié, alors $(t_1,t_2)$
+ne peut pas être un minimum local. 
+\end{proof}
+
+
+\begin{lemma}
+  Pour chaque activité $i$ et pour tout début d'intervalle $t_1$ il
+  existe au plus un intervalle $[t_1,t_2[$ tel que
+  $\frac{\delta^{-}\wb[j]}{\delta t_2} >
+  \frac{\delta^{+}\wb[j]}{\delta t_2} $:
+  \begin{enumerate}
+  \item si $t_1 < \ES$ alors seulement l'intervalle $[t_1,\LE {[}$ doit
+    être considéré.
+  \item si $t_1  > \LS \land t_1 \ge \EE$ alors aucun intervalle ne
+    doit être considéré. 
+  \item si $t_1  > \LS \land t_1 <\EE \land t_1 < \LS$ alors seulement
+    l'intervalle $[t_1,\ES+\LE-t_1 [$ doit
+    être considéré.
+  \item si $t_1  > \LS \land t_1 <\EE \land t_1 \ge \LS$ alors
+    seulement l'intervalle $[t_1,\EE {[}$ doit
+    être considéré.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Pour prouver ce lemme, nous étudions les variations de la fonction
+$t_2 \rightarrow \wb$, à $t_1$ fixé. Les variations de cette fonction
+dépendent de la position relative de $t_1$ par rapport à $\ES,\ \LS$ et
+$\EE$. Le cas où $t_1 \le \ES$ est présenté ci-dessous pour une
+activité $i$ possédant les caractéristiques suivantes: $\ES=2,\
+\LE=8,\ p_i=4$ et $b_i=1$.
+
+\begin{minipage}{\linewidth}
+  \begin{minipage}{0.4\linewidth}
+    \begin{itemize}
+      
+      \vspace{0.4cm}
+    \item si $t_2 \le \LS$ alors $\wb=0$
+      
+      \vspace{0.4cm}
+    \item si $\LS < t_2 < \LE$ alors $\wb= b_i (t_2 - \LS)$
+      
+      \vspace{0.4cm}
+    \item si $\LE \le t_2 $ alors $\wb = p_i$
+    \end{itemize}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.55\linewidth}
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}      
+        [yscale=0.5,xscale=0.65,
+        every node/.style={color=black},%
+        dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,%
+        outer sep=-1pt},
+      cross/.style={path picture={ 
+          \draw
+          (path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);
+        }}]
+      \fill[gray!20] (2,0) rectangle (8,1);
+
+      \node (O) at (0,0) {};
+      \draw[->] (0,0) -- (10.5,0); \foreach \i in {0,1,...,10}{ \draw
+        (\i,-0.1) -- (\i,0); }
+
+      \draw (1,0) -- (1,3) node[above] {\small $t_1=1$}; 
+      \draw (1,2) -- node[midway,above] {\small $0$} (4,2) node {$\bullet$} node[above] {\small $
+        \LS$} -- node[midway,above,rotate=35] {\small $b_i(t_2 - \LS)$} (8,5)
+      node {$\bullet$}  node[above] {\small $ \LE$} --
+      node[midway,above] {\small $p_i$} (9.5,5) ;
+      \draw[dotted] (4,0) -- (4,2);
+      \draw[dotted] (8,0) -- (8,5);
+      \draw (4,0) rectangle (8,1) node[midway] {$i$};
+    \end{tikzpicture}
+    \caption{{\'E}volution de $t_2 \rightarrow \wb$}
+
+  \end{figure}
+\end{minipage}
+\end{minipage}
+
+Le seul point $t_2$ pour lequel $ \frac{\delta^{-}\wb[j]}{\delta t_2} >
+\frac{\delta^{+}\wb[j]}{\delta t_2}$ est $[1,8[= [t_1, \LE{[}$. 
+
+Les trois autres cas peuvent être prouver de façon très similaire. 
+\end{proof}
+
+Un raisonnement symétrique permet de caractériser l'ensemble des
+points $t_1$ vérifiant la condition~\eqref{eq:deriv1_CUSP}. Une fois
+que ces dates potentielles de début et de fin d'intervalle d'intérêt
+sont caractérisées, elles sont rassemblées pour créer l'ensemble des
+intervalles d'intervalles d'intérêt pour le raisonnement énergétique. 
+La caractérisation complète de ces intervalles est décrit dans le
+lemme suivant.
+
+\begin{lemma}
+  La fonction de marge $SL$ est localement minimale en $(t_1,t_2)$
+  seulement s'il existe deux activités $i$ et $j$ telles que $(t_1,t_2)
+  \in \O_C(i,j)$ avec 
+  
+  \[ \O_C(i,j)= \left\{ 
+      \begin{aligned}{3}
+        [\ES,\LE[j]{[} & \quad \text{ si } & \quad & \ES \le \ES[j] \ \land \
+                                       \LE[j] \ge \LE \\
+        [\ES,\ES[j]+\LE[j]-\ES{[} & \quad \text{ si } & \quad &  \ES > \ES[j] \ \land \
+                                                  \ES > \EE[j] \ \land \
+                                                  \\
+                                                  & & &\ES[j] + \LE[j] - \ES \ge \LE\\
+        [\ES,\EE[j]{[} & \quad \text{ si } & \quad &  \ES > \ES[j] \ \land \ \ES <
+                                       \EE[j] \ \land \  \ES \ge \LS[j]
+                                       \ \land \  \\
+                                       & & &\EE[j] \ge \LE \\
+        [\LS,\LE[j]{[} & \quad \text{ si } & \quad &  \LS \le \ES[j] \ \land \
+                                       \LE[j] < \LE \ \land \ \LE[j] >
+                                       \LS \ \land \  \\
+                                       & & &\LE[j] \le \EE[j]\\
+        [\LS,\ES[j]+\LE[j]-\LS{[} & \quad \text{ si } & \quad &  \LS > \ES[j] \ \land \
+                                                  \LE < \EE[j]\ \land \ \LS <
+                                                  \LS[j] \ \land \ \\
+                                                  & & &\LS < \ES[j] +
+\LE[j] - \LS \ \land \ \ES[j] + \LE[j] -\LS[i] < \LE\\
+        [\LS,\EE[j]{[} & \quad \text{ si } & \quad &  \LS > \ES[j] \ \land \
+                                       \LS < \EE[j] \ \land \ \LS \ge
+                                       \LS[j] \ \land \  \\
+& & &\EE[j] < \LE\
+                                       \land \ \EE[j] > \LS\ \land \ \EE[j] \le \EE\\
+        [\ES+\LE - \LE[j],\LE[j]{[} & \quad \text{ si } & \quad &  \LE[j] < \LE \
+                                                    \land \  \LE[j] >
+                                                    \LS \ \land \
+                                                    \LE[j] > \EE \
+                                                    \land \ \\
+& & &
+                                                    \ES+\LE-\LE[j] \le
+                                                    \LS[j] \\
+        [\ES+\LE - \EE[j],\EE[j]{[} & \quad \text{ si } & \quad &  \EE[j] <\LE \
+                                                    \land \ \EE[j] >
+                                                    \LS \ \land \
+                                                    \EE[j] > \EE \
+                                                    \land \  \\
+& & & \LS[j]
+                                                    \le \ES +\LE -
+                                                    \EE[j] < \EE[j] \
+                                                    \land \ \\
+& & &\LS[j] <
+                                                    \ES+\LE - \EE[j]
+      \end{aligned} 
+    \right.
+  \]
+\end{lemma}
+
+Une démonstration de ce lemme ainsi que la preuve que ces intervalles
+sont suffisant pour détecter toute incohérence due au raisonnement
+énergétique peut être trouvé dans~\cite{Alb}.
+
+Grâce à cette caractérisation, l'algorithme de détection d'incohérence
+de Baptiste {\it et al.} peut être améliorer. Pour cela, nous
+considérons l'ensemble $/O_1=\cup_{i \in \A} \{\ES,\LS\}$ des dates de
+début possibles d'un intervalle et l'ensemble $\O_2=\cup_{i \in \A}
+\{\EE,\LE \}$ correspondant aux dates de fin. Ceci nous permet de
+décrire l'algorithme de détection d'incohérence en $O(n^2)$ de
+Derrien~\cite{Alb} décrit par l'algorithme~\ref{algo:check_CUSP}.
+
+\begin{algorithm}[!htb]
+\setstretch{1.35}
+  \caption{Algorithme de détection d'incohérence énergétique}
+  \label{algo:check_CUSP}
+  \PourTous {$(i,t_1) \in \O_1$}{
+
+    $pente=\sum_j \wb[j][t_1][t_1+1]$
+
+    $SL_{ER}=0$, $t_2^{old}=t_1$
+
+  \PourTous {$(j,t_2) \in \O_2 \cup \O_{t_1}$ par ordre croissant}{
+
+    $SL_{ER}=SL_{ER}+pente*(t_2-t_2^{old})$
+
+    \Si {$SL_{ER} > R(t_2-t_1)$}{
+      Le problème est incohérent}
+
+    $pente=pente + \wb[j][t_1][t_2-1] - 2\wb[j] +  \wb[j][t_1][t_2+1]$
+
+    $t_2^{old}=t_2$
+  }
+}
+\end{algorithm}
+
+  \subsubsection{Règles de filtrage étendues}
 \label{sec:mix_CUSP}
 
 
