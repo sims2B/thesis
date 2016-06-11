@@ -773,8 +773,8 @@ L'instance n'est donc pas réalisable et une incohérence est détectée.
 
 La règle de détection d'incohérence décrite par le
 Théorème~\ref{th:centerRE} impose le calcul de la fonction de marge
-pour tout intervalle $[t_1,t_2[ \in \mathbb{N}^2$, ce qui n'est pas
-envisageable en pratique. Cependant, Baptiste {\it et al.} ont proposé
+pour tout intervalle $[t_1,t_2[ \in \mathbb{N}^2$, ce qui, en pratique, n'est pas
+envisageable. Cependant, Baptiste {\it et al.} ont proposé
 une caractérisation des intervalles sur lesquels il est suffisant
 d'appliquer le raisonnement énergétique. Par suffisant, nous entendons
 que, si une incohérence n'est pas détectée sur cet ensemble
@@ -804,12 +804,25 @@ al.} que nous adapterons dans le cadre du \CECSP~dans le
 chapitre~\ref{sec:PPC_CECSP}.
 
 Pour étudier les minimums locaux de la fonction de marge, les auteurs
-de~\cite{DP} étudient les variations de cette dernière. De plus, tous
-les changements de variation de la fonction ne peuvent impliquer un
-minimum local 
+de~\cite{DP} étudient les variations de cette dernière. L'expression
+de la fonction de marge dépendant de $R(t_2-t_1)$ et de $\sum_{i \in
+  \A} \wb$, ses variations dépendent des variations de la fonction
+$(t_1,t_2) \rightarrow \sum_{i \in \A} \wb$. En particulier, ils
+remarquent que tous les changements de variation de cette fonction ne
+peuvent impliquer un minimum local. Pour qu'une variation implique un
+tel minimum il faut que la dérivé à gauche de cette fonction soit
+négative, que la dérivé à droite soit positive et qu'au moins l'une
+d'entre elles soit non nulle. En effet, dans l'expression de la
+fonction de marge, cette fonction est multiplié par $-1$.
 
+Cette propriété, induite par le {\it test de la dérivé seconde}, leur
+permet de décrire des conditions sur les consommations individuelles
+des activités, $\wb$, sous lesquels $(t_1,t_2)$ peut être un minimum
+local de la fonction de marge. Ces conditions sont exprimées dans le
+lemme~\ref{lem:min_CUSP}. 
 
 \begin{lemma}
+\label{lem:min_CUSP}
 La fonction de marge $SL(t_1,t_2)$ est localement minimale seulement
 s'il existe deux activités $i$ et $j$ telles que les conditions
 ci-dessous sont satisfaites. 
@@ -833,6 +846,13 @@ condition~\eqref{eq:deriv2_CUSP} n'est pas vérifié, alors $(t_1,t_2)$
 ne peut pas être un minimum local. 
 \end{proof}
 
+Le lemme~\ref{lem:min_CUSP} peut ensuite être utilisé pour déterminer
+les conditions nécessaires permettant de déterminer un l'ensemble des
+intervalles d'intérêt. Pour cela, une étude des fonctions $t_1
+\rightarrow \wb$ et $t_2 \rightarrow \wb$ est nécessaire. Nous montrons
+comment obtenir une caractérisation des différentes dates de début
+possibles pour un intervalle, la caractérisation des dates de fin
+pouvant s'obtenir de manière similaire.
 
 \begin{lemma}
   Pour chaque activité $i$ et pour tout début d'intervalle $t_1$ il
@@ -929,32 +949,32 @@ lemme suivant.
   \in \O_C(i,j)$ avec 
   
   \[ \O_C(i,j)= \left\{ 
-      \begin{aligned}{3}
-        [\ES,\LE[j]{[} & \quad \text{ si } & \quad & \ES \le \ES[j] \ \land \
+      \begin{aligned} 
+        &{[}\ES,\LE[j]{[} & \quad \text{ si }  \quad & \ES \le \ES[j] \ \land \
                                        \LE[j] \ge \LE \\
-        [\ES,\ES[j]+\LE[j]-\ES{[} & \quad \text{ si } & \quad &  \ES > \ES[j] \ \land \
+        &[\ES,\ES[j]+\LE[j]-\ES{[} & \quad \text{ si }  \quad &  \ES > \ES[j] \ \land \
                                                   \ES > \EE[j] \ \land \
                                                   \\
-                                                  & & &\ES[j] + \LE[j] - \ES \ge \LE\\
-        [\ES,\EE[j]{[} & \quad \text{ si } & \quad &  \ES > \ES[j] \ \land \ \ES <
+                                                 & & &\ES[j] + \LE[j] - \ES \ge \LE\\
+        &[\ES,\EE[j]{[} & \quad \text{ si }  \quad &  \ES > \ES[j] \ \land \ \ES <
                                        \EE[j] \ \land \  \ES \ge \LS[j]
                                        \ \land \  \\
                                        & & &\EE[j] \ge \LE \\
-        [\LS,\LE[j]{[} & \quad \text{ si } & \quad &  \LS \le \ES[j] \ \land \
+        &[\LS,\LE[j]{[} & \quad \text{ si }  \quad &  \LS \le \ES[j] \ \land \
                                        \LE[j] < \LE \ \land \ \LE[j] >
                                        \LS \ \land \  \\
-                                       & & &\LE[j] \le \EE[j]\\
-        [\LS,\ES[j]+\LE[j]-\LS{[} & \quad \text{ si } & \quad &  \LS > \ES[j] \ \land \
+                                       &  & &\LE[j] \le \EE[j]\\
+        &[\LS,\ES[j]+\LE[j]-\LS{[} & \quad \text{ si }  \quad &  \LS > \ES[j] \ \land \
                                                   \LE < \EE[j]\ \land \ \LS <
                                                   \LS[j] \ \land \ \\
-                                                  & & &\LS < \ES[j] +
+                                              & & &\LS < \ES[j] +
 \LE[j] - \LS \ \land \ \ES[j] + \LE[j] -\LS[i] < \LE\\
-        [\LS,\EE[j]{[} & \quad \text{ si } & \quad &  \LS > \ES[j] \ \land \
+        &[\LS,\EE[j]{[} & \quad \text{ si }  \quad &  \LS > \ES[j] \ \land \
                                        \LS < \EE[j] \ \land \ \LS \ge
                                        \LS[j] \ \land \  \\
 & & &\EE[j] < \LE\
                                        \land \ \EE[j] > \LS\ \land \ \EE[j] \le \EE\\
-        [\ES+\LE - \LE[j],\LE[j]{[} & \quad \text{ si } & \quad &  \LE[j] < \LE \
+        &[\ES+\LE - \LE[j],\LE[j]{[} & \quad \text{ si }  \quad &  \LE[j] < \LE \
                                                     \land \  \LE[j] >
                                                     \LS \ \land \
                                                     \LE[j] > \EE \
@@ -962,12 +982,12 @@ lemme suivant.
 & & &
                                                     \ES+\LE-\LE[j] \le
                                                     \LS[j] \\
-        [\ES+\LE - \EE[j],\EE[j]{[} & \quad \text{ si } & \quad &  \EE[j] <\LE \
+        &[\ES+\LE - \EE[j],\EE[j]{[} & \quad \text{ si }  \quad &  \EE[j] <\LE \
                                                     \land \ \EE[j] >
                                                     \LS \ \land \
                                                     \EE[j] > \EE \
                                                     \land \  \\
-& & & \LS[j]
+& & &\LS[j]
                                                     \le \ES +\LE -
                                                     \EE[j] < \EE[j] \
                                                     \land \ \\
@@ -983,8 +1003,8 @@ sont suffisant pour détecter toute incohérence due au raisonnement
 énergétique peut être trouvé dans~\cite{Alb}.
 
 Grâce à cette caractérisation, l'algorithme de détection d'incohérence
-de Baptiste {\it et al.} peut être améliorer. Pour cela, nous
-considérons l'ensemble $/O_1=\cup_{i \in \A} \{\ES,\LS\}$ des dates de
+de Baptiste {\it et al.} peut être amélioré. Pour cela, nous
+considérons l'ensemble $\O_1=\cup_{i \in \A} \{\ES,\LS\}$ des dates de
 début possibles d'un intervalle et l'ensemble $\O_2=\cup_{i \in \A}
 \{\EE,\LE \}$ correspondant aux dates de fin. Ceci nous permet de
 décrire l'algorithme de détection d'incohérence en $O(n^2)$ de
@@ -1004,8 +1024,8 @@ Derrien~\cite{Alb} décrit par l'algorithme~\ref{algo:check_CUSP}.
 
     $SL_{ER}=SL_{ER}+pente*(t_2-t_2^{old})$
 
-    \Si {$SL_{ER} > R(t_2-t_1)$}{
-      Le problème est incohérent}
+    \Si {$SL_{ER } > R(t_2-t_1)$}{
+      Le problème est incohérent.}
 
     $pente=pente + \wb[j][t_1][t_2-1] - 2\wb[j] +  \wb[j][t_1][t_2+1]$
 
@@ -1014,7 +1034,365 @@ Derrien~\cite{Alb} décrit par l'algorithme~\ref{algo:check_CUSP}.
 }
 \end{algorithm}
 
-  \subsubsection{Règles de filtrage étendues}
+Cette caractérisation peut aussi être étendue pour déterminer les
+intervalles $(t_1,t_2)$ sur lesquels appliquer les ajustements du
+raisonnement énergétique. Ces ajustements sont décrits par les 
+règles~\ref{reg:ajust1_ER_CUSP} et~\ref{reg:ajust2_ER_CUSP}.  Dans la
+règle~\ref{reg:ajust1_ER_CUSP}, nous imposons à une activité $i$ de
+commencer après $t_1$ et si la quantité de ressource
+disponible n'est pas suffisante pour ordonnancer les consommations
+minimales de toutes les activités -- excepté celle de l'activité $i$
+qui est remplacée par $\wbRS$ -- alors, nous pouvons déduire que
+l'activité ne doit commencer avant $t_1$.
+
+\begin{reg}
+  \label{reg:ajust1_ER_CUSP}
+  S'il existe un intervalle $[t_1,t_2[$ et une activité $i$ pour lesquels:
+  \[ \sum_{\substack{j \in \A \\ j \neq i}} \wb[j] + \wbRS > R (t_2-t_1)\]
+  alors 
+  \[  \LS \le t_1 - \frac{1}{b_i} \left( \sum_{\substack{j \in \A \\ j
+          \neq i}} \wb[j] + \wbRS - R (t_2-t_1) \right) \]
+\end{reg}
+
+\begin{ex}
+Considérons une ressource de capacité $R=3$ et les $4$ activités
+suivantes: 
+\begin{center}
+  \begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}|}
+    \hline
+    act & \ES & \LE & p_i & b_i  \\
+    \hline
+    1 & 0 & 6 & 5 & 2 \\
+    2 & 2 & 6 & 1 & 3 \\    
+    3 & 2 & 5 & 3 & 1 \\    
+    4 & 0 & 4 & 2 & 1 \\    
+    \hline
+  \end{tabular}
+\end{center}
+
+Pour pouvoir ajuster la date de début au plus tard de l'activité $4$,
+nous allons appliquer la règle~\ref{reg:ajust1_ER_CUSP} sur
+l'intervalle $[2,4[$. Pour cela, nous commençons par calculer
+l'énergie requise par les activités dans cet intervalle. 
+
+Pour l'activité $1$, cette énergie est $\wb[1][2][4]=4$. Elle est atteinte en
+calant l'activité à gauche ou à droite (l'énergie est la même dans les
+deux cas). Pour l'activité $2$, en calant l'activité à droite, nous
+obtenons $\wb[2][2][4]=0$. Enfin, pour l'activité $3$, cette énergie
+vaut $\wb[3][2][4]=2$.
+
+L'énergie obtenue en calant l'activité $4$ à droite est de
+$\wbRS[4][2][4]=2$. Nous devons ensuite comparée la somme de toutes
+ces consommations, i.e. $4+0+2+2=8$, à la quantité de ressource
+disponible dans l'intervalle $[2,4[$,
+i.e. $R(t_2-t_1)=3*(4-2)=6$. Comme nous avons $6<8$, nous pouvons
+appliquer la règle~\ref{reg:ajust1_ER_CUSP} et nous obtenons $\LS[4]
+\le 2- (6 + 2 -6)  / 1 = 0$. Le domaine de la date de début de l'activité
+$4$ est donc réduit à $\{0\}$.
+
+
+\begin{figure}[!ht]
+  \centering
+  \subcaptionbox{l'activité $4$ ne peut commencer après $t_1=2$}[0.45\linewidth]{
+    \begin{tikzpicture}[xscale=0.6,yscale=0.5  ,     every node/.style={color=black},%
+      dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,%
+        outer sep=-1pt}, cross/.style={path picture={ \draw (path picture
+          bounding box.south east) -- (path picture bounding box.north west)
+          (path picture bounding box.south west) -- (path picture bounding
+          box.north east); }}]
+      \node (O) at (0,0) {};
+      \fill[gray!20!] (2.5,3.2) node[black,above] {$t_1$} node{} +(0,-3.2) 
+      rectangle (4.5,3.2)  node[above,black] {$t_2$};
+      \draw[dotted] (4.5,0) -- (4.5,3.5);
+      \draw[dotted] (2.5,0) -- (2.5,3.5);
+      \draw[->] (0,0) -- (7,0);
+      \draw[decorate,decoration={brace,mirror}] (0.5,-0.3) --
+      (2.5,-0.3) node[midway,below] {début de $4$};
+      \draw (0.5,1) rectangle (5.5,3) node[midway] {\small $1$};
+      \draw (5.5,0) rectangle (6.5,3) node[midway] {\small $2$};
+      \draw (2.5,0) rectangle (5.5,1) node[midway] {\small $3$}; 
+      
+      \foreach \i in {0.5,...,6.5} {
+        \draw[thick] (\i,-0.1) -- (\i,0);
+      }
+    \end{tikzpicture}}
+  \hfill
+  \subcaptionbox{le domaine de l'activité $4$ peut être ajuster}[0.45\linewidth]{
+    \begin{tikzpicture}[xscale=0.6,yscale=0.5  ,     every node/.style={color=black},%
+      dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,%
+        outer sep=-1pt}, cross/.style={path picture={ \draw (path picture
+          bounding box.south east) -- (path picture bounding box.north west)
+          (path picture bounding box.south west) -- (path picture bounding
+          box.north east); }}]
+      \node (O) at (0,0) {};
+      \fill[gray!20!] (2.5,3.2) node[black,above] {$t_1$} node{} +(0,-3.2) 
+      rectangle (4.5,3.2)  node[above,black] {$t_2$};
+      \draw[dotted] (4.5,0) -- (4.5,3.5);
+      \draw[dotted] (2.5,0) -- (2.5,3.5);
+      \draw[->] (0,0) -- (7,0);
+
+      \draw[decorate,decoration={brace,mirror}] (0.2,-0.3) --
+      (0.8,-0.3) node[midway,below] {début de $4$};
+      \draw (0.5,1) rectangle (5.5,3) node[midway] {\small $1$};
+      \draw (5.5,0) rectangle (6.5,3) node[midway] {\small $2$};
+      \draw (2.5,0) rectangle (5.5,1) node[midway] {\small $3$}; 
+      
+      \foreach \i in {0.5,...,6.5} {
+        \draw[thick] (\i,-0.1) -- (\i,0);
+      }
+    \end{tikzpicture}}
+  \caption{Ajustement de borne du raisonnement énergétique}
+  \label{fig:ex_ER_CUSP}
+\end{figure}
+
+\end{ex}
+
+Le même raisonnement que pour l'algorithme de détection d'incohérence
+nous permet de caractériser l'ensemble des intervalles permettant de
+réaliser des ajustements. Les conditions sous lesquelles un
+intervalles peut conduire à un ajustement sont décrite dans le
+lemme~\ref{lem:min_ajust_ER_CUSP}. Comment obtenir cette
+caractérisation à partir de ce lemme sera aussi adaptée dans le cadre
+du \CECSP. De ce fait, elle n'est pas décrite ici.
+
+\begin{lemma}
+\label{lem:min_ajust_ER_CUSP}
+La fonction $R(t_2-t_1) -\sum_{\substack{j \in \A \\ j \neq i}} \wb[j]
+- \wbRS $ est localement minimale seulement si une des conditions
+ci-dessous est satisfaite.
+\begin{align} 
+\exists (j,k), \ &~\frac{\delta^{-}\wb[j]}{\delta t_1}
+&>~&~\frac{\delta^{+}\wb[j]}{\delta t_1}
+&\land~&~\frac{\delta^{-}\wb[k]}{\delta t_2} & >~&
+~\frac{\delta^{+}\wb[k]}{\delta t_2} \label{eq:deriv1_adj_CUSP}\\
+\exists j , \ &~\frac{\delta^{-}\wb[j]}{\delta t_1}
+&>~&~\frac{\delta^{+}\wb[j]}{\delta t_1}
+&\land~&\frac{\delta^{-}\wbRS[k]}{\delta t_2} & >~&
+\frac{\delta^{+}\wbRS[k]}{\delta t_2} \label{eq:deriv2_adj_CUSP}\\
+\exists k, \ &\frac{\delta^{-}\wbRS[j]}{\delta t_1}
+&>~&\frac{\delta^{+}\wbRS[j]}{\delta t_1}
+&\land~&~\frac{\delta^{-}\wb[k]}{\delta t_2} & >~&
+~\frac{\delta^{+}\wb[k]}{\delta t_2} \label{eq:deriv3_adj_CUSP}\\
+ &\frac{\delta^{-}\wbRS[j]}{\delta t_1}
+&>~&\frac{\delta^{+}\wbRS[j]}{\delta t_1}
+&\land~&\frac{\delta^{-}\wbRS[k]}{\delta t_2} & >~&
+\frac{\delta^{+}\wbRS[k]}{\delta t_2} \label{eq:deriv4_adj_CUSP}
+\end{align}
+\end{lemma}
+
+De manière similaire à la règle~\ref{reg:ajust1_ER_CUSP}, une autre
+règle permettant d'ajuster la date de début au plus tôt d'une activité
+peut être déduite.
+
+\begin{reg}
+  \label{reg:ajust2_ER_CUSP}
+  S'il existe un intervalle $[t_1,t_2[$ et une activité $i$ pour lesquels:
+  \[ \sum_{\substack{j \in \A \\ j \neq i}} \wb[j] +
+    \min(\wbCS,\wbLS) > R (t_2-t_1)\] 
+  alors 
+  \[  \ES \ge t_2 - \frac{1}{b_i} \left(R (t_2-t_1)  -\sum_{\substack{j \in \A \\ j
+          \neq i}} \wb[j]  \right) \]
+\end{reg}
+
+Le lemme~\ref{lem:min_ajust_ER_CUSP} peu aussi être appliqué dans ce
+cas, en considérant la fonction suivante au lieu de $\wbRS$:
+$b_i*\max\Big(\, 0\, , \, \min(\, \LE\, ,\, t_2\,) - \max(\, \LS\, ,
+  \, t_1\,) \,\Big)$. 
+
+Les différentes règles de filtrages présentées dans les paragraphes
+précédents ont parfois été étendues ou couplées afin de définir de
+nouvelles règles plus fortes que considérées indépendamment. Certaines
+d'entre elles sont décrites dans le paragraphe suivant. 
+
+
+\subsubsection{Règles de filtrage étendues}
 \label{sec:mix_CUSP}
+
+Parmi les règles de filtrage étendues ou couplés on trouve le
+raisonnement Edge-Finding étendu, le Time-Table-Edge-Finding ou encore
+le Time-Table disjonctif~\cite{Gay2015}. Dans ce paragraphe nous
+parlerons brièvement du second et détaillerons le dernier qui sera
+adapté pour le \CECSP. La raison pour laquelle nous avons choisi ce
+dernier sera détaillée dans le chapitre~\ref{sec:PPC_CECSP}.
+
+L'idée du Time-Table-Edge-Finding est de renforcer le raisonnement
+existant du Edge-Finding en prenant en considération le profil
+obligatoire des activités. L'algorithme proposé par Vil{\`i}m est en
+$O(n^2)$ et est un des plus performant, en pratique, pour résoudre les
+problème cumulatifs. 
+
+Afin d'ajouter l'énergie déduite du raisonnement Time-Table à celle du
+raisonnement Edge-Finding, les activités sont séparées en deux
+parties, la partie obligatoire et la partie libre. Ceci permet
+d'éviter de comptabiliser l'énergie deux fois lors du calcul de cette
+dernière. L'énergie consommée par un ensemble d'activité dans un
+intervalle est alors égale à la somme des énergie des parties libres
+de ces dernières et de la fonction de profil obligatoire de la
+ressource à l'intérieur de cet intervalle. 
+
+Dans le même esprit, Gay propose de combiner le raisonnement
+disjonctif et le raisonnement Time-Table. Pour ce faire, l'auteur
+définit la notion d'{\it intervalle minimum de superposition}. Cette
+notion va permettre de définir une nouvelle règle de filtrage dans le
+cas où faire débuter une activité $j$ à sa date de début au plus tôt
+$\ES[j]$ implique que cette activité chevauchera forcément une
+activité $i$ vérifiant $b_i+b_j > R$ dans tout ordonnancement
+réalisable. Ceci est dû au fait que la fenêtre de temps de $j$ ne peut
+contenir un point que l'activité $i$ devra forcément chevaucher. Quand
+l'activité $i$ n'a pas de partie obligatoire, l'intervalle que $j$ ne
+peut intersecter peut être caractérisé. 
+
+\begin{defi}
+\label{des:moi_CUSP} 
+L'intervalle minimal de superposition d’une activité $i$, dénoté
+$moi_i$, est l’intervalle de temps le plus petit tel que $i$ s’exécute
+au moins durant un point de temps de cet intervalle, et ce peu importe
+le moment auquel l'activité $i$ est exécutée.  
+
+Formellement,  l’intervalle minimal de superposition est défini par
+$[\EE-1,\LS{]}$.
+\end{defi}
+
+Quand une activité possède une partie obligatoire, elle ne possède pas
+d'intervalle minimum de superposition. 
+
+\begin{ex}
+La figure~\ref{fig:moi_CUSP} illustre l'intervalle minimum de
+superposition d'une activité $i$ ne possédant pas de partie
+obligatoire. 
+  \begin{figure}[!htb]
+    \subcaptionbox{Ordonnancement au plus tôt}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.25, yscale= 0.25,node distance=0.5cm]
+      \node (sil) at (1,0) {} ;
+      \node (eil) at (5,0) {} ;
+      \node [below of=eil,node distance=0.63cm]  {$\EE$};
+      \draw (sil.center) node[below=0.2cm] {$\ES$};
+      \node (sir) at (9,0) {} ;
+      \node (eir) at (13,0) {} ;
+      \node[below of= sir,node distance=0.63cm] {$\LS$};
+      \draw (eir.center) node[below=0.2cm] {$\LE$};
+      
+      \draw (0,0) -- (14,0);
+      
+      \draw[densely dotted] (9.05,0) -- (9.05,3);
+      \draw[densely dotted] (4.95,0) -- (4.95,3);
+      \draw[<->] (0,0.1) -- (0,2) node[midway,left] {$b_i$};
+      \draw[fill=white] (1,0) rectangle (5,2) node[midway] {$i$};
+      \draw[line width=3pt] (1,0) -- (1,3);
+      
+      \foreach \i in {0,...,14} {
+        \draw (\i,0)  -- (\i,-0.2);
+      }
+    \end{tikzpicture}
+}
+\hfill
+\subcaptionbox{Ordonnancement au plus tard}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.25, yscale= 0.25,node distance=0.5cm]
+      \node (sil) at (1,0) {} ;
+      \node (eil) at (5,0) {} ;
+      \node [below of=eil,node distance=0.63cm]  {$\EE$};
+      \draw (sil.center) node[below=0.2cm] {$\ES$};
+      \node (sir) at (9,0) {} ;
+      \node (eir) at (13,0) {} ;
+      \node[below of= sir,node distance=0.63cm] {$\LS$};
+      \draw (eir.center) node[below=0.2cm] {$\LE$};
+      
+      \draw (0,0) -- (14,0);
+      
+      \draw[densely dotted] (4.95,0) -- (4.95,3);
+      \draw[densely dotted] (9.05,0) -- (9.05,3);
+      \draw[<->] (14,0.1) -- (14,2) node[midway,right] {$b_i$};
+      \draw[fill=white] (9,0) rectangle (13,2) node[midway] {$i$};
+      \draw[line width=3pt] (13,0) -- (13,3);
+
+      \foreach \i in {0,...,14} {
+        \draw (\i,0)  -- (\i,-0.2);
+      }
+    \end{tikzpicture}
+}
+\hfill
+\subcaptionbox{Intervalle de superposition minimum}[0.3\linewidth]{ 
+  \begin{tikzpicture}
+    [xscale=0.25, yscale= 0.25,node distance=0.5cm]
+    \node (sir) at (9,0) {} ;
+    \node (eil) at (5,0) {} ;
+    \node [below of=eil,node distance=0.63cm]  {$\EE$};
+    \node[below of= sir,node distance=0.63cm] {$\LS$};
+    \draw[<->] (4,2.2) -- (9,2.2) node[midway,label={}]
+    {};
+    
+    \draw (4,0) rectangle (9,2)
+    node[midway,color=black,align=center,text width=1.4cm]
+    {\scriptsize $moi_i$}; 
+    
+    
+    \draw (0,0) -- (14,0);
+    \draw[line width=3pt] (1,0) -- (1,3);
+    \draw[line width=3pt] (13,0) -- (13,3);
+    
+    \draw[<->] (-0.1,0.1) -- (-0.1,2.4) node[midway,left] {$b_i$};
+
+    \draw[densely dotted] (4.95,0) -- (4.95,3);
+    \draw[densely dotted] (9.05 ,0) -- (9.05,3);
+
+    \foreach \i in {0,...,14} {
+      \draw (\i,0)  -- (\i,-0.2);
+    }
+  \end{tikzpicture}
+}
+      \caption{Intervalle minimum de superposition d'une activité}
+    \label{fig:moi_CUSP}
+  \end{figure}
+\end{ex}
+
+Cette notion permet de définir une première règle d'ajustement. Cette
+règle sera ensuite améliorée dans un second temps. 
+
+\begin{reg}
+\label{reg:RDR_CUSP}
+  Soient deux activités $i$ et $j$ telles que $i$ ne possède pas de
+  partie obligatoire et que $b_i+b_j > R$. Si ordonnancer l'activité
+ $j$ à sa date de début au plus tôt la fait se superposer complètement
+ à l’intervalle minimal de superposition de $i$ ($moi_i \subseteq
+ [\ES[j],\EE[j]{]}$), alors $\ES[j] \ge \EE$.
+\end{reg}
+
+\begin{ex}
+
+\end{ex}
+
+Nous montrons maintenant comment les auteurs de~\cite{Gay2015} intègre
+les informations déduites du Time-Table pour proposer une règle de
+filtrage plus forte que celle décrite ci-dessus. Cette règle sera
+décrite seulement dans le cas où les activités $i$ et $j$ ne possèdent
+pas de partie obligatoire. Le cas inverse est décrit
+dans~\cite{Gay2015} et repose sur la séparation des activités en une
+partie obligatoire et une partie libre. Dans la présentation de
+l'adaptation de ce raisonnement au \CECSP, ce cas sera détaillé.
+
+La règle~\ref{reg:RDR_CUSP} compare seulement les consommations de $i$
+et de $j$ avec la capacité de la ressource $R$. Cependant, les
+consommations obligatoires des autres activités peuvent ne pas laisser
+$R$ unités de ressource durant l'intersection de $i$ et de $j$. La
+règle suivante prend donc en considération le profil obligatoire de la
+ressource. 
+
+\begin{reg}
+\label{reg:TTDR_CUSP}
+Soient donc $i$ et $j$ deux activités qui ne possèdent pas de partie
+obligatoire et telles que $ b_i +b_j + \min_{t \in moi_i} TT_{\A}(t) >
+R$.   Si ordonnancer l'activité
+ $j$ à sa date de début au plus tôt la fait se superposer complètement
+ à l’intervalle minimal de superposition de $i$ ($moi_i \subseteq
+ [\ES[j],\EE[j]{]}$), alors $\ES[j] \ge \EE$.
+\end{reg}
+
+\begin{ex}
+
+\end{ex}
+
+
 
 
