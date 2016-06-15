@@ -1,0 +1,43 @@
+\section*{Conclusion}
+
+Dans ce chapitre, nous avons d'abord présenté les bases de la
+programmation par contrainte. En particulier, nous avons vu que les
+problèmes d'ordonnancement se traduisent naturellement en problème de
+satisfaction de contraintes. 
+
+Ce paradigme est ensuite appliqué au \CUSP, un des plus célèbres
+problèmes d'ordonnancement traité en PPC. De ce fait, nous avons pu
+présenté de nombreux algorithmes de filtrage, i.e. des algorithmes
+filtrant les valeurs incohérentes des domaines des variables, pour ce
+problème. Ces algorithmes sont classées en trois classes: les
+algorithmes de filtrage simples, basés sur le concept d'énergie et
+étendus. Pour chacune de ces trois classes, au moins un algorithme de
+propagation est présenté en détails et de nombreux autres exemples
+sont cités. 
+
+Dans le paragraphe concernant les règles de filtrages simples, nous
+avons présenté le raisonnement Time-Table et le raisonnement
+disjonctif. Ces raisonnements sont parmi les moins fort pour le
+\CUSP~mais leur facilité d'implémentation et leur rapidité en font des
+algorithmes très utilisés pratiques. 
+
+Le paragraphe suivant présente les règles de filtrages
+énergétiques. Parmi elles sont mentionnées le raisonnement
+Edge-Finding, les activités élastiques et le raisonnement énergétique
+qui est présenté en détail. Ce dernier est, à ce jour, un des
+raisonnement les plus fort pour le \CUSP. Cependant, la complexité
+élevée de ce dernier fait de lui un des algorithmes les moins utilisé
+en pratique.
+
+Enfin, le dernier paragraphe explique comment certains auteurs ont
+étendu ou couplé des règles de filtrages existantes pour définir de
+nouvelles règles de filtrages plus fortes que prises
+individuellement. Parmi celles citées, on trouve le raisonnement
+Edge-Fiding étendu, le Time-Table-Edge-Finding et le Time-Table
+disjonctif. {\'A} l'inverse du raisonnement énergétique, ces règles
+sont très utilisées en pratique car leur complexité est relativement
+faible. 
+
+Dans le prochain chapitre, nous présenterons l'adaptation de plusieurs
+de ces raisonnements dans le cadre du \CECSP. Un nouveau raisonnement,
+basé sur le Time-Table, sera aussi présenté.

@@ -467,5 +467,6 @@ problèmes est NP-complet.  Dans ce cas, il devient crucial de mettre
 en place des algorithmes qui s'exécutent en temps raisonnable mais qui
 n'assure pas un filtrage total du domaine des variables. De tels
 algorithmes seront présentés dans le paragraphe~\ref{sec:cumu_propag}
-dans le but de résoudre le \CUSP. Le paragraphe suivant est quant à
-lui dédié à la modélisationd es problèmes d'ordonnancement en PPC.
+dans le but de 
+résoudre le \CUSP. Le paragraphe suivant est quant à lui dédié à la
+modélisationd es problèmes d'ordonnancement en PPC. 

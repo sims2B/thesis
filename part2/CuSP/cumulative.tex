@@ -1,7 +1,7 @@
 \section{L'ordonnancement cumulatif}
 \label{sec:cumu}
 
-\subsection{L'ordonnancement en programmation par contrainte}
+\subsection{L'ordonnancement en programmation par contraintes}
 \label{sec:cumu_ordo}
 
 Les problèmes d'ordonnancement étudiés en programmation par
@@ -19,8 +19,12 @@ son exécution soit égale à une certaine valeur appelée {\it
   énergie}. Cette dernière notion peut aisément être étendue dans le
 cas où l'énergie reçue par une activité n'est pas égale à la quantité
 de ressource consommée mais où des fonctions de rendement modélisent 
-cette conversion. Clairement, le \CECSP est un exemple typique d'un
-tel problème. 
+cette conversion. Clairement, le \CECSP~est un exemple typique d'un
+tel problème. Dans la suite de ce chapitre, nous considérons la notion
+d'énergie au sens de la quantité totale de ressource
+consommée. L'extension de cette notion pour prendre en considération
+les fonctions de rendement sera détaillée dans le
+chapitre~\ref{sec:PPC_CECSP}.
 
 La majorité des problèmes d'ordonnancement non-préemptifs classiques
 peuvent être modélisés à l'aide d'un problème de satisfaction de
@@ -51,12 +55,13 @@ dans le cas d'un problème d'ordonnancement continu, une telle solution
 ne peut être envisageable car cela conduirait à un nombre infini de
 telles variables.
 
-Les problèmes élastiques sont, quant à eux modéliser, à travers les
+Les problèmes élastiques sont, quant à eux, modéliser à travers les
 contraintes de ressources. Il existe deux principaux types de
 contraintes de ressource en PPC. Le premier permet de modéliser les
 ressources disjonctives, i.e. qui ne peuvent exécuter qu'une activité
 en parallèle, et le second sert à la modélisation des ressources
-cumulatives. Ici, nous nous intéressons seulement au second cas.
+cumulatives. Dans ce manuscrit, nous nous intéressons seulement au
+second cas. 
 
 {\'E}tant donné une activité et une ressource de capacité $R$, une
 variable $b_i$ sert généralement à modéliser la consommation de
@@ -131,6 +136,10 @@ contrainte cumulative ont donc été introduites et des règles
 d'ajustement pouvant être appliquées en temps polynomial ont été mis
 en place pour ces relaxations.
 
+Dans ce manuscrit, nous présentons quelques une de ces
+techniques. Pour une description plus détaillée des différentes
+techniques de relaxation existantes pour la contrainte cumulative,
+nous renvoyons le lecteur à~\cite{BLPN,DHP}. 
 Baptiste {\it et al.}~\cite{BLPN} présentent un panorama de ces
 différentes relaxations ainsi que des principales techniques issues de
 la programmation par contraintes mis en place pour résoudre la
@@ -602,10 +611,10 @@ central du raisonnement énergétique:
 \begin{theo}
 \label{th:centerRE}
 Soit $\I$ une instance de la contrainte cumulative. S'il existe
-$t_1 < t_2 \in \mathbb{R}^2$ tel que $SL(t_1,t_2) <0$ alors $\I$ ne
+$t_1 < t_2 \in \mathbb{N}^2$ tel que $SL(t_1,t_2) <0$ alors $\I$ ne
 possède pas de solution, i.e.
 \begin{equation}
-\exists t_1 < t_2 \in \mathbb{R}^2 , SL(t_1,t_2) <0 \Rightarrow \I
+\exists t_1 < t_2 \in \mathbb{N}^2 , SL(t_1,t_2) <0 \Rightarrow \I
 \text{ ne possède pas de solution}
 \label{eq:centerRE}
 \end{equation}
@@ -773,14 +782,16 @@ L'instance n'est donc pas réalisable et une incohérence est détectée.
 
 La règle de détection d'incohérence décrite par le
 Théorème~\ref{th:centerRE} impose le calcul de la fonction de marge
-pour tout intervalle $[t_1,t_2[ \in \mathbb{N}^2$, ce qui, en pratique, n'est pas
-envisageable. Cependant, Baptiste {\it et al.} ont proposé
-une caractérisation des intervalles sur lesquels il est suffisant
-d'appliquer le raisonnement énergétique. Par suffisant, nous entendons
-que, si une incohérence n'est pas détectée sur cet ensemble
+pour tout intervalle $[t_1,t_2[ \in \mathbb{N}^2$, ce qui, en
+pratique, n'est pas envisageable. Cependant, Baptiste {\it et al.} ont
+proposé une caractérisation des intervalles sur lesquels il est
+suffisant d'appliquer le raisonnement énergétique. Par suffisant, nous
+entendons que, si une incohérence n'est pas détectée sur cet ensemble
 d'intervalle, alors aucun autre intervalle ne pourra conduire à
 l'insatisfiabilité de l'instance. La taille de cet ensemble
-d'intervalle d'{\it intérêt} est de l'ordre de $O(n^2)$.
+d'intervalle d'{\it intérêt} est de l'ordre de $O(n^2)$. Le calcul de
+la fonction de marge pouvant s'effectuer incrémentalement, la
+complexité du checker énergétique est donc de $O(n^2)$.
 
 Récemment, Derrien {\it et al.}~\cite{DP} ont proposé une
 caractérisation plus fine de l'ensemble des intervalles d'intérêt pour
@@ -1180,6 +1191,14 @@ ci-dessous est satisfaite.
 \end{align}
 \end{lemma}
 
+L'ordre de grandeur de l'ensemble des intervalles d'intérêt pour les
+ajustements est aussi de $n^2$ et l'algorithme permettant de procéder
+à tous les ajustments possibles a une complexité en $O(n^3)$. Ceci
+fait du raisonnement énergétique un des moins utilisés en pratique,
+même si ce raisonnement est un des plus forts pour la contrainte
+cumulative. 
+
+
 De manière similaire à la règle~\ref{reg:ajust1_ER_CUSP}, une autre
 règle permettant d'ajuster la date de début au plus tôt d'une activité
 peut être déduite.
@@ -1199,6 +1218,7 @@ cas, en considérant la fonction suivante au lieu de $\wbRS$:
 $b_i*\max\Big(\, 0\, , \, \min(\, \LE\, ,\, t_2\,) - \max(\, \LS\, ,
   \, t_1\,) \,\Big)$. 
 
+
 Les différentes règles de filtrages présentées dans les paragraphes
 précédents ont parfois été étendues ou couplées afin de définir de
 nouvelles règles plus fortes que considérées indépendamment. Certaines
@@ -1209,11 +1229,12 @@ d'entre elles sont décrites dans le paragraphe suivant.
 \label{sec:mix_CUSP}
 
 Parmi les règles de filtrage étendues ou couplés on trouve le
-raisonnement Edge-Finding étendu, le Time-Table-Edge-Finding ou encore
-le Time-Table disjonctif~\cite{Gay2015}. Dans ce paragraphe nous
-parlerons brièvement du second et détaillerons le dernier qui sera
-adapté pour le \CECSP. La raison pour laquelle nous avons choisi ce
-dernier sera détaillée dans le chapitre~\ref{sec:PPC_CECSP}.
+raisonnement Edge-Finding étendu~\cite{ExtEF}, le
+Time-Table-Edge-Finding~\cite{V11} ou encore le Time-Table
+disjonctif~\cite{Gay2015}. Dans ce paragraphe nous parlerons
+brièvement du second et détaillerons le dernier qui sera adapté pour
+le \CECSP. La raison pour laquelle nous avons choisi ce dernier sera
+détaillée dans le chapitre~\ref{sec:PPC_CECSP}.
 
 L'idée du Time-Table-Edge-Finding est de renforcer le raisonnement
 existant du Edge-Finding en prenant en considération le profil
@@ -1360,7 +1381,80 @@ règle sera ensuite améliorée dans un second temps.
 \end{reg}
 
 \begin{ex}
+La règle~\ref{reg:RDR_CUSP} est illustrée par la
+figure~\ref{fig:RDR_CUSP}. Dans la partie gauche de la fiigure, on
+peut constater que les activités $i$ et $j$ ne peuvent être exécutée
+en parallèle à cause de la capacité de la ressource. Si l'activité $j$
+commence à $\ES[j]$, alors elle intersecterait complètement $moi_i$ et
+il serait impossible d'ordonancer $i$. Sur la partie droite de la
+figure, $\ES[j]$ a été ajusté et l'activité $j$ ne peut commencer
+avant la fin de $moi_i$.
 
+  \begin{figure}[!htb]
+    \centering
+    \begin{tikzpicture}
+      \begin{scope} [yscale=0.45,xscale=0.4]
+        \node (O) at (0,0) {};
+
+        \foreach \i in {0,5,...,10} {
+          \draw (\i,0) -- (\i,-0.1) node[below] {\small $\i$};
+        }
+        \fill[gray!30] (0,0) rectangle (14,2.4);
+        \fill[gray!30] (2,2.6) rectangle (14,5);
+        \draw[thick] (0,3.8)  node[left] {$R=3$} -- (14,3.8);
+        
+        
+        \draw[densely dotted] (2,-0.1) -- (2,5.5) node[above] {$\ES[j]$};
+        \draw[densely dotted] (11,-0.1) -- (11,5.5) node[above] {$\EE[j]$};
+        \draw[densely dotted] (5,-0.1 ) node[below=0.3cm] {$\EE$}-- (5,5.5) ;
+        \draw[densely dotted] (9,-0.1) node[below=0.3cm] {$\LS$} --
+        (9,5.5) ;
+
+        \draw[fill=black!70!] (4,2.2) rectangle
+        (11,2.8) node[midway,white] {$\mathbf{moi_i}$};
+        \draw[fill=white] (0,0.2) rectangle (5,2.2) node[midway]
+        {$i$};
+
+        \draw[fill=white] (2,2.8) rectangle (11,4.8) node[midway]
+        {$j$};
+
+        \draw[->] (0,0) -- (14,0);
+        \draw[->] (0,0) -- (0,5.5) ;
+        % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};
+        % \draw[->] (1.8,5.8) -- (5.2,5.8);
+      \end{scope}     
+      \begin{scope} [yscale=0.45,xscale=0.4,xshift=20cm]
+        \node (O) at (0,0) {};
+        \foreach \i in {0,5,...,10} {
+          \draw (\i,0) -- (\i,-0.1) node[below] {\small $\i$};
+        }
+
+        \fill[gray!30] (5,2.6) rectangle (14,5);
+        \fill[gray!30] (0,0) rectangle (14,2.4);
+        \draw[thick] (0,3.8)  node[left] {$R=3$} -- (14,3.8);
+        
+        \draw[densely dotted] (13,-0.1) -- (13,5.5) node[above] {$\EE[j]$};
+        \draw[densely dotted] (5,-0.1 ) node[below=0.3cm] {$\EE$}-- (5,5.5) node[above] {$\ES[j]$};
+        \draw[densely dotted] (9,-0.1) node[below=0.3cm] {$\LS$} -- (9,5.5) ;
+        \draw[fill=black!70!] (4,2.2) rectangle
+        (11,2.8) node[midway,white] {$\mathbf{moi_i}$};
+        
+        \draw[fill=white] (0,0.2) rectangle (5,2.2) node[midway]
+        {$i$};
+        \draw[fill=white] (5,2.8) rectangle (13,4.8) node[midway]
+        {$j$};
+
+
+        \draw[->] (0,0) -- (14,0);
+        \draw[->] (0,0) -- (0,5.5) ;
+        % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};
+        % \draw[->] (1.8,5.8) -- (5.2,5.8);  
+
+      \end{scope}
+    \end{tikzpicture}
+    \caption{Illustration de la règle~\ref{reg:RDR_CUSP}.}
+    \label{fig:RDR_CUSP}
+  \end{figure}
 \end{ex}
 
 Nous montrons maintenant comment les auteurs de~\cite{Gay2015} intègre
@@ -1390,8 +1484,77 @@ R$.   Si ordonnancer l'activité
 \end{reg}
 
 \begin{ex}
+  Considérons les activités suivantes: 
 
+  \vspace{-0.5cm}
+  \begin{center}
+    \begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}|}
+      \hline
+      act &\ES & \LE & p_i & b_i  \\
+      \hline
+      1 & 2 & 11 & 3 & 2 \\
+      2 & 1 & 20 & 9 & 1 \\
+      3 & 2 & 11 & 9 & 1 \\
+      \hline
+    \end{tabular}
+  \end{center}
+
+  Les activités $1$ et $2$ ne possèdent pas de partie obligatoire tandis
+  que l'activité $3$ est forcément en cours d'exécution durant
+  l'intervalle $[2,11[$. 
+
+  \begin{figure}[!htb]
+    \centering
+    \begin{tikzpicture}
+      [yscale=0.45,xscale=0.6]
+      \node (O) at (0,0) {};
+      \foreach \i in {0,1,...,20} {
+        \draw (\i,0) -- (\i,-0.15) node[below] {\small $\i$};
+      }
+      
+      \draw (2,0) rectangle (11,1);
+      \fill[gray!30] (5,3.8) rectangle (20,5.2);
+      \fill[gray!30] (2,5.8) rectangle (11,8.2);
+      
+      \draw [->] (1.2,4.5) -- (4.8,4.5);
+      \draw [->] (1.8,-1.7) -- (4.3,-1.7);
+      \draw[densely dotted] (1,-0.1) node[below=0.3cm] {$\ES[j]$}-- (1,8.2) ;
+      \draw[densely dotted] (5,-0.1 ) node[below=0.3cm] {$\EE$}--
+      (5,8.2);
+      \draw[densely dotted] (10,-0.1) node[below=0.3cm] {$\EE[j]$} -- (10,8.2) ;
+      \draw[densely dotted] (8,-0.1) node[below=0.3cm] {$\LS$} -- (8,8.2) ;
+      
+      \draw[fill=black!70!] (4,5) rectangle
+      (8,6) node[midway,white] {$\mathbf{moi_i}$};
+      
+      \draw[fill=white] (2,6) rectangle (5,8) node[midway]
+      {$i$};
+      \draw[fill=white] (5,4) rectangle (14,5) node[midway]
+      {$j$};
+      
+      \draw[->] (0,0) -- (21,0);
+      \draw[->] (0,0) -- (0,5.5) ;
+       \draw[thick] (0,3)  node[left] {$R=3$} -- (20,3);
+       % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};
+      % \draw[->] (1.8,5.8) -- (5.2,5.8);  
+    \end{tikzpicture}
+    \caption{Illustration du Time-Tabe disjonctif}
+    \label{fig:TTDR_CUSP}
+  \end{figure}
+L'intervalle $moi_i=[4,8]$ est complètement inclus dans l'intervalle
+formé par $\ES[j]$ et $\EE[j]$, i.e. $[1,10[$. De plus, le minimum du
+profil de consommation de la ressource dans $moi_i$ est de $1$. Donc,
+les activités $i$ et $j$, consommant respectivement $2$ et $1$ unités
+de ressource, ne peuvent se chevaucher sur l'intervalle $[4,8]$. Donc
+$\ES[j]$ peut être ajuster à $5$. 
 \end{ex}
+
+On peut remarquer qu'aucun des autres raisonnements présentés dans ce
+chapitre n'aurait filtré de valeurs du domaine de $st_j$. En
+particulier, le raisonnement énergétique, le raisonnement permettant
+de filtrer le plus de valeur pour la contrainte cumulative, ne détecte
+pas d'ajustement dans ce cas. Le raisonnement Time-Table disjonctif
+n'est donc dominé par aucun autre raisonnement existant. 
 
 
 
