@@ -7,8 +7,9 @@
 
 La section suivante présente plusieurs algorithmes de filtrage pour le
 \CECSP. Tous ces algorithmes utilisant une adaptation du Time-Table
-pour le \CUSP, nous commençons donc par présenter ce
-raisonnement. Puis, nous présentons deux autres algorithmes permettant
+pour le \CUSP, nous commençons donc par présenter brièvement comment
+ce raisonnement est modifié pour être adapté dans le cadre du \CECSP.
+Puis, nous présentons deux autres algorithmes permettant
 de réduire l'ensemble des valeurs possibles pouvant être prises par
 chaque variable. Le premier est adapté du Time-Table disjonctif pour
 le \CUSP~\cite{Gay2015} et le dernier utilise une combinaison entre
@@ -34,12 +35,10 @@ activité $i$ est alors définie de a même manière que pour le \CUSP:
 La partie obligatoire d'une activité $i$ est l'intervalle $[\LS,\EE]$.
 \end{defi}
 
-Notons que si $\LS \ge \EE$, l'activité $i$ n'a pas de partie
-obligatoire. Dans le cas contraire, nous savons que l'activité $i$ va
-consommer au moins une quantité $\bmin$ de la ressource durant toute
-sa partie obligatoire, et ce, quelque soit le moment où l'activité est
-ordonnancée. 
-
+Dans le cas où $\LS \le \EE$, i.e. où l'activité possède une partie
+obligatoire, nous savons que l'activité $i$ va consommer au moins une
+quantité $\bmin$ de la ressource durant toute sa partie obligatoire,
+et ce, quelque soit le moment où l'activité est ordonnancée.
 
 \begin{ex}
 Considérons l'activité suivante: 
@@ -150,82 +149,31 @@ moins exécutée à $\bmin$ (voir figure~\ref{fig_mand_CECSP_c}).
 \end{figure}
 \end{ex}
 
-
 En suivant le même cheminement que pour le \CUSP, nous utilisons ces
 parties obligatoires pour calculer le profil obligatoire de la
 ressource. Ce profil obligatoire est défini comme la somme des parties
-obligatoires de toutes les activités. 
+obligatoires de toutes les activités. La définition étant exactement
+la même que celle définie dans le cadre du \CUSP  (voir
+définition~\ref{def:partie_oblig}), elle n'est pas détaillée dans ce
+paragraphe. 
 
+Ce profil obligatoire peut aussi être calculé en $O(n)$ à l'aide d'un
+algorithme de balayage en triant au préalable les activités par date
+de début au plus tard et date de fin au plus tôt (voir
+algorithme~\ref{algo_profil}).
 
-\begin{defi} Le {\bf profil obligatoire} d'une ressource $TT_{\cal A}$
-est définie par la fonction suivante: $TT_{\cal A}(t)=
-\sum_{\substack{i \in {\cal A}\\ \overline{s}_i \le t <
-\underline{e}_i}} \bmin,\ \forall t \in {\cal T}$.  Le problème
-n'admet pas de solution si $\exists t \in {\cal T}\ : \ TT_{\cal A}(t)
-> R$.
-\end{defi}
-
-
-\begin{ex}
-  \begin{figure}[!htb]
-    \centering
-    \begin{tikzpicture}
-      [yscale=0.45,xscale=0.6]
-      \node (O) at (0,0) {};
-      \foreach \i in {0,...,13} {
-        \draw (\i-1,0) -- (\i-1,-0.1) node[below] {$\i$};
-      }
-      
-      \draw (0,0) -- (0,2) -- (2,2) -- (2,4) -- (4,4) -- (4,6) --
-      (5,6) -- (5,1) -- (9,1) -- (9,3) -- (11,3) -- (11,0);
-      \draw[->] (-1,0) -- (12.5,0);
-      \draw[thick] (-1,5) -- (12.5,5);
-      \draw[<->] (12,0.1) -- (12,4.9) node[midway,right] {$R=5$};
-    \end{tikzpicture}
-    \caption{Exemple de profil obligatoire d'une ressource}
-    \label{fig_profil_CECSP}
-  \end{figure}
-  Dans l'exemple décrit par la figure~\ref{fig_profil_CECSP}, nous
-  remarquons que, au temps $t=0$, le profil obligatoire de la
-  ressource vaut $2$. Comme la ressource est de capacité $5$, aucune
-  incohérence n'est détectée. À l'inverse, au temps $t=4$, le profil
-  obligatoire de la ressource a une valeur de $6$, ce qui est
-  supérieur à la capacité de la ressource. Une incohérence est donc
-  détectée et il n'existe pas de solution réalisable pour cette
-  instance. 
-\end{ex}
-
-
-Comme pour le \CUSP, nous pouvons calculer le profil obligatoire d'une
-ressource en $O(n)$ à l'aide d'un algorithme de balayage en triant au
-préalable les activités par date de début au plus tard et date de fin
-au plus tôt (voir algorithme~\ref{algo_profil}).
-
-\begin{algorithm}[!htb]
-  \caption{Calcul du profil obligatoire d'une ressource}
-  \label{algo_profil}
-  $timePoint \gets$ les dates de début/fin au plus tard/tôt
-  des activités triées par ordre croissant
-  \PourTous {$t \in timePoint$}{
-    \Si {$\LS < \EE$}{
-      $TT[t]= TT[t-1] +\bmin$}
-    \Sinon{
-      $TT[t]= TT[t-1]$}
-  }
-\end{algorithm}
-
-Nous allons maintenant utiliser le raisonnement du Time-Table afin de
-définir deux autres algorithmes de filtrage.
+Nous détaillons maintenant l'adaptation du Time-Table disjonctif au
+\CECSP. 
 
 \subsection{Le Time-Table disjonctif}
 
 Le second algorithme de filtrage proposé repose sur un raisonnement
 appelé Time-Table disjonctif et utilisé, en premier lieu, pour le
-\CUSP~\cite{Gay2015}. Comme son nom l'indique, ce dernier repose sur
-le raisonnement Time-Table décrit précédemment et sur un raisonnement
-appelé raisonnement disjonctif. 
+\CUSP. Ce dernier repose sur le raisonnement Time-Table décrit
+précédemment et sur le raisonnement disjonctif.
 
-Le raisonnement disjonctif repose sur la construction d'ensembles
+Le raisonnement disjonctif dans le cadre du \CECSP, est très similaire
+à celui défini pour le \CUSP. La différence repose repose sur la construction d'ensembles
 disjonctifs. Ces ensembles correspondent aux ensembles d'activités qui
 ne peuvent s'exécuter en parallèle. Son application la plus basique
 s'intéresse seulement aux ensembles de taille $2$, c'est à dire aux
