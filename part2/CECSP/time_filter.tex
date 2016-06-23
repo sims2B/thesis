@@ -18,7 +18,9 @@ problème de flots et profil obligatoire.
 \subsection{Le Time-Table}
 \index{Time-Table!CECSP}
 Comme pour le \CUSP, le Time-Table pour le \CECSP~se base sur la
-notion de profil obligatoire des activités. Cependant, comme dans le
+notion de partie obligatoire des activités, i.e. l'intervalle pendant
+lequel une activité est en cours d'exécution dans tous les
+ordonnancements réalisables. Cependant, comme dans le
 cas du \CECSP, nous ne connaissons pas la durée exacte d'une activité,
 nous utilisons une borne inférieure sur sa durée pour calculer la date
 de début au plus tard, $\LS$, et la date de fin au plus tôt,
@@ -29,16 +31,26 @@ une borne inférieure sur la durée de l'activité vaut
 $W_i/f_i(\bmax)$. Nous pouvons donc calculer la date de début au plus
 tard de l'activité, $\LS=d_i-W_i/f_i(\bmax)$, et sa date de fin au
 plus tôt, $\EE=r_i+W_i/f_i(\bmax)$. La partie obligatoire d'une
-activité $i$ est alors définie de a même manière que pour le \CUSP:
+activité $i$ est alors définie de a même manière que pour le \CUSP,
+i.e la partie obligatoire de $i$ est l'intervalle $[\LS,\EE]$ (cf. figure~\ref{fig_mand_CECSP}). 
+
+Cependant, dans le cas où $\LS \le \EE$, i.e. où l'activité possède
+une partie obligatoire, nous pouvons seulement déduire que l'activité
+$i$ va consommer au moins une quantité $\bmin$ de la ressource durant
+toute sa partie obligatoire, et ce, quelque soit le moment où
+l'activité est ordonnancée. La notion de profil obligatoire de la
+ressource est donc légèrement différente de celle définie pour le
+\CUSP~(cf. définition~\ref{def:profil_oblig},
+page~\pageref{def:profil_oblig}). 
 
 \begin{defi}
-La partie obligatoire d'une activité $i$ est l'intervalle $[\LS,\EE]$.
+Le profil obligatoire d'une ressource $TT_{\A}$ dans le cas du
+\CECSP~est définie de la façon suivante: 
+\[TT_{\A}(t)=\sum_{\substack{i \in \A\\\LS \le t \le \EE}} \bmin\quad
+  \forall t \in \H\]
+Le problème est donc insatisfiable dans le cas où $\exists t \in \H\
+:\ TT_{\A}(t) > R$
 \end{defi}
-
-Dans le cas où $\LS \le \EE$, i.e. où l'activité possède une partie
-obligatoire, nous savons que l'activité $i$ va consommer au moins une
-quantité $\bmin$ de la ressource durant toute sa partie obligatoire,
-et ce, quelque soit le moment où l'activité est ordonnancée.
 
 \begin{ex}
 Considérons l'activité suivante: 
@@ -149,15 +161,7 @@ moins exécutée à $\bmin$ (voir figure~\ref{fig_mand_CECSP_c}).
 \end{figure}
 \end{ex}
 
-En suivant le même cheminement que pour le \CUSP, nous utilisons ces
-parties obligatoires pour calculer le profil obligatoire de la
-ressource. Ce profil obligatoire est défini comme la somme des parties
-obligatoires de toutes les activités. La définition étant exactement
-la même que celle définie dans le cadre du \CUSP  (voir
-définition~\ref{def:partie_oblig}), elle n'est pas détaillée dans ce
-paragraphe. 
-
-Ce profil obligatoire peut aussi être calculé en $O(n)$ à l'aide d'un
+Le profil obligatoire peut aussi être calculé en $O(n)$ à l'aide d'un
 algorithme de balayage en triant au préalable les activités par date
 de début au plus tard et date de fin au plus tôt (voir
 algorithme~\ref{algo_profil}).
@@ -169,34 +173,23 @@ Nous détaillons maintenant l'adaptation du Time-Table disjonctif au
 
 Le second algorithme de filtrage proposé repose sur un raisonnement
 appelé Time-Table disjonctif et utilisé, en premier lieu, pour le
-\CUSP. Ce dernier repose sur le raisonnement Time-Table décrit
-précédemment et sur le raisonnement disjonctif.
+\CUSP (cf. paragraphe~\ref{sec:mix_CUSP}). Ce dernier repose sur le
+raisonnement Time-Table décrit précédemment et sur le raisonnement
+disjonctif.
 
 Le raisonnement disjonctif dans le cadre du \CECSP, est très similaire
-à celui défini pour le \CUSP. La différence repose repose sur la construction d'ensembles
-disjonctifs. Ces ensembles correspondent aux ensembles d'activités qui
-ne peuvent s'exécuter en parallèle. Son application la plus basique
-s'intéresse seulement aux ensembles de taille $2$, c'est à dire aux
-paires d'activités disjonctives. 
-
-Si nous considérons deux activités $i, j \in \A, i\neq j$ telles que
-$\bmin + \bmin[j] > R$ alors une des deux affirmations suivantes doit
-être vraie:
+à celui défini pour le \CUSP. La différence repose sur la construction
+d'ensembles disjonctifs. Dans le cas du \CECSP, un couple d'activité
+($i,j)$ sera dit disjonctif si $\bmin+\bmin[j] >R$. Dans ce cas, nous
+savons que: 
 \begin{itemize}
 \item l'activité $i$ doit commencer après l'activité $j$, ou, 
 \item l'activité $i$ doit finir avant l'activité $j$.  
 \end{itemize}
-En effet, comme les activités $i$ et $j$ ne peuvent être exécutées en
-parallèles, l'une doit forcément finir avant que l'autre ne puisse
-s'exécuter. 
 
-Cette propriété nous permet d'améliorer les bornes des variables de
-début et fin d'une activité. La règle de filtrage est la suivante:
-
-\begin{prop}
-Soit $i,j \in \A, i\neq j$ telles que $\bmin + \bmin[j] > R,\ \ES[j] \le
-\EE$ et $\LS \le \EE[j]$. Alors la contrainte suivante doit être vérifiée: $et_i\le st_j$. 
-\end{prop}
+Cette propriété permet d'améliorer les bornes des variables de
+début et fin d'une activité. La règle de filtrage est ensuite la même
+que dans le cas du \CUSP. 
 
 Cette contrainte nous permet, entre autre, d'ajuster la date de début
 au plus tôt de $j$. En effet, $\ES[j] \le
@@ -226,6 +219,8 @@ donc: $\ES[j] \ge \EE$.
   \caption{Raisonnement disjonctif}
   \label{fig_disj}
 \end{figure}
+
+
 
 \subsection{Le Time-Table basé sur les flots}
 
