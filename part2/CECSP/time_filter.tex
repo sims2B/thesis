@@ -20,19 +20,20 @@ problème de flots et profil obligatoire.
 Comme pour le \CUSP, le Time-Table pour le \CECSP~se base sur la
 notion de partie obligatoire des activités, i.e. l'intervalle pendant
 lequel une activité est en cours d'exécution dans tous les
-ordonnancements réalisables. Cependant, comme dans le
-cas du \CECSP, nous ne connaissons pas la durée exacte d'une activité,
-nous utilisons une borne inférieure sur sa durée pour calculer la date
-de début au plus tard, $\LS$, et la date de fin au plus tôt,
-$\EE$. Pour calculer cette borne, remarquons que la configuration
-permettant de finir une activité le plus rapidement possible, est
-celle où l'activité est exécutée à son rendement $\bmax$. De ce fait,
-une borne inférieure sur la durée de l'activité vaut
-$W_i/f_i(\bmax)$. Nous pouvons donc calculer la date de début au plus
-tard de l'activité, $\LS=d_i-W_i/f_i(\bmax)$, et sa date de fin au
-plus tôt, $\EE=r_i+W_i/f_i(\bmax)$. La partie obligatoire d'une
-activité $i$ est alors définie de a même manière que pour le \CUSP,
-i.e la partie obligatoire de $i$ est l'intervalle $[\LS,\EE]$ (cf. figure~\ref{fig_mand_CECSP}). 
+ordonnancements réalisables. Cependant, comme dans le cas du \CECSP,
+nous ne connaissons pas la durée exacte d'une activité, nous utilisons
+une borne inférieure sur sa durée pour calculer la date de début au
+plus tard, $\LS$, et la date de fin au plus tôt, $\EE$. Pour calculer
+cette borne, remarquons que la configuration permettant de finir une
+activité le plus rapidement possible, est celle où l'activité est
+exécutée à son rendement maximal $\bmax$. De ce fait, une borne
+inférieure sur la durée de l'activité vaut $W_i/f_i(\bmax)$. Nous
+pouvons donc calculer la date de début au plus tard de l'activité,
+$\LS=d_i-W_i/f_i(\bmax)$, et sa date de fin au plus tôt,
+$\EE=r_i+W_i/f_i(\bmax)$. La partie obligatoire d'une activité $i$ est
+alors définie de a même manière que pour le \CUSP, i.e la partie
+obligatoire de $i$ est l'intervalle $[\LS,\EE]$
+(cf. figure~\ref{fig_mand_CECSP}).
 
 Cependant, dans le cas où $\LS \le \EE$, i.e. où l'activité possède
 une partie obligatoire, nous pouvons seulement déduire que l'activité
@@ -41,7 +42,7 @@ toute sa partie obligatoire, et ce, quelque soit le moment où
 l'activité est ordonnancée. La notion de profil obligatoire de la
 ressource est donc légèrement différente de celle définie pour le
 \CUSP~(cf. définition~\ref{def:profil_oblig},
-page~\pageref{def:profil_oblig}). 
+page~\pageref{def:profil_oblig}).
 
 \begin{defi}
 Le profil obligatoire d'une ressource $TT_{\A}$ dans le cas du
@@ -163,8 +164,7 @@ moins exécutée à $\bmin$ (voir figure~\ref{fig_mand_CECSP_c}).
 
 Le profil obligatoire peut aussi être calculé en $O(n)$ à l'aide d'un
 algorithme de balayage en triant au préalable les activités par date
-de début au plus tard et date de fin au plus tôt (voir
-algorithme~\ref{algo_profil}).
+de début au plus tard et date de fin au plus tôt.
 
 Nous détaillons maintenant l'adaptation du Time-Table disjonctif au
 \CECSP. 
@@ -179,49 +179,250 @@ disjonctif.
 
 Le raisonnement disjonctif dans le cadre du \CECSP, est très similaire
 à celui défini pour le \CUSP. La différence repose sur la construction
-d'ensembles disjonctifs. Dans le cas du \CECSP, un couple d'activité
-($i,j)$ sera dit disjonctif si $\bmin+\bmin[j] >R$. Dans ce cas, nous
-savons que: 
+des ensembles disjonctifs. Dans le cas du \CECSP, un couple
+d'activités ($i,j)$ sera dit disjonctif si $\bmin+\bmin[j] >R$. Dans
+ce cas, nous savons que:
 \begin{itemize}
 \item l'activité $i$ doit commencer après l'activité $j$, ou, 
 \item l'activité $i$ doit finir avant l'activité $j$.  
 \end{itemize}
 
-Cette propriété permet d'améliorer les bornes des variables de
-début et fin d'une activité. La règle de filtrage est ensuite la même
-que dans le cas du \CUSP. 
+Cette propriété permet, entre autre, d'ajuster la date de début au
+plus tôt de $j$. En effet, $\ES[j] \le \EE$ et $\LS \le \EE[j]$
+implique que $j$ doit commencer après la fin de l'activité $i$ (voir
+figure~\ref{fig:disj_CECSP}). De ce fait, la début de $j$ ne peut arriver
+avant la date de fin au plus tôt de $i$, et donc: $\ES[j] \ge \EE$. La
+règle de filtrage est ensuite similaire à celle mise en place pour le
+\CUSP. 
 
-Cette contrainte nous permet, entre autre, d'ajuster la date de début
-au plus tôt de $j$. En effet, $\ES[j] \le
-\EE$ et $\LS \le \EE[j]$ implique que $j$ doit commencer après la fin
-de l'activité $i$ (voir figure~\ref{fig_disj}). De ce fait, la début
-de $j$ ne peut arriver avant la date de fin au plus tôt de $i$, et
-donc: $\ES[j] \ge \EE$.
+\begin{reg}
+Soient $i, j \in \A, i \neq j$ telles que $\bmin+\bmin[j] < R$ et $\LS
+< \EE[j]$. Alors la date de début au plus tôt de l’activité peut être
+ajustée et on a : $\ES[j] \ge \EE$.
+\end{reg}
 
+\begin{ex}
+Considérons les deux activités suivantes: 
+\begin{center}
+\begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{2cm}|}
+    \hline
+    act & \ES & \LE & W_i & \bmin & \bmax & f_i(b_i(t))  \\
+    \hline
+   i & 2 & 11 & 27 & 2 & 3 & 2*b_i(t) +1\\
+   j & 1 & 20 & 49 & 2 & 4 & voir fig~\ref{fig:fonct_ CECSP}\\
+    \hline
+  \end{tabular}
+\end{center}
+
+La fonction $f_j(b)$ est définie par l'expression suivante: 
+\[f_j(b)=\left\{
+\begin{array}{lll}
+2b & & b \in [2,3]\\
+b+3 & & b \in [3,4]
+\end{array}
+\right.\] 
+et décrite dans la figure~\ref{fig:fonct_CECSP}
 \begin{figure}[!htb]
-  \centering 
-  \begin{tikzpicture}
-    \node (O) at (0,0) {};
-    \draw[->] (0,0) -- (12,0);
-    \foreach \i in {0,...,11}
-    {\draw (\i,0) -- (\i, -0.1) ;}
+\centering
+\begin{tikzpicture}
+[xscale=0.8,yscale=0.56]
+\node (O) at (1,2) {};
+\draw[->] (1,2) -- (5.5,2);
+\draw[->] (1,2) -- (1,8);
 
-    \draw (1,0) node[below] {$\ES$};
-    \draw (3,0) node[below] {$\ES[j]$};
-    \draw (6,0) node[below] {$\EE[i]$};
-    \draw (9,0) node[below] {$\LS[i]$};
-    \draw (11,0) node[below] {$\EE[j]$};
+\path[draw] (2,4) -- (3,6) -- (4,7) ;
 
-    
-    \draw (1,0) rectangle (11,2) node[midway] {ordonnancement de $j$
-      au plus tôt};
- \end{tikzpicture}
-  \caption{Raisonnement disjonctif}
-  \label{fig_disj}
+\draw[dotted] (2,2) node[below] {\footnotesize $2$} -- (2,8);
+\draw[dotted,color=gray!70] (4,2) node[below,color=black] {\footnotesize $4$}
+-- (4,8);
+\draw[dotted] (3,2) node[below] {\footnotesize $3$} -- (3,8);
+
+\draw (1,4) node[left] {\footnotesize $4$};
+\draw (1,6) node[left] {\footnotesize $6$};
+\draw (1,7) node[left] {\footnotesize $7$};
+\end{tikzpicture}
+\caption{Fonction $f_j(b_j(t))$}
+\label{fig:fonct_CECSP}
 \end{figure}
 
+Dans cet exemple, comme $\bmin +\bmin[j] =4 > 3$, $i$ et $j$ ne
+peuvent s'exécuter en parallèle. Si l'activité $i$ finit au temps
+$\LE= 11$ alors, elle chevauche forcément l'activité $j $ (voir
+figure~\ref{fig:disj_CECSPa} et~\ref{fig:disj_CECSPb}). Dans tous
+ordonnancement réalisable, $i$ est donc exécuté avant $j$ et la date de
+début au plus tôt de $j$ peut donc être ajustée, i.e. $j$ ne peut
+commencer avant $\EE=6$ (voir
+figure~\ref{fig:disj_CECSPc}).
+  \begin{figure}[htb!] 
+    \subcaptionbox{Si $i$ finit au temps $11$...\label{fig:disj_CECSPa}}[0.45\linewidth]{
+    \centering
+    \begin{tikzpicture} [yscale=0.4,xscale=0.4]   
+        \node (O) at (0,0) {};
+      \foreach \i in {0,5,...,10} {
+        \draw (\i,0) -- (\i,-0.1) node[below] {\small $\i$};
+      }
+      \fill[gray!50] (2,0) rectangle (11,3.4);
+      \fill[gray!50] (1,3.6) rectangle (14,8);
+      
+      \draw[fill=white] (6.4,0.2) -- (6.4,3.2)   -- (8.4,3.2) -- (8.4,2) --node[midway,below=0.2cm] {$i$}
+      (11,2) -- (11,0.2) -- cycle;
+      
+      \draw[fill=white] (1,3.8) -- (1,7.8)  node[midway,right=0.6cm] {$j$} -- (6,7.8) -- (6,5.8) --
+      (9.5,5.8) -- (9.5,3.8) -- cycle;
+      \draw[white, pattern=north west lines] (6.4,0) rectangle (9.5,8);
+
+      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (0,8) ;
+      \draw (0,3) node[left] {$R=3$};
+      \draw[densely dotted] (1,-0.1) -- (1,8) node[above] {$\ES[j]$};
+      \draw[densely dotted] (8,-0.1) -- (8,8) node[above] {$\EE[j]$};
+      \draw[densely dotted] (2,-0.1)  node[below] {$\ES$}-- (2,8);
+      \draw[densely dotted] (6,-0.1 ) node[below=0.4cm] {$\EE$}-- (6,8) ;
+      \draw[densely dotted] (7,-0.1) node[below] {$\LS$} -- (7,8) ;
+      \draw[densely dotted] (11,-0.1) node[below right] {$\LE$} -- (11,8) ;
+      \draw[<->] (14.5,0.2) -- (14.5,3.2) node[midway,right] {$\bmax$} ;
+      \draw[<->] (14.5,3.8) -- (14.5,7.8) node[midway,right] {$\bmax[j]$} ;   
+    \end{tikzpicture}
+  }
+    \subcaptionbox{...alors $i$ chevauche forcément l'activité $j$\label{fig:disj_CECSPb}}[0.45\linewidth]{
+        \centering
+        \begin{tikzpicture}[yscale=0.4,xscale=0.4]
+      \node (O) at (0,0) {};
+      \foreach \i in {0,5,...,10} {
+        \draw (\i,0) -- (\i,-0.1) node[below] {\small $\i$};
+      }
+      \fill[gray!50] (2,0) rectangle (11,3.4);
+      \fill[gray!50] (1,3.6) rectangle (14,8);
+      
+      \draw[fill=white] (7,0.2) rectangle (11,3.2) node[midway]
+      {$i$};
+      \draw[fill=white] (1,3.8) rectangle (8,7.8) node[midway]
+      {$j$};
+      \draw[white, pattern=north west lines] (7,0) rectangle (8,8);
+
+      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (0,8) ;
+      \draw (0,3) node[left] {$R=3$};
+      \draw[densely dotted] (1,-0.1) -- (1,8) node[above] {$\ES[j]$};
+      \draw[densely dotted] (8,-0.1) -- (8,8) node[above] {$\EE[j]$};
+      \draw[densely dotted] (2,-0.1)  node[below] {$\ES$}-- (2,8);
+      \draw[densely dotted] (6,-0.1 ) node[below=0.4cm] {$\EE$}-- (6,8) ;
+      \draw[densely dotted] (7,-0.1) node[below] {$\LS$} -- (7,8) ;
+      \draw[densely dotted] (11,-0.1) node[below right] {$\LE$} -- (11,8) ;
+      % \draw[densely dotted] (6,-0.1) -- (6,8) node[above] {$\ES[j]^{'}$};
+      % \draw[->] (1.8,5.8) -- (5.2,5.8);
+      \draw[<->] (14.5,0.2) -- (14.5,3.2) node[midway,right] {$\bmax$} ;
+      \draw[<->] (14.5,3.8) -- (14.5,7.8) node[midway,right]
+      {$\bmax[j]$} ;
+    \end{tikzpicture}
+   }
+    \subcaptionbox{$\ES[j]$ peut être ajusté\label{fig:disj_CECSPc}}[\linewidth]{    \centering
+      \begin{tikzpicture} [yscale=0.4,xscale=0.4]
+      \node (O) at (0,0) {};
+      \foreach \i in {0,5,...,10} {
+        \draw (\i,0) -- (\i,-0.1) node[below] {\small $\i$};
+      }
+      \fill[gray!50] (2,0) rectangle (11,3.4);
+      \fill[gray!50] (6,3.6) rectangle (14,8);
+      
+      \draw[fill=white] (2,0.2) rectangle (6,3.2) node[midway]
+      {$i$};
+      \draw[fill=white] (6,3.8) rectangle (13,7.8) node[midway]
+      {$j$};
+
+      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (0,8) ;
+      \draw (0,3) node[left] {$R=3$};
+      \draw[densely dotted] (1,-0.1) -- (1,8) node[above] {$\ES[j]$};
+      \draw[densely dotted] (8,-0.1) -- (8,8) node[above] {$\EE[j]$};
+      \draw[densely dotted] (2,-0.1)  node[below] {$\ES$}-- (2,8);
+      \draw[densely dotted] (6,-0.1 ) node[below=0.4cm] {$\EE$}-- (6,8) ;
+      \draw[densely dotted] (7,-0.1) node[below] {$\LS$} -- (7,8) ;
+      \draw[densely dotted] (11,-0.1) node[below right] {$\LE$} -- (11,8) ;
+      \draw[<->] (14.5,0.2) -- (14.5,3.2) node[midway,right] {$\bmax$} ;
+      \draw[<->] (14.5,3.8) -- (14.5,7.8) node[midway,right] {$\bmax[j]$} ;
+
+  \end{tikzpicture}
+}
+  \caption{Raisonnement disjonctif}
+  \label{fig:disj_CECSP}
+\end{figure}
+\end{ex}
+
+Nous pouvons maintenant présenter l'adaptation du Time-Table
+disjonctif au cas du \CECSP. Pour ce faire, nous commençons par
+adapter la définition d'intervalle minimum de superposition, puis nous
+présenterons les modifications apportées aux règles d'ajustement du
+\CUSP~afin que ces dernières soient applicables dans le cas du
+\CECSP. Enfin, l'extension de ces règles dans le cas où les activités
+ne possèdent pas de partie obligatoire sera décrit. Cette extension
+n'avait pas été présentée dans le chapitre sur le \CUSP~mais est
+décrite dans l'article~\cite{Gay2015}. 
+
+La notion d'intervalle minimum de superposition s'adapte naturellement
+au cas du \CECSP. En effet, cette intervalle représente l'ensemble
+minimal de points de temps tel que une activité $i$ est forcément en
+cours durant un de ces points. 
+
+\begin{defi}
+\label{des:moi_CUSP} 
+Soit $\EE^{-}$ le point le plus proche de $\EE$, i.e. $\forall \delta
+>0 , |\EE^{-} -\EE| \le \delta$. L'intervalle minimum de
+superposition d'une activité $i$,noté $moi_i$, est alors défini par
+$moi_i=[\EE^{-},\LS{]}$ si $i$ ne possède pas de partie obligatoire et
+$moi_i=\emptyset$ sinon.   
+
+Il s'agit du plus petit intervalle de temps tel que $i$ s’exécute au
+moins durant un point de temps de cet intervalle, et ce peu importe le
+moment auquel l'activité $i$ est exécutée.
+\end{defi}
 
 
+\begin{ex}
+La figure~\ref{fig:moi_CECSP} illustre l'intervalle minimum de
+superposition d'une activité $i$ ne possédant pas de partie
+obligatoire. En effet, quelque soit la position de l'activité $i$,
+elle intersecte forcément $moi_i$.
+\begin{figure}[!htb]
+  \begin{center}
+    \begin{tikzpicture}
+      [xscale=0.5, yscale= 0.4,node distance=0.5cm][decoration={brace}]
+      \node (sil) at (0,0) {} ;
+      \node (sir) at (10,0) {}; 
+      \draw (10,0) node[below] {$lst_i$};
+      \node (eir) at (14,0) {} ;
+      \node (eil) at (4,0) {} ;
+      \draw (4,0) node [below]  {$eet_i$} ;
+      \draw (sil.center) node[below] {$est_i$}--
+      (eir.center) node[below] {$let_i$};
+      
+      \draw[<-] (3.95, 4.6) -- (4.3,5.1) node[above=0.2cm,right] {\scriptsize $\EE^{-}$};
+      \draw[line width=3pt] (0,0.5) -- (0,2);
+      \draw[line width=3pt] (14,0.5) -- (14,2);
+      \draw[line width=3pt] (0,3) -- (0,4.5);
+      \draw[line width=3pt] (14,3) -- (14,4.5);
+
+      \fill[gray!80] (3.9,0.6) rectangle (10,1.9) node[midway,color=black] {$\mathbf{moi_i}$};
+      \fill[gray!80] (3.9,3.1) rectangle (10,4.4) node[midway,color=black] {$\mathbf{moi_i}$};
+      
+      \draw (0,3.1) rectangle (4,4.4) node[midway] {$i$};
+      \draw (10,0.6) rectangle (14,1.9) node[midway] {$i$};
+
+      \draw[dashed] (3.9,0) -- (3.9,4.5);
+      \draw[dashed] (10,0) -- (10,4.5);
+
+      \foreach \i in {0,...,14} {
+        \draw (\i,0)  -- (\i,-0.2);
+      }
+    \end{tikzpicture}
+  \end{center}
+
+  \caption{Intervalle minimum de superposition d'une activité}
+  \label{fig:moi_CECSP}
+\end{figure}
+\end{ex}
+
+Afin de pouvoir adapter le raisonnement au cas du \CECSP, 
 \subsection{Le Time-Table basé sur les flots}
 
 
