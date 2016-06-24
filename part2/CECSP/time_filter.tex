@@ -208,8 +208,8 @@ Considérons les deux activités suivantes:
     \hline
     act & \ES & \LE & W_i & \bmin & \bmax & f_i(b_i(t))  \\
     \hline
-   i & 2 & 11 & 27 & 2 & 3 & 2*b_i(t) +1\\
-   j & 1 & 20 & 49 & 2 & 4 & voir fig~\ref{fig:fonct_ CECSP}\\
+   i & 2 & 11 & 28 & 2 & 3 & 2*b_i(t) +1\\
+   j & 1 & 20 & 49 & 2 & 4 & voir fig~\ref{fig:fonct_CECSP}\\
     \hline
   \end{tabular}
 \end{center}
@@ -422,7 +422,228 @@ elle intersecte forcément $moi_i$.
 \end{figure}
 \end{ex}
 
-Afin de pouvoir adapter le raisonnement au cas du \CECSP, 
+La notion d'intervalle minimum de superposition permet, dans un
+premier temps, d'améliorer le raisonnement disjonctif. En effet, dans
+le cas où deux activités $i$ et $j$ ne peuvent être exécutée en
+parallèle, la fenêtre de temps de $j$ ne peut contenir un point de
+temps que $i$ devra forcément chevaucher, i.e. contenu dans
+$moi_i$. Ceci nous permet de définir la règle d'ajustement suivante:  
+
+\begin{reg}
+\label{reg:RDR_CECSP}
+  Soient deux activités $i$ et $j$ telles que $i$ ne possède pas de
+  partie obligatoire et que $\bmin + \bmin[j] > R$. Si ordonnancer l'activité
+ $j$ à sa date de début au plus tôt la fait se superposer complètement
+ à l’intervalle minimal de superposition de $i$ ($moi_i \subseteq
+ [\ES[j],\EE[j]{]}$), alors $\ES[j] \ge \EE$.
+\end{reg}
+
+\begin{ex}
+Considérons les deux activités suivantes: 
+\begin{center}
+\begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{2cm}|}
+    \hline
+    act & \ES & \LE & W_i & \bmin & \bmax & f_i(b_i(t))  \\
+    \hline
+   i & 0 & 14 & 28 & 2 & 3 & 2*b_i(t) +1\\
+   j & 2 & 20 & 49 & 2 & 4 & voir fig~\ref{fig:fonct_ CECSP}\\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+La règle~\ref{reg:RDR_CECSP} est illustrée par la
+figure~\ref{fig:RDR_CECSP}. Dans les figures~\ref{fig:RDR_CECSPa} et~\ref{fig:RDR_CECSPb}, on
+peut constater que si l'activité $j$
+commence à $\ES[j]$, alors elle intersecterait complètement $moi_i$ et
+il serait impossible d'ordonnancer $i$. Sur la figure~\ref{fig:RDR_CECSPc}, $\ES[j]$ a été ajusté et l'activité $j$ ne peut commencer
+avant  $t > \min{moi_i}$.
+  \begin{figure}[htb!] 
+    \subcaptionbox{Si $j$ commence au temps $2$...\label{fig:RDR_CECSPa}}[0.45\linewidth]{
+    \centering
+    \begin{tikzpicture} [yscale=0.4,xscale=0.4]   
+        \node (O) at (0,0) {};
+      \foreach \i in {1,...,14} {
+        \draw (\i,0) -- (\i,-0.1) ;
+      }
+      \fill[gray!50] (0,0) rectangle (14,3.4);
+      \fill[gray!50] (2,3.6) rectangle (14,8);
+      
+      \draw[fill=white] (0,0.2) -- (0,3.2)   -- (2,3.2) -- (2,2) --node[midway,below=0.2cm] {$i$}
+      (4.6,2) -- (4.6,0.2) -- cycle;
+      
+      \draw[fill=white] (2,3.8) -- (2,7.8)  node[midway,right=0.6cm] {$j$} -- (7,7.8) -- (7,5.8) --
+      (10.5,5.8) -- (10.5,3.8) -- cycle;
+
+        \draw[fill=black!70!] (3.9,3.2) rectangle
+        (10,3.8) node[midway,white] {$\mathbf{moi_i}$};
+
+      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (0,8) ;
+      \draw (0,3) node[left] {$R=3$};
+      \draw[densely dotted] (2,-0.1) -- (2,8) node[above] {$\ES[j]$};
+      \draw[densely dotted] (9,-0.1) -- (9,8) node[above] {$\EE[j]$};
+      \draw[densely dotted] (0,-0.1)  node[below] {$\ES$}-- (0,8);
+      \draw[densely dotted] (4,-0.1 ) node[below=0.4cm] {$\EE$}-- (4,8) ;
+      \draw[densely dotted] (10,-0.1) node[below] {$\LS$} -- (10,8) ;
+      \draw[densely dotted] (14,-0.1) node[below right] {$\LE$} -- (14,8) ;
+      \draw[<->] (14.5,0.2) -- (14.5,3.2) node[midway,right] {$\bmax$} ;
+      \draw[<->] (14.5,3.8) -- (14.5,7.8) node[midway,right] {$\bmax[j]$} ;   
+    \end{tikzpicture}
+  }
+    \subcaptionbox{...alors $j$ chevauche forcément $moi_i$\label{fig:RDR_CECSPb}}[0.45\linewidth]{
+        \centering
+        \begin{tikzpicture}[yscale=0.4,xscale=0.4]
+      \node (O) at (0,0) {};
+      \foreach \i in {1,...,14} {
+        \draw (\i,0) -- (\i,-0.1) ;
+      }
+      \fill[gray!50] (0,0) rectangle (14,3.4);
+      \fill[gray!50] (2,3.6) rectangle (14,8);
+      
+      \draw[fill=white] (0,0.2) rectangle (4,3.2) node[midway]
+      {$i$};
+      \draw[fill=white] (2,3.8) rectangle (9,7.8) node[midway]
+      {$j$}; 
+      \draw[fill=black!70!] (3.9,3.2) rectangle
+        (10,3.8) node[midway,white] {$\mathbf{moi_i}$};
+
+      
+      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (0,8) ;
+      \draw (0,3) node[left] {$R=3$};
+      \draw[densely dotted] (2,-0.1) -- (2,8) node[above] {$\ES[j]$};
+      \draw[densely dotted] (9,-0.1) -- (9,8) node[above] {$\EE[j]$};
+      \draw[densely dotted] (0,-0.1)  node[below] {$\ES$}-- (0,8);
+      \draw[densely dotted] (4,-0.1 ) node[below=0.4cm] {$\EE$}-- (4,8) ;
+      \draw[densely dotted] (10,-0.1) node[below] {$\LS$} -- (10,8) ;
+      \draw[densely dotted] (14,-0.1) node[below right] {$\LE$} -- (14,8) ;
+      % \draw[densely dotted] (6,-0.1) -- (6,8) node[above] {$\ES[j]^{'}$};
+      % \draw[->] (1.8,5.8) -- (5.2,5.8);
+      \draw[<->] (14.5,0.2) -- (14.5,3.2) node[midway,right] {$\bmax$} ;
+      \draw[<->] (14.5,3.8) -- (14.5,7.8) node[midway,right]
+      {$\bmax[j]$} ;
+    \end{tikzpicture}
+   }
+    \subcaptionbox{$\ES[j]$ peut être ajusté\label{fig:disj_CECSPc}}[\linewidth]{    \centering
+      \begin{tikzpicture} [yscale=0.4,xscale=0.4]
+      \node (O) at (0,0) {};
+      \foreach \i in {1,...,14} {
+        \draw (\i,0) -- (\i,-0.1);
+      }
+      \fill[gray!50] (0,0) rectangle (14,3.4);
+      \fill[gray!50] (4,3.6) rectangle (14,8);
+      
+      \draw[fill=white] (0,0.2) rectangle (4,3.2) node[midway]
+      {$i$};
+      \draw[fill=white] (4,3.8) rectangle (11,7.8) node[midway]
+      {$j$};
+      \draw[fill=black!70!] (3.9,3.2) rectangle
+        (10,3.8) node[midway,white] {$\mathbf{moi_i}$};
+
+      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (0,8) ;
+      \draw (0,3) node[left] {$R=3$};
+      \draw[densely dotted] (4,-0.1) -- (4,8) node[above] {$\ES[j]$};
+      \draw[densely dotted] (11,-0.1) -- (11,8) node[above] {$\EE[j]$};
+      \draw[densely dotted] (0,-0.1)  node[below] {$\ES$}-- (0,8);
+      \draw[densely dotted] (4,-0.1 ) node[below=0.4cm] {$\EE$}-- (4,8) ;
+      \draw[densely dotted] (10,-0.1) node[below] {$\LS$} -- (10,8) ;
+      \draw[densely dotted] (14,-0.1) node[below right] {$\LE$} --
+      (14,8) ;
+      \draw[<->] (14.5,0.2) -- (14.5,3.2) node[midway,right] {$\bmax$} ;
+      \draw[<->] (14.5,3.8) -- (14.5,7.8) node[midway,right] {$\bmax[j]$} ;
+
+  \end{tikzpicture}
+}
+  \caption{Raisonnement disjonctif restreint pour le \CECSP.}
+  \label{fig:disj_CECSP}
+\end{figure}
+\end{ex}
+
+La règle~\ref{reg:RDR_CUSP} compare seulement les consommations de $i$
+et de $j$ avec la capacité de la ressource $R$. Cependant, les
+consommations obligatoires des autres activités peuvent ne pas laisser
+$R$ unités de ressource durant l'intersection de $i$ et de $j$. La
+règle suivante prend donc en considération le profil obligatoire de la
+ressource. 
+
+\begin{reg}
+\label{reg:TTDR_CUSP}
+Soient donc $i$ et $j$ deux activités qui ne possèdent pas de partie
+obligatoire et telles que $ \bmin +\bmin[j] + \min_{t \in moi_i} TT_{\A}(t) >
+R$.   Si ordonnancer l'activité
+ $j$ à sa date de début au plus tôt la fait se superposer complètement
+ à l’intervalle minimal de superposition de $i$ ($moi_i \subseteq
+ [\ES[j],\EE[j]{]}$), alors $\ES[j] \ge \EE$.
+\end{reg}
+
+\begin{ex}
+Considérons les deux activités suivantes: 
+\begin{center}
+\begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{2cm}|}
+    \hline
+    act & \ES & \LE & W_i & \bmin & \bmax & f_i(b_i(t))  \\
+    \hline
+   i & 2 & 11 & 21 & 1 & 2 & 2*b_i(t) +1\\
+   j & 1 & 20 & 14 & 1 & 2 & b_i(t)\\
+   k & 2 & 11 & 18 & 2 & 2 & \frac{1}{3}b_i(t) + \frac{4}{3}\\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+  Les activités $1$ et $2$ ne possèdent pas de partie obligatoire tandis
+  que l'activité $3$ est forcément en cours d'exécution durant
+  l'intervalle $[2,11[$. 
+
+
+  \begin{figure}[!htb]
+    \centering
+    \begin{tikzpicture}
+      [yscale=0.45,xscale=0.6]
+      \node (O) at (0,0) {};
+      \foreach \i in {0,1,...,20} {
+        \draw (\i,0) -- (\i,-0.15) node[below] {\small $\i$};
+      }
+      
+      \draw (2,0) rectangle (11,2);
+      \fill[gray!30] (5,3.8) rectangle (20,6.2);
+      \fill[gray!30] (2,6.8) rectangle (11,9.2);
+      
+      \draw [->] (1.2,4.5) -- (4.8,4.5);
+      \draw [->] (1.8,-1.7) -- (4.3,-1.7);
+      \draw[densely dotted] (1,-0.1) node[below=0.3cm] {$\ES[j]$}-- (1,8.2) ;
+      \draw[densely dotted] (5,-0.1 ) node[below=0.3cm] {$\EE$}--
+      (5,8.2);
+      \draw[densely dotted] (10,-0.1) node[below=0.3cm] {$\EE[j]$} -- (10,8.2) ;
+      \draw[densely dotted] (8,-0.1) node[below=0.3cm] {$\LS$} -- (8,8.2) ;
+      
+      \draw[fill=black!70!] (4,6) rectangle
+      (8,7) node[midway,white] {$\mathbf{moi_i}$};
+      
+      \draw[fill=white] (2,7) rectangle (5,9) node[midway]
+      {$i$};
+      \draw[fill=white] (5,4) rectangle (14,6) node[midway]
+      {$j$};
+      
+      \draw[->] (0,0) -- (21,0);
+      \draw[->] (0,0) -- (0,5.5) ;
+       \draw[thick] (0,3)  node[left] {$R=3$} -- (20,3);
+       % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};
+      % \draw[->] (1.8,5.8) -- (5.2,5.8);  
+    \end{tikzpicture}
+    \caption{Illustration du Time-Tabe disjonctif}
+    \label{fig:TTDR_CUSP}
+  \end{figure}
+L'intervalle $moi_i=[4,8]$ est complètement inclus dans l'intervalle
+formé par $\ES[j]$ et $\EE[j]$, i.e. $[1,10[$. De plus, le minimum du
+profil de consommation de la ressource dans $moi_i$ est de $2$. Donc,
+les activités $i$ et $j$, consommant  au minimum  $1$ unité
+de ressource, ne peuvent se chevaucher l'intervalle $[4,8]$. Donc
+$\ES[j]$ peut être ajuster à $5$. 
+\end{ex}
+
 \subsection{Le Time-Table basé sur les flots}
 
 
