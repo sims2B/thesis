@@ -36,7 +36,7 @@ cette activité telle que:
   projet, i.e.
   \begin{equation} 
     \forall t \in \H,\sum_{\substack{i\in \A\\ t \in
-        [st_i,et_i]}} b_i(t) \le  R \label{res_CECSP}
+        [st_i,et_i[}} b_i(t) \le  R \label{res_CECSP}
   \end{equation}
   où $\H=\{0,\dots,T\}$ est l'horizon de temps du projet et $T=\max_{i
     \in \A} \LE$.
@@ -44,14 +44,14 @@ cette activité telle que:
   contraintes de consommation minimale et maximale doivent être
   respectées, i.e.  
   \begin{equation}
-    \forall i \in \A,\ \forall t \in [st_i,et_i],\ \bmin \le b_i(t) \le
+    \forall i \in \A,\ \forall t \in [st_i,et_i[,\ \bmin \le b_i(t) \le
     \bmax \label{req_CECSP}
   \end{equation}
 \item si l'activité n'est pas en cours, alors elle ne consomme pas de
   ressource, i.e.
   \begin{equation}
     \label{nulleConso_CECSP}
-    \forall i \in \A,\ \forall t \not\in [st_i,et_i],\  b_i(t)=0 
+    \forall i \in \A,\ \forall t \not\in [st_i,et_i[,\  b_i(t)=0 
   \end{equation}
 \item l'énergie requise doit être apportée à chaque activité, i.e. 
   \begin{equation}
@@ -76,7 +76,7 @@ suivants:
 L'intérêt de considérer de telles fonctions de rendement est qu'elles
 nous permettent d'approcher un grand nombre de fonctions de
 rendements réelles non linéaires. Un exemple présentant de telles
-approximations sera présenté (cf. exemple\ref{ex_approx_CECSP}). 
+approximations sera présenté (cf. exemple~\ref{ex_approx_CECSP}). 
 
 
 Soit $P_i$ le nombre d'intervalles de définition de la fonction
@@ -429,7 +429,8 @@ l'énergie qu'elle reçoit est $f_2(3)+ f_2(4) * 2 = 6 + 8 * 2 =22$.
 \end{ex}
 
 Le paragraphe suivant présente les différentes modélisations des
-activités non-rectangulaires présentes dans la littérature. 
+activités à profil variable présentes dans la
+littérature.
 
 \subsubsection{Contexte}
 
@@ -456,7 +457,7 @@ possibilité d'allouer $2$ unités de ressource pendant une période de
 temps et $1$ unité pendant la seconde n'est pas représentée ici. 
 
 La principale limitation du MRCPSP est donc que les activités sont
-contraintes à être rectangulaire, i.e. consommation de ressource
+contraintes à être rectangulaires, i.e. consommation de ressource
 constante. 
 
 D'autres extensions du \RCPSP~existent. C'est le cas par exemple des
@@ -480,9 +481,8 @@ pour~\cite{FT}... - les principales sont les suivantes: la longueur
 minimale des blocs et les fonctions de rendements. La première
 correspond au temps minimal qu'il faut attendre entre deux
 ré-allocations de la ressource, que les auteurs appellent longueur
-minimale de bloc, tandis que la seconde fait référence à la
-non-présence de fonction de rendement, similaire à celles présentes
-dans le cas du \CECSP. 
+minimale de bloc et qui est absente dans notre problème. La seconde
+fait référence à l'absence de fonctions de rendement dans~\cite{FT}.
 
 Enfin, la dernière extension du \RCPSP~présentée est celle où les
 activités ont une intensité variable~\cite{Kis}. Ici, chaque activité
@@ -492,7 +492,7 @@ de cette quantité à l'activité, proportionnelle à l'{\it intensité} à
 laquelle est exécutée l'activité. Dans ce cas, on peut introduire des
 fonctions de rendement mais ces fonctions seraient alors contraintes à
 être linéaire, i.e. $b \rightarrow a*b$. De plus, aucune borne
-inférieure sur le rendement d'une activité n'est considérée. 
+inférieure sur la consommation d'une activité n'est considérée. 
 
 Dans le cadre du \CUSP, d'autre variantes ainsi que des algorithmes de
 filtrages dédiés ont été proposés. Parmi ceux-ci, on retrouve le cas
@@ -511,7 +511,7 @@ séquence de sous-activités trapézoïdales ayant des durées et hauteurs
 activités pour lesquelles la durée et la hauteur sont définies par des
 intervalles. Pour ces deux problèmes, aucune demande en énergie n'est
 définie pour les activités. De plus, dans le second, l'énergie
-manquante peut être acheter moyennant un certain coût.
+manquante peut être achetée moyennant un certain coût.
 
 Enfin, le \CECSP~ est aussi lié à d'autres problèmes à contraintes
 d'énergie avec ressources continues~\cite{Blaz,Wali}.
@@ -526,8 +526,8 @@ continuellement au cours du temps et donc ces fonctions sont
 équivalentes au fonctions de rendement définies dans le cadre du
 \CECSP. De plus, dans~\cite{Blaz,Wali}, l'énergie est calculée en
 intégrant une fonction de rendement sur tout l'horizon de temps.
-Cependant, aucune contrainte de rendement maximum et minimum n'est
-considérée dans ces problèmes. Dans~\cite{Wali}, un epartie des
+Cependant, aucune contrainte de consommation maximum et minimum n'est
+considérée dans ces problèmes. Dans~\cite{Wali}, une partie des
 ressources est continue et une partie est discrète.
 
 Le tableau~\ref{tab:dif_CECSP} récapitule les principales différences
@@ -535,7 +535,7 @@ entre tous ces problèmes et le \CECSP.
 
 \begin{table}[!htb]
   \centering
-  \begin{tabular}{|c|cc>{\centering\arraybackslash} p{1.9cm}>{\centering\arraybackslash} p{1.5cm}>{\centering\arraybackslash} p{1.3cm}>{\centering\arraybackslash} p{1.2cm}>{\centering\arraybackslash} p{2.4cm}|}
+  \begin{tabular}{|>{\centering\arraybackslash} m{2.5cm}|>{\centering\arraybackslash} m{0.8cm}>{\centering\arraybackslash} m{0.8cm}>{\centering\arraybackslash} m{1.9cm}>{\centering\arraybackslash} m{1.5cm}>{\centering\arraybackslash} m{1.3cm}>{\centering\arraybackslash} m{1.2cm}>{\centering\arraybackslash} m{2.4cm}|}
     \hline    
     Problème & $\bmin$ & $\bmax$ & fonction de rend. ($f_i$) &
                                                                    activités
@@ -545,25 +545,26 @@ entre tous ces problèmes et le \CECSP.
                                                                    ($W_i$)
     & res. cont. & autre différence \\
 \hline
-MRCPSP & X & X & X &    & X &  & \\
+MRCPSP \cite{DDH} & X & X & X &    & X &  & \\
 \hline
- FRCPSP & X & X &    & X & X & X & long. de bloc\\  
+ FRCPSP \cite{NK} & X & X &    & X & X & X & long. de bloc\\  
 \hline
-work-content & X & X & & X & X &  & long. de bloc\\  
+Work-content \cite{FT} & X & X & & X & X &  & long. de bloc\\  
 \hline
-intensité variable&  & X&  & X & X & & \\   
+Intensité variable \cite{Kis} &  & X&  & X & X & & \\   
 \hline
-part. élastique & & & & X & X & &\\
+Partiellement élastique \cite{BLPN} & & & & X & X & &\\
 \hline
-compl. élastique & & & X & X & & &\\
+Complètement élastique \cite{BLPN} & & & X & X & & &\\
 \hline
-Trapézoïdales act. & & & & X & & &\#trapèzes fixe\\
+Activité trapézoïdales \cite{BP} & & & & X & & &\#trapèzes fixe\\
 \hline
-Intervalles repr.& X & X & & & & & achat d'énergie\\ 
+Représentation par intervalles \cite{V09} & X & X & & & & & achat
+                                                            d'énergie\\  
 \hline
-Modèle proces. & &  & X& X& X& X& \\ 
+Modèle processeurs \cite{Blaz} & &  & X& X& X& X& \\ 
 \hline
-Intervalles repr.&  & &X &X & X& X& res. discrète et cont.\\ 
+Continu/discret \cite{Wali}&  & &X &X & X& X& res. discrètes et continues\\ 
 \hline
   \end{tabular}
   \caption{Principales différences entre les extensions des problèmes
@@ -571,7 +572,7 @@ Intervalles repr.&  & &X &X & X& X& res. discrète et cont.\\
   \label{tab:dif_CECSP}
 \end{table}
 
-Le \CECSP~est donc un nouveau problème et ces différences avec les
+Le \CECSP~est donc un nouveau problème et les différences avec les
 problèmes existants ne nous permettent pas d'appliquer directement des
 techniques déjà définies pour d'autres problèmes. Cependant, certaines
 techniques existantes peuvent être adaptées dans le cadre du
@@ -669,7 +670,7 @@ tôt, $\EE[1]= \ES[1] + W_i / f_i(\bmax) = 0 + 18/12 = 1.5$.
 \end{ex}
 
 De ce fait, l'espace des solutions peut être réduit par l'utilisation
-du modèle à temps discret et ceci peut conduire à des infaisabilité ou
+du modèle à temps discret mais ceci peut conduire à des infaisabilité ou
 à des résultats sous-optimaux.
 
 Une solution pour palier à ce problème est de mettre à l'échelle les
@@ -683,7 +684,8 @@ importante pour permettre leur résolution.
 Le théorème suivant présente une des propriétés majeures du \CECSP. En
 effet, il stipule que quelque soit l'instance considérée, il existe
 toujours une solution de cette instance où les fonctions $b_i(t)$ sont
-constantes par morceaux. 
+constantes par morceaux, sous certaines conditions sur les fonctions de
+rendement.  
 
 \begin{theo}[\cite{Nattaf_CPDP}]
 \label{theo_LPM_CECSP}
@@ -764,7 +766,7 @@ la propriété que chaque fonction $b'_i(t)$ est constante par morceaux.
 
 \begin{proof}[Preuve du théorème~\ref{theo_LPM_CECSP}]  
   Soit $S$ une solution réalisable de $\Pi$ et soit
-  $(t_q)_{q=1..Q}$ la suite des des différentes dates de
+  $(t_q)_{q=1..Q}$ la suite des différentes dates de
   début et de fin d'activité triées par ordre croissant. Clairement,
   nous avons $Q\le 2n$. 
 
@@ -871,15 +873,15 @@ w_{iq} \le Mb_{iq} & \forall i \in \A,\ \forall q \in
 pour $M$ une constante suffisamment grande et $\P_i=\{1,\dots,P_i\}$
 le nombre d'intervalles de définition de la fonction $f_i$. La
 contrainte~\eqref{poly2} modélise la contrainte de capacité de la
-ressource. Les contraintes~\eqref{poly3} et~\eqref{poly4} assurent les
-contraintes de consommation minimale et maximale de la ressource
-tandis que la contrainte~\eqref{poly5} fixe la consommation de la
-ressource à $0$ si l'activité n'est pas en cours. La
-contrainte~\eqref{poly6} stipule que chaque activité doit recevoir la
-quantité d'énergie requise. Enfin, les contraintes~\eqref{poly7} et
-\eqref{poly8} assure la conversion ressource/énergie. De plus la
-contrainte~\eqref{poly8} fixe $w_{iq}$ à $0$ si $b_{iq}=0$,
-i.e. modélise $f_i(0)=0$.
+ressource. Les contraintes~\eqref{poly3} et~\eqref{poly4} assurent que
+les contraintes de consommation minimale et maximale de la ressource
+sot respectées tandis que la contrainte~\eqref{poly5} fixe la
+consommation de la ressource à $0$ si l'activité n'est pas en
+cours. La contrainte~\eqref{poly6} stipule que chaque activité doit
+recevoir la quantité d'énergie requise. Enfin, les
+contraintes~\eqref{poly7} et \eqref{poly8} assurent la conversion
+ressource/énergie. De plus la contrainte~\eqref{poly8} fixe $w_{iq}$ à
+$0$ si $b_{iq}=0$, i.e. modélise $f_i(0)=0$.
 
 On peut remarquer que si $\forall i \in \A,\ \bmin=0$, alors le
 problème devient polynomial. En effet, il suffit de prendre 

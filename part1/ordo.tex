@@ -14,11 +14,11 @@ vise à optimiser ces objectifs.
  
 \subsubsection{Les activités}
 
-Une activité peut être définie par une date de début $st_i$ et/ou une date
+Une activité peut être définie par une date de début $st_i$ et une date
 de fin $et_i$ et une durée $p_i$ vérifiant $et_i=st_i+p_i$. Si
 l'activité utilise une ou plusieurs ressources durant son exécution, il
 est nécessaire d'ajouter à cette définition une fonction d'allocation
-de ressource propres à chaque activité $i$ et à chaque
+de ressource propre à chaque activité $i$ et à chaque
 ressource $k$. Si cette fonction est donnée dans les paramètres du
 problème, on la note $r_{ik}(t)$. Si, au contraire, elle fait partie
 des variables de décision du problème, on la note $b_{ik}(t)$. Enfin,
@@ -32,7 +32,7 @@ morceaux, on parle d'activité préemptive.
 
 Une activité peut être utilisée pour représenter, par exemple, une
 opération dans un processus de production, le décollage/atterrissage
-d'un avion ou encore une étape d'un projet de construction...
+d'un avion ou encore une étape d'un projet de construction.
 
 \subsubsection{Les ressources}
 
@@ -54,25 +54,30 @@ s'agir, par exemple, de matières premières ou d'un budget.
 
 Parmi les ressources renouvelables, on distingue par ailleurs, les
 ressources disjonctives qui ne peuvent exécuter qu'une activité à la
-fois - e.g. pistes de décollage, salles... - et les ressources cumulatives
+fois - e.g. pistes de décollage, salles - et les ressources cumulatives
 qui peuvent, elles,  être utilisées par plusieurs activités en
-parallèle mais disponible en quantité limitée - e.g. main d'oeuvre,
-processeurs...
+parallèle mais sont disponibles en quantité limitée - e.g. main d'oeuvre,
+processeurs.
 
 
 Du point de vue de leur divisibilité, les ressources peuvent aussi
 être divisées selon deux catégories: 
 \begin{itemize}
-\item les ressources continues, i.e. divisible en temps continu: ces
-  ressources ont la propriété de pouvoir être réallouées à tout
-  instant $t \in [0,T]$, où $T$ est une borne supérieure sur la date de
-  fin de l'ordonnacement, e.g. l'électricité, l'essence, énergie
-  hydraulique...
-\item les ressources discrètes, i.e. divisible en temps discret: à
-  l'inverse, la réallocation d'une ressource discrète ne peut être
-  exécutée que pour des temps discrets $t \in \{0,\dots,T\}$,
-  e.g. employés, machines...
+\item les ressources continues, i.e. divisible en temps ou en
+  quantité continu: dans le premier cas, il s'agit de ressource
+  pouvant être ré-allouées à tout instant $t \in [0,T]$, où $T$ est une
+  borne supérieure sur la date de fin de l'ordonnancement; dans le
+  second cas, il s'agit de ressources pouvant être allouée en quantité
+  continue, i.e. non discrète. Ce type de ressource permet, par
+  exemple, de modéliser l'électricité, l'essence, énergie hydraulique...
+\item les ressources discrètes, i.e. divisible en temps ou en quantité
+  discret: à l'inverse, le premier cas décrit une ressource où la
+  ré-allocation de cette dernière ne peut être 
+  exécutée qu'à des temps discrets $t \in \{0,\dots,T\}$; le second
+  cas correspond aux ressources ne pouvant être attribuées aux
+  activités qu'en quantité discrète,  e.g. employés, machines...
 \end{itemize}
+
 \subsubsection{Les contraintes}
 
 Une contrainte permet d'exprimer des restrictions sur les valeurs que
@@ -87,19 +92,21 @@ principales, on distingue:
     positionnements relatifs devant être respectés entre les
     activités. Ces contraintes peuvent, par exemple, modéliser des
     contraintes de précédence entre les activités, i.e. une activité
-    ne peut commencer avant qu'une autre ait été achevée, ou des temps
+    ne peut commencer avant qu'une autre n'ait été achevée, ou des temps
     de transition à respecter entre les activités.
 
-    {\'E}tant donné une activité $i$, on notera $\ES$ la date à partir
-de laquelle l'activité $i$ peut être exécutée, cette date est aussi
-appelée {\it date de début au plus tôt}. De même, la date avant
+    {\'E}tant donné une activité $i$, la date à partir
+    de laquelle l'activité $i$ peut être exécutée est appelée {\it
+      date de début au plus tôt} et est notée $\ES$ (earliest
+    start time en anglais) . De même, la date avant
 laquelle l'activité $i$ doit avoir été complètement exécutée sera
-dénotée par $\LE$ et appelée {\it date de fin au plus tard}.
+appelée {\it date de fin au plus tard} et 
+dénotée par $\LE$ (latest end time en anglais).
 
 \item les contraintes de ressources:  ce sont des contraintes d'utilisation
   des ressources qui expriment la nature et la quantité de moyens
   utilisés par les activités, ainsi que les caractéristiques
-  d'utilisation de ces moyens. Ces contraintes peuvent aussi représentée
+  d'utilisation de ces moyens. Ces contraintes peuvent aussi représenter
   des contraintes de disponibilité des ressources qui précisent la
   nature et la quantité de moyens disponibles au cours du temps.
 \end{itemize}
@@ -115,7 +122,7 @@ Ces objectifs peuvent être liés à différents aspect de la solution. On
 distingue par exemple:
 \begin{itemize}
 \item les objectifs liés au temps: le temps total d'exécution ou le temps moyen
-  d'achèvement d'un ensemble d'activités peut être minimisé, mais
+  d'achèvement d'un ensemble d'activités peuvent être minimisés, mais
   aussi  les retards (maximum, moyen, somme...) par rapport
   aux dates de fin au plus tard fixées par le problème.
 \item les objectifs liés aux ressources: la quantité (maximale,

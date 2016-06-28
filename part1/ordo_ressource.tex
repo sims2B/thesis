@@ -9,8 +9,9 @@ commencer par présenter ces deux problèmes. En effet, beaucoup des
 travaux décrits dans ce manuscrit s'appuient sur des résultats mis en
 place pour l'un d'entre eux. 
 
-Dans un second temps, nous montrerons les limites de ces problèmes et
-les solutions mises en place dans la littérature pour palier ces
+Dans un second temps, nous montrerons les limites de ces modélisations
+pour exprimer certains problèmes cumulatifs réels et
+les modèles alternatifs mis en place dans la littérature pour palier ces
 limitations.
 
 \subsubsection{Problèmes cumulatifs}
@@ -20,13 +21,13 @@ limitations.
 Le problème d'ordonnancement de projet à contraintes de ressources
 (\RCPSP) est un problème d'ordonnancement très général, utilisé pour
 modéliser de nombreux problèmes pratiques. L'objectif est
-d'ordonnancer un ensemble d'activités de telle sorte que la capacité
-de la ressource ne soit pas excédée et qu'une certaine fonction
+d'ordonnancer un ensemble d'activités de telle sorte que les capacités
+des ressources ne soient pas excédées et qu'une certaine fonction
 objectif soit minimisée. Parmi les ressources modélisées, on trouve
 des ressources telles que des machines, des personnes, des salles, de
 l'argent ou encore de l'énergie. Pour les fonctions objectifs, des
 quantités telles que la durée totale du projet, le retard ou les coûts
-peuvent être minimiser.
+peuvent être minimisées.
 
 Formellement, le \RCPSP~est défini de la manière suivante: nous
 considérons un ensemble d'activités non-préemptives $\A=\{1,\dots,n\}$
@@ -51,7 +52,7 @@ plus, $E$ contient les arcs suivants:
 \item $(i,n+1),\ \forall i \in \A$.
 \end{itemize}
 
-Pour ce problème, la fonction objective la
+Pour ce problème, la fonction objectif la
 plus rencontrée dans la littérature étant la minimisation de la date
 de fin du projet, i.e. $C_{max}$, nous considérons principalement cet
 objectif dans la suite de ce manuscrit. Si un objectif différent est
@@ -64,12 +65,12 @@ de chaque activité $i\in \A$ de telle sorte que:
   consommations d'une même ressource $k \in \R$ ne doit pas dépasser la
   capacité $R_{k}$ de cette dernière, i.e.
   \begin{equation}\forall t \in \H, \forall k \in \R,\sum_{\substack{i\in \A\\ t \in
-        [st_i,st_i+p_i]}} r_{ik} \le R_k\end{equation} 
+        [st_i,st_i+p_i[}} r_{ik} \le R_k\end{equation} 
   avec $\H=\{0,\dots,T\}$ définissant l'horizon de temps du projet. $T$
   est donc une borne supérieure sur la date de fin du projet.
 \item les contraintes de précédence sont satisfaites, i.e. 
-  \begin{equation} \forall (i,j) \in E,\ s_i+p_i \le p_j \end{equation}
-\item la date de fin du projet $C_{max}= \max_{i \in \A} s_i+p_i$
+  \begin{equation} \forall (i,j) \in E,\ st_i+p_i \le p_j \end{equation}
+\item la date de fin du projet $C_{max}= \max_{i \in \A} st_i+p_i$
   soit minimale. 
 \end{itemize}
 
@@ -109,11 +110,11 @@ de chaque activité $i\in \A$ de telle sorte que:
         \draw[->,thick] (O) -- (D.west) node[midway, above=0.5pt] {\small $0$};
         \draw[->,thick] (O) -- (T.south west) node[midway, below=0.5pt] {\small $0$};
         \draw[->,thick] (O) -- (Q.west) node[midway, left=0.5pt] {\small $0$};
-        \draw[->,thick] (U) -- (C.north west) node[midway, above=0.5pt] {\small $0$};
-        \draw[->,thick] (D) -- (C.west) node[midway, above=0.5pt] {\small $0$};
-        \draw[->,thick] (D) -- (T.west) node[midway, right=0.5pt] {\small $3$};
-        \draw[->,thick] (T) -- (C.south west) node[midway, above=0.5pt] {\small $0$};
-        \draw[->,thick] (Q) -- (C.south) node[midway, below=0.5pt] {\small $0$};
+        \draw[->,thick] (U) -- (C.north west) node[midway, above=0.5pt] {\small $4$};
+        \draw[->,thick] (D) -- (C.west) node[midway, above=0.5pt] {\small $3$};
+        \draw[->,thick] (D) -- (T.west) node[midway, right=0.5pt] {\small $6$};
+        \draw[->,thick] (T) -- (C.south west) node[midway, above=0.5pt] {\small $5$};
+        \draw[->,thick] (Q) -- (C.south) node[midway, below=0.5pt] {\small $8$};
       \end{tikzpicture}}
     \caption{Instance de l'exemple du \RCPSP.} 
     \label{instance_ex_RCPSP}
@@ -122,9 +123,11 @@ de chaque activité $i\in \A$ de telle sorte que:
   La figure~\ref{solution_ex_RCPSP_feas} présente un ordonnancement
   réalisable avec $C_{max}=15$. Cet ordonnancement n'est pas optimal
   puisque si l'activité $1$ est décalée à droite de manière à commencer
-  au temps $t=8$, on obtient un ordonnancement ayant une date de fin
+  au temps $t=8$, on peut décaler les trois autres activités vers la
+  gauche et on obtient un ordonnancement ayant une date de fin
   inférieure à celle de l'ordonnancement précédent, i.e. $C_{max}=12$
-  (cf. figure~\ref{solution_ex_RCPSP_opt}).
+  (cf. figure~\ref{solution_ex_RCPSP_opt}) dont on peut prouver
+  l'optimalité .
 
   \begin{figure}[!htb]
     \centering
@@ -232,28 +235,30 @@ de chaque activité $i\in \A$ de telle sorte que:
 Le \RCPSP~est un problème qui a été prouvé NP-complet au sens
 fort~\cite{NP_RCPSP}. Ce problème a donc été très étudié dans la
 littérature, notamment pour trouver des méthodes efficaces pour sa
-résolution. Dans la section~\ref{sec:PLNE_ordo_res}, nous présentons des
+résolution. Dans le paragraphe~\ref{sec:PLNE_ordo_res}, nous présentons des
 modèles de programmation linéaire permettant de trouver la solution
 optimale à ce problème. 
 
 \paragraph{Le problème cumulatif}
 
 \index{\CuSPidx}
-Le problème d'ordonnancement cumulatif (CuSP) permet
-de caractériser le fait qu'une ressource (ou un sous-ensemble) soit de
-type cumulative dans un projet. Il s'agit en fait d'un cas particulier
-du \RCPSP.
+Le problème d'ordonnancement cumulatif (CuSP) permet de caractériser
+le fait qu'une ressource (ou un sous-ensemble) soit de type cumulative
+dans un projet. Le \CUSP~peut être vu comme une relaxation de la
+variante décisionnelle du RCPSP ou on ne considère qu'une ressource et
+où on remplace les contraintes de précédence par les fenêtres de temps
+qu'elles induisent.
 
 Formellement, le \CUSP~prend en entrée un ensemble $ \A=\{1,\dots,n\}$
 d'activités non-préemptives à ordonnancer. Pour s'exécuter, une
 activité doit consommer une partie de la ressource $r_i$ et ce jusqu'à
-l'arrêt de celle-ci, i.e. après un temps $p_i$ correspondant à la
+l'arrêt de l'activité, i.e. après un temps $p_i$ correspondant à la
 durée de l'activité $i$. Cette ressource est de type cumulative et
 renouvelable, disponible en quantité $R$.
 
 De plus, chaque activité dispose d'une fenêtre de temps $[\ES,\LE]$
 dans laquelle l'activité doit obligatoirement s'exécuter. Nous
-rappellons que $\ES$ correspond à la date de début au plus tôt de $i$
+rappelons que $\ES$ correspond à la date de début au plus tôt de $i$
 et $\LE$ à sa date de fin au plus tard.
 
 L'objectif du \CUSP~est donc de déterminer la date de début $st_i$ de
@@ -262,7 +267,7 @@ chaque activité $i \in \A$ telle que:
 \item la capacité de la ressource n'est excédée à aucun moment du
   projet, i.e.
   \begin{equation} \forall t \in \H,\sum_{\substack{i\in \A\\ t \in
-        [st_i,st_i+p_i]}} r_{i} \le  R
+        [st_i,st_i+p_i[}} r_{i} \le  R
 \label{eq:CUSP_res}
 \end{equation}
   où $\H=\{0,\dots,T\}$ est l'horizon de temps du projet et $T=\max_{i
@@ -366,9 +371,10 @@ Dans la section~\ref{sec:cumu}, nous présenterons des
 méthodes de résolution pour ce problème utilisant la programmation par
 contrainte. 
 
-\subsubsection{Limites des problèmes cumulatifs}
+\subsubsection{Limites des problèmes cumulatifs en termes de modélisation}
 \label{sec:limit_CUSP}
-Une des principales limitations du \CUSP~et du \RCPSP~est que, dans
+Une des principales limitations du \CUSP~et du \RCPSP~en termes de
+modélisation est que, dans
 ces problèmes, chaque activité consomme une quantité de ressource
 fixe, connues à l'avance, durant toute sa durée d'exécution. De plus,
 cette durée est aussi supposée fixe. Cependant, pour de nombreux
@@ -401,22 +407,22 @@ Pour représenter ces variations dans le profil de consommation des
 activités, nous avons choisi de modéliser la ressource comme une
 ressource continue. En effet, de nombreux exemples de ressource
 continue existent. C'est la cas de l'électricité, des sources
-d'énergie hydrauliques, de l'essence ou encore de la mémoire d'un
+d'énergie hydrauliques, du carburant ou encore de la mémoire d'un
 ordinateur. D'autres ressources telles que des employés ou des
 machines, qui sont normalement modélisées à l'aide de ressources
 discrètes, peuvent être modélisées par des ressources continues si
 l'on suppose qu'un employé ou une machine peut exécuter plusieurs
-activités en parallèle.
+activités en parallèle~\cite{W80,NK}.
 
 De plus, les problèmes à ressources continues peuvent aussi servir de
 relaxation pour les problèmes avec des ressources discrètes. En effet,
 le caractère discret du problème peut parfois amener à considérer de
 nombreuses possibilités d'affectation de la ressource. Ce grand nombre
 d'affectation peut grandement complexifier le problème. Donc,
-considérer des ressources continues peut permettre l'aggrégation des
+considérer des ressources continues peut permettre l'agrégation des
 raisonnements dédiés à ces problèmes. 
 
-La modélisation complète du problème est décrit dans la section
+La modélisation complète du problème considéré dans cette thèse est décrit dans la section
 suivante. Cette modélisation sera ensuite comparée aux extensions du
 \CUSP~et du \RCPSP, déjà existantes dans la littérature.
 
