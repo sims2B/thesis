@@ -1,7 +1,465 @@
 \section{Algorithme de filtrage du raisonnement énergétique}
-\label{section:RE}
+\label{sec:ER_CECSP}
+\index{raisonnement énergétique!pour le CECSP}
 
-\subsection{Test de satisfiabilité}
+Le paragraphe ci-dessous décrit l'adaptation du raisonnement
+énergétique, introduit par~\cite{RELopez} pour la contrainte cumulative,
+et décrit dans le paragraphe~\ref{sec:cumu_propag}. Nous commençons,
+dans un premier temps par décrire l'algorithme de vérification de ce
+raisonnement, puis nous présenterons les règles d'ajustements qui
+peuvent être mises en place pour filtrer les domaines des
+variables. Enfin, la dernière partie de ce paragraphe sera consacrée à
+la caractérisation des intervalles d'intérêt pour l'algorithme de
+vérification et pour les règles d'ajustement.
+
+\subsection{Algorithme de vérification}
+
+\subsubsection{Condition nécéssaire d'existence de solution}
+Pour décrire l'algorithme de vérification, nous rappelons d'abord
+l'idée principale sur laquelle repose le raisonnement énergétique. Le
+principe est donc, étant donné un intervalle $[t_1,t_2[$, de calculer
+les consommations minimales de ressource des activités dans cette
+intervalle et de les comparer à la quantité de ressource disponible
+dans ce même intervalle. Si la ressource disponible n'est pas
+suffisante pour ordonnancer les consommations minimales de toutes les
+activités, une incohérence est détectée.
+
+Dans le cas du \CUSP, la quantité de ressource requise par une
+activité pouvait être calculée de manière directe. Ici, ce calcul sera
+fait en deux fois: nous calculons d'abord la quantité d'énergie
+requise par une activité à l'intérieur de l'intervalle $[t_1,t_2{[}$,
+notée $\wb$, puis nous traduisons cette énergie en une quantité de
+ressource, notée $\bb$. Ceci nous permettra ensuite de la comparer
+avec la ressource disponible dans $[t_1,t_2{[}$.
+
+Formellement ces quantités sont représentées par les expressions
+suivantes: 
+\begin{align}
+  \wb= \min \int_{t_1}^{t_2} f_i(b_i(t))dt & & \text{subject to
+\eqref{tw_CECSP}-\eqref{nrj_CECSP}}\\
+  \bb= \min \int_{t_1}^{t_2} b_i(t)dt & & \text{subject to
+\eqref{tw_CECSP}-\eqref{nrj_CECSP}}
+\end{align}
+
+Comme pour le cas du \CUSP, la fonction de marge, notée $SL(t_1,t_2)$,
+permet de mesurer l'écart entre la quantité de ressource disponible et
+les consommations minimales de toutes les tâches dans l'intervalle
+${[}t_1,t_2{]}$. Cette fonction est définie de la manière suivante:
+\[ SL(t_1,t_2)=B(t_2-t_1)-\sum\limits_{i \in A} \bb \]
+
+Et ceci nous permet d'énoncer la condition nécessaire d'existence
+d'une solution qui est à la base de l'algorithme de vérification du
+raisonnement énergétique:
+
+\begin{theo}
+  Soit $\I$ une instance du \CECSP. S'il existe $t_1 < t_2 \in
+  \mathbb{R}^2$ tel que $SL(t_1,t_2) <0$ alors $\I$ ne peut pas avoir
+  de solution.
+\end{theo}
+
+\begin{proof}
+Par l'absurde, supposons qu'il existe $t_1 < t_2 \in \mathbb{R}^2$ tel
+que $SL(t_1,t_2) > 0$ et que l'instance $\I$ soit satisfiable. Par
+définition, $\bb$ est la quantité de ressource minimale que doit
+consommer l'activité $i$ dans l'intervalle $[t_1,t_2{[}$. 
+
+Donc, dans toute solution réalisable, nous avons: 
+\begin{align*}
+ & \int_{t_1}^{t_2} b_i(t)dt \ge \bb\\
+\Rightarrow  & \sum_{i \in \A} \int_{t_1}^{t_2} b_i(t)dt \ge \sum_{i
+               \in \A}  \bb > R(t_2-t_1)
+\end{align*}
+Et ceci contredit le fait que $\sum_{i \in \A} b_i(t) \le
+R(t_2-t_1)$. 
+\end{proof}
+
+
+Dans un premeir temps, nous allons nous intéressé au calcul de $\wb$,
+le calcul de $\bb$ sera détaillé dans un second temps. 
+
+
+\subsubsection{{\'E}nergie minimale dans un intervalle}
+
+Pour calculer $\wb$, nous analysons les différentes configurations de
+la consommation minimale d'une tâche. Remarquons que les
+configurations conduisant à une consommation minimale dans
+l'intervalle $[t_1,t_2{[}$ sont celles où l'activité est ordonnancée à
+$\bmax$ à l'intérieur de cet intervalle. Ces configurations, décrites
+dans la figure~\ref{fig:conso_CECSP}, peuvent être regroupée en trois
+catégories:
+\begin{itemize}
+\item l'activité est {\it calée à
+gauche} (figure~\ref{fig:conso_CECSPa}, \ref{fig:conso_CECSPb},
+\ref{fig:conso_CECSPd} et \ref{fig:conso_CECSPg}): l'activité démarre
+à $\ES$ et est ordonnancée à $\bmax$ pendant l'intervalle
+$[\ES,t_1{[}$;
+\item l'activité est {\it calée à
+droite} (figure~\ref{fig:conso_CECSPb}, \ref{fig:conso_CECSPc},
+\ref{fig:conso_CECSPf} et \ref{fig:conso_CECSPi}): l'activité finit à
+$\LE$ et est ordonnancée à $\bmax$ pendant l'intervalle $[t_2,\LE{[}$;
+\item l'activité est {\it centrée} (figure~\ref{fig:conso_CECSPe} et
+\ref{fig:conso_CECSPh}): l'activité occupe tout l'intervalle
+$[t_1,t_2[$, soit en étant ordonnancée à $\bmax$ pendant l'intervalle
+$[\ES,t_1{[} \cup [t_2,\LE{[}$, soit en étant ordonnancée à $\bmin$
+durant tout l'intervalle $[t_1,t_2{[}$.
+\end{itemize}
+En effet, lorsque l'activité est ordonancée à $\bmax$ pendant
+l'intervalle $[\ES,t_1{[} \cup [t_2,\LE{[}$, il peut arriver que la
+quantité d'énergie restant à apporter à l'activité durant l'intervalle
+$[t_1,t_2[$ ne soit pas suffisante pour assurer la satisfaction de la
+contrainte de consommation minimale~\eqref{bmin_CECSP}. Le cas où
+l'activité est ordonnancée à $\bmin$ durant tout l'intervalle
+$[t_1,t_2{[}$ doit donc être considéré.
+
+\begin{figure}[!htb]  
+\centering
+\subcaptionbox{\label{fig:conso_CECSPa}}[0.3\linewidth]{
+  \begin{tikzpicture}
+    [xscale=0.37,yscale=0.3]
+    \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+    \node (t1) at (6,0) {}; 
+    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
+    \node (t2) at (7,0) {};
+
+    \draw[->] (O.center) -- (8,0)node[below] {$t$};
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw(ri.south) -- (ri.center);
+    \draw[fill=white] (ri.center) rectangle (5,4);
+    \draw[pattern=north west lines] (ri.center) rectangle (5,4);
+    \draw[thick] (t1.south) -- (6,4.1) node[above] {$t_1$};
+    \draw[thick] (t2.south) -- (7,4.1) node[above] {$t_2$};
+  \end{tikzpicture}}
+\hfill
+\subcaptionbox{\label{fig:conso_CECSPb}}[0.3\linewidth]{
+  \begin{tikzpicture}
+    [xscale=0.37,yscale=0.3]
+    \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+    \node (t1) at (1,0) {}; 
+    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (2,0) {};
+    \node (t2) at (7,0) {};
+    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (6,0) {};
+
+    \draw[->] (O.center) -- (8,0)node[below] {$t$};
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw(ri.south) -- (ri.center);
+    \draw(di.south) -- (di.center);
+    \draw[fill=white] (2.5,0) rectangle (5.5,4);
+    \draw[pattern=north west lines] (2.5,0) rectangle (5.5,4);
+    \draw[thick] (t1.south) -- (1,4.1) node[above] {$t_1$};
+    \draw[thick] (t2.south) -- (7,4.1) node[above] {$t_2$};
+  \end{tikzpicture}}
+\hfill
+\subcaptionbox{\label{fig:conso_CECSPc}}[0.3\linewidth]{
+  \begin{tikzpicture}
+    [xscale=0.37,yscale=0.3]
+    \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+    \node (t1) at (0.5,0) {};
+    \node (t2) at (1.5,0) {};
+    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+    
+    \draw[->] (O.center) -- (8,0)node[below] {$t$};
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw[fill=white] (3,0) rectangle (7,4);
+    \draw[pattern=north west lines] (3,0) rectangle (7,4);
+    \draw(di.south) -- (di.center);
+    \draw[thick] (t1.south) -- (0.5,4.1) node[above] {$t_1$};
+    \draw[thick] (t2.south) -- (1.5,4.1) node[above] {$t_2$};
+  \end{tikzpicture}}
+
+
+\subcaptionbox{\label{fig:conso_CECSPd}}[0.3\linewidth]{
+\begin{tikzpicture}
+  [xscale=0.37,yscale=0.3]
+    \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+    \node (t1) at (4,0) {};
+    \node (t2) at (7,0) {};
+    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (6,0) {};
+    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
+    
+    \draw[->] (O.center) -- (8,0)node[below] {$t$};
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw[fill=white] (ri.center) rectangle (4,4);
+    \draw[pattern=north west lines] (ri.center) rectangle (4,4);
+    \draw[fill=white] (t1.center) rectangle (5,1.5);
+    \draw[pattern=north west lines] (t1.center) rectangle (5,1.5);
+    \draw(di.south) -- (di.center);
+    \draw(ri.south) -- (ri.center);
+    \draw[thick] (t1.south) -- (4,4.1) node[above] {$t_1$};
+    \draw[thick] (t2.south) -- (7,4.1) node[above] {$t_2$};
+  \end{tikzpicture}}
+\hfill
+\subcaptionbox{\label{fig:conso_CECSPe}}[0.3\linewidth]{
+\begin{tikzpicture}
+ [xscale=0.37,yscale=0.3]
+ \node[] (O) at (0,0) {};
+ \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+ \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+ \node (t1) at (2.5,0) {}; 
+ \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1.5,0) {};
+ \node (t2) at (6,0) {};
+ \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+ 
+  \draw[->] (O.center) -- (8,0)node[below] {$t$};
+  \draw (O.south) -- (bmax.north);
+  \draw (bmin.center) -- (8,1);
+  \draw (bmax.center) -- (8,4);
+  \draw(ri.south) -- (ri.center);
+  \draw(di.south) -- (di.center);
+  \draw[fill=white] (2.5,0) rectangle (1.5,4);
+  \draw[pattern=north west lines] (2.5,0) rectangle (1.5,4);
+  \draw[fill=white] (2.5,0) rectangle (6,2);
+  \draw[pattern=north west lines] (2.5,0) rectangle (6,2);
+  \draw[fill=white] (6,0) rectangle (7,4);
+  \draw[pattern=north west lines] (6,0) rectangle (7,4);
+  \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
+  \draw[thick] (t2.south) -- (6,4.1) node[above] {$t_2$};
+ \end{tikzpicture}}
+\hfill
+\subcaptionbox{\label{fig:conso_CECSPf}}[0.3\linewidth]{
+  \begin{tikzpicture}
+ [xscale=0.37,yscale=0.3]
+ \node[] (O) at (0,0) {};
+ \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+ \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+ \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+ \node (t1) at (1,0) {}; 
+ \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (2.5,0) {};
+ \node (t2) at (4,0) {};
+ 
+ \draw[->] (O.center) -- (8,0)node[below] {$t$};
+ \draw (O.south) -- (bmax.north);
+ \draw (bmin.center) -- (8,1);
+ \draw (bmax.center) -- (8,4);
+ \draw(di.south) -- (di.center);
+ \draw(ri.south) -- (ri.center);
+ \draw[fill=white] (t2.center) rectangle (7,4);
+ \draw[pattern=north west lines] (t2.center) rectangle (7,4);
+ \draw[fill=white] (t2.center) rectangle (3.2,2);
+ \draw[pattern=north west lines] (t2.center) rectangle (3.2,2);
+ \draw[thick] (t1.south) -- (1,4.1) node[above] {$t_1$};
+ \draw[thick] (t2.south) -- (4,4.1) node[above] {$t_2$};
+ \end{tikzpicture}}
+
+
+
+\subcaptionbox{\label{fig:conso_CECSPg}}[0.3\linewidth]{
+  \begin{tikzpicture}
+  [xscale=0.37,yscale=0.3]
+    \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+    \node (t1) at (3,0) {};
+    \node (t2) at (5,0) {};
+    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
+    
+    \draw[->] (O.center) -- (8,0)node[below] {$t$};
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw[fill=white] (t1.center) rectangle (1,4);
+    \draw[pattern=north west lines] (t1.center) rectangle (1,4);
+    \draw[fill=white] (t1.center) rectangle (3.7,1);
+    \draw[pattern=north west lines] (t1.center) rectangle (3.7,1);
+    \draw(di.south) -- (di.center);
+    \draw(ri.south) -- (ri.center);
+    \draw[thick] (t1.south) -- (3,4.1) node[above] {$t_1$};
+    \draw[thick] (t2.south) -- (5,4.1) node[above] {$t_2$};
+  \end{tikzpicture}}
+\hfill
+\subcaptionbox{\label{fig:conso_CECSPh}}[0.3\linewidth]{
+  \begin{tikzpicture}
+  [xscale=0.37,yscale=0.3]
+   \node[] (O) at (0,0) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+    \node (t1) at (2.5,0) {}; 
+    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1.5,0) {};
+    \node (t2) at (6,0) {};
+    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+
+    \draw[->] (O.center) -- (8,0)node[below] {$t$};
+    \draw (O.south) -- (bmax.north);
+    \draw (bmin.center) -- (8,1);
+    \draw (bmax.center) -- (8,4);
+    \draw(ri.south) -- (ri.center);
+    \draw(di.south) -- (di.center);
+    \draw[fill=white] (2.5,0) rectangle (2,2.7);
+    \draw[pattern=north west lines] (2.5,0) rectangle (2,2.7);
+    \draw[fill=white] (2.5,0) rectangle (6,1);
+    \draw[pattern=north west lines] (2.5,0) rectangle (6,1);
+    \draw[fill=white] (6,0) rectangle (7,4);
+    \draw[pattern=north west lines] (6,0) rectangle (7,3);
+    \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
+    \draw[thick] (t2.south) -- (6,4.1) node[above] {$t_2$};
+  \end{tikzpicture}}
+\hfill
+\subcaptionbox{\label{fig:conso_CECSPi}}[0.3\linewidth]{
+\begin{tikzpicture}
+ [xscale=0.37,yscale=0.3]
+ \node[] (O) at (0,0) {};
+ \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+ \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+ \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+ \node (t1) at (2.5,0) {}; 
+ \node (t2) at (4,0) {};
+ \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
+ 
+ \draw[->] (O.center) -- (8,0)node[below] {$t$};
+ \draw (O.south) -- (bmax.north);
+ \draw (bmin.center) -- (8,1);
+ \draw (bmax.center) -- (8,4);
+ \draw(di.south) -- (di.center);
+ \draw(ri.south) -- (ri.center);
+ \draw[fill=white] (t2.center) rectangle (7,4);
+ \draw[pattern=north west lines] (t2.center) rectangle (7,4);
+ \draw[fill=white] (t2.center) rectangle (3.2,1);
+ \draw[pattern=north west lines] (t2.center) rectangle (3.2,1);
+ \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
+ \draw[thick] (t2.south) -- (4,4.1) node[above] {$t_2$}; 
+ \end{tikzpicture}}
+\caption{les différentes configurations}
+\label{configuration}
+\end{figure}
+	
+Il est facile de calculer l'expression de la consommation minimale
+d'énergie dans un intervalle pour une fonction $f_i$ croissante. En
+effet, les différentes configurations possibles étant toujours celle
+où la tâche est exécutée à son rendement maximum en dehors de
+l'intervalle ${[}t_1,t_2{[}$, il suffit de retrancher à $W_i$
+l'énergie produite par l'exécution de la tâche en dehors de
+${[}t_1,t_2{]}$. Il existe une exception à cette règle, produite par
+la contrainte du rendement minimal, mais ce cas est facilement traiter
+puisque l'énergie minimale correspond alors à la configuration où la
+tâche est exécutée à son rendement minimal durant ${[}t_1,t_2{[}$. 
+
+Pour donner l'expression mathématique de $\wb$ , nous introduisons
+trois notations. $\wbLS$ (respectivement $\wbRS$ et $\wbCS$)
+correspond à la quantité d'énergie apportée à l'activité $i$ dans
+l'intervalle $[t_1,t_2[$ quand l'activité est calée à gauche
+(respectivement calée à droite et centrée). Formellement, ces trois
+quantités peuvent être exprimer de la manière suivante:
+\begin{align}
+\wbLS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0,t_1 - \ES)\right) \label{eq:LSnrj_CECSP}\\
+\wbRS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0, \LE-t_2)\right)\label{eq:RSnrj_CECSP}\\
+\wbCS&=\max\left( f_i(\bmin) * (t_2-t_1)\, ,\, W_i - f_i(\bmax)\max(0,
+       d_i - r_ i - t_2 + t_1 \right)\label{eq:CSnrj_CECSP}
+\end{align}
+Alors, l'expression de l'énergie minimale est le minimum de ces trois
+quantités, i.e.
+\begin{equation}
+\wb=\min\left(\, \wbLS\, ,\,\wbRS\, ,\,\wbCS \, \right)
+\end{equation} 
+
+Nous allons maintenant utiliser l'expression de $\wb$ et la fonction
+$f_i$ pour calculer $\bb$.
+
+\subsubsection{Consommation minimale de la ressource}
+	
+Pour calculer l'expression de $\bb$, nous allons utiliser les
+propriétés de la fonction $f_i$. En effet, une fois que nous avons
+calculer $\wb$, nous voulons savoir quelle est la puissance minimale
+que nous devons fournir à la tâche pour obtenir cette quantité
+d'énergie dans l'intervalle ${[}t_1,t_2{]}$.
+
+Nous allons commencer par détailler le cas où cette fonction est
+linéaire, i.e. $f_i$ est de la forme $a_ib+c_i$ avec $a_i >0$ et $c_i
+\ge 0$, puis nous traiterons le cas où $f_i$ est linéaire par
+morceaux.
+	
+\paragraph{Fonction linéaire}
+	
+%TODO expliquer que bimin c'est bien
+Pour les fonctions linéaires, commençons par remarquer que, pour une énergie donnée, exécuter la tâche à son rendement minimal $b_i{min}$ produit cette énergie en consommant une quantité minimale de la ressource ($\frac{f_i(b_i^{min})}{b_i^{min}}$ maximum). Nous avons alors deux cas à considérer:
+	
+\begin{itemize}
+\item Soit l'intervalle $I={[}t_1,t_2{]}\cap {[}\ES,\LE{]}$ est suffisamment grand pour exécuter la tâche $i$ à son rendement minimal, i.e. $|I| \ge \frac{\wb}{f_i(b_i^{min})}$ et donc $\bb=b_i^{min}\frac{\wb}{f_i(b_i^{min})}$
+	
+\item Soit $|I| < \frac{\wb}{f_i(b_i^{min})}$ et nous devons résoudre le programme linéaire suivant:
+  \begin{alignat*}{2}
+    \text{minimiser}   & \int_{I} b_i(t)dt  \\
+    \text{sous} & \int_{I} a_ib_i(t)+c_idt \ge \wb
+  \end{alignat*}
+  Alors la contrainte s'écrit $\int_{I} b_i(t)dt \ge \frac{1}{a_i}(\wb-|I|c_i)$ et donc, nous avons $\bb= \frac{1}{a_i}(\wb-|I|c_i)$.\\
+\end{itemize}
+
+Les différents cas de figures sont présentés ci-dessous:
+\begin{enumerate}
+\item Si $t_1 \le t_2 \le \LE - \frac{W_i}{f_i(b_i^{max})}$ alors $\bb=0$
+\item Si $\ES+\frac{W_i}{f_i(b_i^{max})} \le t_1 \le t_2$ alors $\bb=0$
+\item Si $t_1 \le \ES \le t_2 \le \LE$ et $t_2 \ge \LE - \frac{W_i}{f_i(b_i^{max})}$ alors $\bb=\max (\frac{1}{a_i}(\wb-c_i(t_2-\ES)),b_i^{min}\frac{\wb}{f_i(b_i^{min})})$
+\item Si $\ES \le t_1 \le \LE \le t_2$ et $t_1 \le \ES+ \frac{W_i}{f_i(b_i^{max})}$ alors $\bb= \max (\frac{1}{a_i} (\wb-c_i(\LE-t_1)),b_i^{min}\frac{W_i}{f_i(b_i^{min})})$
+\item Si $t_1 \le \ES \le \LE \le t_2$ alors $\bb= \max (\frac{1}{a_i} (\wb-c_i(\LE-\ES)),b_i^{min}\frac{W_i}{f_i(b_i^{min})})$
+\item Si $\ES \le t_1 \le \ES + \frac{W_i}{f_i(b_i^{max})}$ et $\LE-\frac{W_i}{b-i^{max}} \le t_2 \le \LE$ alors les configurations possibles sont les suivantes:
+	
+  \begin{description}
+  \item[(a)] Si l'activité peut être exécutée à son rendement minimal dans l'intervalle ${[}t_1,t_2{]}$, i.e. $W_i -f_i(b_i^{max})(t_1-\ES+\LE-t_2) \le f_i(b_i^{min})(t_2-t_1)$ alors $\bb$ est défini par:
+    
+    \begin{itemize}
+    \item si $\wb=f_i(b_i^{min})(t_2-t_1)$, $\bb=b_i^{min}(t_2-t_1)$
+    \item si $\wb=W_i - f_i(b_i^{max})(\LE-t_2)$, $\bb=\max (\frac{1}{a_i} (\wb-c_i(t_2-\ES)),b_i^{min}\frac{\wb}{f_i(b_i^{min})})$
+    \item si $\wb=W_i - f_i(b_i^{max})(t_1-\ES)$, $\bb=\max (\frac{1}{a_i} (\wb-c_i(\LE-t_1)),b_i^{min}\frac{\wb}{f_i(b_i^{min})})$
+    \end{itemize}
+		
+  \item[(b)] Si $W_i -f_i(b_i^{max})(t_1-\ES+\LE-t_2) \ge f_i(b_i^{min})(t_2-t_1)$ alors $\bb= \max (\frac{1}{a_i} (\wb-c_i(t_2-t_1)),b_i^{min}\frac{\wb}{f_i(b_i^{min})})$
+  \end{description}
+\end{enumerate}
+	
+	
+\paragraph{Fonction linéaire par morceaux}
+%TODO expliquer le point de rendement max + il suffit de regarder les points de cassure + programme lineaire à résoudre	
+	
+Pour les fonctions linéaires par morceaux, ce n'est plus l'exécution de la tâche à $\bmin$ qui a le meilleur rendement. Cependant, nous savons que ce point de meilleur rendement se trouve au niveau d'un point de "cassure" de la fonction, i.e. un point où la définition de la fonction change. Pour le trouver, nous devons comparer tous ces points de cassure. Soit $\gamma_{min}$ ce point. Comme pour les fonctions linéaires, nous avons deux cas à considérer. Le premier est celui où l'intervalle $I={[}t_1,t_2{]}\cap {[}\ES,\LE{]}$ est suffisamment grand pour exécuter la tâche $i$ à cette puissance $\gamma_{min}$. Dans ce cas, la consommation minimale de la ressource est $\bb= \gamma_{min} \frac{\wb}{f_i(\gamma_{min})}$. Dans le cas où la taille de l'intervalle $I$ ne permet pas l'exécution de la tâche à ce rendement, nous devons résoudre le problème suivant: 
+\begin{alignat*}{2}
+  \text{minimiser}   & \int_{I} b_i(t)dt  \\
+  \text{sous} & \int_{I} f_i(b_i(t))+dt \ge \wb
+\end{alignat*}
+		
+Pour résoudre ce problème, nous allons d'abord montrer qu'il est suffisant de regarder les points de cassure de la fonction, que l'on va noter $\{\gamma_i | 0 \le i\le q\}$. En d'autres termes, si dans une solution optimale la tâche est exécutée à une puissance $\beta$, comprise entre $\gamma_j$ et $\gamma_k$, pendant un intervalle ${[}a,b{]}$ alors, on peut trouver une partition de l'intervalle ${[}a,b{]}$ en deux sous-intervalles de telle sorte qu'exécuter la tâche $i$ à $\gamma_j$ pendant la première partie de l'intervalle et à $\gamma_k$ pendant la seconde partie soit équivalent à son exécution à $\beta$ sur ${[}a,b{]}$, i.e. produise la même énergie en consommant la même quantité de la ressource.\\
+Nous allons donc prouver le lemma suivant:
+
+\begin{lemma}
+  Soit une instance de CECSP, et soient une tâche $i$ appartenant à cette instance telle que $f_i$ est une fonction linéaire par morceaux. Alors résoudre
+  \begin{alignat*}{2}
+    \text{minimiser}   & \int_{I} b_i(t)dt  \\
+    \text{sous} & \int_{I} f_i(b_i(t))+dt \ge \wb
+  \end{alignat*}
+  est équivalent à résoudre:
+  \begin{alignat*}{2}
+    \text{minimiser}   & \sum\limits_{l=0}^q x_l\gamma_l \\
+    \text{sous} & \sum\limits_{l=0}^q x_lf_i(\gamma_l) \ge \wb \\
+    & \sum\limits_{l=0}^q x_l \le |I|
+  \end{alignat*}
+\end{lemma}
+
+\begin{proof}
+  Pour montrer ce lemma, nous allons montrer que si une solution optimale utilise un point $\beta$ tel que $ \gamma_j < \beta < \gamma_k$ (et $j$ et $k$ sont respectivement le plus petit et le plus grand indice vérifiant cette inégalité), alors il existe une solution optimale utilisant seulement $\gamma_j$ et $\gamma_k$ et pas $\beta$.\\
+Supposons donc que dans une solution optimale, la tâche $i$ soit exécutée avec une puissance $\beta$ comprise entre $\gamma_j$ et $\gamma_k$ pendant un intervalle ${[}a,b{]}$. L'énergie produite par cette affectation est donc $(b-a)f_i(\beta)$ et la quantité de ressource utilisée est $(b-a)\beta$.\\
+Nous allons exprimer le point $(\beta,f_i(\beta))$ comme une combinaison convexe des points $(\gamma_j,f_i(\gamma_j))$ et de $(\gamma_k,f_i(\gamma_k))$:
+\[ (\beta,f_i(\beta))= \lambda_j (\gamma_j,f_i(\gamma_j)) + \lambda_k (\gamma_k,f_i(\gamma_k))
+\]
+avec $\lambda_j + \lambda_k=1$.\\
+Donc l'énergie produite est $\lambda_j(b-a)f_i(\gamma_j)+\lambda_k(b-a)f_i(\gamma_k)=(b-a)f_i(\beta)$ et la quantité de ressource utilisée est $\lambda_j(b-a)\gamma_j+\lambda_k(b-a)\gamma_k=(b-a)\beta$
+
+\end{proof}
+
+
 \subsection{Les ajustements de borne}
 \label{sec:adjustment_tw}
 \subsection{Caractérisation des intervalles d'intérêt}

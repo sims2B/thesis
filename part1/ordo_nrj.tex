@@ -64,8 +64,7 @@ cette activité telle que:
   \end{equation}
 \end{itemize}
 
-Dans ce manuscrit, nous considérons les trois cas
-suivants:
+Dans ce manuscrit, nous considérons les trois cas suivants:
 \begin{itemize}
 \item $f_i$ est la fonction identité, $\forall i \in \A$,
 \item $f_i$ est une fonction affine, $\forall i \in \A$,
@@ -858,16 +857,19 @@ $[t_q,t_{q+1}]$. Rappelons que $Q \le 2n$. Le programme linéaire
 s'écrit alors de la manière suivante:
 {\small
 \begin{align}
-&\sum_{\i \in A} b_{iq} \le R & \forall q\in
-\{1..Q-1\} \label{poly2}\\ & b_{iq} \le \bmax & \forall i \in \A,\
-\forall q \in \{1..Q-1\} |\ t_q \in [st_i,et_i[\label{poly3}\\ &
-b_{iq} \ge \bmin& \forall i \in \A,\ \forall q \in \{1..Q-1\} |\ t_q
-\in [st_i,et_i[\label{poly4}\\ & b_{iq}=0 & \forall i \in \A,\ \forall
-q \in \{1..Q-1\} |\ t_q \not\in [st_i,et_i[\label{poly5}\\ &
-\sum_{q=1}^{Q-1} w_{iq}(t_{q+1}-t_q) = W_i & \forall i \in
-\A\label{poly6}\\ & w_{iq} \le a_{ip}b_{iq} + c_{ip} & \forall i \in
-\A,\ \forall p \in \P_i,\ \forall q \in \{1..Q-1\}\label{poly7}\\ &
-w_{iq} \le Mb_{iq} & \forall i \in \A,\ \forall q \in
+&\sum_{\i \in A} b_{iq} \le R(t_{q+1}-t_q)  & \forall q\in
+\{1..Q-1\} \label{poly2}\\
+& b_{iq} \le \bmax(t_{q+1}-t_q)  & \forall i \in \A,\ \forall q \in \{1..Q-1\} |\
+t_q \in [st_i,et_i[\label{poly3}\\
+& b_{iq} \ge \bmin (t_{q+1}-t_q) & \forall i \in \A,\ \forall q \in \{1..Q-1\} |\ t_q
+\in [st_i,et_i[\label{poly4}\\
+ & b_{iq}=0 & \forall i \in \A,\ \forall q \in \{1..Q-1\} |\ t_q
+\not\in [st_i,et_i[\label{poly5}\\ 
+& \sum_{q=1}^{Q-1} w_{iq} = W_i & \forall i \in
+\A\label{poly6}\\
+ & w_{iq} \le a_{ip}b_{iq} + c_{ip} & \forall i \in \A,\ \forall p \in
+\P_i,\ \forall q \in \{1..Q-1\}\label{poly7}\\ 
+& w_{iq} \le Mb_{iq} & \forall i \in \A,\ \forall q \in
 \{1..Q-1\}\label{poly8}
 \end{align} }
 pour $M$ une constante suffisamment grande et $\P_i=\{1,\dots,P_i\}$

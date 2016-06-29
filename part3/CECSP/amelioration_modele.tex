@@ -6,8 +6,8 @@ pour les modèles indexés par le temps et les modèles à événements du
 
 Dans un premier temps, nous nous sommes intéressé aux modèles à temps
 discret pour lesquels nous proposons des inégalités valides déduites
-directement du raisonnement énergétique présenté au
-paragraphe~\ref{section:RE}. En effet, ces modèles restent les modèles 
+directement du raisonnement énergétique présenté aux
+paragraphes~\ref{sec:cumu_propag} et~\ref{sec:ER_CECSP}. En effet, ces modèles restent les modèles 
 les plus efficaces pour résoudre le \CECSP~ou le \RCPSP, ceci étant
 principalement dû à la qualité relative de leur relaxation. 
 
@@ -33,7 +33,7 @@ modèles à événements.
 \subsection{Amélioration des modèles indexés par le temps}
 
 Dans ce paragraphe, nous montrons comment est utilisé le
-raisonnement énergétique décrit au paragraphe~\ref{section:RE} pour
+raisonnement énergétique décrit au paragraphe~\ref{sec:ER_CECSP} pour
 exhiber des inégalités valides pour les modèles de programmation
 linéaire mixte indexés par le temps du \RCPSP~et du \CECSP. Nous
 commençons par détailler le cas du \CECSP~avant de montrer comment
@@ -41,7 +41,7 @@ appliquer le même raisonnement pour le \RCPSP.
 
 Pour intégrer le raisonnement énergétique dans les modèles indexés par
 le temps, nous utilisons l'équation qui se trouve au centre de ce
-raisonnement (cf. équation~\ref{eq:centreRE}). Soit $\I$ l'ensemble des
+raisonnement (cf. équation~\eqref{eq:centerRE}). Soit $\I$ l'ensemble des
 intervalles d'intérêt du raisonnement énergétique, alors l'équation
 s'écrit:  
 \begin{align} 
@@ -54,7 +54,7 @@ Soit $CR: \mathbb{R} \times \H \times \H \rightarrow \mathbb{R}$ qui
 associe à une quantité d'énergie $w$ et à un intervalle $[t_1,t_2]$,
 la quantité de ressource minimale à consommer dans $[t_1,t_2]$ pour
 apporter à une activité une énergie $w$ (voir
-équation~\eqref{eq:conv}). En considérant toutes les
+équation~\eqref{eq:conv_CECSP}). En considérant toutes les
 expressions possibles pour $\bb$ et en utilisant les variables
 $x_{it}$ et $y_{it}$ pour activer ou non l'équation correspondant à la
 consommation minimale de ressource dans $[t_1,t_2]$, nous obtenons les

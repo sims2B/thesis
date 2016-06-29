@@ -590,20 +590,24 @@ dans~\cite{BLN}.
 Le raisonnement énergétique, introduit par~\cite{RELopez}, est un des
 raisonnements les plus forts existant pour la contrainte
 cumulative. Le principe est de considérer un intervalle $[t_1,t_2[$ et
-de calculer l'énergie minimale $\wb$ que doit utiliser une activité à
-l'intérieur de cet intervalle. Cette énergie est ensuite utilisée pour
-calculer la fonction de marge $SL(t_1-t_2)$ correspondant à la
-différence entre l'énergie requise par toutes les activités à
-l'intérieur de $[t_1,t_2[$ et la quantité de ressource disponible dans
-ce même intervalle, $R (t_2-t_1)$. Si cette quantité est négative pour
-un intervalle $[t_1,t_2[$, alors une incohérence est détectée. En
-effet, si c'est le cas, alors cela signifie que la quantité de
-ressource disponible dans $[t_1,t_2[$ n'est pas suffisante pour
-ordonnancer les consommations minimales de toutes las activités.
+de calculer l'énergie requise par une activité à l'intérieur de cet
+intervalle. Dans ce cas, l'énergie requise par une activité dans un
+intervalle $[t_1,t_2[$  équivaut à
+la quantité minimale de ressource qu'elle doit utiliser
+à l'intérieur de cet intervalle. Cette quantité, notée $\bb$, est
+ensuite utilisée pour calculer la fonction de marge $SL(t_1-t_2)$
+correspondant à la différence entre la quantité de ressource requise
+par toutes les activités à l'intérieur de $[t_1,t_2[$ et la quantité
+de ressource disponible dans ce même intervalle, $R (t_2-t_1)$. Si
+cette quantité est négative pour un intervalle $[t_1,t_2[$, alors une
+incohérence est détectée. En effet, si c'est le cas, alors cela
+signifie que la quantité de ressource disponible dans $[t_1,t_2[$
+n'est pas suffisante pour ordonnancer les consommations minimales de
+toutes les activités.
 
 \begin{defi}
 La fonction de marge $SL(t_1,t_2)$ est définie de la façon suivante: 
-\[  SL(t_1,t_2) = R (t_2-t_1) - \sum_{i \in \A} \wb \]
+\[  SL(t_1,t_2) = R (t_2-t_1) - \sum_{i \in \A} \bb \]
 \end{defi}
 
 Avec cette définition, nous pouvons maintenant énoncer le théorème
@@ -621,11 +625,11 @@ possède pas de solution, i.e.
 \end{equation}
 \end{theo}
 
-Pour calculer cette fonction de marge, il faut pouvoir calculer
-l'énergie requise par une activité dans l'intervalle $[t_1,t_2[$,
-$\wb$. {\'E}tant donnée une activité $i$, cette énergie correspond à
-l'aire minimale, parmi tous les ordonnancements possibles de $i$,
-occupée par cette dernière à l'intérieur de l'intervalle
+Pour calculer cette fonction de marge, il faut pouvoir calculer la
+quantité de ressource requise par une activité dans l'intervalle
+$[t_1,t_2[$, $\bb$. {\'E}tant donnée une activité $i$, cette quantité
+correspond à l'aire minimale, parmi tous les ordonnancements possibles
+de $i$, occupée par cette dernière à l'intérieur de l'intervalle
 $[t_1,t_2[$. Pour atteindre ce minimum, seulement trois configurations
 sont possibles et sont décrites ci-dessous:
 \begin{itemize}
@@ -634,25 +638,25 @@ sont possibles et sont décrites ci-dessous:
 \item l'activité est {\it centrée}: elle occupe tout l'intervalle
   $[t_1,t_2[$.
 \end{itemize}
-Parmi ces trois cas, celui conduisant à la consommation minimale
-d'énergie est celui dont l'intersection avec l'intervalle $[t_1,t_2[$
-est minimale. 
+Parmi ces trois cas, celui conduisant à la consommation minimale de
+ressource est celui dont l'intersection avec l'intervalle $[t_1,t_2[$
+est minimale.
 
 Pour donner l'expression mathématique de ces quantités, nous
-introduisons trois notations. $\wbLS$ (respectivement $\wbRS$ et
-$\wbCS$) correspond à la quantité d'énergie requise par l'activité $i$
+introduisons trois notations. $\bbLS$ (respectivement $\bbRS$ et
+$\bbCS$) correspond à la quantité de ressource requise par l'activité $i$
 dans l'intervalle $[t_1,t_2[$  quand l'activité est calée à gauche
 (respectivement calée à droite et centrée). Formellement, ces trois
 quantités peuvent être exprimer de la manière suivante: 
 \begin{align}
-\wbLS&=b_i * \max(0,p_i- \max(0,t_1 - \ES)) \label{eq:LS_CUSP}\\
-\wbRS&=b_i * \max(0,p_i- \max(0, \LE-t_2))\label{eq:RS_CUSP}\\
-\wbCS&=b_i * (t_2-t_1)\label{eq:CS_CUSP}
+\bbLS&=b_i * \max(0,p_i- \max(0,t_1 - \ES)) \label{eq:LS_CUSP}\\
+\bbRS&=b_i * \max(0,p_i- \max(0, \LE-t_2))\label{eq:RS_CUSP}\\
+\bbCS&=b_i * (t_2-t_1)\label{eq:CS_CUSP}
 \end{align}
-Alors, l'expression de l'énergie minimale est le minimum de ces trois
-quantités, i.e.
+Alors, l'expression de la quantité minimale de ressource est le
+minimum de ces trois quantités, i.e.
 \begin{equation}
-\wb=\min\left(\, \wbLS\, ,\,\wbRS\, ,\,\wbCS \, \right)
+\bb=\min\left(\, \bbLS\, ,\,\bbRS\, ,\,\bbCS \, \right)
 \end{equation} 
 
 
@@ -766,7 +770,7 @@ et~\eqref{eq:CS_CUSP}.
 \begin{center}
   \begin{tabular}{|P{1cm}|P{4cm}P{4cm}P{3.5cm}P{1.5cm}|}
     \hline
-    act & \wbLS[i][3][6] & \wbRS[i][3][6] & \wbCS[i][3][6] & \wb[i][3][6]\\
+    act & \bbLS[i][3][6] & \bbRS[i][3][6] & \bbCS[i][3][6] & \bb[i][3][6]\\
     \hline
     1 & 1*(3-(3-0))=0 & 1*(3-(6-3))=3 & 1*(6-3)=3 & 0 \\
     2 & 2*(5-(3-1))=6 & 2*(5-(6-6))=10 & 2*(6-3)=6 & 6 \\    
@@ -818,8 +822,8 @@ chapitre~\ref{sec:PPC_CECSP}.
 Pour étudier les minimums locaux de la fonction de marge, les auteurs
 de~\cite{DP} étudient les variations de cette dernière. L'expression
 de la fonction de marge dépendant de $R(t_2-t_1)$ et de $\sum_{i \in
-  \A} \wb$, ses variations dépendent des variations de la fonction
-$(t_1,t_2) \rightarrow \sum_{i \in \A} \wb$. En particulier, ils
+  \A} \bb$, ses variations dépendent des variations de la fonction
+$(t_1,t_2) \rightarrow \sum_{i \in \A} \bb$. En particulier, ils
 remarquent que tous les changements de variation de cette fonction ne
 peuvent impliquer un minimum local. Pour qu'une variation implique un
 tel minimum il faut que la dérivé à gauche de cette fonction soit
@@ -829,7 +833,7 @@ fonction de marge, cette fonction est multiplié par $-1$.
 
 Cette propriété, induite par le {\it test de la dérivé seconde}, leur
 permet de décrire des conditions sur les consommations individuelles
-des activités, $\wb$, sous lesquels $(t_1,t_2)$ peut être un minimum
+des activités, $\bb$, sous lesquels $(t_1,t_2)$ peut être un minimum
 local de la fonction de marge. Ces conditions sont exprimées dans le
 lemme~\ref{lem:min_CUSP}. 
 
@@ -838,17 +842,17 @@ lemme~\ref{lem:min_CUSP}.
 La fonction de marge $SL(t_1,t_2)$ est localement minimale seulement
 s'il existe deux activités $i$ et $j$ telles que les conditions
 ci-dessous sont satisfaites. 
-\begin{align} \frac{\delta^{-}\wb}{\delta t_1} &>
-\frac{\delta^{+}\wb}{\delta t_1} \label{eq:deriv1_CUSP}\\ 
-\frac{\delta^{-}\wb[j]}{\delta t_2}
-& > \frac{\delta^{+}\wb[j]}{\delta t_2} \label{eq:deriv2_CUSP}
+\begin{align} \frac{\delta^{-}\bb}{\delta t_1} &>
+\frac{\delta^{+}\bb}{\delta t_1} \label{eq:deriv1_CUSP}\\ 
+\frac{\delta^{-}\bb[j]}{\delta t_2}
+& > \frac{\delta^{+}\bb[j]}{\delta t_2} \label{eq:deriv2_CUSP}
 \end{align}
 \end{lemma}
 
 \begin{proof}
 Soit $(t_1,t_2) \in \mathbb{N}^2$ tel qu'il n'existe aucune activité
 $i$ vérifiant la condition~\eqref{eq:deriv1_CUSP}. Alors, $\sum_{i \in
-  \A} \wb$ a sa dérivée à gauche supérieure à sa dérivé à droite. Par
+  \A} \bb$ a sa dérivée à gauche supérieure à sa dérivé à droite. Par
 le test de la seconde dérivé, un minimum local d'une fonction ne peut
 exister que si la dérivé à gauche est plus grande que la dérivé à
 droite. Donc $(t_1,t_2)$ ne peut pas être un minimum local. 
@@ -861,7 +865,7 @@ ne peut pas être un minimum local.
 Le lemme~\ref{lem:min_CUSP} peut ensuite être utilisé pour déterminer
 les conditions nécessaires permettant de déterminer un l'ensemble des
 intervalles d'intérêt. Pour cela, une étude des fonctions $t_1
-\rightarrow \wb$ et $t_2 \rightarrow \wb$ est nécessaire. Nous montrons
+\rightarrow \bb$ et $t_2 \rightarrow \bb$ est nécessaire. Nous montrons
 comment obtenir une caractérisation des différentes dates de début
 possibles pour un intervalle, la caractérisation des dates de fin
 pouvant s'obtenir de manière similaire.
@@ -869,8 +873,8 @@ pouvant s'obtenir de manière similaire.
 \begin{lemma}
   Pour chaque activité $i$ et pour tout début d'intervalle $t_1$ il
   existe au plus un intervalle $[t_1,t_2[$ tel que
-  $\frac{\delta^{-}\wb[j]}{\delta t_2} >
-  \frac{\delta^{+}\wb[j]}{\delta t_2} $:
+  $\frac{\delta^{-}\bb[j]}{\delta t_2} >
+  \frac{\delta^{+}\bb[j]}{\delta t_2} $:
   \begin{enumerate}
   \item si $t_1 < \ES$ alors seulement l'intervalle $[t_1,\LE {[}$ doit
     être considéré.
@@ -887,7 +891,7 @@ pouvant s'obtenir de manière similaire.
 
 \begin{proof}
 Pour prouver ce lemme, nous étudions les variations de la fonction
-$t_2 \rightarrow \wb$, à $t_1$ fixé. Les variations de cette fonction
+$t_2 \rightarrow \bb$, à $t_1$ fixé. Les variations de cette fonction
 dépendent de la position relative de $t_1$ par rapport à $\ES,\ \LS$ et
 $\EE$. Le cas où $t_1 \le \ES$ est présenté ci-dessous pour une
 activité $i$ possédant les caractéristiques suivantes: $\ES=2,\
@@ -898,13 +902,13 @@ activité $i$ possédant les caractéristiques suivantes: $\ES=2,\
     \begin{itemize}
       
       \vspace{0.4cm}
-    \item si $t_2 \le \LS$ alors $\wb=0$
+    \item si $t_2 \le \LS$ alors $\bb=0$
       
       \vspace{0.4cm}
-    \item si $\LS < t_2 < \LE$ alors $\wb= b_i (t_2 - \LS)$
+    \item si $\LS < t_2 < \LE$ alors $\bb= b_i (t_2 - \LS)$
       
       \vspace{0.4cm}
-    \item si $\LE \le t_2 $ alors $\wb = p_i$
+    \item si $\LE \le t_2 $ alors $\bb = p_i$
     \end{itemize}
   \end{minipage}
   \hfill
@@ -935,14 +939,14 @@ activité $i$ possédant les caractéristiques suivantes: $\ES=2,\
       \draw[dotted] (8,0) -- (8,5);
       \draw (4,0) rectangle (8,1) node[midway] {$i$};
     \end{tikzpicture}
-    \caption{{\'E}volution de $t_2 \rightarrow \wb$}
+    \caption{{\'E}volution de $t_2 \rightarrow \bb$}
 
   \end{figure}
 \end{minipage}
 \end{minipage}
 
-Le seul point $t_2$ pour lequel $ \frac{\delta^{-}\wb[j]}{\delta t_2} >
-\frac{\delta^{+}\wb[j]}{\delta t_2}$ est $[1,8[= [t_1, \LE{[}$. 
+Le seul point $t_2$ pour lequel $ \frac{\delta^{-}\bb[j]}{\delta t_2} >
+\frac{\delta^{+}\bb[j]}{\delta t_2}$ est $[1,8[= [t_1, \LE{[}$. 
 
 Les trois autres cas peuvent être prouver de façon très similaire. 
 \end{proof}
@@ -1028,7 +1032,7 @@ Derrien~\cite{Alb} décrit par l'algorithme~\ref{algo:check_CUSP}.
   \label{algo:check_CUSP}
   \PourTous {$(i,t_1) \in \O_1$}{
 
-    $pente=\sum_j \wb[j][t_1][t_1+1]$
+    $pente=\sum_j \bb[j][t_1][t_1+1]$
 
     $SL_{ER}=0$, $t_2^{old}=t_1$
 
@@ -1039,7 +1043,7 @@ Derrien~\cite{Alb} décrit par l'algorithme~\ref{algo:check_CUSP}.
     \Si {$SL_{ER } > R(t_2-t_1)$}{
       Le problème est incohérent.}
 
-    $pente=pente + \wb[j][t_1][t_2-1] - 2\wb[j] +  \wb[j][t_1][t_2+1]$
+    $pente=pente + \bb[j][t_1][t_2-1] - 2\bb[j] +  \bb[j][t_1][t_2+1]$
 
     $t_2^{old}=t_2$
   }
@@ -1054,16 +1058,16 @@ règle~\ref{reg:ajust1_ER_CUSP}, nous imposons à une activité $i$ de
 commencer après $t_1$ et si la quantité de ressource
 disponible n'est pas suffisante pour ordonnancer les consommations
 minimales de toutes les activités -- excepté celle de l'activité $i$
-qui est remplacée par $\wbRS$ -- alors, nous pouvons déduire que
+qui est remplacée par $\bbRS$ -- alors, nous pouvons déduire que
 l'activité ne doit commencer avant $t_1$.
 
 \begin{reg}
   \label{reg:ajust1_ER_CUSP}
   S'il existe un intervalle $[t_1,t_2[$ et une activité $i$ pour lesquels:
-  \[ \sum_{\substack{j \in \A \\ j \neq i}} \wb[j] + \wbRS > R (t_2-t_1)\]
+  \[ \sum_{\substack{j \in \A \\ j \neq i}} \bb[j] + \bbRS > R (t_2-t_1)\]
   alors 
   \[  \LS \le t_1 - \frac{1}{b_i} \left( \sum_{\substack{j \in \A \\ j
-          \neq i}} \wb[j] + \wbRS - R (t_2-t_1) \right) \]
+          \neq i}} \bb[j] + \bbRS - R (t_2-t_1) \right) \]
 \end{reg}
 
 \begin{ex}
@@ -1085,16 +1089,16 @@ suivantes:
 Pour pouvoir ajuster la date de début au plus tard de l'activité $4$,
 nous allons appliquer la règle~\ref{reg:ajust1_ER_CUSP} sur
 l'intervalle $[2,4[$. Pour cela, nous commençons par calculer
-l'énergie requise par les activités dans cet intervalle. 
+la quantité de ressource requise par les activités dans cet intervalle. 
 
-Pour l'activité $1$, cette énergie est $\wb[1][2][4]=4$. Elle est atteinte en
+Pour l'activité $1$, cette quantité est $\bb[1][2][4]=4$. Elle est atteinte en
 calant l'activité à gauche ou à droite (l'énergie est la même dans les
 deux cas). Pour l'activité $2$, en calant l'activité à droite, nous
-obtenons $\wb[2][2][4]=0$. Enfin, pour l'activité $3$, cette énergie
-vaut $\wb[3][2][4]=2$.
+obtenons $\bb[2][2][4]=0$. Enfin, pour l'activité $3$, la quantité de
+ressource requise vaut $\bb[3][2][4]=2$.
 
-L'énergie obtenue en calant l'activité $4$ à droite est de
-$\wbRS[4][2][4]=2$. Nous devons ensuite comparée la somme de toutes
+La quantité de ressource obtenue en calant l'activité $4$ à droite est de
+$\bbRS[4][2][4]=2$. Nous devons ensuite comparée la somme de toutes
 ces consommations, i.e. $4+0+2+2=8$, à la quantité de ressource
 disponible dans l'intervalle $[2,4[$,
 i.e. $R(t_2-t_1)=3*(4-2)=6$. Comme nous avons $6<8$, nous pouvons
@@ -1169,26 +1173,26 @@ du \CECSP. De ce fait, elle n'est pas décrite ici.
 
 \begin{lemma}
 \label{lem:min_ajust_ER_CUSP}
-La fonction $R(t_2-t_1) -\sum_{\substack{j \in \A \\ j \neq i}} \wb[j]
-- \wbRS $ est localement minimale seulement si une des conditions
+La fonction $R(t_2-t_1) -\sum_{\substack{j \in \A \\ j \neq i}} \bb[j]
+- \bbRS $ est localement minimale seulement si une des conditions
 ci-dessous est satisfaite.
 \begin{align} 
-\exists (j,k), \ &~\frac{\delta^{-}\wb[j]}{\delta t_1}
-&>~&~\frac{\delta^{+}\wb[j]}{\delta t_1}
-&\land~&~\frac{\delta^{-}\wb[k]}{\delta t_2} & >~&
-~\frac{\delta^{+}\wb[k]}{\delta t_2} \label{eq:deriv1_adj_CUSP}\\
-\exists j , \ &~\frac{\delta^{-}\wb[j]}{\delta t_1}
-&>~&~\frac{\delta^{+}\wb[j]}{\delta t_1}
-&\land~&\frac{\delta^{-}\wbRS[k]}{\delta t_2} & >~&
-\frac{\delta^{+}\wbRS[k]}{\delta t_2} \label{eq:deriv2_adj_CUSP}\\
-\exists k, \ &\frac{\delta^{-}\wbRS[j]}{\delta t_1}
-&>~&\frac{\delta^{+}\wbRS[j]}{\delta t_1}
-&\land~&~\frac{\delta^{-}\wb[k]}{\delta t_2} & >~&
-~\frac{\delta^{+}\wb[k]}{\delta t_2} \label{eq:deriv3_adj_CUSP}\\
- &\frac{\delta^{-}\wbRS[j]}{\delta t_1}
-&>~&\frac{\delta^{+}\wbRS[j]}{\delta t_1}
-&\land~&\frac{\delta^{-}\wbRS[k]}{\delta t_2} & >~&
-\frac{\delta^{+}\wbRS[k]}{\delta t_2} \label{eq:deriv4_adj_CUSP}
+\exists (j,k), \ &~\frac{\delta^{-}\bb[j]}{\delta t_1}
+&>~&~\frac{\delta^{+}\bb[j]}{\delta t_1}
+&\land~&~\frac{\delta^{-}\bb[k]}{\delta t_2} & >~&
+~\frac{\delta^{+}\bb[k]}{\delta t_2} \label{eq:deriv1_adj_CUSP}\\
+\exists j , \ &~\frac{\delta^{-}\bb[j]}{\delta t_1}
+&>~&~\frac{\delta^{+}\bb[j]}{\delta t_1}
+&\land~&\frac{\delta^{-}\bbRS[k]}{\delta t_2} & >~&
+\frac{\delta^{+}\bbRS[k]}{\delta t_2} \label{eq:deriv2_adj_CUSP}\\
+\exists k, \ &\frac{\delta^{-}\bbRS[j]}{\delta t_1}
+&>~&\frac{\delta^{+}\bbRS[j]}{\delta t_1}
+&\land~&~\frac{\delta^{-}\bb[k]}{\delta t_2} & >~&
+~\frac{\delta^{+}\bb[k]}{\delta t_2} \label{eq:deriv3_adj_CUSP}\\
+ &\frac{\delta^{-}\bbRS[j]}{\delta t_1}
+&>~&\frac{\delta^{+}\bbRS[j]}{\delta t_1}
+&\land~&\frac{\delta^{-}\bbRS[k]}{\delta t_2} & >~&
+\frac{\delta^{+}\bbRS[k]}{\delta t_2} \label{eq:deriv4_adj_CUSP}
 \end{align}
 \end{lemma}
 
@@ -1207,15 +1211,15 @@ peut être déduite.
 \begin{reg}
   \label{reg:ajust2_ER_CUSP}
   S'il existe un intervalle $[t_1,t_2[$ et une activité $i$ pour lesquels:
-  \[ \sum_{\substack{j \in \A \\ j \neq i}} \wb[j] +
-    \min(\wbCS,\wbLS) > R (t_2-t_1)\] 
+  \[ \sum_{\substack{j \in \A \\ j \neq i}} \bb[j] +
+    \min(\bbCS,\bbLS) > R (t_2-t_1)\] 
   alors 
   \[  \ES \ge t_2 - \frac{1}{b_i} \left(R (t_2-t_1)  -\sum_{\substack{j \in \A \\ j
-          \neq i}} \wb[j]  \right) \]
+          \neq i}} \bb[j]  \right) \]
 \end{reg}
 
-Le lemme~\ref{lem:min_ajust_ER_CUSP} peu aussi être appliqué dans ce
-cas, en considérant la fonction suivante au lieu de $\wbRS$:
+Le lemme~\ref{lem:min_ajust_ER_CUSP} peut aussi être appliqué dans ce
+cas, en considérant la fonction suivante au lieu de $\bbRS$:
 $b_i*\max\Big(\, 0\, , \, \min(\, \LE\, ,\, t_2\,) - \max(\, \LS\, ,
   \, t_1\,) \,\Big)$. 
 
@@ -1232,10 +1236,12 @@ d'entre elles sont décrites dans le paragraphe suivant.
 Parmi les règles de filtrage étendues ou couplés on trouve le
 raisonnement Edge-Finding étendu~\cite{ExtEF}, le
 Time-Table-Edge-Finding~\cite{V11} ou encore le Time-Table
-disjonctif~\cite{Gay2015}. Dans ce paragraphe nous parlerons
-brièvement du second et détaillerons le dernier qui sera adapté pour
-le \CECSP. La raison pour laquelle nous avons choisi ce dernier sera
-détaillée dans le chapitre~\ref{sec:PPC_CECSP}.
+disjonctif~\cite{Gay2015}. Dans ce paragraphe, nous montrerons comment
+coupler deux raisonnements en présentant, en premier lieu, l'idée de
+la méthode utilisée pour le Time-Table Edge-Finding et, dans un second
+temps, en détaillant celle utilisée pour le TIme-Table Disjonctif. En
+effet, une adaptation sera présentée dans le
+chapitre~\ref{sec:PPC_CECSP} dans le cadre du \CECSP.
 
 L'idée du Time-Table-Edge-Finding est de renforcer le raisonnement
 existant du Edge-Finding en prenant en considération le profil
@@ -1416,15 +1422,15 @@ filtrage plus forte que celle décrite ci-dessus. Cette règle sera
 décrite seulement dans le cas où les activités $i$ et $j$ ne possèdent
 pas de partie obligatoire. Le cas inverse est décrit
 dans~\cite{Gay2015} et repose sur la séparation des activités en une
-partie obligatoire et une partie libre. Dans la présentation de
-l'adaptation de ce raisonnement au \CECSP, ce cas sera détaillé.
+partie obligatoire et une partie libre.
+
 
 La règle~\ref{reg:RDR_CUSP} compare seulement les consommations de $i$
 et de $j$ avec la capacité de la ressource $R$. Cependant, les
 consommations obligatoires des autres activités peuvent ne pas laisser
 $R$ unités de ressource durant l'intersection de $i$ et de $j$. La
 règle suivante prend donc en considération le profil obligatoire de la
-ressource. 
+ressource.
 
 \begin{reg}
 \label{reg:TTDR_CUSP}
