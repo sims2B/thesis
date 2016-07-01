@@ -82,14 +82,14 @@ Soit $P_i$ le nombre d'intervalles de définition de la fonction
 $f_i$, i.e. le nombre d'intervalles où la fonction $f_i$ a une
 expression différente. La fonction $f_i$ peut alors s'écrire de la
 manière suivante:  
-\[f_i(b)=\left\{
+\[f_i(b_i(t))=\left\{
     \begin{array}{ll}
-      0 & \quad \text{if }b=0\\
-      a_{i1}*b+c_{i1} &\quad \text{si }\bmin=0\text{ et }b \in ]\bmin,x_{2}] \\
-      a_{i1}*b+c_{i1} &\quad \text{si }\bmin\neq 0 \text{ et }b \in
+      0 & \quad \text{if }b_i(t)=0\\
+      a_{i1}*b_i(t)+c_{i1} &\quad \text{si }\bmin=0\text{ et }b_i(t) \in ]\bmin,x_{2}] \\
+      a_{i1}*b_i(t)+c_{i1} &\quad \text{si }\bmin\neq 0 \text{ et }b_i(t) \in
                             [\bmin,x_{2}] \\
-      a_{i\ell}*b+c_{i\ell} &\quad \text{si } b \in
-                                  ]x_{\ell},x_{\ell+1}], \ell \in \P_i=\{2,\dots,P_i-1\} 
+      a_{i\ell}*b_i(t)+c_{i\ell} &\quad \text{si } b_i(t) \in
+                                  ]x_{\ell},x_{\ell+1}], \ell \in \P_i=\{2,\dots,P_i\} 
     \end{array}
   \right.\]
 De plus, nous considérons que la fonction $f_i$ satisfait les
@@ -103,6 +103,16 @@ propriétés suivantes:
 \item $a_{i\ell}*b+c_{i\ell}=a_{i\ell+1}*b+c_{i\ell+1}$
   pour assurer la continuité de la fonction.
 \end{itemize}
+Dans le cas où $f_i(b_i(t))$ est une fonction affine, on pourra noter:
+$f_i$:
+\[f_i(b_i(t))=\left\{
+\begin{array}{ll}
+  0 & \quad \text{if }b_i(t)=0\\
+  a_i*b_i(t)+c_i &\quad \text{if }\bmin=0\text{ and }b_i(t) \in ]\bmin,\bmax] \\
+  a_i*b_i(t)+c_i &\quad \text{if }\bmin\neq 0 \text{ and }b_i(t) \in [\bmin,\bmax]
+\end{array}
+\right.
+\]
 
 \begin{ex}
   \label{ex_approx_CECSP}

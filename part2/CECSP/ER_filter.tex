@@ -14,7 +14,7 @@ vérification et pour les règles d'ajustement.
 
 \subsection{Algorithme de vérification}
 
-\subsubsection{Condition nécéssaire d'existence de solution}
+\subsubsection{Condition nécessaire d'existence de solution}
 Pour décrire l'algorithme de vérification, nous rappelons d'abord
 l'idée principale sur laquelle repose le raisonnement énergétique. Le
 principe est donc, étant donné un intervalle $[t_1,t_2[$, de calculer
@@ -35,9 +35,9 @@ avec la ressource disponible dans $[t_1,t_2{[}$.
 Formellement ces quantités sont représentées par les expressions
 suivantes: 
 \begin{align}
-  \wb= \min \int_{t_1}^{t_2} f_i(b_i(t))dt & & \text{subject to
+  \wb= \min \int_{t_1}^{t_2} f_i(b_i(t))dt & & \text{sous 
 \eqref{tw_CECSP}-\eqref{nrj_CECSP}}\\
-  \bb= \min \int_{t_1}^{t_2} b_i(t)dt & & \text{subject to
+  \bb= \min \int_{t_1}^{t_2} b_i(t)dt & & \text{sous 
 \eqref{tw_CECSP}-\eqref{nrj_CECSP}}
 \end{align}
 
@@ -52,6 +52,7 @@ d'une solution qui est à la base de l'algorithme de vérification du
 raisonnement énergétique:
 
 \begin{theo}
+  \label{th:ER_CECSP}
   Soit $\I$ une instance du \CECSP. S'il existe $t_1 < t_2 \in
   \mathbb{R}^2$ tel que $SL(t_1,t_2) <0$ alors $\I$ ne peut pas avoir
   de solution.
@@ -73,8 +74,7 @@ Et ceci contredit le fait que $\sum_{i \in \A} b_i(t) \le
 R(t_2-t_1)$. 
 \end{proof}
 
-
-Dans un premeir temps, nous allons nous intéressé au calcul de $\wb$,
+Dans un premier temps, nous allons nous intéressé au calcul de $\wb$,
 le calcul de $\bb$ sera détaillé dans un second temps. 
 
 
@@ -103,11 +103,11 @@ $[t_1,t_2[$, soit en étant ordonnancée à $\bmax$ pendant l'intervalle
 $[\ES,t_1{[} \cup [t_2,\LE{[}$, soit en étant ordonnancée à $\bmin$
 durant tout l'intervalle $[t_1,t_2{[}$.
 \end{itemize}
-En effet, lorsque l'activité est ordonancée à $\bmax$ pendant
+En effet, lorsque l'activité est ordonnancée à $\bmax$ pendant
 l'intervalle $[\ES,t_1{[} \cup [t_2,\LE{[}$, il peut arriver que la
 quantité d'énergie restant à apporter à l'activité durant l'intervalle
 $[t_1,t_2[$ ne soit pas suffisante pour assurer la satisfaction de la
-contrainte de consommation minimale~\eqref{bmin_CECSP}. Le cas où
+contrainte de consommation minimale~\eqref{req_CECSP}. Le cas où
 l'activité est ordonnancée à $\bmin$ durant tout l'intervalle
 $[t_1,t_2{[}$ doit donc être considéré.
 
@@ -334,8 +334,8 @@ $[t_1,t_2{[}$ doit donc être considéré.
  \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
  \draw[thick] (t2.south) -- (4,4.1) node[above] {$t_2$}; 
  \end{tikzpicture}}
-\caption{les différentes configurations}
-\label{configuration}
+\caption{Les différentes configurations menant à une consommation minimale}
+\label{fig:conso_CECSP}
 \end{figure}
 	
 Il est facile de calculer l'expression de la consommation minimale
@@ -356,10 +356,12 @@ l'intervalle $[t_1,t_2[$ quand l'activité est calée à gauche
 (respectivement calée à droite et centrée). Formellement, ces trois
 quantités peuvent être exprimer de la manière suivante:
 \begin{align}
-\wbLS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0,t_1 - \ES)\right) \label{eq:LSnrj_CECSP}\\
-\wbRS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0, \LE-t_2)\right)\label{eq:RSnrj_CECSP}\\
+\wbLS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0,t_1 -
+\ES)\right) \label{eq:LSnrj_CECSP}\\
+\wbRS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0,
+\LE-t_2)\right)\label{eq:RSnrj_CECSP}\\
 \wbCS&=\max\left( f_i(\bmin) * (t_2-t_1)\, ,\, W_i - f_i(\bmax)\max(0,
-       d_i - r_ i - t_2 + t_1 \right)\label{eq:CSnrj_CECSP}
+d_i - r_ i - t_2 + t_1) \right)\label{eq:CSnrj_CECSP}
 \end{align}
 Alors, l'expression de l'énergie minimale est le minimum de ces trois
 quantités, i.e.
@@ -374,92 +376,402 @@ $f_i$ pour calculer $\bb$.
 	
 Pour calculer l'expression de $\bb$, nous allons utiliser les
 propriétés de la fonction $f_i$. En effet, une fois que nous avons
-calculer $\wb$, nous voulons savoir quelle est la puissance minimale
-que nous devons fournir à la tâche pour obtenir cette quantité
-d'énergie dans l'intervalle ${[}t_1,t_2{]}$.
+calculer $\wb$, nous voulons savoir quelle est la quantité minimale de
+ressource que nous devons fournir à la tâche pour obtenir cette
+quantité d'énergie dans l'intervalle ${[}t_1,t_2{[}$. Dans le cas où
+la fonction $f_i$ est l'identité, nous avons que: $\bb=\wb$. Dans les
+deux autres cas, i.e. $f_i$ est affine et $f_i$ est concave et affine
+par morceaux, soit $I=[t_1,t_2[ \cap [\ES,\LE{[}$, alors trouver $\bb$
+revient à résoudre le programme suivant:
+\begin{align}
+  \text{minimiser }   & \int_{I} b_i(t)dt \label{eq:conv_obj} \\
+  \text{sous } & \int_{I} f_i(b_i(t))dt \ge \wb \label{eq:conv_nrj}\\
+                     & \bmin \le b_i(t) \le \bmax \label{eq:conv_min}
+\end{align}
+En effet, l'objectif de ce programme est de minimiser la quantité de
+ressource consommée dans l'intervalle $[t_1,t_2[$
+(équation~\eqref{eq:conv_obj}), tout en s'assurant que l'énergie
+requise, i.e. $\wb$, est bien apportée à l'activité
+(équation~\eqref{eq:conv_nrj}). 
 
-Nous allons commencer par détailler le cas où cette fonction est
-linéaire, i.e. $f_i$ est de la forme $a_ib+c_i$ avec $a_i >0$ et $c_i
-\ge 0$, puis nous traiterons le cas où $f_i$ est linéaire par
-morceaux.
-	
-\paragraph{Fonction linéaire}
-	
-%TODO expliquer que bimin c'est bien
-Pour les fonctions linéaires, commençons par remarquer que, pour une énergie donnée, exécuter la tâche à son rendement minimal $b_i{min}$ produit cette énergie en consommant une quantité minimale de la ressource ($\frac{f_i(b_i^{min})}{b_i^{min}}$ maximum). Nous avons alors deux cas à considérer:
-	
-\begin{itemize}
-\item Soit l'intervalle $I={[}t_1,t_2{]}\cap {[}\ES,\LE{]}$ est suffisamment grand pour exécuter la tâche $i$ à son rendement minimal, i.e. $|I| \ge \frac{\wb}{f_i(b_i^{min})}$ et donc $\bb=b_i^{min}\frac{\wb}{f_i(b_i^{min})}$
-	
-\item Soit $|I| < \frac{\wb}{f_i(b_i^{min})}$ et nous devons résoudre le programme linéaire suivant:
-  \begin{alignat*}{2}
-    \text{minimiser}   & \int_{I} b_i(t)dt  \\
-    \text{sous} & \int_{I} a_ib_i(t)+c_idt \ge \wb
-  \end{alignat*}
-  Alors la contrainte s'écrit $\int_{I} b_i(t)dt \ge \frac{1}{a_i}(\wb-|I|c_i)$ et donc, nous avons $\bb= \frac{1}{a_i}(\wb-|I|c_i)$.\\
-\end{itemize}
+Nous utilisons ensuite le lemme~\ref{lemmaEn} pour simplifier ce
+programme. En effet, le lemme affirme que, si $f_i$ est affine ou
+concave et affine par morceaux, alors si une solution optimale
+$b_i(t)$ pour le programme ci-dessus, cette solution peut être
+transformée en une autre solution optimale vérifiant la propriété que
+$b_i(t)$ soit constante et inférieure ou égale à
+$\frac{\int_{I}b_i(t)dt}{|I|}$. Nous noterons $b_i$ cette
+constante. Le programme simplifié s'écrit de la manière suivante:
+\begin{align}
+  \text{minimiser }   & b_i|I| \label{eq:convSimp_obj} \\
+  \text{sous } & f_i(b_i)|I| \ge \wb \label{eq:convSimp_nrj}\\
+                     &\bmin \le  b_i \le \bmax \label{eq:convSimp_nrj}
+\end{align}
 
-Les différents cas de figures sont présentés ci-dessous:
-\begin{enumerate}
-\item Si $t_1 \le t_2 \le \LE - \frac{W_i}{f_i(b_i^{max})}$ alors $\bb=0$
-\item Si $\ES+\frac{W_i}{f_i(b_i^{max})} \le t_1 \le t_2$ alors $\bb=0$
-\item Si $t_1 \le \ES \le t_2 \le \LE$ et $t_2 \ge \LE - \frac{W_i}{f_i(b_i^{max})}$ alors $\bb=\max (\frac{1}{a_i}(\wb-c_i(t_2-\ES)),b_i^{min}\frac{\wb}{f_i(b_i^{min})})$
-\item Si $\ES \le t_1 \le \LE \le t_2$ et $t_1 \le \ES+ \frac{W_i}{f_i(b_i^{max})}$ alors $\bb= \max (\frac{1}{a_i} (\wb-c_i(\LE-t_1)),b_i^{min}\frac{W_i}{f_i(b_i^{min})})$
-\item Si $t_1 \le \ES \le \LE \le t_2$ alors $\bb= \max (\frac{1}{a_i} (\wb-c_i(\LE-\ES)),b_i^{min}\frac{W_i}{f_i(b_i^{min})})$
-\item Si $\ES \le t_1 \le \ES + \frac{W_i}{f_i(b_i^{max})}$ et $\LE-\frac{W_i}{b-i^{max}} \le t_2 \le \LE$ alors les configurations possibles sont les suivantes:
-	
-  \begin{description}
-  \item[(a)] Si l'activité peut être exécutée à son rendement minimal dans l'intervalle ${[}t_1,t_2{]}$, i.e. $W_i -f_i(b_i^{max})(t_1-\ES+\LE-t_2) \le f_i(b_i^{min})(t_2-t_1)$ alors $\bb$ est défini par:
-    
-    \begin{itemize}
-    \item si $\wb=f_i(b_i^{min})(t_2-t_1)$, $\bb=b_i^{min}(t_2-t_1)$
-    \item si $\wb=W_i - f_i(b_i^{max})(\LE-t_2)$, $\bb=\max (\frac{1}{a_i} (\wb-c_i(t_2-\ES)),b_i^{min}\frac{\wb}{f_i(b_i^{min})})$
-    \item si $\wb=W_i - f_i(b_i^{max})(t_1-\ES)$, $\bb=\max (\frac{1}{a_i} (\wb-c_i(\LE-t_1)),b_i^{min}\frac{\wb}{f_i(b_i^{min})})$
-    \end{itemize}
-		
-  \item[(b)] Si $W_i -f_i(b_i^{max})(t_1-\ES+\LE-t_2) \ge f_i(b_i^{min})(t_2-t_1)$ alors $\bb= \max (\frac{1}{a_i} (\wb-c_i(t_2-t_1)),b_i^{min}\frac{\wb}{f_i(b_i^{min})})$
-  \end{description}
-\end{enumerate}
-	
-	
-\paragraph{Fonction linéaire par morceaux}
-%TODO expliquer le point de rendement max + il suffit de regarder les points de cassure + programme lineaire à résoudre	
-	
-Pour les fonctions linéaires par morceaux, ce n'est plus l'exécution de la tâche à $\bmin$ qui a le meilleur rendement. Cependant, nous savons que ce point de meilleur rendement se trouve au niveau d'un point de "cassure" de la fonction, i.e. un point où la définition de la fonction change. Pour le trouver, nous devons comparer tous ces points de cassure. Soit $\gamma_{min}$ ce point. Comme pour les fonctions linéaires, nous avons deux cas à considérer. Le premier est celui où l'intervalle $I={[}t_1,t_2{]}\cap {[}\ES,\LE{]}$ est suffisamment grand pour exécuter la tâche $i$ à cette puissance $\gamma_{min}$. Dans ce cas, la consommation minimale de la ressource est $\bb= \gamma_{min} \frac{\wb}{f_i(\gamma_{min})}$. Dans le cas où la taille de l'intervalle $I$ ne permet pas l'exécution de la tâche à ce rendement, nous devons résoudre le problème suivant: 
-\begin{alignat*}{2}
-  \text{minimiser}   & \int_{I} b_i(t)dt  \\
-  \text{sous} & \int_{I} f_i(b_i(t))+dt \ge \wb
-\end{alignat*}
-		
-Pour résoudre ce problème, nous allons d'abord montrer qu'il est suffisant de regarder les points de cassure de la fonction, que l'on va noter $\{\gamma_i | 0 \le i\le q\}$. En d'autres termes, si dans une solution optimale la tâche est exécutée à une puissance $\beta$, comprise entre $\gamma_j$ et $\gamma_k$, pendant un intervalle ${[}a,b{]}$ alors, on peut trouver une partition de l'intervalle ${[}a,b{]}$ en deux sous-intervalles de telle sorte qu'exécuter la tâche $i$ à $\gamma_j$ pendant la première partie de l'intervalle et à $\gamma_k$ pendant la seconde partie soit équivalent à son exécution à $\beta$ sur ${[}a,b{]}$, i.e. produise la même énergie en consommant la même quantité de la ressource.\\
-Nous allons donc prouver le lemma suivant:
 
-\begin{lemma}
-  Soit une instance de CECSP, et soient une tâche $i$ appartenant à cette instance telle que $f_i$ est une fonction linéaire par morceaux. Alors résoudre
-  \begin{alignat*}{2}
-    \text{minimiser}   & \int_{I} b_i(t)dt  \\
-    \text{sous} & \int_{I} f_i(b_i(t))+dt \ge \wb
-  \end{alignat*}
-  est équivalent à résoudre:
-  \begin{alignat*}{2}
-    \text{minimiser}   & \sum\limits_{l=0}^q x_l\gamma_l \\
-    \text{sous} & \sum\limits_{l=0}^q x_lf_i(\gamma_l) \ge \wb \\
-    & \sum\limits_{l=0}^q x_l \le |I|
-  \end{alignat*}
-\end{lemma}
-
-\begin{proof}
-  Pour montrer ce lemma, nous allons montrer que si une solution optimale utilise un point $\beta$ tel que $ \gamma_j < \beta < \gamma_k$ (et $j$ et $k$ sont respectivement le plus petit et le plus grand indice vérifiant cette inégalité), alors il existe une solution optimale utilisant seulement $\gamma_j$ et $\gamma_k$ et pas $\beta$.\\
-Supposons donc que dans une solution optimale, la tâche $i$ soit exécutée avec une puissance $\beta$ comprise entre $\gamma_j$ et $\gamma_k$ pendant un intervalle ${[}a,b{]}$. L'énergie produite par cette affectation est donc $(b-a)f_i(\beta)$ et la quantité de ressource utilisée est $(b-a)\beta$.\\
-Nous allons exprimer le point $(\beta,f_i(\beta))$ comme une combinaison convexe des points $(\gamma_j,f_i(\gamma_j))$ et de $(\gamma_k,f_i(\gamma_k))$:
-\[ (\beta,f_i(\beta))= \lambda_j (\gamma_j,f_i(\gamma_j)) + \lambda_k (\gamma_k,f_i(\gamma_k))
+Ce programme peut être réécrit de la façon suivante: 
+\[ b_i=\min\left( b \in [\bmin,\bmax]\ |\ f_i(b) \ge
+    \frac{\wb}{|I|}\right)
 \]
-avec $\lambda_j + \lambda_k=1$.\\
-Donc l'énergie produite est $\lambda_j(b-a)f_i(\gamma_j)+\lambda_k(b-a)f_i(\gamma_k)=(b-a)f_i(\beta)$ et la quantité de ressource utilisée est $\lambda_j(b-a)\gamma_j+\lambda_k(b-a)\gamma_k=(b-a)\beta$
 
-\end{proof}
+Nous pouvons remarquer que, si l'on suppose que $f_i(\bmax) (\LE - \ES
+) \ge W_i$, nous sommes sûrs que la solution optimale vérifie $b_i \le
+\bmax$. En effet, ceci est dû au fait qu'exécuter l'activité à une
+faible consommation de ressource a un meilleur rendement que son
+exécution à un rendement plus élevé, i.e. la fonction
+$\frac{f_i(b_i(t))}{b_i(t)}$ est décroissante. 
 
+De ce fait, seule la borne inférieure sur $b_i$, $\bmin$, doit être
+considérée. Or, pour apporter l'énergie $\wb$ à l'activité dans
+l'intervalle $I$, sa consommation $b_i$ doit vérifiée $f_i(b_i) \ge
+\frac{\wb}{|I|}$ et donc $b_i \ge
+f_i^{-1}\left(\frac{\wb}{|I|}\right)$. En couplant cette contrainte
+avec la contrainte de consommation minimale, nous obtenons, si $\bmin
+\neq 0$:
+\[
+ b_i= \max\left(\, \bmin \, ,\, 
+    f_i^{-1}\left(\frac{\wb}{|I|}\right)\, \right)
+\]
+Et si $\bmin = 0$, nous avons:
+\[
+ b_i=  f_i^{-1}\left(\frac{\wb}{|I|}\right)
+\]
+Nous allons maintenant donner l'expression de $\bb$  en fonction des
+coefficients $a_{ip}$  et $c_{ip}$ de la fonction $f_i$. Pour
+simplifier la compréhension, nous commençons par détailler cette
+expression dans le cas où $f_i$ est affine puis nous la généraliserons
+dans le cas où $f_i$ est concave et affine par morceaux. 
+
+\paragraph{Fonctions affines}
+
+Dans ce paragraphe, nous allons décrire l'expression de $\bb$ dans le
+cas où la fonction $f_i$ est affine, i.e. de la forme $a_ib+c_i$. Dans
+ce cas-là, nous avons:  
+\[f_i^{-1}\left( \frac{\wb}{|I|}\right)= \frac{ \wb- c_i|I|}{a_i|I|}
+\]
+Et donc, si $\bmin\neq 0$: 
+\begin{equation}
+\bb= \max\left(b_i^{min} \frac{\wb}{f_i(b_i^{min})} \, ,\,  
+  \frac{1}{a_i}\left(\wb-|I|c_{i})\right)\right)
+\end{equation}
+Et si $\bmin=0$: 
+\[
+\bb=  \frac{1}{a_i}\left(\wb-|I|c_{i})\right)
+\]
+Notons que, le premier cas correspond au cas où l'intervalle $I$ est
+suffisamment grand pour ordonnancer l'activité $i$ à $\bmin$ et lui
+apporter l'énergie requise, i.e. $\wb$. En effet, comme ordonnancer
+$i$ à $\bmin$ a la meilleur rendement, si l'on peut, i.e. l'intervalle
+est assez grand, c'est cette valeur que l'on va choisir pour
+$b_i$. Si, au contraire, l'intervalle n'est pas suffisamment grand,
+c'est $f_i^{-1}(\wb/|I|) \times |I|$ que l'on va choisir. Ceci est
+détaillé dans l'exemple~\ref{ex:convLin_CECSP}.
+
+\begin{ex}
+\label{ex:convLin_CECSP}
+
+\end{ex}
+
+Ce raisonnement peut être étendu dans le cas où $f_i$ est concave et
+affine par morceaux. 
+
+\paragraph{Fonctions concave et affine par morceaux}
+
+Dans le cas des fonctions concaves et affines par morceaux, le
+raisonnement décrit au paragraphe précédent peut être généralisé. En
+effet, comme dans le cas des fonctions affines, la fonction de
+rendement, $f_i(b_i(t))/b_i(t)$, est décroissante. Donc, il est
+toujours préférable d'exécuter l'activité avec une consommation de
+ressource aussi basse que possible. La condition selon laquelle on
+peut ou non exécuter l'activité $i$ avec une consommation $b_i$ dépend
+donc de la taille de l'intervalle $I$. 
+
+Si $\bmin\neq 0$ et si l'intervalle est suffisamment grand, on va donc
+exécuter l'activité à $\bmin$. Sinon, et si l'intervalle est
+suffisamment grand, nous essayons d'exécuter l'activité avec une
+consommation $b_i \in ]\bmin,x_2^i]$, etc. Dans le cas où $\bmin \neq
+0$, l'expression de $\bb$ est formalisée ci-dessous:
+\[f_i^{-1}\left(\frac{\wb}{|I|}\right)=\left\{
+\begin{aligned}
+\bmin & \qquad & \text{si } |I| \ge \frac{\wb}{f_i(\bmin)}\\
+\frac{\wb -c_{i1}|I|}{a_{i1}|I|} & \qquad & \text{si } \frac{\wb}{f_i(\bmin)}
+> |I| > \frac{\wb}{f_i(x^i_2)} \\
+\frac{\wb -c_{i2}|I|}{a_{i2}|I|} & \qquad & \text{si }  \frac{\wb}{f_i(x^i_2)}
+\ge |I| > \frac{\wb}{f_i(x^i_3)}\\
+ & \qquad \vdots& \\
+\frac{\wb -c_{iP_i}|I|}{a_{iP_i}|I|} & \qquad & \text{si }  \frac{\wb}{f_i(x^i_{P_i}}
+\ge |I| > \frac{\wb}{f_i(\bmax)}\end{aligned}
+\right.
+\]
+Et ceci, nous donne l'expression de $\bb$ suivante:
+\begin{equation}
+\bb= 
+  \max \left\{b_i^{min} \frac{\wb}{f_i(b_i^{min})},
+  \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wb-|I|c_{ip})\right)\right\}
+\end{equation}
+Dans le cas où $\bmin=0$, nous avons: 
+\[
+\bb= 
+  \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wb-|I|c_{ip})\right)
+\]
+Un exemple du calcul de $\bb$ dans le cas d'une fonction $f_i$ concave
+et linéaire par morceaux est décrit dans
+l'exemple~\ref{ex:convPWL_CECSP}.
+
+\begin{ex}
+\label{ex:convPWL_CECSP}
+
+\end{ex}
 
 \subsection{Les ajustements de borne}
 \label{sec:adjustment_tw}
+ 
+Dans ce paragraphe nous décrivons les ajustements qui peuvent être
+faits sur les fenêtre de temps des activités. Tout d'abord, nous
+introduisons les notations suivantes: $\bbLS$ (respectivement $\bbRS$
+et $\bbCS$) correspond à la quantité de ressource consommée par
+l'activité $i$ dans l'intervalle $[t_1,t_2[$ quand l'activité est
+calée à gauche (respectivement calée à droite et
+centrée). Formellement, ces trois quantités peuvent être exprimer de
+la manière suivante:
+\begin{align}
+\bbLS&=   \max \left\{b_i^{min} \frac{\wbLS}{f_i(b_i^{min})},
+  \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbLS-|I|c_{ip})\right)\right\}\\
+\bbRS&=   \max \left\{b_i^{min} \frac{\wbRS}{f_i(b_i^{min})},
+  \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbRS-|I|c_{ip})\right)\right\}\\
+\bbCS&=  \max \left\{b_i^{min} \frac{\wbCS}{f_i(b_i^{min})},
+  \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbCS-|I|c_{ip})\right)\right\}
+\end{align}
+
+Nous allons décrire deux règles d'ajustements pour les fenêtres du
+temps du \CECSP. La première permet d'ajuster $\LS$ et la seconde
+$\ES$ et nous avons des ajustements symétriques pour $\EE$ et $\LE$. 
+
+Pour les premier ajustements décrits, nous allons essayer de faire
+démarrer l'activité après $t_1$et si la quantité de ressource
+disponible n’est pas suffisante pour ordonnancer les consommations
+minimales de toutes les activités – excepté celle de l’activité i qui
+est remplacée par $\bbRS$ – alors, nous pouvons déduire que l’activité
+doit commencer avant $t_1$.
+
+\begin{reg}
+\label{reg:ajust_CECSP}
+S’il existe un intervalle $[t_1 , t_2 [$ avec $t_1 > \ES$ et une
+activité $i$ pour lesquels:
+\[ \sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \bbRS > R(t_2-t_1)
+\]
+alors, on a:
+\[ \LS \le t_1 - \frac{1}{\bmax}\left(\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \bbRS - R(t_2-t_1)\right)
+\]
+\end{reg}
+
+\begin{proof}
+Soit $i$ et $[t_1,t_2[$ vérifiant la condition de la
+règle~\ref{reg:ajust_CECSP}. Supposons que l'activité $i$ démarre à
+$t_1$. 
+
+La consommation minimale de $i$ dans $[t_1,t_2[$ est donc $\bbRS$. On
+a donc que $\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \bbRS $ est
+la consommation minimale de toutes les activités dans $[t_1,t_2[$
+quand l'activité $i$ commence à $t_1$. Donc, si cette quantité est
+plus grande que la quantité de ressource disponible dans l'intervalle
+$[t_1,t_2[$, i.e. $R(t_2-t_1)$, on obtient une contradiction avec le
+fait que l'instance soit réalisable et $i$ doit commencer avant
+$t_1$. 
+
+Pour calculer la nouvelle date de début au plus tard de $i$,
+remarquons que la quantité de ressource devant être consommée avant
+$t_1$ est d'au moins $\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] +
+\bbRS - R(t_2-t_1)$, i.e. ce qui ne ``rentrait'' pas dans
+$[t_1,t_2[$. Comme nous cherchons une borne supérieure sur la date de
+début de $i$, nous cherchons donc à ordonnancer cette partie de
+l'activité le plus rapidement possible. 
+
+Le temps minimal requis pour ordonnancer cette
+consommation étant obtenu en exécutant l'activité à $\bmax$, nous
+obtenons comme borne supérieure sur la date de début de $i$:
+$1/\bmax \times \left(\sum_{\substack{j \in \A\\ j\neq
+i}} \bb[j] + \bbRS - R(t_2-t_1)\right)$
+\end{proof}
+
+De manière similaire, nous avons les ajustements suivants sur la date
+de début au plus tôt d'une activité. 
+\begin{reg}
+\label{ajustRi_CECSP}
+S'il existe un intervalle $[t_1,t_2[$ avec $ t_2 > \LE$ et une
+activité $i$ telle que $\bmin \neq 0$ pour lesquels:
+  \[ \sum_{\substack{j \in \A \\ j \neq i}} \bb[j] +
+    \min(\bbCS,\bbLS) > R (t_2-t_1)\] 
+  alors
+  \[ \ES \ge t_2 - \frac{1}{\bmin} \left(R (t_2-t_1) -\sum_{\substack{j
+\in \A \\ j \neq i}} \bb[j] \right) \]
+\end{reg}
+
+\begin{proof}
+Soit $i$ et $[t_1,t_2[$ vérifiant la condition de la
+règle~\ref{reg:ajust_CECSP}. Nous allons décider si $i$ peut commencer
+avant $t_1$. Les configurations où l'activité $i$ démarre avant $t_1$
+et consomme le moins de ressource possible dans $[t_1,t_2[$ sont les
+configurations où $i$ est soit calée à gauche, soit centrée.
+
+La consommation minimale de $i$ dans l'intervalle $[t_1,t_2[$ quand
+$i$ commence avant $t_1$ est donc $\min( \bbLS, \bbCS)$. On a donc que
+$\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \min( \bbLS, \bbCS) $
+est la consommation minimale de toutes les activités dans $[t_1,t_2[$
+quand l'activité $i$ commence avant $t_1$. Donc, si cette quantité est
+plus grande que la quantité de ressource disponible dans l'intervalle
+$[t_1,t_2[$, i.e. $R(t_2-t_1)$, on obtient une contradiction avec le
+fait que l'instance soit réalisable et $i$ doit commencer après $t_1$.
+
+Pour calculer la nouvelle date de début au plus tard de $i$,
+remarquons que la quantité de ressource disponible dans $[t_1,t_2[$
+pour exécuter $i$ est de $R(t_2-t_1) -\sum_{\substack{j \in \A\\
+j\neq i}} \bb[j]$. Comme nous cherchons une borne inférieure sur la date de
+début de $i$, nous cherchons donc à ordonnancer cette partie de
+l'activité le moins rapidement possible. 
+
+Le temps maximal requis pour ordonnancer cette consommation étant
+obtenu en exécutant l'activité à $\bmin$, et, comme $\bmin \neq 0$,
+l'activité ne peut être préemptée, nous savons que l'activité doit
+être en cours à $t_2$. Nous obtenons alors comme borne inférieure sur
+la date de début de $i$:
+$t_2 - 1/\bmin \left(R (t_2-t_1) -\sum_{\substack{j
+\in \A \\ j \neq i}} \bb[j] \right) $
+\end{proof}
+
+\begin{ex}
+ Considérons l'instance à $3$ activités et avec $R=5$ suivante:
+
+  \begin{center}
+    \begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{2cm}|} 
+      \hline 
+      act. & \ES & \LE & W_i & \bmin& \bmax & f_i(b_i(t))\\ 
+      \hline 
+      1 & 0 & 6 & 28 & 1 & 5 & 2b_i(t)+1\\ 
+      2 & 2 & 6 & 32 & 2 & 5 & b_i(t)+5\\ 
+      3 & 2 & 5 & 6 & 2 & 2 & b_i(t)\\ 
+      \hline
+    \end{tabular}
+  \end{center}
+Une solution réalisable est décrit par la figure~\ref{exSol}.
+\begin{figure}[!htb]
+  \begin{center} 
+\begin{tikzpicture}
+[scale=0.7]
+\node (O) at (0,0) {};
+\node (2) at (4,2) {\LARGE $2$};
+\node (1) at (1,2) {\LARGE $1$};
+\node (3) at (3.5,4) {\LARGE $3$};
+\node[label={[shift={(-0.4,0)}]$B=5$}] (B) at (0,5) {};
+
+
+\node (r1) at (0,-0.5) {$\ES[1]$}; 
+\node (r2) at (2,-0.5) {$\ES[2]$};
+\node (r3) at (2,-0.9) {$\ES[3]$};
+\node (d1) at (6,-0.5) {$\LE[1]$};
+\node (d2) at (6,-0.9) {$\LE[2]$};
+\node (d3) at (5,-0.5) {$\LE[3]$};
+
+
+\draw[->,>=latex] (6,0) -- (6.5,0) node[below] {$t$};
+
+%\draw (0,0) rectangle (6,5);
+\draw (4,0) -- (6,0) -- (6,5) -- (5,5);
+
+   \draw (2,5) -- (2,1) -- (4,1) -- (4,0) -- (0,0) -- (0,5) -- cycle;
+
+\draw (2,3) -- (5,3) -- (5,5) -- (2,5) ;
+
+
+\foreach \i in {0,...,5}
+{
+  \draw (\i,-0.3) -- (\i,0);
+  \draw (-0.3,\i) -- (0,\i);
+}
+
+ \draw (6,-0.3) -- (6,0);
+
+\end{tikzpicture}
+    \caption{Une solution réalisable du \CECSP}
+    \label{exSol}
+  \end{center}
+\end{figure}
+
+Nous allons ajuster la fenêtre de temps de l'activité $1$. Pour cela,
+considérons l'intervalle $[t_1,t_2[=[2,5[$. On a:
+\begin{itemize}
+  \item $\bb[2][2][5]=7$
+  \item $\bb[3][2][5]=6$
+  \item $\bbRS[1][2][5]=7$ et $\bbCS[1][2][5]=3$
+  \end{itemize}
+Nous avons donc: $\sum_{j\in A;\ j\neq i} \bb[j][2][5] +
+\bbRS[1][2][5]= 7+7+6 =20 > 5 (5-2) =15$. Donc $\LS[1]$ peut être ajusté
+à $ 2 -\frac{1}{5} (20-15) = 1$ .
+En effet, la quantité de ressource disponible dans l'intervalle
+$[2,5[$ pour ordonnancer l'activité $1$ est de $15-7-6=2$. Donc, si
+l'activité $1$ commence après $t_1$ , elle ne peut consommer que $2$
+unités de ressource dans $[2,5[$.  Or, il faudrait $\bbRS[1][2][5]= 7$
+unités de ressource disponible dans $[2,5[$ pour que $1$ puisse
+démarrer avant $t_1$. Donc l'activité $1$ ne peut commencer après $t_1$
+et, au moins $5= 7-2$ unités de ressource doivent être exécutées avant
+$t_1$. Donc $\LS[1]$ peut être ajusté à $2 - \frac{1}{5}(20-15) =1 $.
+
+De plus, $\LE[1]$ peut être ajusté à $t_1 + 1/ \bmin \times (R(t_2-t_1) -
+\sum_{j\in A;\ j\neq i} \bb[j] )= 2+(15-13)=4$. En effet, si l'activité
+$1$ finit après $t_2$, alors elle doit consommer au moins
+$\min(\bbRS[1][2][5],\bbCS[1][2][5])=\min(11,6)=6$ unités de ressource
+dans l'intervalle $[2,5[$. Or, seulement $2$ unités sont
+disponibles. L'activité $1$ ne peut donc pas finir après $t_2$ et nous
+pouvons ajuster $\LE[1]$ à $4$.
+\end{ex}
+
+Nous avons montrer qu'il était possible de calculer, étant donné un
+intervalle et une activité, sa consommation minimale et les
+ajustements pouvant être faits sur ses fenêtres de temps en
+$O(1)$. {\'E}tant donné un intervalle, la fonction de marge ainsi que
+tout les ajustements peuvent donc être calculés en $O(n)$. Dans le
+paragraphe suivant, nous montrons qu'il suffit d'exécuter l'algorithme
+de vérification, ainsi que les ajustements sur un nombre polynomial
+d'intervalles $[t_1,t_2[$.
+
 \subsection{Caractérisation des intervalles d'intérêt}
+
+\subsubsection{Intervalles d'intérêt pour l'algorithme de
+  vérification}
+
+Dans un premier temps, nous prouvons que nous pouvons seulement
+considérer un nombre polynomial d'intervalles pour détecter une
+incohérence. En effet, à cause de la nature continue du problème, on
+aurait pu être amené à considérer un nombre potentiellement infini
+d'intervalles. 
+
+\begin{theo}
+L'algorithme de vérification du raisonnement énergétique a seulement
+besoin d'être appliqué sur un nombre polynomial d'intervalles $[t_1,t_2[$.
+\end{theo}
+
+\begin{proof}
+La fonction de marge étant la différence entre une fonction affine,
+$R(t_2-t_1)$, et la somme de fonction affine par morceaux,
+$\bb$, c'est aussi une fonction affine par morceaux à deux
+dimensions. Le minimum de cette fonction est donc atteint en un point
+extrême d'une des polygones convexes dans lequel elle est
+affine. 
+
+Les segments de définitions, i.e. les segments où l'expression de la
+fonction est la même, de la fonction de marge sont les mêmes que ceux
+de la somme des consommations individuelles de chaque activité. Donc,
+d'un point de vue géométrique, un point extrême de la fonction de marge
+est l'intersection de deux segments chacun correspondant à un segment
+de définition de la fonction de consommation d'une activité. 
+
+Donc, pour calculer la fonction de marge, il suffit d'énumérer tous
+ces points d'intersections et, pour chacun d'entre eux, d'appliquer le
+test de satisfiabilité décrit par le
+théorème~\ref{th:ER_CECSP}. Comme, pour chaque activité, il existe un
+nombre constant de segments de définition, le nombre de points
+d'intersection est de l'ordre de $O(n^2)$. 
+\end{proof}
+
+
+\subsubsection{Intervalles d'intérêt pour les ajustements}

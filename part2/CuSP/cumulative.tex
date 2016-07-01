@@ -1059,11 +1059,11 @@ commencer après $t_1$ et si la quantité de ressource
 disponible n'est pas suffisante pour ordonnancer les consommations
 minimales de toutes les activités -- excepté celle de l'activité $i$
 qui est remplacée par $\bbRS$ -- alors, nous pouvons déduire que
-l'activité ne doit commencer avant $t_1$.
+l'activité doit commencer avant $t_1$.
 
 \begin{reg}
   \label{reg:ajust1_ER_CUSP}
-  S'il existe un intervalle $[t_1,t_2[$ et une activité $i$ pour lesquels:
+  S'il existe un intervalle $[t_1,t_2[$ avec $t_1 > \ES$ et une activité $i$ pour lesquels:
   \[ \sum_{\substack{j \in \A \\ j \neq i}} \bb[j] + \bbRS > R (t_2-t_1)\]
   alors 
   \[  \LS \le t_1 - \frac{1}{b_i} \left( \sum_{\substack{j \in \A \\ j
@@ -1210,7 +1210,8 @@ peut être déduite.
 
 \begin{reg}
   \label{reg:ajust2_ER_CUSP}
-  S'il existe un intervalle $[t_1,t_2[$ et une activité $i$ pour lesquels:
+  S'il existe un intervalle $[t_1,t_2[$ avec $t_1 > \ES$ et une
+activité $i$ pour lesquels:
   \[ \sum_{\substack{j \in \A \\ j \neq i}} \bb[j] +
     \min(\bbCS,\bbLS) > R (t_2-t_1)\] 
   alors 
