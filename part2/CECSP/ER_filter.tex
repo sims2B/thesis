@@ -36,9 +36,9 @@ Formellement ces quantités sont représentées par les expressions
 suivantes: 
 \begin{align}
   \wb= \min \int_{t_1}^{t_2} f_i(b_i(t))dt & & \text{sous 
-\eqref{tw_CECSP}-\eqref{nrj_CECSP}}\\
+                                               \eqref{tw_CECSP}-\eqref{nrj_CECSP}}\\
   \bb= \min \int_{t_1}^{t_2} b_i(t)dt & & \text{sous 
-\eqref{tw_CECSP}-\eqref{nrj_CECSP}} \label{eq:minConso}
+                                          \eqref{tw_CECSP}-\eqref{nrj_CECSP}} \label{eq:minConso}
 \end{align}
 
 Comme pour le cas du \CUSP, la fonction de marge, notée $SL(t_1,t_2)$,
@@ -59,19 +59,19 @@ raisonnement énergétique:
 \end{theo}
 
 \begin{proof}
-Par l'absurde, supposons qu'il existe $t_1 < t_2 \in \mathbb{R}^2$ tel
-que $SL(t_1,t_2) > 0$ et que l'instance $\I$ soit satisfiable. Par
-définition, $\bb$ est la quantité de ressource minimale que doit
-consommer l'activité $i$ dans l'intervalle $[t_1,t_2{[}$. 
+  Par l'absurde, supposons qu'il existe $t_1 < t_2 \in \mathbb{R}^2$ tel
+  que $SL(t_1,t_2) > 0$ et que l'instance $\I$ soit satisfiable. Par
+  définition, $\bb$ est la quantité de ressource minimale que doit
+  consommer l'activité $i$ dans l'intervalle $[t_1,t_2{[}$. 
 
-Donc, dans toute solution réalisable, nous avons: 
-\begin{align*}
- & \int_{t_1}^{t_2} b_i(t)dt \ge \bb\\
-\Rightarrow  & \sum_{i \in \A} \int_{t_1}^{t_2} b_i(t)dt \ge \sum_{i
-               \in \A}  \bb > R(t_2-t_1)
-\end{align*}
-Et ceci contredit le fait que $\sum_{i \in \A} b_i(t) \le
-R(t_2-t_1)$. 
+  Donc, dans toute solution réalisable, nous avons: 
+  \begin{align*}
+    & \int_{t_1}^{t_2} b_i(t)dt \ge \bb\\
+    \Rightarrow  & \sum_{i \in \A} \int_{t_1}^{t_2} b_i(t)dt \ge \sum_{i
+                   \in \A}  \bb > R(t_2-t_1)
+  \end{align*}
+  Et ceci contredit le fait que $\sum_{i \in \A} b_i(t) \le
+  R(t_2-t_1)$. 
 \end{proof}
 
 Dans un premier temps, nous allons nous intéressé au calcul de $\wb$,
@@ -89,19 +89,19 @@ dans la figure~\ref{fig:conso_CECSP}, peuvent être regroupée en trois
 catégories:
 \begin{itemize}
 \item l'activité est {\it calée à
-gauche} (figure~\ref{fig:conso_CECSPa}, \ref{fig:conso_CECSPb},
-\ref{fig:conso_CECSPd} et \ref{fig:conso_CECSPg}): l'activité démarre
-à $\ES$ et est ordonnancée à $\bmax$ pendant l'intervalle
-$[\ES,t_1{[}$;
+    gauche} (figure~\ref{fig:conso_CECSPa}, \ref{fig:conso_CECSPb},
+  \ref{fig:conso_CECSPd} et \ref{fig:conso_CECSPg}): l'activité démarre
+  à $\ES$ et est ordonnancée à $\bmax$ pendant l'intervalle
+  $[\ES,t_1{[}$;
 \item l'activité est {\it calée à
-droite} (figure~\ref{fig:conso_CECSPb}, \ref{fig:conso_CECSPc},
-\ref{fig:conso_CECSPf} et \ref{fig:conso_CECSPi}): l'activité finit à
-$\LE$ et est ordonnancée à $\bmax$ pendant l'intervalle $[t_2,\LE{[}$;
+    droite} (figure~\ref{fig:conso_CECSPb}, \ref{fig:conso_CECSPc},
+  \ref{fig:conso_CECSPf} et \ref{fig:conso_CECSPi}): l'activité finit à
+  $\LE$ et est ordonnancée à $\bmax$ pendant l'intervalle $[t_2,\LE{[}$;
 \item l'activité est {\it centrée} (figure~\ref{fig:conso_CECSPe} et
-\ref{fig:conso_CECSPh}): l'activité occupe tout l'intervalle
-$[t_1,t_2[$, soit en étant ordonnancée à $\bmax$ pendant l'intervalle
-$[\ES,t_1{[} \cup [t_2,\LE{[}$, soit en étant ordonnancée à $\bmin$
-durant tout l'intervalle $[t_1,t_2{[}$.
+  \ref{fig:conso_CECSPh}): l'activité occupe tout l'intervalle
+  $[t_1,t_2[$, soit en étant ordonnancée à $\bmax$ pendant l'intervalle
+  $[\ES,t_1{[} \cup [t_2,\LE{[}$, soit en étant ordonnancée à $\bmin$
+  durant tout l'intervalle $[t_1,t_2{[}$.
 \end{itemize}
 En effet, lorsque l'activité est ordonnancée à $\bmax$ pendant
 l'intervalle $[\ES,t_1{[} \cup [t_2,\LE{[}$, il peut arriver que la
@@ -112,232 +112,232 @@ l'activité est ordonnancée à $\bmin$ durant tout l'intervalle
 $[t_1,t_2{[}$ doit donc être considéré.
 
 \begin{figure}[!htb]  
-\centering
-\subcaptionbox{\label{fig:conso_CECSPa}}[0.3\linewidth]{
-  \begin{tikzpicture}
-    [xscale=0.37,yscale=0.3]
-    \node[] (O) at (0,0) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
-    \node (t1) at (6,0) {}; 
-    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
-    \node (t2) at (7,0) {};
+  \centering
+  \subcaptionbox{\label{fig:conso_CECSPa}}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.37,yscale=0.3]
+      \node[] (O) at (0,0) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+      \node (t1) at (6,0) {}; 
+      \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
+      \node (t2) at (7,0) {};
 
-    \draw[->] (O.center) -- (8,0)node[below] {$t$};
-    \draw (O.south) -- (bmax.north);
-    \draw (bmin.center) -- (8,1);
-    \draw (bmax.center) -- (8,4);
-    \draw(ri.south) -- (ri.center);
-    \draw[fill=white] (ri.center) rectangle (5,4);
-    \draw[pattern=north west lines] (ri.center) rectangle (5,4);
-    \draw[thick] (t1.south) -- (6,4.1) node[above] {$t_1$};
-    \draw[thick] (t2.south) -- (7,4.1) node[above] {$t_2$};
-  \end{tikzpicture}}
-\hfill
-\subcaptionbox{\label{fig:conso_CECSPb}}[0.3\linewidth]{
-  \begin{tikzpicture}
-    [xscale=0.37,yscale=0.3]
-    \node[] (O) at (0,0) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
-    \node (t1) at (1,0) {}; 
-    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (2,0) {};
-    \node (t2) at (7,0) {};
-    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (6,0) {};
+      \draw[->] (O.center) -- (8,0)node[below] {$t$};
+      \draw (O.south) -- (bmax.north);
+      \draw (bmin.center) -- (8,1);
+      \draw (bmax.center) -- (8,4);
+      \draw(ri.south) -- (ri.center);
+      \draw[fill=white] (ri.center) rectangle (5,4);
+      \draw[pattern=north west lines] (ri.center) rectangle (5,4);
+      \draw[thick] (t1.south) -- (6,4.1) node[above] {$t_1$};
+      \draw[thick] (t2.south) -- (7,4.1) node[above] {$t_2$};
+    \end{tikzpicture}}
+  \hfill
+  \subcaptionbox{\label{fig:conso_CECSPb}}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.37,yscale=0.3]
+      \node[] (O) at (0,0) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+      \node (t1) at (1,0) {}; 
+      \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (2,0) {};
+      \node (t2) at (7,0) {};
+      \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (6,0) {};
 
-    \draw[->] (O.center) -- (8,0)node[below] {$t$};
-    \draw (O.south) -- (bmax.north);
-    \draw (bmin.center) -- (8,1);
-    \draw (bmax.center) -- (8,4);
-    \draw(ri.south) -- (ri.center);
-    \draw(di.south) -- (di.center);
-    \draw[fill=white] (2.5,0) rectangle (5.5,4);
-    \draw[pattern=north west lines] (2.5,0) rectangle (5.5,4);
-    \draw[thick] (t1.south) -- (1,4.1) node[above] {$t_1$};
-    \draw[thick] (t2.south) -- (7,4.1) node[above] {$t_2$};
-  \end{tikzpicture}}
-\hfill
-\subcaptionbox{\label{fig:conso_CECSPc}}[0.3\linewidth]{
-  \begin{tikzpicture}
-    [xscale=0.37,yscale=0.3]
-    \node[] (O) at (0,0) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
-    \node (t1) at (0.5,0) {};
-    \node (t2) at (1.5,0) {};
-    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
-    
-    \draw[->] (O.center) -- (8,0)node[below] {$t$};
-    \draw (O.south) -- (bmax.north);
-    \draw (bmin.center) -- (8,1);
-    \draw (bmax.center) -- (8,4);
-    \draw[fill=white] (3,0) rectangle (7,4);
-    \draw[pattern=north west lines] (3,0) rectangle (7,4);
-    \draw(di.south) -- (di.center);
-    \draw[thick] (t1.south) -- (0.5,4.1) node[above] {$t_1$};
-    \draw[thick] (t2.south) -- (1.5,4.1) node[above] {$t_2$};
-  \end{tikzpicture}}
-
-
-\subcaptionbox{\label{fig:conso_CECSPd}}[0.3\linewidth]{
-\begin{tikzpicture}
-  [xscale=0.37,yscale=0.3]
-    \node[] (O) at (0,0) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
-    \node (t1) at (4,0) {};
-    \node (t2) at (7,0) {};
-    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (6,0) {};
-    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
-    
-    \draw[->] (O.center) -- (8,0)node[below] {$t$};
-    \draw (O.south) -- (bmax.north);
-    \draw (bmin.center) -- (8,1);
-    \draw (bmax.center) -- (8,4);
-    \draw[fill=white] (ri.center) rectangle (4,4);
-    \draw[pattern=north west lines] (ri.center) rectangle (4,4);
-    \draw[fill=white] (t1.center) rectangle (5,1.5);
-    \draw[pattern=north west lines] (t1.center) rectangle (5,1.5);
-    \draw(di.south) -- (di.center);
-    \draw(ri.south) -- (ri.center);
-    \draw[thick] (t1.south) -- (4,4.1) node[above] {$t_1$};
-    \draw[thick] (t2.south) -- (7,4.1) node[above] {$t_2$};
-  \end{tikzpicture}}
-\hfill
-\subcaptionbox{\label{fig:conso_CECSPe}}[0.3\linewidth]{
-\begin{tikzpicture}
- [xscale=0.37,yscale=0.3]
- \node[] (O) at (0,0) {};
- \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
- \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
- \node (t1) at (2.5,0) {}; 
- \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1.5,0) {};
- \node (t2) at (6,0) {};
- \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
- 
-  \draw[->] (O.center) -- (8,0)node[below] {$t$};
-  \draw (O.south) -- (bmax.north);
-  \draw (bmin.center) -- (8,1);
-  \draw (bmax.center) -- (8,4);
-  \draw(ri.south) -- (ri.center);
-  \draw(di.south) -- (di.center);
-  \draw[fill=white] (2.5,0) rectangle (1.5,4);
-  \draw[pattern=north west lines] (2.5,0) rectangle (1.5,4);
-  \draw[fill=white] (2.5,0) rectangle (6,2);
-  \draw[pattern=north west lines] (2.5,0) rectangle (6,2);
-  \draw[fill=white] (6,0) rectangle (7,4);
-  \draw[pattern=north west lines] (6,0) rectangle (7,4);
-  \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
-  \draw[thick] (t2.south) -- (6,4.1) node[above] {$t_2$};
- \end{tikzpicture}}
-\hfill
-\subcaptionbox{\label{fig:conso_CECSPf}}[0.3\linewidth]{
-  \begin{tikzpicture}
- [xscale=0.37,yscale=0.3]
- \node[] (O) at (0,0) {};
- \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
- \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
- \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
- \node (t1) at (1,0) {}; 
- \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (2.5,0) {};
- \node (t2) at (4,0) {};
- 
- \draw[->] (O.center) -- (8,0)node[below] {$t$};
- \draw (O.south) -- (bmax.north);
- \draw (bmin.center) -- (8,1);
- \draw (bmax.center) -- (8,4);
- \draw(di.south) -- (di.center);
- \draw(ri.south) -- (ri.center);
- \draw[fill=white] (t2.center) rectangle (7,4);
- \draw[pattern=north west lines] (t2.center) rectangle (7,4);
- \draw[fill=white] (t2.center) rectangle (3.2,2);
- \draw[pattern=north west lines] (t2.center) rectangle (3.2,2);
- \draw[thick] (t1.south) -- (1,4.1) node[above] {$t_1$};
- \draw[thick] (t2.south) -- (4,4.1) node[above] {$t_2$};
- \end{tikzpicture}}
+      \draw[->] (O.center) -- (8,0)node[below] {$t$};
+      \draw (O.south) -- (bmax.north);
+      \draw (bmin.center) -- (8,1);
+      \draw (bmax.center) -- (8,4);
+      \draw(ri.south) -- (ri.center);
+      \draw(di.south) -- (di.center);
+      \draw[fill=white] (2.5,0) rectangle (5.5,4);
+      \draw[pattern=north west lines] (2.5,0) rectangle (5.5,4);
+      \draw[thick] (t1.south) -- (1,4.1) node[above] {$t_1$};
+      \draw[thick] (t2.south) -- (7,4.1) node[above] {$t_2$};
+    \end{tikzpicture}}
+  \hfill
+  \subcaptionbox{\label{fig:conso_CECSPc}}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.37,yscale=0.3]
+      \node[] (O) at (0,0) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+      \node (t1) at (0.5,0) {};
+      \node (t2) at (1.5,0) {};
+      \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+      
+      \draw[->] (O.center) -- (8,0)node[below] {$t$};
+      \draw (O.south) -- (bmax.north);
+      \draw (bmin.center) -- (8,1);
+      \draw (bmax.center) -- (8,4);
+      \draw[fill=white] (3,0) rectangle (7,4);
+      \draw[pattern=north west lines] (3,0) rectangle (7,4);
+      \draw(di.south) -- (di.center);
+      \draw[thick] (t1.south) -- (0.5,4.1) node[above] {$t_1$};
+      \draw[thick] (t2.south) -- (1.5,4.1) node[above] {$t_2$};
+    \end{tikzpicture}}
 
 
+  \subcaptionbox{\label{fig:conso_CECSPd}}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.37,yscale=0.3]
+      \node[] (O) at (0,0) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+      \node (t1) at (4,0) {};
+      \node (t2) at (7,0) {};
+      \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (6,0) {};
+      \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
+      
+      \draw[->] (O.center) -- (8,0)node[below] {$t$};
+      \draw (O.south) -- (bmax.north);
+      \draw (bmin.center) -- (8,1);
+      \draw (bmax.center) -- (8,4);
+      \draw[fill=white] (ri.center) rectangle (4,4);
+      \draw[pattern=north west lines] (ri.center) rectangle (4,4);
+      \draw[fill=white] (t1.center) rectangle (5,1.5);
+      \draw[pattern=north west lines] (t1.center) rectangle (5,1.5);
+      \draw(di.south) -- (di.center);
+      \draw(ri.south) -- (ri.center);
+      \draw[thick] (t1.south) -- (4,4.1) node[above] {$t_1$};
+      \draw[thick] (t2.south) -- (7,4.1) node[above] {$t_2$};
+    \end{tikzpicture}}
+  \hfill
+  \subcaptionbox{\label{fig:conso_CECSPe}}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.37,yscale=0.3]
+      \node[] (O) at (0,0) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+      \node (t1) at (2.5,0) {}; 
+      \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1.5,0) {};
+      \node (t2) at (6,0) {};
+      \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+      
+      \draw[->] (O.center) -- (8,0)node[below] {$t$};
+      \draw (O.south) -- (bmax.north);
+      \draw (bmin.center) -- (8,1);
+      \draw (bmax.center) -- (8,4);
+      \draw(ri.south) -- (ri.center);
+      \draw(di.south) -- (di.center);
+      \draw[fill=white] (2.5,0) rectangle (1.5,4);
+      \draw[pattern=north west lines] (2.5,0) rectangle (1.5,4);
+      \draw[fill=white] (2.5,0) rectangle (6,2);
+      \draw[pattern=north west lines] (2.5,0) rectangle (6,2);
+      \draw[fill=white] (6,0) rectangle (7,4);
+      \draw[pattern=north west lines] (6,0) rectangle (7,4);
+      \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
+      \draw[thick] (t2.south) -- (6,4.1) node[above] {$t_2$};
+    \end{tikzpicture}}
+  \hfill
+  \subcaptionbox{\label{fig:conso_CECSPf}}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.37,yscale=0.3]
+      \node[] (O) at (0,0) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+      \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+      \node (t1) at (1,0) {}; 
+      \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (2.5,0) {};
+      \node (t2) at (4,0) {};
+      
+      \draw[->] (O.center) -- (8,0)node[below] {$t$};
+      \draw (O.south) -- (bmax.north);
+      \draw (bmin.center) -- (8,1);
+      \draw (bmax.center) -- (8,4);
+      \draw(di.south) -- (di.center);
+      \draw(ri.south) -- (ri.center);
+      \draw[fill=white] (t2.center) rectangle (7,4);
+      \draw[pattern=north west lines] (t2.center) rectangle (7,4);
+      \draw[fill=white] (t2.center) rectangle (3.2,2);
+      \draw[pattern=north west lines] (t2.center) rectangle (3.2,2);
+      \draw[thick] (t1.south) -- (1,4.1) node[above] {$t_1$};
+      \draw[thick] (t2.south) -- (4,4.1) node[above] {$t_2$};
+    \end{tikzpicture}}
 
-\subcaptionbox{\label{fig:conso_CECSPg}}[0.3\linewidth]{
-  \begin{tikzpicture}
-  [xscale=0.37,yscale=0.3]
-    \node[] (O) at (0,0) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
-    \node (t1) at (3,0) {};
-    \node (t2) at (5,0) {};
-    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
-    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
-    
-    \draw[->] (O.center) -- (8,0)node[below] {$t$};
-    \draw (O.south) -- (bmax.north);
-    \draw (bmin.center) -- (8,1);
-    \draw (bmax.center) -- (8,4);
-    \draw[fill=white] (t1.center) rectangle (1,4);
-    \draw[pattern=north west lines] (t1.center) rectangle (1,4);
-    \draw[fill=white] (t1.center) rectangle (3.7,1);
-    \draw[pattern=north west lines] (t1.center) rectangle (3.7,1);
-    \draw(di.south) -- (di.center);
-    \draw(ri.south) -- (ri.center);
-    \draw[thick] (t1.south) -- (3,4.1) node[above] {$t_1$};
-    \draw[thick] (t2.south) -- (5,4.1) node[above] {$t_2$};
-  \end{tikzpicture}}
-\hfill
-\subcaptionbox{\label{fig:conso_CECSPh}}[0.3\linewidth]{
-  \begin{tikzpicture}
-  [xscale=0.37,yscale=0.3]
-   \node[] (O) at (0,0) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
-    \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
-    \node (t1) at (2.5,0) {}; 
-    \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1.5,0) {};
-    \node (t2) at (6,0) {};
-    \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
 
-    \draw[->] (O.center) -- (8,0)node[below] {$t$};
-    \draw (O.south) -- (bmax.north);
-    \draw (bmin.center) -- (8,1);
-    \draw (bmax.center) -- (8,4);
-    \draw(ri.south) -- (ri.center);
-    \draw(di.south) -- (di.center);
-    \draw[fill=white] (2.5,0) rectangle (2,2.7);
-    \draw[pattern=north west lines] (2.5,0) rectangle (2,2.7);
-    \draw[fill=white] (2.5,0) rectangle (6,1);
-    \draw[pattern=north west lines] (2.5,0) rectangle (6,1);
-    \draw[fill=white] (6,0) rectangle (7,4);
-    \draw[pattern=north west lines] (6,0) rectangle (7,3);
-    \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
-    \draw[thick] (t2.south) -- (6,4.1) node[above] {$t_2$};
-  \end{tikzpicture}}
-\hfill
-\subcaptionbox{\label{fig:conso_CECSPi}}[0.3\linewidth]{
-\begin{tikzpicture}
- [xscale=0.37,yscale=0.3]
- \node[] (O) at (0,0) {};
- \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
- \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
- \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
- \node (t1) at (2.5,0) {}; 
- \node (t2) at (4,0) {};
- \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
- 
- \draw[->] (O.center) -- (8,0)node[below] {$t$};
- \draw (O.south) -- (bmax.north);
- \draw (bmin.center) -- (8,1);
- \draw (bmax.center) -- (8,4);
- \draw(di.south) -- (di.center);
- \draw(ri.south) -- (ri.center);
- \draw[fill=white] (t2.center) rectangle (7,4);
- \draw[pattern=north west lines] (t2.center) rectangle (7,4);
- \draw[fill=white] (t2.center) rectangle (3.2,1);
- \draw[pattern=north west lines] (t2.center) rectangle (3.2,1);
- \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
- \draw[thick] (t2.south) -- (4,4.1) node[above] {$t_2$}; 
- \end{tikzpicture}}
-\caption{Les différentes configurations menant à une consommation minimale}
-\label{fig:conso_CECSP}
+
+  \subcaptionbox{\label{fig:conso_CECSPg}}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.37,yscale=0.3]
+      \node[] (O) at (0,0) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+      \node (t1) at (3,0) {};
+      \node (t2) at (5,0) {};
+      \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+      \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
+      
+      \draw[->] (O.center) -- (8,0)node[below] {$t$};
+      \draw (O.south) -- (bmax.north);
+      \draw (bmin.center) -- (8,1);
+      \draw (bmax.center) -- (8,4);
+      \draw[fill=white] (t1.center) rectangle (1,4);
+      \draw[pattern=north west lines] (t1.center) rectangle (1,4);
+      \draw[fill=white] (t1.center) rectangle (3.7,1);
+      \draw[pattern=north west lines] (t1.center) rectangle (3.7,1);
+      \draw(di.south) -- (di.center);
+      \draw(ri.south) -- (ri.center);
+      \draw[thick] (t1.south) -- (3,4.1) node[above] {$t_1$};
+      \draw[thick] (t2.south) -- (5,4.1) node[above] {$t_2$};
+    \end{tikzpicture}}
+  \hfill
+  \subcaptionbox{\label{fig:conso_CECSPh}}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.37,yscale=0.3]
+      \node[] (O) at (0,0) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+      \node (t1) at (2.5,0) {}; 
+      \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1.5,0) {};
+      \node (t2) at (6,0) {};
+      \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+
+      \draw[->] (O.center) -- (8,0)node[below] {$t$};
+      \draw (O.south) -- (bmax.north);
+      \draw (bmin.center) -- (8,1);
+      \draw (bmax.center) -- (8,4);
+      \draw(ri.south) -- (ri.center);
+      \draw(di.south) -- (di.center);
+      \draw[fill=white] (2.5,0) rectangle (2,2.7);
+      \draw[pattern=north west lines] (2.5,0) rectangle (2,2.7);
+      \draw[fill=white] (2.5,0) rectangle (6,1);
+      \draw[pattern=north west lines] (2.5,0) rectangle (6,1);
+      \draw[fill=white] (6,0) rectangle (7,4);
+      \draw[pattern=north west lines] (6,0) rectangle (7,3);
+      \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
+      \draw[thick] (t2.south) -- (6,4.1) node[above] {$t_2$};
+    \end{tikzpicture}}
+  \hfill
+  \subcaptionbox{\label{fig:conso_CECSPi}}[0.3\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.37,yscale=0.3]
+      \node[] (O) at (0,0) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmin$}] (bmin) at (0,1) {};
+      \node[label={[shift={(-0.4,-0.4)}]$\bmax$}] (bmax) at (0,4) {};
+      \node[label={[shift={(0,-0.8)}]$\LE$}] (di) at (7,0) {};
+      \node (t1) at (2.5,0) {}; 
+      \node (t2) at (4,0) {};
+      \node[label={[shift={(0,-0.8)}]$\ES$}] (ri) at (1,0) {};
+      
+      \draw[->] (O.center) -- (8,0)node[below] {$t$};
+      \draw (O.south) -- (bmax.north);
+      \draw (bmin.center) -- (8,1);
+      \draw (bmax.center) -- (8,4);
+      \draw(di.south) -- (di.center);
+      \draw(ri.south) -- (ri.center);
+      \draw[fill=white] (t2.center) rectangle (7,4);
+      \draw[pattern=north west lines] (t2.center) rectangle (7,4);
+      \draw[fill=white] (t2.center) rectangle (3.2,1);
+      \draw[pattern=north west lines] (t2.center) rectangle (3.2,1);
+      \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
+      \draw[thick] (t2.south) -- (4,4.1) node[above] {$t_2$}; 
+    \end{tikzpicture}}
+  \caption{Les différentes configurations menant à une consommation minimale}
+  \label{fig:conso_CECSP}
 \end{figure}
-	
+
 Il est facile de calculer l'expression de la consommation minimale
 d'énergie dans un intervalle pour une fonction $f_i$ croissante. En
 effet, les différentes configurations possibles étant toujours celle
@@ -356,24 +356,24 @@ l'intervalle $[t_1,t_2[$ quand l'activité est calée à gauche
 (respectivement calée à droite et centrée). Formellement, ces trois
 quantités peuvent être exprimer de la manière suivante:
 \begin{align}
-\wbLS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0,t_1 -
-\ES)\right) \label{eq:LSnrj_CECSP}\\
-\wbRS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0,
-\LE-t_2)\right)\label{eq:RSnrj_CECSP}\\
-\wbCS&=\max\left( f_i(\bmin) * (t_2-t_1)\, ,\, W_i - f_i(\bmax)\max(0,
-d_i - r_ i - t_2 + t_1) \right)\label{eq:CSnrj_CECSP}
+  \wbLS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0,t_1 -
+         \ES)\right) \label{eq:LSnrj_CECSP}\\
+  \wbRS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0,
+         \LE-t_2)\right)\label{eq:RSnrj_CECSP}\\
+  \wbCS&=\max\left( f_i(\bmin) * (t_2-t_1)\, ,\, W_i - f_i(\bmax)\max(0,
+         d_i - r_ i - t_2 + t_1) \right)\label{eq:CSnrj_CECSP}
 \end{align}
 Alors, l'expression de l'énergie minimale est le minimum de ces trois
 quantités, i.e.
 \begin{equation}
-\wb=\min\left(\, \wbLS\, ,\,\wbRS\, ,\,\wbCS \, \right)
+  \wb=\min\left(\, \wbLS\, ,\,\wbRS\, ,\,\wbCS \, \right)
 \end{equation} 
 
 Nous allons maintenant utiliser l'expression de $\wb$ et la fonction
 $f_i$ pour calculer $\bb$.
 
 \subsubsection{Consommation minimale de la ressource}
-	
+
 Pour calculer l'expression de $\bb$, nous allons utiliser les
 propriétés de la fonction $f_i$. En effet, une fois que nous avons
 calculer $\wb$, nous voulons savoir quelle est la quantité minimale de
@@ -386,7 +386,7 @@ revient à résoudre le programme suivant:
 \begin{align}
   \text{minimiser }   & \int_{I} b_i(t)dt \label{eq:conv_obj} \\
   \text{sous } & \int_{I} f_i(b_i(t))dt \ge \wb \label{eq:conv_nrj}\\
-                     & \bmin \le b_i(t) \le \bmax \label{eq:conv_min}
+                      & \bmin \le b_i(t) \le \bmax \label{eq:conv_min}
 \end{align}
 En effet, l'objectif de ce programme est de minimiser la quantité de
 ressource consommée dans l'intervalle $[t_1,t_2[$
@@ -405,7 +405,7 @@ constante. Le programme simplifié s'écrit de la manière suivante:
 \begin{align}
   \text{minimiser }   & b_i|I| \label{eq:convSimp_obj} \\
   \text{sous } & f_i(b_i)|I| \ge \wb \label{eq:convSimp_nrj}\\
-                     &\bmin \le  b_i \le \bmax \label{eq:convSimp_nrj}
+                      &\bmin \le  b_i \le \bmax \label{eq:convSimp_nrj}
 \end{align}
 
 
@@ -429,12 +429,12 @@ f_i^{-1}\left(\frac{\wb}{|I|}\right)$. En couplant cette contrainte
 avec la contrainte de consommation minimale, nous obtenons, si $\bmin
 \neq 0$:
 \[
- b_i= \max\left(\, \bmin \, ,\, 
+  b_i= \max\left(\, \bmin \, ,\, 
     f_i^{-1}\left(\frac{\wb}{|I|}\right)\, \right)
 \]
 Et si $\bmin = 0$, nous avons:
 \[
- b_i=  f_i^{-1}\left(\frac{\wb}{|I|}\right)
+  b_i=  f_i^{-1}\left(\frac{\wb}{|I|}\right)
 \]
 Nous allons maintenant donner l'expression de $\bb$  en fonction des
 coefficients $a_{ip}$  et $c_{ip}$ de la fonction $f_i$. Pour
@@ -451,12 +451,12 @@ ce cas-là, nous avons:
 \]
 Et donc, si $\bmin\neq 0$: 
 \begin{equation}
-\bb= \max\left(b_i^{min} \frac{\wb}{f_i(b_i^{min})} \, ,\,  
-  \frac{1}{a_i}\left(\wb-|I|c_{i})\right)\right)
+  \bb= \max\left(b_i^{min} \frac{\wb}{f_i(b_i^{min})} \, ,\,  
+    \frac{1}{a_i}\left(\wb-|I|c_{i})\right)\right)
 \end{equation}
 Et si $\bmin=0$: 
 \[
-\bb=  \frac{1}{a_i}\left(\wb-|I|c_{i})\right)
+  \bb=  \frac{1}{a_i}\left(\wb-|I|c_{i})\right)
 \]
 Notons que, le premier cas correspond au cas où l'intervalle $I$ est
 suffisamment grand pour ordonnancer l'activité $i$ à $\bmin$ et lui
@@ -468,8 +468,85 @@ c'est $f_i^{-1}(\wb/|I|) \times |I|$ que l'on va choisir. Ceci est
 détaillé dans l'exemple~\ref{ex:convLin_CECSP}.
 
 \begin{ex}
-\label{ex:convLin_CECSP}
+  \label{ex:convLin_CECSP}
+  Considérons les deux activités suivantes: 
+  \begin{center}
+  \begin{tabular}{|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{2cm}|}
+    \hline
+    act. & \ES & \LE & W_i & \bmin & \bmax & f_i(b)\\
+    \hline
+    i & 2 & 8 & 21 & 2 & 5 & b+3\\
+    j & 0 & 8 & 22 & 2 & 5 & \frac{1}{2}*b+\frac{1}{2}\\
+    \hline
+  \end{tabular}
+\end{center}
 
+Si nous calculons $\wb$ et $\bb$ sur l'intervalle $[1,6[$, nous
+obtenons: 
+\begin{itemize}
+\item $\wb[i][1][6] = \wbRS[i][1][6]  = 5$ et 
+\item $\bb[i][1][6]  = \max (\bmin \frac{ \wb[i][1][6] }{f_i(\bmin)}, \frac{1}{a_i} ( \wb[i][1][6] 
+  - c_i |I|) =\max (2 \frac{5}{5}, \frac{1}{1} ( 5
+  - 3 \times 4) = \max ( 2 , -7) = 2 $
+\item $\wb[j][1][6] = \wbCS[j][1][6] = 10$ et 
+\item $\bb[j][1][6] = \max (\bmin \frac{ \wb[j][1][6] }{f_i(\bmin)},
+\frac{1}{a_i} ( \wb[j][1][6] - c_i |I|) =\max (2
+\frac{10}{\frac{3}{2}}, 2 \times ( 10 - \frac{1}{2} \times 5) = \max (
+\frac{40}{3} , 15) = 15 $
+\end{itemize}
+\begin{figure}[!htb]
+  \centering
+  \subcaptionbox{Activité $i$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.5, yscale= 0.4,node distance=0.5cm]
+      \fill[gray!20] (1,6) node[above,black] {$t_1$} +(0,-6)  rectangle (6,6) node[above,black] {$t_2$};
+      \node (sil) at (1,0) {} ;
+      \node (eil) at (8,0) {} ;
+      \node [below of=eil,node distance=0.63cm]  {$\LE$};
+      \draw (sil.center) node[below=0.2cm] {$\ES$};
+      
+      \draw (-1,0) -- (9,0);
+      
+      \draw[->] (-1,0) -- (-1,6);
+      \draw[dashed] (10, 2) -- (0,2) -- (-0.1,2) node[left] {$\bmin$};
+      \draw[dashed] (10, 5) -- (0,5) -- (-0.1,5) node[left] {$\bmax$};
+      \path[draw] (8,0) -- (8,5) -- (6,5) -- (6,2) node[right=0.5cm, above]{$i$} -- (5,2) -- (5,0);
+
+
+      \foreach \i in {0,...,9} {
+        \draw (\i,0)  -- (\i,-0.2);
+      }
+    \end{tikzpicture}
+}
+\hfill
+\subcaptionbox{Activité $j$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.5, yscale= 0.4,node distance=0.5cm]      
+      \fill[gray!20] (1,6) node[above,black] {$t_1$} +(0,-6)  rectangle (6,6) node[above,black] {$t_2$};
+      \node (sil) at (0,0) {} ;
+      \node (eil) at (8,0) {} ;
+      \node [below of=eil,node distance=0.63cm]  {$\LE$};
+      \draw (sil.center) node[below=0.2cm] {$\ES$};
+      
+      \draw (-1,0) -- (9,0);
+      
+      \draw[->] (-1,0) -- (-1,6);
+      \draw[dashed] (10, 2) -- (0,2) -- (-0.1,2) node[left] {$\bmin$};
+      \draw[dashed] (10, 5) -- (0,5) -- (-0.1,5) node[left] {$\bmax$};
+      \path[draw] (8,0) -- (8,5) -- (6,5) -- (6,3)  -- (1,3) node[midway,below]
+     {$j$} -- (1,5)
+      -- (0,5) -- (0,0);
+
+
+      \foreach \i in {0,...,9} {
+        \draw (\i,0)  -- (\i,-0.2);
+      }
+    \end{tikzpicture}
+}
+  \caption{Consommation de ressource dans $[t_1,t_2[$ pour le
+    \CECSP~avec fonction de rendement affine}
+\label{fig:ex_Lin}
+\end{figure}
 \end{ex}
 
 Ce raisonnement peut être étendu dans le cas où $f_i$ est concave et
@@ -492,26 +569,26 @@ suffisamment grand, nous essayons d'exécuter l'activité avec une
 consommation $b_i \in ]\bmin,x_2^i]$, etc. Dans le cas où $\bmin \neq
 0$, l'expression de $\bb$ est formalisée ci-dessous:
 \[f_i^{-1}\left(\frac{\wb}{|I|}\right)=\left\{
-\begin{aligned}
-\bmin & \qquad & \text{si } |I| \ge \frac{\wb}{f_i(\bmin)}\\
-\frac{\wb -c_{i1}|I|}{a_{i1}|I|} & \qquad & \text{si } \frac{\wb}{f_i(\bmin)}
-> |I| > \frac{\wb}{f_i(x^i_2)} \\
-\frac{\wb -c_{i2}|I|}{a_{i2}|I|} & \qquad & \text{si }  \frac{\wb}{f_i(x^i_2)}
-\ge |I| > \frac{\wb}{f_i(x^i_3)}\\
- & \qquad \vdots& \\
-\frac{\wb -c_{iP_i}|I|}{a_{iP_i}|I|} & \qquad & \text{si }  \frac{\wb}{f_i(x^i_{P_i}}
-\ge |I| > \frac{\wb}{f_i(\bmax)}\end{aligned}
-\right.
+    \begin{aligned}
+      \bmin & \qquad & \text{si } |I| \ge \frac{\wb}{f_i(\bmin)}\\
+      \frac{\wb -c_{i1}|I|}{a_{i1}|I|} & \qquad & \text{si } \frac{\wb}{f_i(\bmin)}
+      > |I| > \frac{\wb}{f_i(x^i_2)} \\
+      \frac{\wb -c_{i2}|I|}{a_{i2}|I|} & \qquad & \text{si }  \frac{\wb}{f_i(x^i_2)}
+      \ge |I| > \frac{\wb}{f_i(x^i_3)}\\
+      & \qquad \vdots& \\
+      \frac{\wb -c_{iP_i}|I|}{a_{iP_i}|I|} & \qquad & \text{si }  \frac{\wb}{f_i(x^i_{P_i}}
+      \ge |I| > \frac{\wb}{f_i(\bmax)}\end{aligned}
+  \right.
 \]
 Et ceci, nous donne l'expression de $\bb$ suivante:
 \begin{equation}
-\bb= 
+  \bb= 
   \max \left\{b_i^{min} \frac{\wb}{f_i(b_i^{min})},
-  \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wb-|I|c_{ip})\right)\right\}
+    \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wb-|I|c_{ip})\right)\right\}
 \end{equation}
 Dans le cas où $\bmin=0$, nous avons: 
 \[
-\bb= 
+  \bb= 
   \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wb-|I|c_{ip})\right)
 \]
 Un exemple du calcul de $\bb$ dans le cas d'une fonction $f_i$ concave
@@ -519,13 +596,115 @@ et linéaire par morceaux est décrit dans
 l'exemple~\ref{ex:convPWL_CECSP}.
 
 \begin{ex}
-\label{ex:convPWL_CECSP}
+  \label{ex:convPWL_CECSP}
+  Considérons les deux activités suivantes: 
+  \begin{center}
+  \begin{tabular}{|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{3cm}|}
+    \hline
+    act. & \ES & \LE & W_i & \bmin & \bmax & f_i(b)\\
+    \hline
+    i & 2 & 8 & 70 & 2 & 5 & 3b+1 \text{ si } b \in [2,3]\\
+    &  & &  &  &  & 2b+4 \text{ si } b \in ]3,4]\\
+    &  & &  &  &  & b+8 \text{ si } b \in ]4,5]\\
+    \hline
+  \end{tabular}
+\end{center}
 
+Si nous calculons $\wb$ et $\bb$ sur l'intervalle $[2,6[$, nous
+obtenons: 
+\begin{itemize}
+\item $\wb[i][2][6] = \wbRS[i][2][6]  = 44$ et 
+\item \begin{align*}
+        \bb[i][2][6]  &= 
+  \max (\bmin \frac{ \wb[i][2][6] }{f_i(\bmin)},
+  \max_{p  \in \{1,2,3\}} \frac{1}{a_{ip}} ( \wb[i][2][6] 
+  - c_{ip} |I|)) \\
+  &=\max  \left(2 \frac{44}{7}, \max\left\{\frac{1}{3} ( 44
+  - 4) , \frac{1}{2} (44  - 4 \times 4 ), \frac{1}{1} (44  - 8 \times 4 )
+\right\}\right) \\ &=  
+\max ( \frac{88}{7},
+\max\{\frac{40}{3}, 14, 12 \}) \\ &= 14 \end{align*}
+\end{itemize}
+Dans ce cas, c'est la seconde partie de la fonction $f_i$ qui est
+utilisée, i.e. $f_i(b)=2b+4 \text{ si } b \in ]3,4]$.
+
+Si maintenant nous calculons $\wb$ et $\bb$ sur l'intervalle $[4,6[$,
+nous obtenons: 
+\begin{itemize}
+\item $\wb[i][4][6] = \wbCS[j][4][6] =18$ et 
+\item \begin{align*}
+  \bb[i][4][6] &=\max (\bmin \frac{ \wb[i][4][6] }{f_i(\bmin)},
+  \max_{p  \in \{1,2,3\}} \frac{1}{a_{ip}} ( \wb[i][4][6] 
+  - c_{ip} |I|)) \\
+  &=\max  \left(2 \frac{18}{7}, \max\left\{\frac{1}{3} ( 18
+      - 2) , \frac{1}{2} (18  - 4 \times 2), \frac{1}{1} (18  - 8 \times 2 )
+    \right\}\right) \\ &=  
+  \max ( \frac{36}{7},
+  \max\{\frac{16}{3}, 5 , 2 \}) \\ &= \frac{16}{3} 
+\end{align*}
+\end{itemize}
+Et dans ce cas, c'est la première partie de la fonction $f_i$ qui est
+utilisée, i.e. $f_i(b)=3b+1 \text{ si } b \in ]3,4]$.
+
+\begin{figure}[!htb]
+  \centering
+  \subcaptionbox{Consommation minimale sur $[2,6[$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.5, yscale= 0.4,node distance=0.5cm]
+      \fill[gray!20] (2,6) node[above,black] {$t_1$} +(0,-6)  rectangle (6,6) node[above,black] {$t_2$};
+      \node (sil) at (2,0) {} ;
+      \node (eil) at (8,0) {} ;
+      \node [below of=eil,node distance=0.63cm]  {$\LE$};
+      \draw (sil.center) node[below=0.2cm] {$\ES$};
+      
+      \draw (-1,0) -- (9,0);
+      
+      \draw[->] (-1,0) -- (-1,6);
+      \draw[dashed] (10, 2) -- (0,2) -- (-0.1,2) node[left] {$\bmin$};
+      \draw[dashed] (10, 5) -- (0,5) -- (-0.1,5) node[left] {$\bmax$};
+      \path[draw] (8,0) -- (8,5) -- (6,5) -- (6,3.5)  -- (2,3.5)
+      node[midway, below=0.5cm]{$i$} -- (2,0) ;
+
+
+      \foreach \i in {0,...,9} {
+        \draw (\i,0)  -- (\i,-0.2);
+      }
+    \end{tikzpicture}
+}
+\hfill
+\subcaptionbox{Consommation minimale sur $[4,6[$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [xscale=0.5, yscale= 0.4,node distance=0.5cm]      
+      \fill[gray!20] (4,6) node[above,black] {$t_1$} +(0,-6)  rectangle (6,6) node[above,black] {$t_2$};
+      \node (sil) at (2,0) {} ;
+      \node (eil) at (8,0) {} ;
+      \node [below of=eil,node distance=0.63cm]  {$\LE$};
+      \draw (sil.center) node[below=0.2cm] {$\ES$};
+      
+      \draw (-1,0) -- (9,0);
+      
+      \draw[->] (-1,0) -- (-1,6);
+      \draw[dashed] (10, 2) -- (0,2) -- (-0.1,2) node[left] {$\bmin$};
+      \draw[dashed] (10, 5) -- (0,5) -- (-0.1,5) node[left] {$\bmax$};
+      \path[draw] (8,0) -- (8,5) -- (6,5) -- (6,2.67)  -- (4,2.67) node[midway,below=0.2cm]
+     {$i$} -- (4,5) -- (2,5) -- (2,0);
+      -- (0,5) -- (0,0);
+
+
+      \foreach \i in {0,...,9} {
+        \draw (\i,0)  -- (\i,-0.2);
+      }
+    \end{tikzpicture}
+}
+  \caption{Consommation de ressource dans $[t_1,t_2[$ pour le
+    \CECSP~avec fonction de rendement concave et affine par morceaux}
+\label{fig:ex_PWL}
+\end{figure}
 \end{ex}
 
 \subsection{Les ajustements de borne}
 \label{sec:adjustment_tw}
- 
+
 Dans ce paragraphe nous décrivons les ajustements qui peuvent être
 faits sur les fenêtre de temps des activités. Tout d'abord, nous
 introduisons les notations suivantes: $\bbLS$ (respectivement $\bbRS$
@@ -535,12 +714,12 @@ calée à gauche (respectivement calée à droite et
 centrée). Formellement, ces trois quantités peuvent être exprimer de
 la manière suivante:
 \begin{align}
-\bbLS&=   \max \left\{b_i^{min} \frac{\wbLS}{f_i(b_i^{min})},
-  \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbLS-|I|c_{ip})\right)\right\}\\
-\bbRS&=   \max \left\{b_i^{min} \frac{\wbRS}{f_i(b_i^{min})},
-  \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbRS-|I|c_{ip})\right)\right\}\\
-\bbCS&=  \max \left\{b_i^{min} \frac{\wbCS}{f_i(b_i^{min})},
-  \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbCS-|I|c_{ip})\right)\right\}
+  \bbLS&=   \max \left\{b_i^{min} \frac{\wbLS}{f_i(b_i^{min})},
+         \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbLS-|I|c_{ip})\right)\right\}\\
+  \bbRS&=   \max \left\{b_i^{min} \frac{\wbRS}{f_i(b_i^{min})},
+         \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbRS-|I|c_{ip})\right)\right\}\\
+  \bbCS&=  \max \left\{b_i^{min} \frac{\wbCS}{f_i(b_i^{min})},
+         \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbCS-|I|c_{ip})\right)\right\}
 \end{align}
 
 Nous allons décrire deux règles d'ajustements pour les fenêtres du
@@ -555,92 +734,92 @@ est remplacée par $\bbRS$ – alors, nous pouvons déduire que l’activité
 doit commencer avant $t_1$.
 
 \begin{reg}
-\label{reg:ajust_CECSP}
-S’il existe un intervalle $[t_1 , t_2 [$ avec $t_1 > \ES$ et une
-activité $i$ pour lesquels:
-\[ \sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \bbRS > R(t_2-t_1)
-\]
-alors, on a:
-\[ \LS \le t_1 - \frac{1}{\bmax}\left(\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \bbRS - R(t_2-t_1)\right)
-\]
+  \label{reg:ajust_CECSP}
+  S’il existe un intervalle $[t_1 , t_2 [$ avec $t_1 > \ES$ et une
+  activité $i$ pour lesquels:
+  \[ \sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \bbRS > R(t_2-t_1)
+  \]
+  alors, on a:
+  \[ \LS \le t_1 - \frac{1}{\bmax}\left(\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \bbRS - R(t_2-t_1)\right)
+  \]
 \end{reg}
 
 \begin{proof}
-Soit $i$ et $[t_1,t_2[$ vérifiant la condition de la
-règle~\ref{reg:ajust_CECSP}. Supposons que l'activité $i$ démarre à
-$t_1$. 
+  Soit $i$ et $[t_1,t_2[$ vérifiant la condition de la
+  règle~\ref{reg:ajust_CECSP}. Supposons que l'activité $i$ démarre à
+  $t_1$. 
 
-La consommation minimale de $i$ dans $[t_1,t_2[$ est donc $\bbRS$. On
-a donc que $\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \bbRS $ est
-la consommation minimale de toutes les activités dans $[t_1,t_2[$
-quand l'activité $i$ commence à $t_1$. Donc, si cette quantité est
-plus grande que la quantité de ressource disponible dans l'intervalle
-$[t_1,t_2[$, i.e. $R(t_2-t_1)$, on obtient une contradiction avec le
-fait que l'instance soit réalisable et $i$ doit commencer avant
-$t_1$. 
+  La consommation minimale de $i$ dans $[t_1,t_2[$ est donc $\bbRS$. On
+  a donc que $\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \bbRS $ est
+  la consommation minimale de toutes les activités dans $[t_1,t_2[$
+  quand l'activité $i$ commence à $t_1$. Donc, si cette quantité est
+  plus grande que la quantité de ressource disponible dans l'intervalle
+  $[t_1,t_2[$, i.e. $R(t_2-t_1)$, on obtient une contradiction avec le
+  fait que l'instance soit réalisable et $i$ doit commencer avant
+  $t_1$. 
 
-Pour calculer la nouvelle date de début au plus tard de $i$,
-remarquons que la quantité de ressource devant être consommée avant
-$t_1$ est d'au moins $\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] +
-\bbRS - R(t_2-t_1)$, i.e. ce qui ne ``rentrait'' pas dans
-$[t_1,t_2[$. Comme nous cherchons une borne supérieure sur la date de
-début de $i$, nous cherchons donc à ordonnancer cette partie de
-l'activité le plus rapidement possible. 
+  Pour calculer la nouvelle date de début au plus tard de $i$,
+  remarquons que la quantité de ressource devant être consommée avant
+  $t_1$ est d'au moins $\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] +
+  \bbRS - R(t_2-t_1)$, i.e. ce qui ne ``rentrait'' pas dans
+  $[t_1,t_2[$. Comme nous cherchons une borne supérieure sur la date de
+  début de $i$, nous cherchons donc à ordonnancer cette partie de
+  l'activité le plus rapidement possible. 
 
-Le temps minimal requis pour ordonnancer cette
-consommation étant obtenu en exécutant l'activité à $\bmax$, nous
-obtenons comme borne supérieure sur la date de début de $i$:
-$1/\bmax \times \left(\sum_{\substack{j \in \A\\ j\neq
-i}} \bb[j] + \bbRS - R(t_2-t_1)\right)$
+  Le temps minimal requis pour ordonnancer cette
+  consommation étant obtenu en exécutant l'activité à $\bmax$, nous
+  obtenons comme borne supérieure sur la date de début de $i$:
+  $1/\bmax \times \left(\sum_{\substack{j \in \A\\ j\neq
+        i}} \bb[j] + \bbRS - R(t_2-t_1)\right)$
 \end{proof}
 
 De manière similaire, nous avons les ajustements suivants sur la date
 de début au plus tôt d'une activité. 
 \begin{reg}
-\label{reg:ajustRi_CECSP}
-S'il existe un intervalle $[t_1,t_2[$ avec $ t_2 > \LE$ et une
-activité $i$ telle que $\bmin \neq 0$ pour lesquels:
+  \label{reg:ajustRi_CECSP}
+  S'il existe un intervalle $[t_1,t_2[$ avec $ t_2 > \LE$ et une
+  activité $i$ telle que $\bmin \neq 0$ pour lesquels:
   \[ \sum_{\substack{j \in \A \\ j \neq i}} \bb[j] +
     \min(\bbCS,\bbLS) > R (t_2-t_1)\] 
   alors
   \[ \ES \ge t_2 - \frac{1}{\bmin} \left(R (t_2-t_1) -\sum_{\substack{j
-\in \A \\ j \neq i}} \bb[j] \right) \]
+          \in \A \\ j \neq i}} \bb[j] \right) \]
 \end{reg}
 
 \begin{proof}
-Soit $i$ et $[t_1,t_2[$ vérifiant la condition de la
-règle~\ref{reg:ajust_CECSP}. Nous allons décider si $i$ peut commencer
-avant $t_1$. Les configurations où l'activité $i$ démarre avant $t_1$
-et consomme le moins de ressource possible dans $[t_1,t_2[$ sont les
-configurations où $i$ est soit calée à gauche, soit centrée.
+  Soit $i$ et $[t_1,t_2[$ vérifiant la condition de la
+  règle~\ref{reg:ajust_CECSP}. Nous allons décider si $i$ peut commencer
+  avant $t_1$. Les configurations où l'activité $i$ démarre avant $t_1$
+  et consomme le moins de ressource possible dans $[t_1,t_2[$ sont les
+  configurations où $i$ est soit calée à gauche, soit centrée.
 
-La consommation minimale de $i$ dans l'intervalle $[t_1,t_2[$ quand
-$i$ commence avant $t_1$ est donc $\min( \bbLS, \bbCS)$. On a donc que
-$\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \min( \bbLS, \bbCS) $
-est la consommation minimale de toutes les activités dans $[t_1,t_2[$
-quand l'activité $i$ commence avant $t_1$. Donc, si cette quantité est
-plus grande que la quantité de ressource disponible dans l'intervalle
-$[t_1,t_2[$, i.e. $R(t_2-t_1)$, on obtient une contradiction avec le
-fait que l'instance soit réalisable et $i$ doit commencer après $t_1$.
+  La consommation minimale de $i$ dans l'intervalle $[t_1,t_2[$ quand
+  $i$ commence avant $t_1$ est donc $\min( \bbLS, \bbCS)$. On a donc que
+  $\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] + \min( \bbLS, \bbCS) $
+  est la consommation minimale de toutes les activités dans $[t_1,t_2[$
+  quand l'activité $i$ commence avant $t_1$. Donc, si cette quantité est
+  plus grande que la quantité de ressource disponible dans l'intervalle
+  $[t_1,t_2[$, i.e. $R(t_2-t_1)$, on obtient une contradiction avec le
+  fait que l'instance soit réalisable et $i$ doit commencer après $t_1$.
 
-Pour calculer la nouvelle date de début au plus tard de $i$,
-remarquons que la quantité de ressource disponible dans $[t_1,t_2[$
-pour exécuter $i$ est de $R(t_2-t_1) -\sum_{\substack{j \in \A\\
-j\neq i}} \bb[j]$. Comme nous cherchons une borne inférieure sur la date de
-début de $i$, nous cherchons donc à ordonnancer cette partie de
-l'activité le moins rapidement possible. 
+  Pour calculer la nouvelle date de début au plus tard de $i$,
+  remarquons que la quantité de ressource disponible dans $[t_1,t_2[$
+  pour exécuter $i$ est de $R(t_2-t_1) -\sum_{\substack{j \in \A\\
+      j\neq i}} \bb[j]$. Comme nous cherchons une borne inférieure sur la date de
+  début de $i$, nous cherchons donc à ordonnancer cette partie de
+  l'activité le moins rapidement possible. 
 
-Le temps maximal requis pour ordonnancer cette consommation étant
-obtenu en exécutant l'activité à $\bmin$, et, comme $\bmin \neq 0$,
-l'activité ne peut être préemptée, nous savons que l'activité doit
-être en cours à $t_2$. Nous obtenons alors comme borne inférieure sur
-la date de début de $i$:
-$t_2 - 1/\bmin \left(R (t_2-t_1) -\sum_{\substack{j
-\in \A \\ j \neq i}} \bb[j] \right) $
+  Le temps maximal requis pour ordonnancer cette consommation étant
+  obtenu en exécutant l'activité à $\bmin$, et, comme $\bmin \neq 0$,
+  l'activité ne peut être préemptée, nous savons que l'activité doit
+  être en cours à $t_2$. Nous obtenons alors comme borne inférieure sur
+  la date de début de $i$:
+  $t_2 - 1/\bmin \left(R (t_2-t_1) -\sum_{\substack{j
+        \in \A \\ j \neq i}} \bb[j] \right) $
 \end{proof}
 
 \begin{ex}
- Considérons l'instance à $3$ activités et avec $R=5$ suivante:
+  Considérons l'instance à $3$ activités et avec $R=5$ suivante:
 
   \begin{center}
     \begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{2cm}|} 
@@ -653,77 +832,114 @@ $t_2 - 1/\bmin \left(R (t_2-t_1) -\sum_{\substack{j
       \hline
     \end{tabular}
   \end{center}
-Une solution réalisable est décrit par la figure~\ref{exSol}.
-\begin{figure}[!htb]
-  \begin{center} 
-\begin{tikzpicture}
-[scale=0.7]
-\node (O) at (0,0) {};
-\node (2) at (4,2) {\LARGE $2$};
-\node (1) at (1,2) {\LARGE $1$};
-\node (3) at (3.5,4) {\LARGE $3$};
-\node[label={[shift={(-0.4,0)}]$B=5$}] (B) at (0,5) {};
+  Une solution réalisable est décrit par la figure~\ref{exSol}.
+  \begin{figure}[!htb]
+    \begin{center} 
+      \begin{tikzpicture}
+        [scale=0.7]
+        \node (O) at (0,0) {};
+        \node (2) at (4,2) {\LARGE $2$};
+        \node (1) at (1,2) {\LARGE $1$};
+        \node (3) at (3.5,4) {\LARGE $3$};
+        \node[label={[shift={(-0.4,0)}]$B=5$}] (B) at (0,5) {};
 
 
-\node (r1) at (0,-0.5) {$\ES[1]$}; 
-\node (r2) at (2,-0.5) {$\ES[2]$};
-\node (r3) at (2,-0.9) {$\ES[3]$};
-\node (d1) at (6,-0.5) {$\LE[1]$};
-\node (d2) at (6,-0.9) {$\LE[2]$};
-\node (d3) at (5,-0.5) {$\LE[3]$};
+        \node (r1) at (0,-0.5) {$\ES[1]$}; 
+        \node (r2) at (2,-0.5) {$\ES[2]$};
+        \node (r3) at (2,-0.9) {$\ES[3]$};
+        \node (d1) at (6,-0.5) {$\LE[1]$};
+        \node (d2) at (6,-0.9) {$\LE[2]$};
+        \node (d3) at (5,-0.5) {$\LE[3]$};
 
 
-\draw[->,>=latex] (6,0) -- (6.5,0) node[below] {$t$};
+        \draw[->,>=latex] (6,0) -- (6.5,0) node[below] {$t$};
 
-%\draw (0,0) rectangle (6,5);
-\draw (4,0) -- (6,0) -- (6,5) -- (5,5);
+        % \draw (0,0) rectangle (6,5);
+        \draw (4,0) -- (6,0) -- (6,5) -- (5,5);
 
-   \draw (2,5) -- (2,1) -- (4,1) -- (4,0) -- (0,0) -- (0,5) -- cycle;
+        \draw (2,5) -- (2,1) -- (4,1) -- (4,0) -- (0,0) -- (0,5) -- cycle;
 
-\draw (2,3) -- (5,3) -- (5,5) -- (2,5) ;
+        \draw (2,3) -- (5,3) -- (5,5) -- (2,5) ;
 
 
-\foreach \i in {0,...,5}
-{
-  \draw (\i,-0.3) -- (\i,0);
-  \draw (-0.3,\i) -- (0,\i);
-}
+        \foreach \i in {0,...,5}
+        {
+          \draw (\i,-0.3) -- (\i,0);
+          \draw (-0.3,\i) -- (0,\i);
+        }
 
- \draw (6,-0.3) -- (6,0);
+        \draw (6,-0.3) -- (6,0);
 
-\end{tikzpicture}
-    \caption{Une solution réalisable du \CECSP}
-    \label{exSol}
-  \end{center}
-\end{figure}
+      \end{tikzpicture}
+      \caption{Une solution réalisable du \CECSP}
+      \label{exSol}
+    \end{center}
+  \end{figure}
 
-Nous allons ajuster la fenêtre de temps de l'activité $1$. Pour cela,
-considérons l'intervalle $[t_1,t_2[=[2,5[$. On a:
-\begin{itemize}
+  Nous allons ajuster la fenêtre de temps de l'activité $1$. Pour cela,
+  considérons l'intervalle $[t_1,t_2[=[2,5[$. On a:
+  \begin{itemize}
   \item $\bb[2][2][5]=7$
   \item $\bb[3][2][5]=6$
   \item $\bbRS[1][2][5]=7$ et $\bbCS[1][2][5]=3$
   \end{itemize}
-Nous avons donc: $\sum_{j\in A;\ j\neq i} \bb[j][2][5] +
-\bbRS[1][2][5]= 7+7+6 =20 > 5 (5-2) =15$. Donc $\LS[1]$ peut être ajusté
-à $ 2 -\frac{1}{5} (20-15) = 1$ .
-En effet, la quantité de ressource disponible dans l'intervalle
-$[2,5[$ pour ordonnancer l'activité $1$ est de $15-7-6=2$. Donc, si
-l'activité $1$ commence après $t_1$ , elle ne peut consommer que $2$
-unités de ressource dans $[2,5[$.  Or, il faudrait $\bbRS[1][2][5]= 7$
-unités de ressource disponible dans $[2,5[$ pour que $1$ puisse
-démarrer avant $t_1$. Donc l'activité $1$ ne peut commencer après $t_1$
-et, au moins $5= 7-2$ unités de ressource doivent être exécutées avant
-$t_1$. Donc $\LS[1]$ peut être ajusté à $2 - \frac{1}{5}(20-15) =1 $.
+  Nous avons donc: $\sum_{j\in A;\ j\neq i} \bb[j][2][5] +
+  \bbRS[1][2][5]= 7+7+6 =20 > 5 (5-2) =15$. Donc $\LS[1]$ peut être ajusté
+  à $ 2 -\frac{1}{5} (20-15) = 1$ .
+  En effet, la quantité de ressource disponible dans l'intervalle
+  $[2,5[$ pour ordonnancer l'activité $1$ est de $15-7-6=2$. Donc, si
+  l'activité $1$ commence après $t_1$ , elle ne peut consommer que $2$
+  unités de ressource dans $[2,5[$.  Or, il faudrait $\bbRS[1][2][5]= 7$
+  unités de ressource disponible dans $[2,5[$ pour que $1$ puisse
+  démarrer avant $t_1$. Donc l'activité $1$ ne peut commencer après $t_1$
+  et, au moins $5= 7-2$ unités de ressource doivent être exécutées avant
+  $t_1$. Donc $\LS[1]$ peut être ajusté à $2 - \frac{1}{5}(20-15) =1 $.
 
-De plus, $\LE[1]$ peut être ajusté à $t_1 + 1/ \bmin \times (R(t_2-t_1) -
-\sum_{j\in A;\ j\neq i} \bb[j] )= 2+(15-13)=4$. En effet, si l'activité
-$1$ finit après $t_2$, alors elle doit consommer au moins
-$\min(\bbRS[1][2][5],\bbCS[1][2][5])=\min(11,6)=6$ unités de ressource
-dans l'intervalle $[2,5[$. Or, seulement $2$ unités sont
-disponibles. L'activité $1$ ne peut donc pas finir après $t_2$ et nous
-pouvons ajuster $\LE[1]$ à $4$.
+  De plus, $\LE[1]$ peut être ajusté à $t_1 + 1/ \bmin \times (R(t_2-t_1) -
+  \sum_{j\in A;\ j\neq i} \bb[j] )= 2+(15-13)=4$. En effet, si l'activité
+  $1$ finit après $t_2$, alors elle doit consommer au moins
+  $\min(\bbRS[1][2][5],\bbCS[1][2][5])=\min(11,6)=6$ unités de ressource
+  dans l'intervalle $[2,5[$. Or, seulement $2$ unités sont
+  disponibles. L'activité $1$ ne peut donc pas finir après $t_2$ et nous
+  pouvons ajuster $\LE[1]$ à $4$.
 \end{ex}
+
+\begin{algorithm}[!htb]
+  \caption{Ajustement des fenêtres de temps}
+  \label{algo1}
+    \PourTous {intervalle d'intérêt $[t_1,t_2[$}
+    { $W\gets 0$
+    
+      $B\gets 0$
+      \PourTous {$i \in \A$}{
+        $W \gets W+\min(\wbLS,\wbCS,\wbRS)$
+    
+        $B \gets B+\max(\bmin\frac{W}{f_i(\bmin)},\frac{1}{a_i}(W-c_i|I|))$
+      }
+      \Si {$B>R(t_2-t_1)$}{
+        L'instance est infaisable.}
+      \Sinon{
+        \PourTous {$i \in A$}{
+          $W \gets \min(\wbLS,\wbCS,\wbRS)$
+          
+          $slack \gets R(t_2-t_1)-B+\max(\bmin\frac{W}{f_i(\bmin)},\frac{1}{a_i}(W-c_i|I|))$
+    \Si {$ slack < \bbLS$}{
+      $\emin \gets \max(\emin,t_2+\frac{1}{\bmax}(\bbLS-slack))$
+    }
+    \Si {$ slack < \min(\bbLS,\bbCS)$}{
+      $\ES \gets \max(\ES,t_2-\frac{slack}{\bmin})$
+    }
+    \Si {$slack < \bbRS$}{
+      $\smax \gets \min(\smax,t_1-\frac{1}{\bmax}(\bbRS-slack))$
+    }
+    \Si {$slack < \min(\bbRS,\bbCS)$}{
+      $\LE \gets \min(\LE,t_1+\frac{slack}{\bmin})$
+    }
+  }
+}
+}    
+\end{algorithm}
+
 
 Nous avons montrer qu'il était possible de calculer, étant donné un
 intervalle et une activité, sa consommation minimale et les
@@ -775,7 +991,7 @@ peuvent être appliquer sur un nombre polynomial d'intervalle. Pour
 cela, il suffit de considérer, à la place de la fonction de marge, la
 fonction $ R(t_2-t_1) - \sum_{\substack{j \in \A\\ j \neq i}} \bb[j] -
 \bbRS$ pour la règle~\ref{reg:ajust_CECSP} et $ R(t_2-t_1) - \sum_{\substack{j \in
-\A\\ j \neq i}} \bb[j] - \min(\bbCS,\bbLS)$ pour la
+    \A\\ j \neq i}} \bb[j] - \min(\bbCS,\bbLS)$ pour la
 règle~\ref{reg:ajustRi_CECSP}. Dans la suite, appellerons ces
 fonctions {\it fonction d'ajustement de $\LS$ et $\ES$} respectivement. 
 
@@ -789,7 +1005,7 @@ permettant de calculer les intervalles d'intérêt du raisonnement
 énergétique. Les deux premières méthodes s'appuient sur une analyse
 des segments de définition des fonctions de consommation individuelle
 des activités tandis que la seconde est une adaptation du travail
-de~\cite{Alb} pour la contrainte cumulative et se base sur une analyse
+de~\cite{DP} pour la contrainte cumulative et se base sur une analyse
 des variations des fonctions de marge et d'ajustements.
 
 \subsubsection{Analyse des segments de définition des fonctions de 
@@ -809,8 +1025,8 @@ méthodes proposées pour calculer les intervalles d'intérêt du
 raisonnement énergétique (pour l'algorithme de vérification et les
 ajustements). Cependant, seulement le troisième cas sera détaillé dans
 le manuscrit. Les deux autres cas étant traités de manière similaire. 
-%Les deux autres cas seront quant à eux détaillés dans
-%l'annexe~\ref{annexe:breakline}. 
+% Les deux autres cas seront quant à eux détaillés dans
+% l'annexe~\ref{annexe:breakline}. 
 
 Ce raisonnement peut aussi s'appliquer pour calculer les intervalles
 d'intérêt pour les ajustements mais ceci ne sera pas détaillée dans ce
@@ -829,78 +1045,78 @@ analysons seulement les segments de définition de $\bb$ pour $t_1 \ge
 segments peut être déduit par symétrie.
 
 \begin{lemma}
-\label{lem:sym1}
+  \label{lem:sym1}
   \[\bb=\bb[i][\ES][t_2], \ \forall t_1,t_2 \in \mathbb{R},\ t_1 \le \ES\]
   \[\bb=\bb[i][t_1][\LE], \ \forall t_1,t_2 \in \mathbb{R},\ t_2 \ge
     \LE\]
 \end{lemma}
 
 \begin{proof}
-Pour tout intervalle $[t_1,t_2[$ tel que $t_1 \le \ES$, nous avons:
-\[ \int_{t_1}^{t_2} b_i(t)dt = \int_{t_1}^{\ES} b_i(t)dt+\int_{\ES}^{t_2} b_i(t)dt\]
-Or, $b_i(t)=0, \forall t \le \ES$. Nous avons donc que:
-\[\int_{t_1}^{\ES} b_i(t)dt+\int_{\ES}^{t_2} b_i(t)dt=
-  \int_{\ES}^{t_2} b_i(t)dt\]
-De plus, d'après l'expression de la consommation
-minimale~\eqref{eq:minConso}, nous avons aussi que:
-\begin{align*}
-  \bb &= \min \int_{t_1}^{t_2} b_i(t)dt \\
- &=\min \int_{t_1}^{\ES} b_i(t)dt+ \min \int_{\ES}^{t_2} b_i(t)dt\\
-  &= \min \int_{\ES}^{t_2} b_i(t)dt\\
- & = \bb[i][\ES][t_2]
-\end{align*}
-Nous pouvons montrer de la même manière la seconde égalité et ceci
-achève la démonstration.
+  Pour tout intervalle $[t_1,t_2[$ tel que $t_1 \le \ES$, nous avons:
+  \[ \int_{t_1}^{t_2} b_i(t)dt = \int_{t_1}^{\ES} b_i(t)dt+\int_{\ES}^{t_2} b_i(t)dt\]
+  Or, $b_i(t)=0, \forall t \le \ES$. Nous avons donc que:
+  \[\int_{t_1}^{\ES} b_i(t)dt+\int_{\ES}^{t_2} b_i(t)dt=
+    \int_{\ES}^{t_2} b_i(t)dt\]
+  De plus, d'après l'expression de la consommation
+  minimale~\eqref{eq:minConso}, nous avons aussi que:
+  \begin{align*}
+    \bb &= \min \int_{t_1}^{t_2} b_i(t)dt \\
+        &=\min \int_{t_1}^{\ES} b_i(t)dt+ \min \int_{\ES}^{t_2} b_i(t)dt\\
+        &= \min \int_{\ES}^{t_2} b_i(t)dt\\
+        & = \bb[i][\ES][t_2]
+  \end{align*}
+  Nous pouvons montrer de la même manière la seconde égalité et ceci
+  achève la démonstration.
 \end{proof}
 
 
 \begin{lemma}
-\label{lem:sym2}
-Pour tout $t_1 \ge 0,\ t_2 \ge t_1,\ \bb= \bb[i][\LE+\ES-t_2][\LE +
-\ES -t_1]$ 
+  \label{lem:sym2}
+  Pour tout $t_1 \ge 0,\ t_2 \ge t_1,\ \bb= \bb[i][\LE+\ES-t_2][\LE +
+  \ES -t_1]$ 
 \end{lemma}
 
 \begin{proof}
-Pour montrer le lemme, on peut montrer que $ \wb=
-\wb[i][\LE+\ES-t_2][\LE +\ES -t_1]$. En effet, pour une même quantité
-d'énergie, la conversion de $\wb$ en $\bb$ ne dépendant que de la
-taille de l'intervalle et $\LE +\ES -t_1 - \LE - \ES+t_2 =t_2 -
-t_1$. Nous montrons donc le lemme pour $\wb$.
+  Pour montrer le lemme, on peut montrer que $ \wb=
+  \wb[i][\LE+\ES-t_2][\LE +\ES -t_1]$. En effet, pour une même quantité
+  d'énergie, la conversion de $\wb$ en $\bb$ ne dépendant que de la
+  taille de l'intervalle et $\LE +\ES -t_1 - \LE - \ES+t_2 =t_2 -
+  t_1$. Nous montrons donc le lemme pour $\wb$.
 
   \begin{itemize}
   \item $\wbLS[i][t_1'][t_2']=\max(0,W_i-f_i(\bmax)(\max(0,\LE+\ES-t_2-\ES)))=\wbRS$
     \vspace{0.2cm}
   \item $\wbRS[i][t_1'][t_2']=\max(0,W_i-f_i(f_i(\bmax))(\max(0,\LE-\LE-\ES+t_1)))=\wbLS$
   \item$
-    %\setlength{\extrarowheight}{0.5cm}
+    % \setlength{\extrarowheight}{0.5cm}
     \begin{array}{rl}
       \wbCS[i][t_1'][t_2']=&\max\left(
-      \begin{array}{l}
-	f_i(\bmin) (\LE+\ES-t_1 - \ES- \LE + t_2),\\
-	W_i - f_i(\bmax)(\max(0,\LE - \LE -\ES +t_1+\\
-        \hspace{2cm}\LE +\ES - t_2 - \ES)
-      \end{array}
+                             \begin{array}{l}
+                               f_i(\bmin) (\LE+\ES-t_1 - \ES- \LE + t_2),\\
+                               W_i - f_i(\bmax)(\max(0,\LE - \LE -\ES +t_1+\\
+                               \hspace{2cm}\LE +\ES - t_2 - \ES)
+                             \end{array}
       \right)\\
-      & \\
+                           & \\
       = &\max\left(
-      \begin{array}{l}
-	f_i(\bmin) (t_2-t_1),\\
-	W_i - f_i(\bmax)(\max(0,\LE-t_2 +t_1 - \ES))
-      \end{array}
-	\right)\\
+          \begin{array}{l}
+            f_i(\bmin) (t_2-t_1),\\
+            W_i - f_i(\bmax)(\max(0,\LE-t_2 +t_1 - \ES))
+          \end{array}
+      \right)\\
       = & \wbCS
     \end{array}$
   \end{itemize}
   Et donc: 
-\begin{align*}
-\wb[i][t_1'][t_2'] &=
-                     \min(\wbLS[i][t_1'][t_2'],\wbCS[i][t_1'][t_2'],\wbRS[i][t_1'][t_2'])
-                     \\
- & =\min(\wbRS,\wbCS,\wbLS)\\
- & =\wb 
-\end{align*}
-avec $t_1'=\LE+\ES-t_2$ et
-$t_2'=\LE+\ES-t_1,\ \forall t_1 \le 0$ et $\forall t_2 \ge t_1$.
+  \begin{align*}
+    \wb[i][t_1'][t_2'] &=
+                         \min(\wbLS[i][t_1'][t_2'],\wbCS[i][t_1'][t_2'],\wbRS[i][t_1'][t_2'])
+    \\
+                       & =\min(\wbRS,\wbCS,\wbLS)\\
+                       & =\wb 
+  \end{align*}
+  avec $t_1'=\LE+\ES-t_2$ et
+  $t_2'=\LE+\ES-t_1,\ \forall t_1 \le 0$ et $\forall t_2 \ge t_1$.
 \end{proof}
 
 Donc, grâce aux lemmes~\ref{lem:sym1} et~\ref{lem:sym2}, nous avons
@@ -909,8 +1125,8 @@ polygone (triangle) délimité par les inégalités $t_1 \ge \ES, \ t_2
 \le \LE,\ t_1+t_2 \le \ES+\LE$ et $ t_2 \ge t_1$. Ce triangle est
 défini par les points:
 
- $X=(\ES,\LE)$ \hfill $\ Y=(\frac{\ES+\LE}{2},\frac{\ES+\LE}{2})$
- \hfill $Z=( \ES,\ES)$
+$A=(\ES,\LE)$ \hfill $\ B=(\frac{\ES+\LE}{2},\frac{\ES+\LE}{2})$
+\hfill $C=( \ES,\ES)$
 
 Les différentes expressions de $\wb$ en fonctions de $t_1,t_2$ et des
 paramètre de l'activité $i$ sont décrits
@@ -948,12 +1164,12 @@ considéré. De plus, le cas le cas $W_i \ge f_i(\bmin)(\LE -\ES)$ est
 séparé en deux sous cas: $\emin \le \smax$ et $\emin \ge \smax$. Le
 premier cas correspond au cas où le point d'intersection des lignes
 $t_1\le \emin$ et $t_2 \ge smax$ vérifie $t_2 \ge t_1$ et donc le
-point est à l'intérieur du triangle $(X,Y,Z)$. Le second cas
+point est à l'intérieur du triangle $(A,B,C)$. Le second cas
 correspond au cas où ce point se trouve à l'extérieur du
 triangle. Dans ces deux cas, les segments de définition à considérer
 ne sont pas les mêmes.
 
-Plaçons-nous dans le premier cas, i.e. le cas où $\emin \le
+Plaçons nous dans le premier cas, i.e. le cas où $\emin \le
 \smax$. Dans ce cas, le segment $\overline{DD'}$ sépare les cas où
 $\wb= f_i(\bmin)(t_2-t_1)$ et $\wb= W_i -
 f_i(\bmax)(\LE-t_2+t_1-\ES)$, le segment $\overline{DG}$ délimite
@@ -977,273 +1193,269 @@ Les autres zones correspondent à $\underline{w}(i,t_1,t_2)=0$.
 
 De plus, les coordonnées de chaque points sont:
 \begin{itemize}
-\item $A=(\ES,\LE),\ B=(e_i^{min},s_i^{max}),\
-C=(s_i^{max},s_i^{max})$ and $C'=(e_i^{min},e_i^{min})$
+\item $A=(\ES,\LE),\ B=(\emin,\smax),\
+  C=(\smax,\smax)$ and $C'=(\emin,\emin)$
 \item
-$D=(\ES,\frac{\LE f_i(\bmax)-\ES f_i(\bmin)-W_i}{f_i(\bmax)-f_i(\bmin)}),\
-D'=(\frac{\ES f_i(\bmax)-\LE f_i(\bmin)+W_i}{f_i(\bmax)-f_i(\bmin)},\LE)$
+  $D=(\ES,\frac{\LE f_i(\bmax)-\ES f_i(\bmin)-W_i}{f_i(\bmax)-f_i(\bmin)}),\
+  D'=(\frac{\ES f_i(\bmax)-\LE f_i(\bmin)+W_i}{f_i(\bmax)-f_i(\bmin)},\LE)$
 \item
-$G=(\frac{\ES(f_i(\bmax)-f_i(\bmin))-\LE f_i(\bmin)+W_i}{f_i(\bmax)-2f_i(\bmin)},
-\frac{\LE(f_i(\bmax)-f_i(\bmin))-\ES f_i(\bmin)-W_i}{f_i(\bmax)-2f_i(\bmin)})$
+  $G=(\frac{\ES(f_i(\bmax)-f_i(\bmin))-\LE f_i(\bmin)+W_i}{f_i(\bmax)-2f_i(\bmin)},
+  \frac{\LE(f_i(\bmax)-f_i(\bmin))-\ES f_i(\bmin)-W_i}{f_i(\bmax)-2f_i(\bmin)})$
 \end{itemize}
 
 
- 
+
 \begin{figure}[!htb]
   \centering
-   \subcaptionbox{Cas $\bmin = 0$}[0.45\linewidth]
-{\begin{tikzpicture}
-[scale=0.4]
-\fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\draw[fill=LightGoldenrod] (0,6.5) -- (2,6.5) -- (4.5,9) -- (4.5,10)
--- (2,10) -- (2,9) -- (0,9) -- cycle; 
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
+  \subcaptionbox{Cas $\bmin = 0$}[0.45\linewidth]
+  {\begin{tikzpicture}
+      [scale=0.4]
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      \draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
+      \draw[fill=LightGoldenrod] (0,6.5) -- (2,6.5) -- (4.5,9) -- (4.5,10)
+      -- (2,10) -- (2,9) -- (0,9) -- cycle; 
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
 
-\node at (0,0) {};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+      \node at (0,0) {};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
 
-\node at (2,10) {$\bullet$};
-\node at (4.5,10) {$\bullet$};
+      \node at (2,10) {$\bullet$};
+      \node at (4.5,10) {$\bullet$};
 
-\node at (2,3) {};
-\node at (5,5) {};
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
-\node[label={[shift={(0.2,-0.6)}]\scriptsize$F$}] at (2,6.5) {$\bullet$};
-\node[label={[shift={(0.2,-0.7)}]\scriptsize$F'$}] at (4.5,9) {$\bullet$};
-\draw[dashed] (ri.center) -- (2,10);
-\draw[dashed] (di.center) -- (10,9);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[dashed] (emin1.center) -- (4.5,10);
-\draw[dashed] (smax2.center) -- (10,6.5);
+      \node at (2,3) {};
+      \node at (5,5) {};
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+      \node[label={[shift={(0.2,-0.6)}]\scriptsize$F$}] at (2,6.5) {$\bullet$};
+      \node[label={[shift={(0.2,-0.7)}]\scriptsize$F'$}] at (4.5,9) {$\bullet$};
+      \draw[dashed] (ri.center) -- (2,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[dashed] (emin1.center) -- (4.5,10);
+      \draw[dashed] (smax2.center) -- (10,6.5);
 
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
-\end{tikzpicture}}
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+    \end{tikzpicture}}
 
-\vspace{0.7cm}
-Cas $ W_i \le f_i(\bmin) (\LE-\ES)$
-
-
-\subcaptionbox{$ \emin \le \smax $}[0.45\linewidth]{
-
-\begin{tikzpicture}
-[scale=0.4]
-%non common
-\fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
-\draw[fill=LightGreen] (0,9) -- (2,9) -- (4.5,6.5) --(0,6.5) -- cycle;
-\draw[fill=LightBlue] (2,9) -- (2,10) -- (4.5,10) --(4.5,6.5) --cycle;
-\node[label={[shift={(0.3,-0.7)}]\scriptsize$B$}] (B) at (4.5,6.5) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
-
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
-\node at (4.5,10) {$\bullet$};
-%common
-
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
+  \vspace{0.7cm}
+  Cas $ W_i \le f_i(\bmin) (\LE-\ES)$
 
 
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+  \subcaptionbox{$ \emin \le \smax $}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [scale=0.4]
+      % non common
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      \draw[fill=LightGreen] (0,9) -- (2,9) -- (4.5,6.5) --(0,6.5) -- cycle;
+      \draw[fill=LightBlue] (2,9) -- (2,10) -- (4.5,10) --(4.5,6.5) --cycle;
+      \node[label={[shift={(0.3,-0.7)}]\scriptsize$B$}] (B) at (4.5,6.5) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
+      \node at (4.5,10) {$\bullet$};
+      % common
 
-\node at (2,10) {$\bullet$};
-
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
-
-\draw[dashed] (ri.center) -- (2,10);
-\draw[dashed] (emin1.center) -- (4.5,10);
-\draw[dashed] (di.center) -- (10,9);
-\draw[dashed] (smax2.center) -- (10,6.5);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
-\end{tikzpicture}}
-\hfill
-\subcaptionbox{$\emin \ge \smax$}[0.45\linewidth]{
-\begin{tikzpicture}
-[scale=0.4]
-\fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
-\draw[fill=Cornsilk!99!black!40!] (6,6) -- (5,5) -- (4.5,6.5) -- cycle;
-\draw[fill=LightGreen] (0,9) -- (2,9)-- (4.5,6.5) -- (5,5) -- (0,5) -- cycle;
-\draw[fill=LightBlue]  (2,9) -- (2,10)-- (6,10) -- (6,6)-- (4.5,6.5) -- cycle;
-\node[label={[shift={(0,-0.8)}]\scriptsize$C$}] (C) at (5,5)  {$\bullet$};
-\node[label={[shift={(0.3,-0.7)}]\scriptsize$C'$}] (C2) at (6,6)  {$\bullet$};
-
-\node[label={[shift={(0.2,-0.3)}]\scriptsize$G$}] at (4.5,6.5)  {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,5) {$\bullet$};
-
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (6,0) {};
-
-\node at (6,10) {$\bullet$};
-%common
-
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
-
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
-
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
-
-\node at (2,10) {$\bullet$};
-
-\node at (2,3) {};
-\node at (5,5) {};
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
-
-\draw[dashed] (ri.center) -- (2,10);
-\draw[dashed] (emin1.center) -- (6,10);
-\draw[dashed] (di.center) -- (10,9);
-\draw[dashed] (smax2.center) -- (10,5);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
-
-\end{tikzpicture}
-}
-
-\vspace{0.7cm}
-Cas $  W_i \ge f_i(\bmin) (\LE - \ES)$
-
-\subcaptionbox{$\emin \le \smax$}[0.45\linewidth]{
-
-\begin{tikzpicture}
-[scale=0.4]
-%non common
-
-\fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
-\path[fill=Cornsilk!99!black!40!] (2,7.5) -- (3.5,9)-- (3.75,7.3) -- cycle;
-\draw[fill=LightGoldenrod] (2,7.5) -- (3.5,9) -- (2,9) -- cycle;
-\draw[fill=LightGreen] (0,9) -- (2,9) -- (2,7.5)  --  (3.75,7.3) -- (4.5,6.5) -- (0,6.5)  -- (0,7.5) --cycle;
-%\draw[fill=PaleGreen!70!] (0,7.5) -- (2,7.5) -- (3.75,7.3) --
-%(4.5,6.5) -- (0,6.5) -- cycle;
-\draw[fill=LightBlue] (2,9) -- (2,10) -- (4.5,10) --  (4.5,6.5) --
-(3.75,7.3) -- (3.5,9) -- cycle;
-%\draw[fill=PowderBlue!70!] (4.5,6.5)-- (3.75,7.3) -- (3.5,9) -- (3.5,10) -- (4.5,10) --cycle;
-\node[label={[shift={(-0.2,-0.7)}]\scriptsize$D$}] (D) at (2,7.5) {$\bullet$};
-\node[label={[shift={(0.2,-0.3)}]\scriptsize$D'$}] (D2) at (3.5,9) {$\bullet$};
-\node[label={[shift={(0.1,-0.3)}]\scriptsize$G$}] (E) at (3.75,7.3)  {$\bullet$};
-\node[label={[shift={(0.3,-0.7)}]\scriptsize$B$}] (B) at (4.5,6.5) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
-
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
-\node at (4.5,10) {$\bullet$};
-%\node at (3.5,10) {$\bullet$};
-%\node at (0,7.5) {$\bullet$};
-%common
+      \draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
 
 
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+
+      \node at (2,10) {$\bullet$};
+
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+
+      \draw[dashed] (ri.center) -- (2,10);
+      \draw[dashed] (emin1.center) -- (4.5,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \draw[dashed] (smax2.center) -- (10,6.5);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+    \end{tikzpicture}}
+  \hfill
+  \subcaptionbox{$\emin \ge \smax$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [scale=0.4]
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      \draw[fill=Cornsilk!99!black!40!] (6,6) -- (5,5) -- (4.5,6.5) -- cycle;
+      \draw[fill=LightGreen] (0,9) -- (2,9)-- (4.5,6.5) -- (5,5) -- (0,5) -- cycle;
+      \draw[fill=LightBlue]  (2,9) -- (2,10)-- (6,10) -- (6,6)-- (4.5,6.5) -- cycle;
+      \node[label={[shift={(0,-0.8)}]\scriptsize$C$}] (C) at (5,5)  {$\bullet$};
+      \node[label={[shift={(0.3,-0.7)}]\scriptsize$C'$}] (C2) at (6,6)  {$\bullet$};
+
+      \node[label={[shift={(0.2,-0.3)}]\scriptsize$G$}] at (4.5,6.5)  {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,5) {$\bullet$};
+
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (6,0) {};
+
+      \node at (6,10) {$\bullet$};
+      % common
+
+      \draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
+
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+
+      \node at (2,10) {$\bullet$};
+
+      \node at (2,3) {};
+      \node at (5,5) {};
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+
+      \draw[dashed] (ri.center) -- (2,10);
+      \draw[dashed] (emin1.center) -- (6,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \draw[dashed] (smax2.center) -- (10,5);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+
+    \end{tikzpicture}
+  }
+
+  \vspace{0.7cm}
+  Cas $  W_i \ge f_i(\bmin) (\LE - \ES)$
+
+  \subcaptionbox{$\emin \le \smax$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [scale=0.4]
+      % non common
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      \path[fill=Cornsilk!99!black!40!] (2,7.5) -- (3.5,9)-- (3.75,7.3) -- cycle;
+      \draw[fill=LightGoldenrod] (2,7.5) -- (3.5,9) -- (2,9) -- cycle;
+      \draw[fill=LightGreen] (0,9) -- (2,9) -- (2,7.5)  --  (3.75,7.3) -- (4.5,6.5) -- (0,6.5)  -- (0,7.5) --cycle;
+      % \draw[fill=PaleGreen!70!] (0,7.5) -- (2,7.5) -- (3.75,7.3) --
+      % (4.5,6.5) -- (0,6.5) -- cycle;
+      \draw[fill=LightBlue] (2,9) -- (2,10) -- (4.5,10) --  (4.5,6.5) --
+      (3.75,7.3) -- (3.5,9) -- cycle;
+      % \draw[fill=PowderBlue!70!] (4.5,6.5)-- (3.75,7.3) -- (3.5,9) -- (3.5,10) -- (4.5,10) --cycle;
+      \node[label={[shift={(-0.2,-0.7)}]\scriptsize$D$}] (D) at (2,7.5) {$\bullet$};
+      \node[label={[shift={(0.2,-0.3)}]\scriptsize$D'$}] (D2) at (3.5,9) {$\bullet$};
+      \node[label={[shift={(0.1,-0.3)}]\scriptsize$G$}] (E) at (3.75,7.3)  {$\bullet$};
+      \node[label={[shift={(0.3,-0.7)}]\scriptsize$B$}] (B) at (4.5,6.5) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
+
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
+      \node at (4.5,10) {$\bullet$};
+      % \node at (3.5,10) {$\bullet$};
+      % \node at (0,7.5) {$\bullet$};
+      % common
 
 
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+      \draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
 
-\node at (2,10) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
 
-\node at (2,3) {};
-\node at (5,5) {};
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
 
-\draw[dashed] (ri.center) -- (D.center);
-\draw[dashed] (emin1.center) -- (4.5,10);
-\draw[dashed] (di.center) -- (10,9);
-\draw[dashed] (smax2.center) -- (10,6.5);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+      \node at (2,10) {$\bullet$};
 
-\end{tikzpicture}
-}
-\hfill
-\subcaptionbox{$\emin \ge \smax$}[0.45\linewidth]{
+      \node at (2,3) {};
+      \node at (5,5) {};
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
 
-\begin{tikzpicture}
-[scale=0.4]
-%non common
+      \draw[dashed] (ri.center) -- (D.center);
+      \draw[dashed] (emin1.center) -- (4.5,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \draw[dashed] (smax2.center) -- (10,6.5);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
 
-\fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
-\path[fill=Cornsilk!99!black!40!] (2,6.25) -- (4.75,9)-- (6,6) -- (5,5) -- cycle;
-\draw[fill=LightGoldenrod] (2,6.25) -- (2,9) -- (4.75,9) -- cycle;
-\draw[fill=LightGreen] (0,9) -- (2,9) -- (2,6.25) --  (5,5)
--- (0,5) --  cycle;
-%\draw[fill=PaleGreen!70!] (0,6.25) -- (2,6.25) -- (5,5) -- (0,5) -- cycle;
-\draw[fill=LightBlue] (2,9) -- (2,10) -- (4.75,10) -- (6,10) -- (6,6) -- (4.75,9) -- cycle;
-%\draw[fill=PowderBlue!70!] (4.75,10) -- (6,10) -- (6,6)-- (4.75,9) -- cycle;
-\node[label={[shift={(-0.2,-0.7)}]\scriptsize$D$}] (D) at (2,6.25) {$\bullet$};
-\node[label={[shift={(0.2,-0.3)}]\scriptsize$D'$}] (D2) at (4.75,9) {$\bullet$};
-\node[label={[shift={(0,-0.8)}]\scriptsize$C$}] (C) at (5,5)  {$\bullet$};
-\node[label={[shift={(0.3,-0.5)}]\scriptsize$C'$}] (C2) at (6,6)  {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,5) {$\bullet$};
+    \end{tikzpicture}
+  }
+  \hfill
+  \subcaptionbox{$\emin \ge \smax$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [scale=0.4]
+      % non common
+      
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      \path[fill=Cornsilk!99!black!40!] (2,6.25) -- (4.75,9)-- (6,6) -- (5,5) -- cycle;
+      \draw[fill=LightGoldenrod] (2,6.25) -- (2,9) -- (4.75,9) -- cycle;
+      \draw[fill=LightGreen] (0,9) -- (2,9) -- (2,6.25) --  (5,5)
+      -- (0,5) --  cycle;
+      % \draw[fill=PaleGreen!70!] (0,6.25) -- (2,6.25) -- (5,5) -- (0,5) -- cycle;
+      \draw[fill=LightBlue] (2,9) -- (2,10) -- (4.75,10) -- (6,10) -- (6,6) -- (4.75,9) -- cycle;
+      % \draw[fill=PowderBlue!70!] (4.75,10) -- (6,10) -- (6,6)-- (4.75,9) -- cycle;
+      \node[label={[shift={(-0.2,-0.7)}]\scriptsize$D$}] (D) at (2,6.25) {$\bullet$};
+      \node[label={[shift={(0.2,-0.3)}]\scriptsize$D'$}] (D2) at (4.75,9) {$\bullet$};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$C$}] (C) at (5,5)  {$\bullet$};
+      \node[label={[shift={(0.3,-0.5)}]\scriptsize$C'$}] (C2) at (6,6)  {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,5) {$\bullet$};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (6,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (6,0) {};
 
-\node at (6,10) {$\bullet$};
-%\node at (4.75,10) {$\bullet$};
-%\node at (0,6.25) {$\bullet$};
-%common
+      \node at (6,10) {$\bullet$};
+      % \node at (4.75,10) {$\bullet$};
+      % \node at (0,6.25) {$\bullet$};
+      % common
 
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
+      \draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
 
-\node[label={[shift={(-0.4,-0.4)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+      \node[label={[shift={(-0.4,-0.4)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
 
-\node at (2,10) {$\bullet$};
+      \node at (2,10) {$\bullet$};
 
-\node at (2,3) {};
-\node at (5,5) {};
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+      \node at (2,3) {};
+      \node at (5,5) {};
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
 
-\draw[dashed] (ri.center) -- (D.center);
-\draw[dashed] (emin1.center) -- (6,10);
-\draw[dashed] (di.center) -- (10,9);
-\draw[dashed] (smax2.center) -- (10,5);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+      \draw[dashed] (ri.center) -- (D.center);
+      \draw[dashed] (emin1.center) -- (6,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \draw[dashed] (smax2.center) -- (10,5);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
 
-\end{tikzpicture}
+    \end{tikzpicture}
 
-}
-\caption{Les différentes expressions de $\wb$ en fonction des
-  paramètres du problème \CECSP.}
-\label{fig:breakline_nrj}
+  }
+  \caption{Les différentes expressions de $\wb$ en fonction des
+    paramètres du problème \CECSP.}
+  \label{fig:breakline_nrj}
 \end{figure}
 
 Nous avons donc défini les différentes zones correspondant chacune à
@@ -1260,11 +1472,11 @@ figure~\ref{fig:breakline_nrj}. Par exemple, dans le cas où $W_i \ge
 f_i(\bmin)(\LE-\ES)$ les segments à considérer sont donc:
 \begin{itemize}
 \item dans le cas $\emin \le \smax$: $(\ES ,E_{max})A,\ (S_{min},
-\LE)A,\ (S_{min},\smax)B,\ B(\emin,E_{max}),\ AD,\ AD',\
-DD' ,\ DG,\ D'G$ and $GB$.
+  \LE)A,\ (S_{min},\smax)B,\ B(\emin,E_{max})$,  $AD,\ AD',\
+  DD' ,\ DG,\ D'G$ and $GB$.
 \item for case $\emin\ge \smax$: $(\ES ,E_{max})A,\ (S_{min},
-\LE)A,\ (S_{min},\smax)C,\ C'(\emin,E_{max}),\ AD,\ AD',\
-DD' ,\ DC$ and $D'C$.
+  \LE)A,\ (S_{min},\smax)C,\ C'(\emin,E_{max}),\ AD$, $ AD',\
+  DD' ,\ DC$ and $D'C$.
 \end{itemize}
 avec $D_{t_1}$ (resp. $D_{t_2}$) la projection sur l'axe $x$
 (resp. sur l'axe $y$) du point $D$.
@@ -1314,250 +1526,587 @@ f_i(\bmin) (\LE - \ES)$, $\bb=\bmin \times \wb/f_i(\bmin)$ et les
 zones où $\bb$ a la même expression sont les mêmes que pour $\wb$ dans
 ce cas. 
 
+Dans le cas où $W_i \ge f_i(\bmax)(\LE - \ES)$, si $|I|$ vaut
+$t_2-t_1$, l'inégalité donne $\wb \le f_i(\bmin)(t_2-t_1)$. Donc, si
+$\wbCS=f_i(\bmin) (t_2-t_1)$ alors $\wb=\min(W_i -
+f_i(\bmax)(\LE-t_2), W_i - f_i(\bmax)(t_1-\ES),
+f_i(\bmin)(t_2-t_1))$ et l'inégalité est vérifiée. {\'A}l'inverse, si
+$\wbCS=W_i - f_i(\bmax)(\LE - t_2 +t_1 - \ES)$ et comme $[t_1,t_2[
+\subset [\ES,\LE]$, on a forcément $\wb=W_i - f_i(\bmax)(\LE - t_2
++t_1 - \ES)$. Donc l'inégalité n'est jamais vérifiée et
+$\bb=\frac{1}{a_i}(\wb-c_i|I|)$. 
 
+Le cas où $|I|$ vaut $t_2 - \ES$ correspond au cas où
+$\wb=W_i-f_i(\bmax)(\LE-t_2)$. Dans ce cas, l'inégalité donne: 
+\[ \frac{\LE f_i(\bmax) - \ES f_i(\bmin) - W_i}{f_i(\bmax)-f_i(\bmin)}
+  \le t_2 \]
+La partie gauche de cette inégalité correspond exactement à l'ordonnée
+du point $D$ et donc la zone verte est divisée en deux parties:
+\begin{itemize}
+\item la partie claire où $\bb= \bmin \times \wb / f_i(\bmin)$
+\item  et la partie plus foncée où $\bb=\frac{1}{a_i}(\wb - c_i|I|)$
+\end{itemize}
+Les cas où $|I| = \LE -\ES$ et $|I| = \LE -t_1$ sont traités de la
+même façon.
+
+La figure~\ref{fig:breakline_res} présente ces résultats avec les
+ expressions de $\bb$ suivantes:
+ \begin{itemize}
+ \item la zone rouge claire correspond à $\bb=\bmin \times W_i/f_i(\bmin)$;
+ \item la zone rouge foncée correspond à $\bb=\frac{1}{a_i}(W_i - c_i (\LE - \ES))$;
+ \item la zone verte claire à $\bb=\bmin \times
+   \left\{W_i-(\LE-t_2)f_i(\bmax)\right\}/ f_i(\bmin)$;
+ \item la zone verte foncée à
+   $\bb=\frac{1}{a_i}(W_i-(\LE-t_2)f_i(\bmax) - c_i |I|)$ où $I$ vaut
+   $[t_1,t_2[$ où $[\ES,t_2[$;
+ \item la zone bleu claire à $\bb=\bmin \times \left\{W_i-(t_1-\ES)f_i(\bmax)\right\}/f_i(\bmin)$;
+ \item la zone bleu foncée à $\bb=\frac{1}{a_i}(W_i-(t_1-\ES)f_i(\bmax) - c_i
+   |I|)$ où $I$ vaut  $[t_1,t_2[$ où $[t_1,\LE{[}$;
+ \item la zone jaune à
+   $\bb=\frac{1}{a_i}(W_i-(\LE-t_2+t_1-\ES)f_i(\bmax) - c_i (t_2 - t_1))$;
+ \item et la blanche à $\bb=(t_2-t_1) \bmin$.
+ \end{itemize}
+ Les autres zones correspondent à $\bb=0$.
+
+ Les segments à considérer sont aussi décrits par la
+ figure~\ref{fig:breakline_res} et sont, par exemple, dans le cas où
+ $W_i \ge f_i(\bmin) (\LE-\ES)$:
+ \begin{itemize}
+ \item si $\emin \le \smax$: $(\ES ,E_{max})A,\ (S_{min},
+   \LE)A,\ (S_{min},\smax)B, \\B(\emin,E_{max}),\ AD,\ AD',\
+   D(0,D_{t_2}),\ D'(D'_{t_1},E_{max}),\ DD' ,\ DG,\ D'G$ et $GB$.
+ \item si $\emin \ge \smax$: $(\ES ,E_{max})A,\ (S_{min},
+   \LE)A,\ (S_{min},\smax)C,\\ C'(\emin,E_{max}),\ AD,\ AD',\
+   D(0,D_{t_2}),\ D'(D'_{t_1},E_{max}),\ DD' ,\ DC$ et $D'C$.
+ \end{itemize}
 
 \begin{figure}[!htb]
   \centering
-   \subcaptionbox{Cas $\bmin = 0$}[0.45\linewidth]
-{\begin{tikzpicture}
-[scale=0.4]
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\draw[fill=LightGoldenrod] (0,6.5) -- (2,6.5) -- (4.5,9) -- (4.5,10) -- (2,10) -- (2,9) -- (0,9) -- cycle;
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
+  \subcaptionbox{Cas $\bmin = 0$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [scale=0.4]
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      \draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
+      \draw[fill=LightGoldenrod] (0,6.5) -- (2,6.5) -- (4.5,9) -- (4.5,10) -- (2,10) -- (2,9) -- (0,9) -- cycle;
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
+      
+      \node at (0,0) {};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
 
-\node at (0,0) {};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
+      
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
+      \node at (2,10) {$\bullet$};
+      \node at (4.5,10) {$\bullet$};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
+      \node at (2,3) {};
+      \node at (5,5) {};
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+      \node[label={[shift={(0.2,-0.6)}]\scriptsize$F$}] at (2,6.5) {$\bullet$};
+      \node[label={[shift={(0.2,-0.7)}]\scriptsize$F'$}] at (4.5,9) {$\bullet$};
+      \draw[dashed] (ri.center) -- (2,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[dashed] (emin1.center) -- (4.5,10);
+      \draw[dashed] (smax2.center) -- (10,6.5);
 
-\node at (2,10) {$\bullet$};
-\node at (4.5,10) {$\bullet$};
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+    \end{tikzpicture}}
 
-\node at (2,3) {};
-\node at (5,5) {};
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
-\node[label={[shift={(0.2,-0.6)}]\scriptsize$F$}] at (2,6.5) {$\bullet$};
-\node[label={[shift={(0.2,-0.7)}]\scriptsize$F'$}] at (4.5,9) {$\bullet$};
-\draw[dashed] (ri.center) -- (2,10);
-\draw[dashed] (di.center) -- (10,9);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[dashed] (emin1.center) -- (4.5,10);
-\draw[dashed] (smax2.center) -- (10,6.5);
-
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
-\end{tikzpicture}}
-
-\vspace{0.7cm}
-Cas $ W_i \le f_i(\bmin) (\LE-\ES)$
-
-
-\subcaptionbox{$ \emin \le \smax $}[0.45\linewidth]{
-
-\begin{tikzpicture}
-[scale=0.4]
-%non common
-\draw[fill=LightGreen] (0,9) -- (2,9) -- (4.5,6.5) --(0,6.5) -- cycle;
-\draw[fill=LightBlue] (2,9) -- (2,10) -- (4.5,10) --(4.5,6.5) --cycle;
-\node[label={[shift={(0.3,-0.7)}]\scriptsize$B$}] (B) at (4.5,6.5) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
-
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
-\node at (4.5,10) {$\bullet$};
-%common
-
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
+  \vspace{0.7cm}
+  Cas $ W_i \le f_i(\bmin) (\LE-\ES)$
 
 
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+  \subcaptionbox{$ \emin \le \smax $}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [scale=0.4]
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      % non common
+      \draw[fill=LightGreen] (0,9) -- (2,9) -- (4.5,6.5) --(0,6.5) -- cycle;
+      \draw[fill=LightBlue] (2,9) -- (2,10) -- (4.5,10) --(4.5,6.5) --cycle;
+      \node[label={[shift={(0.3,-0.7)}]\scriptsize$B$}] (B) at (4.5,6.5) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
+      \node at (4.5,10) {$\bullet$};
+      % common
 
-\node at (2,10) {$\bullet$};
-
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
-
-\draw[dashed] (ri.center) -- (2,10);
-\draw[dashed] (emin1.center) -- (4.5,10);
-\draw[dashed] (di.center) -- (10,9);
-\draw[dashed] (smax2.center) -- (10,6.5);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
-\end{tikzpicture}}
-\hfill
-\subcaptionbox{$\emin \ge \smax$}[0.45\linewidth]{
-\begin{tikzpicture}
-[scale=0.4]
-\draw[fill=Cornsilk!99!black!40!] (6,6) -- (5,5) -- (4.5,6.5) -- cycle;
-\draw[fill=LightGreen] (0,9) -- (2,9)-- (4.5,6.5) -- (5,5) -- (0,5) -- cycle;
-\draw[fill=LightBlue]  (2,9) -- (2,10)-- (6,10) -- (6,6)-- (4.5,6.5) -- cycle;
-\node[label={[shift={(0,-0.8)}]\scriptsize$C$}] (C) at (5,5)  {$\bullet$};
-\node[label={[shift={(0.3,-0.7)}]\scriptsize$C'$}] (C2) at (6,6)  {$\bullet$};
-
-\node[label={[shift={(0.2,-0.3)}]\scriptsize$G$}] at (4.5,6.5)  {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,5) {$\bullet$};
-
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (6,0) {};
-
-\node at (6,10) {$\bullet$};
-%common
-
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
-
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
-
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
-
-\node at (2,10) {$\bullet$};
-
-\node at (2,3) {};
-\node at (5,5) {};
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
-
-\draw[dashed] (ri.center) -- (2,10);
-\draw[dashed] (emin1.center) -- (6,10);
-\draw[dashed] (di.center) -- (10,9);
-\draw[dashed] (smax2.center) -- (10,5);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
-
-\end{tikzpicture}
-}
-
-\vspace{0.7cm}
-Cas $  W_i \ge f_i(\bmin) (\LE - \ES)$
-
-\subcaptionbox{$\emin \le \smax$}[0.45\linewidth]{
-
-\begin{tikzpicture}
-[scale=0.4]
-%non common
-\path[fill=Cornsilk!99!black!40!] (2,7.5) -- (3.5,9)-- (3.75,7.3) -- cycle;
-\draw[fill=LightGoldenrod] (2,7.5) -- (3.5,9) -- (2,9) -- cycle;
-\draw[fill=LightGreen] (0,9) -- (2,9) -- (2,7.5) -- (0,7.5) --cycle;
-\draw[fill=PaleGreen!70!] (0,7.5) -- (2,7.5) -- (3.75,7.3) -- (4.5,6.5) -- (0,6.5) -- cycle;
-\draw[fill=LightBlue] (2,9) -- (2,10) -- (3.5,10) --(3.5,9)--cycle;
-\draw[fill=PowderBlue!70!] (4.5,6.5)-- (3.75,7.3) -- (3.5,9) -- (3.5,10) -- (4.5,10) --cycle;
-\node[label={[shift={(-0.2,-0.7)}]\scriptsize$D$}] (D) at (2,7.5) {$\bullet$};
-\node[label={[shift={(0.2,-0.3)}]\scriptsize$D'$}] (D2) at (3.5,9) {$\bullet$};
-\node[label={[shift={(0.1,-0.3)}]\scriptsize$G$}] (E) at (3.75,7.3)  {$\bullet$};
-\node[label={[shift={(0.3,-0.7)}]\scriptsize$B$}] (B) at (4.5,6.5) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
-
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
-\node at (4.5,10) {$\bullet$};
-\node at (3.5,10) {$\bullet$};
-\node at (0,7.5) {$\bullet$};
-%common
-
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
+      \draw[fill=LightCoral!40!] (0,10) rectangle (2,9);
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
 
 
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
 
-\node at (2,10) {$\bullet$};
+      \node at (2,10) {$\bullet$};
 
-\node at (2,3) {};
-\node at (5,5) {};
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
 
-\draw[dashed] (ri.center) -- (D.center);
-\draw[dashed] (emin1.center) -- (4.5,10);
-\draw[dashed] (di.center) -- (10,9);
-\draw[dashed] (smax2.center) -- (10,6.5);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+      \draw[dashed] (ri.center) -- (2,10);
+      \draw[dashed] (emin1.center) -- (4.5,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \draw[dashed] (smax2.center) -- (10,6.5);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+    \end{tikzpicture}}
+  \hfill
+  \subcaptionbox{$\emin \ge \smax$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [scale=0.4]
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      \draw[fill=Cornsilk!99!black!40!] (6,6) -- (5,5) -- (4.5,6.5) -- cycle;
+      \draw[fill=LightGreen] (0,9) -- (2,9)-- (4.5,6.5) -- (5,5) -- (0,5) -- cycle;
+      \draw[fill=LightBlue]  (2,9) -- (2,10)-- (6,10) -- (6,6)-- (4.5,6.5) -- cycle;
+      \node[label={[shift={(0,-0.8)}]\scriptsize$C$}] (C) at (5,5)  {$\bullet$};
+      \node[label={[shift={(0.3,-0.7)}]\scriptsize$C'$}] (C2) at (6,6)  {$\bullet$};
 
-\end{tikzpicture}
-}
-\hfill
-\subcaptionbox{$\emin \ge \smax$}[0.45\linewidth]{
+      \node[label={[shift={(0.2,-0.3)}]\scriptsize$G$}] at (4.5,6.5)  {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,5) {$\bullet$};
 
-\begin{tikzpicture}
-[scale=0.4]
-%non common
-\path[fill=Cornsilk!99!black!40!] (2,6.25) -- (4.75,9)-- (6,6) -- (5,5) -- cycle;
-\draw[fill=LightGoldenrod] (2,6.25) -- (2,9) -- (4.75,9) -- cycle;
-\draw[fill=LightGreen] (0,9) -- (2,9) -- (2,6.25) -- (0,6.25) -- cycle;
-\draw[fill=PaleGreen!70!] (0,6.25) -- (2,6.25) -- (5,5) -- (0,5) -- cycle;
-\draw[fill=LightBlue] (2,9) -- (2,10) -- (4.75,10) -- (4.75,9) -- cycle;
-\draw[fill=PowderBlue!70!] (4.75,10) -- (6,10) -- (6,6)-- (4.75,9) -- cycle;
-\node[label={[shift={(-0.2,-0.7)}]\scriptsize$D$}] (D) at (2,6.25) {$\bullet$};
-\node[label={[shift={(0.2,-0.3)}]\scriptsize$D'$}] (D2) at (4.75,9) {$\bullet$};
-\node[label={[shift={(0,-0.8)}]\scriptsize$C$}] (C) at (5,5)  {$\bullet$};
-\node[label={[shift={(0.3,-0.5)}]\scriptsize$C'$}] (C2) at (6,6)  {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,5) {$\bullet$};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (6,0) {};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (6,0) {};
+      \node at (6,10) {$\bullet$};
+      % common
 
-\node at (6,10) {$\bullet$};
-\node at (4.75,10) {$\bullet$};
-\node at (0,6.25) {$\bullet$};
-%common
+      \draw[fill=LightCoral!40!] (0,10) rectangle (2,9);
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
 
-\draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
-\node (O) at (0,0) {};
-\node (T1) at (11,0) {};
-\node (T2) at (0,11) {};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
 
-\node[label={[shift={(-0.4,-0.4)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
-\node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
 
-\node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
-\node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+      \node at (2,10) {$\bullet$};
 
-\node at (2,10) {$\bullet$};
+      \node at (2,3) {};
+      \node at (5,5) {};
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
 
-\node at (2,3) {};
-\node at (5,5) {};
-\node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+      \draw[dashed] (ri.center) -- (2,10);
+      \draw[dashed] (emin1.center) -- (6,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \draw[dashed] (smax2.center) -- (10,5);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
 
-\draw[dashed] (ri.center) -- (D.center);
-\draw[dashed] (emin1.center) -- (6,10);
-\draw[dashed] (di.center) -- (10,9);
-\draw[dashed] (smax2.center) -- (10,5);
-\path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
-\draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
-\draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+    \end{tikzpicture}
+  }
 
-\end{tikzpicture}
+  \vspace{0.7cm}
+  Cas $  W_i \ge f_i(\bmin) (\LE - \ES)$
 
-}
-\caption{Les différentes expressions de $\bb$ en fonction des
-  paramètres du problème \CECSP.}
-\label{fig:breakline_res}
+  \subcaptionbox{$\emin \le \smax$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [scale=0.4]
+      % non common
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      \path[fill=Cornsilk!99!black!40!] (2,7.5) -- (3.5,9)-- (3.75,7.3) -- cycle;
+      \draw[fill=LightGoldenrod] (2,7.5) -- (3.5,9) -- (2,9) -- cycle;
+      \draw[fill=LightGreen] (0,9) -- (2,9) -- (2,7.5) -- (0,7.5) --cycle;
+      \draw[fill=PaleGreen!70!] (0,7.5) -- (2,7.5) -- (3.75,7.3) -- (4.5,6.5) -- (0,6.5) -- cycle;
+      \draw[fill=LightBlue] (2,9) -- (2,10) -- (3.5,10) --(3.5,9)--cycle;
+      \draw[fill=PowderBlue!70!] (4.5,6.5)-- (3.75,7.3) -- (3.5,9) -- (3.5,10) -- (4.5,10) --cycle;
+      \node[label={[shift={(-0.2,-0.7)}]\scriptsize$D$}] (D) at (2,7.5) {$\bullet$};
+      \node[label={[shift={(0.2,-0.3)}]\scriptsize$D'$}] (D2) at (3.5,9) {$\bullet$};
+      \node[label={[shift={(0.1,-0.3)}]\scriptsize$G$}] (E) at (3.75,7.3)  {$\bullet$};
+      \node[label={[shift={(0.3,-0.7)}]\scriptsize$B$}] (B) at (4.5,6.5) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,6.5) {$\bullet$};
+
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (4.5,0) {};
+      \node at (4.5,10) {$\bullet$};
+      \node at (3.5,10) {$\bullet$};
+      \node at (0,7.5) {$\bullet$};
+      % common
+
+      \draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
+
+
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+
+      \node at (2,10) {$\bullet$};
+
+      \node at (2,3) {};
+      \node at (5,5) {};
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+
+      \draw[dashed] (ri.center) -- (D.center);
+      \draw[dashed] (emin1.center) -- (4.5,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \draw[dashed] (smax2.center) -- (10,6.5);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+
+    \end{tikzpicture}
+  }
+  \hfill
+  \subcaptionbox{$\emin \ge \smax$}[0.45\linewidth]{
+    \begin{tikzpicture}
+      [scale=0.4]
+      % non common
+      \fill[gray!20] (0,0) -- (10,10) -- (0,10) -- cycle;
+      \path[fill=Cornsilk!99!black!40!] (2,6.25) -- (4.75,9)-- (6,6) -- (5,5) -- cycle;
+      \draw[fill=LightGoldenrod] (2,6.25) -- (2,9) -- (4.75,9) -- cycle;
+      \draw[fill=LightGreen] (0,9) -- (2,9) -- (2,6.25) -- (0,6.25) -- cycle;
+      \draw[fill=PaleGreen!70!] (0,6.25) -- (2,6.25) -- (5,5) -- (0,5) -- cycle;
+      \draw[fill=LightBlue] (2,9) -- (2,10) -- (4.75,10) -- (4.75,9) -- cycle;
+      \draw[fill=PowderBlue!70!] (4.75,10) -- (6,10) -- (6,6)-- (4.75,9) -- cycle;
+      \node[label={[shift={(-0.2,-0.7)}]\scriptsize$D$}] (D) at (2,6.25) {$\bullet$};
+      \node[label={[shift={(0.2,-0.3)}]\scriptsize$D'$}] (D2) at (4.75,9) {$\bullet$};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$C$}] (C) at (5,5)  {$\bullet$};
+      \node[label={[shift={(0.3,-0.5)}]\scriptsize$C'$}] (C2) at (6,6)  {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\smax$}] (smax2) at (0,5) {$\bullet$};
+
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\emin$}] (emin1) at (6,0) {};
+
+      \node at (6,10) {$\bullet$};
+      \node at (4.75,10) {$\bullet$};
+      \node at (0,6.25) {$\bullet$};
+      % common
+
+      \draw[fill=LightCoral!80!] (0,10) rectangle (2,9);
+      \node (O) at (0,0) {};
+      \node (T1) at (11,0) {};
+      \node (T2) at (0,11) {};
+
+      \node[label={[shift={(-0.4,-0.4)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$\LE$}] (di) at (0,9) {$\bullet$};
+      \node[label={[shift={(-0.4,-0.6)}]\scriptsize$E_{max}$}] at (0,10) {};
+
+      \node[label={[shift={(0,-0.8)}]\scriptsize$S_{min}$}] at (0,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$\ES$}] (ri) at (2,0) {};
+      \node[label={[shift={(0,-0.8)}]\scriptsize$E_{max}$}] at (10,0) {};
+
+      \node at (2,10) {$\bullet$};
+
+      \node at (2,3) {};
+      \node at (5,5) {};
+      \node[label={[shift={(-0.2,-0.3)}]\scriptsize$A$}] (A) at (2,9) {$\bullet$};
+
+      \draw[dashed] (ri.center) -- (D.center);
+      \draw[dashed] (emin1.center) -- (6,10);
+      \draw[dashed] (di.center) -- (10,9);
+      \draw[dashed] (smax2.center) -- (10,5);
+      \path[draw] (O.center) -- (10,10) -- (0,10) -- cycle;
+      \draw[->] (O.center) -- (T1.center) node[above left] {\scriptsize$t_1$};
+      \draw[->] (O.center) -- (T2.center) node[below left] {\scriptsize$t_2$};
+
+    \end{tikzpicture}
+  }
+  \caption{Les différentes expressions de $\bb$ en fonction des
+    paramètres du problème \CECSP.}
+  \label{fig:breakline_res}
 \end{figure}
-\subsubsection{Intervalles d'intérêt pour les ajustements}
+
+Pour calculer les intervalles d'intérêt pour l'algorithme de
+vérification du raisonnement énergétique, il faut, pour chaque paire
+de segments de définition, calculer leur point d'intersection, s'il
+existe. Les coordonnées de ce point d'intersection correspondent à un
+intervalles d'intérêt. 
+
+Pour calculer ces points d'intersection, deux méthodes existent. La
+première est la plus naïve et consiste à considérer toutes les paires
+de segments et calculer leur intersection. La seconde méthode utilise
+l'algorithme de balayage de Bentley-Ottmann~\cite{sweep}. 
+
+L'idée principale sur laquelle repose l'algorithme de balayage est que
+deux segments ne peuvent s'intersecter s'ils ne leurs projections sur
+l'axe des ordonnées et sur l'axe des abscisses ne se chevauchent
+pas. Une ligne horizontale fictive est utilisée pour balayer l'axe des
+abscisses et à certains ``événements'', on teste l'intersection entre
+deux segments s'ils intersectent tous les deux cette ligne fictives et
+s'ils sont consécutifs dans l'ordre vertical. Avec cet algorithme, le
+nombre de test d'intersection peut grandement décroître par rapport à
+l'algorithme naïf. 
+
+Dans le cas de l'algorithme naïf, la complexité totale de l'algorithme
+de vérification est de $O(n^3)$ tandis que, pour l'algorithme de
+balayage la complexité est de $O((n^2+nk) \log n)$, avec $k$ le nombre
+de points d'intersection. En théorie, la complexité du second
+algorithme peut être plus élevée ($k$ peut être de l'ordre de
+$O(n^2)$), mais en pratique, cette complexité peut devenir très faible
+si le nombre de points d'intersection est petit. Une comparaison de
+ces deux algorithmes sera effectué dans le chapitre~\ref{sec:expe}.
+
+\subsubsection{Analyses des variations de la fonction de marge et des
+  fonctions d'ajustements}
+
+Nous allons décrire ici, une troisième méthode permettant le calcul des
+intervalles d'intérêt du raisonnement énergétique. Cette méthode est
+l'adaptation des travaux de~\cite{DP} dans le cadre du \CUSP. Dans un
+premier temps, nous décrivons la méthode permettant de calculer ces
+intervalles pour l'algorithme de vérification, puis nous présenterons
+ce même résultat dans le cadre des ajustements de fenêtres de temps. 
+
+ La méthode décrite dans ce paragraphe repose sur le fait que, pour
+ chercher un intervalle $[t_1,t_2[$ vérifiant $SL(t_1,t_2) < 0$, il
+ suffit de s'intéresser au point $(t_1,t_2)$ pour lesquels la
+ fonction de marge est minimale. Comme, en pratique, il est difficile
+ de trouver le minimum globale d'une telle fonction, nous nous
+ intéressons à ces minimums locaux. Grâce au test de la dérivée
+ seconde (voir paragraphe~\ref{sec:nrj_CUSP}), nous pouvons dériver
+ des conditions selon lesquels $SL$ est localement minimale.
+
+\begin{lemma}[\cite{DP}]
+\label{lem:min_CECSP}
+La fonction de marge $SL(t_1,t_2)$ est localement minimale seulement
+s'il existe deux activités $i$ et $j$ telles que les conditions
+ci-dessous sont satisfaites. 
+\begin{align} \frac{\delta^{-}\bb}{\delta t_1} &>
+\frac{\delta^{+}\bb}{\delta t_1} \label{eq:deriv1_CECSP}\\ 
+\frac{\delta^{-}\bb[j]}{\delta t_2}
+& > \frac{\delta^{+}\bb[j]}{\delta t_2} \label{eq:deriv2_CECSP}
+\end{align}
+\end{lemma}
+
+Le preuve est identique à celle du lemme~\ref{lem:min_CUSP}. Le
+lemme~\ref{lem:min_CECSP} peut être utilisé pour déterminer les
+conditions nécessaires permettant de déterminer un l'ensemble des
+intervalles d'intérêt. Pour cela, une étude des fonctions $t_1
+\rightarrow \bb$ et $t_2 \rightarrow \bb$ est nécessaire. 
+
+\begin{theo}
+  Pour chaque activité $i$ et pour tout début d'intervalle $t_1$ il
+  existe au plus deux intervalles $[t_1,t_2[$ tel que
+  $\frac{\delta^{-}\bb[j]}{\delta t_2} >
+  \frac{\delta^{+}\bb[j]}{\delta t_2} $. 
+  De même,  pour chaque activité $i$ et pour toute fin d'intervalle $t_2$ il
+  existe au plus deux intervalles $[t_1,t_2[$ tel que
+  $\frac{\delta^{-}\bb[j]}{\delta t_1} >
+  \frac{\delta^{+}\bb[j]}{\delta t_1} $. 
+  Ces intervalles sont décrits
+  par la table~\ref{tab:interCheck_CECSP} avec:
+  \begin{center}
+    \begin{tabular}{lcr}
+      $\Delta'(t_2)=\frac{t_2(f_i(\bmin)-f_i(\bmax))+\LE f_i(\bmax)-W_i}{f_i(\bmin)}$
+      & ;
+      &$\Gamma'(t_2)=\frac{W_i-t_2f_i(\bmin)+\ES f_i(\bmax)}{f_i(\bmax)-f_i(\bmin)}$
+    \end{tabular}
+  \end{center}
+
+les points de cassures de la fonction $t_1 \rightarrow \bb$ et 
+
+\begin{center}
+\begin{tabular}{lcr}
+  $\Gamma(t_1)=\frac{W_i-t_1(f_i(\bmin)-f_i(\bmax))+\ES f_i(\bmax)}{f_i(\bmin)}$&
+  ;
+  &$\Delta(t_1)=\frac{W_i-f_i(\bmin)\LE +t_1f_i(\bmax)}{f_i(\bmax)-f_i(\bmin)}$
+\end{tabular}
+\end{center}
+
+de la fonction $t_2 \rightarrow \bb$.
+\end{theo}
+
+Notons que le cas $\bmin=\bmax$, i.e. le cas cumulatif, est inclus
+dans le cas $W_i \le f_i(\bmin)(\LE - \ES )$ et que dans ce cas,
+$\Delta(t_1)=\frac{W_i-f_i(\bmin)\LE
++t_1f_i(\bmax)}{f_i(\bmax)-f_i(\bmin)}=\smax$ et
+$\Gamma(t_1)=\frac{W_i-t_1(f_i(\bmin)-f_i(\bmax))+\ES
+f_i(\bmax)}{f_i(\bmin)}=\emin$
+
+\begin{table} 
+  \input{part2/CECSP/tabular.tex}
+  \caption{Intervalles d'intérêt pour l'algorithme de vérification du
+    raisonnement énergétique pour le \CECSP}
+  \label{fig:interCheck_CECSP}
+\end{table}
+
+ \begin{proof}
+Nous présentons seulement comment nous obtenons les $t_2$ pertinents
+pour la huitième colonne de la table~\ref{tab:interCheck_t2}. Tous les
+autres cas étant obtenus de manière similaire. 
+Pour prouver le lemme, nous analysons les variations de la fonction
+   $t_2 \rightarrow \underline{b}(i,t_1,t_2)$. 
+
+Pour analyser ces variations, nous utilisons les expressions de $\bb$
+en fonctions de $t_1$ et $t_2$ décrites dans le paragraphe
+précédent. Pour adapter ces zones dans le cas des fonctions concaves
+et affines par morceaux, il faut déterminer, dans les zones où
+l'expression de $\bb$ est $\frac{1}{a_i}(\wb - c_i|I|)$, la valeur de
+$\max_{p \in \P_i}(\frac{1}{a_{ip}}(\wb - c_{ip}|I|))$. Pour ce faire,
+notons que le segment $\overline{DD'}$ dans la
+figure~\ref{fig:breakline_res}, sépare la zone où $|I|= t_2 - t_1 \ge
+\wb/ f_i(\bmin)$ de la zone où cette inégalité n'est pas vérifiée. De
+la même manière, nous pouvons définir une série de segments parallèles
+, $\overline{D_{p}D_{p}^{'}}$, séparant les zones où $|I|= t_2 - t_1 \ge
+\wb/f_i(x_p^i)$ et celle où cette inégalité n'est pas vérifiée,
+i.e. séparant les zones où $\bb= \frac{1}{a_{ip}}(\wb -
+c_{ip}(t_2-t_1))$. 
+
+La figure~\ref{fig:variation} représente ces variations.
+   \begin{figure}[ht]
+     \input{part2/CECSP/derivative3.tex}
+     \caption{Intervalle d'intérêt dans le cas où $\ES <t_1 \le D'_{t_1}$.}
+     \label{fig:variation}
+   \end{figure}
+
+ \noindent
+où $expr_{ip}=\frac{1}{a_{ip}}\left(W_i-
+f_i(\bmax)(\LE -t_2+t_1-\ES) - c_{ip}(t_2-t_1)\right)$.
+
+Les intervalles $\inter$ pour lesquels $t_2 \rightarrow \bb$ vérifie
+que sa dérivé à 
+gauche est inférieure à sa dérivé à droite sont 
+${[}t_1,\LE{[}$ et $[t_1,\bd{t_1}[$. En effet, comme $f_i$ est une
+fonction concave et affine par morceaux, nous avons: $a_{ip} >
+a_{ip+1}$ et $c_{ip} <c_{ip+1}$, et donc
+$\frac{\delta^{-}expr_{ip}}{\delta t_2}<
+\frac{\delta^{+}expr_{ip+1}}{\delta t_2}$.
+
+On peut remarquer que dans la figure~\ref{fig:variation}, on l'indice
+de $expr_{ip}$ va seulement jusqu'à $4$. Ceci est dû à une
+simplification. Dans le cas générale, l'indice de $expr_{ip}$ s'arrête
+au rang $\ell$ si $W_i \le f_i(x^i_{\ell +1})(\LE - \ES)$.
+\end{proof}
+
+En appliquant un raisonnement symétrique pour toute fin d'intervalle
+$t_2$ fixée, nou obtenons une liste d'intervalle d'intérêt, décrites
+par le lemme~\ref{listinterval}.
+
+\begin{lemma}
+  \label{listinterval} 
+Soit $i$ et $j$ deux activités telles que: $W_l\ge
+f_l(\bmin[l])(\LE[l]-\ES[l]),\ l=i,j$. Alors, la fonction de marge est
+localement minimum seulement si $(t_1,t_2)$ correspond à l'un des
+intervalles suivants:
+\[ \left\{
+    \begin{aligned} 
+      &{[}\ES[j],\LE{]} & & \text{if } \Big(\ES[j] \le \ES \lor (\ES[j]
+      \le \emin \land \ES[j] \le \itu)\Big) \land \\*
+      & & &\Big(\LE \ge \LE[j] \lor (\LE \ge \smax[j] \land \LE \ge \itd)\Big)\\
+      \rule[-0.8em]{0pt}{2em}      
+      &{[}\Delta'(\LE),\LE{]} & & \text{if } \Big(\bdp{\LE} \le \ES \lor
+      (\bdp{\LE}\le \emin \land \bdp{\LE}\le \itu)\Big) \land \\*
+      & & &\LE[j] \ge \LE \ge \smax[j] \land \LE \le \itd \land \LE \ge
+      \htd\\
+      \rule[-0.8em]{0pt}{2em}
+      &{[}\Gamma'(\LE),\LE{]} & & \text{if } \Big(\bup{\LE} \le \ES \lor
+      (\bup{\LE} \le \emin \land \bup{\LE} \le \itu)\Big) \\*
+      & & &\land \LE[j] \ge \LE \ge \smax[j] \land \Big(\LE \ge \emin[j]
+      \lor \LE \ge E_{t_2}\Big)\\
+      \rule[-0.8em]{0pt}{2em}
+      &{[}\LE[j]+\ES[j]-\LE,\LE{]} & & \text{if } \Big(\LE[j]+\ES[j]-\LE \le \ES \lor
+      (\LE[j]+\ES[j]-\LE \le \emin \land \\*
+      & & & \LE[j]+\ES[j]-\LE \le D'_{t_1})\Big) \land \LE[j] \ge \LE
+      \ge \smax[j] \land \LE\le \htd\\ 
+      \rule[-0.8em]{0pt}{2em}
+      &{[}\ES[j],\Gamma(\ES[j]){]} & &\text{if } \ES \le \ES[j] \le \emin \land
+      \ES[j] \ge \itu \land \ES[j] \le \htu \land \\* 
+      & & &\Big(\bu{\ES[j]} \ge \LE[j] \lor (\bu{\ES[j]} \ge \smax[j] \land \bu{\ES[j]} \ge
+      \itd)\Big)\\
+      \rule[-0.8em]{0pt}{2em}
+      &{[}\ES[j],\Delta(\ES[j]){]} & &\text{if } \Big(\Delta(\ES[j]) \ge \LE[j] \lor
+      (\Delta(\ES[j]) \ge \smax[j] \land \Delta(\ES[j]) \ge D_{t_2})\Big) \land
+      \\* 
+      & & &\ES \le \ES[j] \le \emin \land \Big(\smax \ge \ES[j] \lor \ES[j] \le
+      E_{t_1}\Big)\\
+      \rule[-0.8em]{0pt}{2em}
+      &{[}\ES[j],\LE+\ES-\ES[j]{]} & & \text{if } \Big(\LE+\ES-\ES[j] \ge \LE[j] \lor
+      (\LE+\ES-\ES[j] \ge \smax[j] \\*
+& & &\land \LE+\ES-\ES[j] \ge \itd)\Big) \land 
+      \ES \le \ES[j] \le \emin \land \ES[j] \ge \htu
+    \end{aligned} \right.
+\]
+\end{lemma}
+
+Le lemme~\ref{listinterval} présente les résultats pour le cas où $i$
+et $j$ vérifient $W_l\ge f_l(\bmin[l])(\LE[l]-\ES[l]),\ l=i,j$. Les autres
+cas à considérer:
+\begin{itemize}
+\item $\bmin=0$ et $\bmin[j]=0$
+\item $\bmin=0$ et $W_j\le f_j(\bmin[j])(\LE[j]-\ES[j])$
+\item $\bmin=0$ et $W_j\ge f_j(\bmin[j])(\LE[j]-\ES[j])$
+\item $W_l\le f_l(\bmin[l])(\LE[l]-\ES[l]),\ l=i,j$
+\item $W_i\ge f_i(\bmin)(\LE-\ES)$ et $W_j\ge
+f_j(\bmin[j])(\LE[j]-\ES[j])$
+\end{itemize} 
+Ces cas peuvent être déduits de manière similaire. De plus,
+l'algorithme décrit ci-dessous pour appliquer le test de
+satisfiabilité du raisonnement énergétique n'utilise pas directement
+cette liste.
+
+Pour décrire cet algorithme, nous introduisons les notations
+suivantes: 
+\begin{itemize}
+\item $O_1=\{\ES ,\ \forall i \in \A\} \cup \{\LS ,\ \forall i \in \A \, |\,
+  \bmin = \bmax \} $
+\item $O_2=\{\LE ,\ \forall i \in \A\} \cup \{\EE ,\ \forall i \in \A \, |\,
+  \bmin = \bmax \}$
+\end{itemize}
+
+L'algorithme de détection d'incohérence est alors le suivant:
+\begin{algorithm}[!htb]
+\setstretch{1.35}
+  \caption{Algorithme de détection d'incohérence énergétique du \CECSP}
+  \label{algo:check_CECSP}
+  \PourTous {$t_1 \in O_1$}{
+    \PourTous {$i \in \A$}{
+      Calculer $O_{t_2}$ l'ensemble des $t_2$ vérifiant la
+      condition~\eqref{eq:deriv2_CECSP} à l'aide de la
+      table~\ref{tab:interCheck_t2}
+      \PourTous {$t_2 \in O_{t_2}$}{
+        \Si {$R(t_2-t_1) < \sum_{j \in \A} \bb[j]$}{
+          Le problème est infaisable}
+      }
+    }
+}  
+\PourTous {$t_2 \in O_2$}{
+  \PourTous {$i \in \A$}{
+      Calculer $O_{t_1}$ l'ensemble des $t_1$ vérifiant la
+      condition~\eqref{eq:deriv1_CECSP} à l'aide de la
+      table~\ref{tab:interCheck_t1}
+      \PourTous {$t_1 \in O_{t_1}$}{
+        \Si {$R(t_2-t_1) < \sum_{j \in \A} \bb[j]$}{
+         Le problème est infaisable}
+      }
+    }
+}
+\end{algorithm}
+
+L'algorithme~\ref{algo:check_CECSP} possède alors une complexité de
+$O(n^3)$. En effet, pour chaque couple d'activités $(i,j)$ au plus
+deux intervalles sont considérés. La complexité est donc la même que
+dans la première méthode présentée. Cependant, la constante cachée est
+beaucoup plus petite dans ce cas-là. Une comparaison des performances
+de chaque méthode sera présentée dans le chapitre~\ref{sec:expe}.
+
+Nous allons maintenant montrer comment ce raisonnement peut aussi
+s'appliquer dans le cas du calcul des intervalles d'intérêt pour les
+ajustements. Pour ce faire, nous utilisons le
+lemme~\ref{lem:min_ajust_ER_CUSP}. Comme nous avons déjà calculé les
+points $t_1$ vérifiant $\frac{\delta^{-}\bb}{\delta
+t_1}>\frac{\delta^{+}\bb}{\delta t_1}$ et les points $t_2$ vérifiant
+$\frac{\delta^{-}\bb}{\delta t_2} >\frac{\delta^{+}\bb}{\delta
+t_2}$. Il suffit, pour caractériser les intervalles d'intérêt pour les
+ajustements, de calculer les points $t_1$ vérifiant
+$\frac{\delta^{-}\bbRS}{\delta t_1} >\frac{\delta^{+}\bbRS}{\delta
+t_1}$ et les points $t_2$ vérifiant $\frac{\delta^{-}\bbRS}{\delta
+t_2} > \frac{\delta^{+}\bbRS}{\delta t_2}$.

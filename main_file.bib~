@@ -439,7 +439,7 @@ url="http://dx.doi.org/10.1007/978-3-642-40627-0_42"
 @ARTICLE{W80,
 author={J. Weglarz},
 journal={IEEE Transactions on Computers},
-title={Multiprocessor Scheduling with Memory Allocation amp;#8212;A Deterministic Approach},
+title={Multiprocessor Scheduling with Memory Allocation - A Deterministic Approach},
 year={1980},
 volume={C-29},
 number={8},
@@ -490,6 +490,16 @@ doi="10.1007/s10107-004-0551-6",
 url="http://dx.doi.org/10.1007/s10107-004-0551-6"
 }
 
+@article{sweep,
+author = " J.L. Bentley and T.A. Ottmann" ,
+year= "1979"  ,
+title = "Algorithms
+for reporting and counting geometric intersections ",   
+journal= "IEEE
+Transactions on Computers", 
+volume = "28", 
+number = "9", 
+pages= "643--647"}
 
 @article{NK,
 title = "\{MIP\} models for resource-constrained project scheduling with flexible resource profiles ",

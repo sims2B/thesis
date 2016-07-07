@@ -1,0 +1,44 @@
+\begin{center}
+  \begin{tikzpicture}
+    [xscale=1.2,yscale=0.6]
+    \node (O) at (0,0) {};
+    \node (D) at (10,0) {};
+    \draw[dotted] (1,0) node[below=0.15cm] {$\LS$}-- (1,8.5);
+    \draw[dotted] (2,0) node[below] {$\bd{t_1}$}-- (2,8.5) ;
+    \draw[dotted] (4,0) -- (4,8.5);
+    \draw[dotted] (5,0) -- (5,8.5);
+    \draw[dotted] (6,0) -- (6,8.5);
+    \draw[dotted] (7,0) -- (7,8.5);
+    \draw[dotted](8,0)node[below=0.15cm] {$\LE$} -- (8,8.5) ;
+    \draw[thick] (0,1) -- (1,1);
+
+    \draw (0.5,3.5) node[rotate=-90]  {$0$};
+    \draw[draw=LightGreen!90!black!90!,ultra thick] (1,1)-- (2,3);
+    \draw[ultra thick] (1.5,4.75)
+    node[rotate=-90] {$\frac{\bmin}{f_i(\bmin)}(W_i-
+      f_i(\bmax)(\LE-t_2))$};
+    \draw[draw=Cornsilk!95!black!100!,ultra thick] (2,3) -- (4,3.5);
+    \draw[ultra thick]  (3,4.25)
+    node[rotate=-90]
+    {$\bmin(t_2-t_1)$};
+    \draw[draw=LightGoldenrod!90!black!90!,ultra thick] (4,3.5)-- (5,4);
+    \draw[ultra thick] (4.5,4.25) node[rotate=-90]
+    {$expr_{i1}$};
+    \draw[draw=LightGoldenrod!90!black!90!,ultra thick] (6,5)-- (5,4);
+    \draw[ultra thick] (5.5,4.25) node[rotate=-90]
+    {$expr_{i2}$};
+    \draw[draw=LightGoldenrod!90!black!90!,ultra thick] (7,6.5)-- (6,5);
+    \draw[ultra thick] (6.5,4.25) node[rotate=-90]
+    {$expr_{i3}$};
+    \draw[draw=LightGoldenrod!90!black!90!,ultra thick] (8,8.5)-- (7,6.5);
+    \draw[ultra thick] (7.5,4.25) node[rotate=-90]
+    {$expr_{i4}$};
+    \draw[draw=LightBlue!90!black!90!,ultra thick] (8,8.5)-- (10,8.5);
+    \draw[ultra thick] (9,4.75) node[rotate=-90]
+    {$\frac{1}{a_{i4}}(W_i- f_i(\bmax)(t_1-\ES) - c_{i4}(\LE-t_1))$};
+    \draw[->] (O.center) -- (D.center);
+  \end{tikzpicture}
+\end{center}
+
+
+

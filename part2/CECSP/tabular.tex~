@@ -1,0 +1,114 @@
+\subcaptionbox{$t_2$ vérifiant~\eqref{eq:deriv2_CECSP}\label{fig:interCheck_t2}}[0.45\linewidth]{
+{\rotatebox{90}{\small
+    \begin{tabular}{|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.5cm}|}
+      \hline
+      \rule[-0.8em]{0pt}{2em} $\bmin=0$ & 
+                                          \multicolumn{4}{c|}{$W_i\le
+                                          f_i(\bmin)(\LE -\ES )$} & 
+                                                                    \multicolumn{5}{c|}{$W_i\ge
+                                                                    f_i(\bmin)(\LE
+                                                                    -\ES
+                                                                    )$}\\ 
+\hline 
+      $t_1\le \emin$  & $t_1\le \ES $ & 
+                                        \multicolumn{3}{c|}{$\ES \le
+                                        t_1\le \emin$} & $t_1\le \ES
+                                                         $& 
+                                                                                                     \multicolumn{4}{c|}{$\ES
+                                                                                                     \le
+                                                                                                     t_1\le
+                                                                                                     \emin$}\\ 
+      \cline{3-5}
+      \cline{7-10}
+                                        & &{\rotatebox{-90}{$\emin \le
+                                            \smax$ xor $t_1\le \htu$}}
+                      & {\rotatebox{-90}{$t_1\ge \smax$}} &
+                                                            {\rotatebox{-90}{$\emin>\smax$
+                                                            et $\smax
+                                                            > t_1
+                                                            >
+                                                            \htu$}} &
+                                                          &
+                                                            {\rotatebox{-90}{$t_1
+                                                            > \itu$ et
+                                                            $t_1 <
+                                                            \smax$ et
+                                                            $t_1 <
+                                                            \htu$~}}
+                                        & {\rotatebox{-90}{$t_1\le
+                                          \itu$}} &
+                                                    {\rotatebox{-90}{$t_1
+                                                    \ge \smax$ et
+                                                    $\emin \ge
+                                                    \smax$}} &
+                                                               {\rotatebox{-90}{$t_1
+                                                               \ge
+                                                               \htu$
+                                                               et
+                                                               $\emin
+                                                               < \smax$}} \\
+      \hline
+      \multirow{2}{*}{$\inter[t_1][\LE ]$} &
+                                             \multirow{2}{*}{$\inter[t_1][\LE
+                                             ]$} & $[
+                                                   t_1,\ES  $ & \multirow{2}{*}{$\inter[t_1][\bu{t_1}]$} & $\inter[t_1][\bu{t_1}]$ &\multirow{2}{*}{$\inter[t_1][\LE ]$} & $\inter[t_1][\bu{t_1}]$ & $\inter[t_1][\LE ]$ &\multirow{2}{*}{$\inter[t_1][\bu{t_1}]$}& $[
+                                                   t_1,\ES  $\\
+                                        & & $+\LE -t_1[$& & $\inter[t_1][\bd{t_1}]$ & & $\inter[t_1][\bd{t_1}]$ & $\inter[t_1][\bd{t_1}]$ & & $+\LE -t_1[$ \\
+      \hline
+    \end{tabular}
+  }}
+}
+\hspace{0.8cm}
+\subcaptionbox{$t_1$ vérifiant~\eqref{eq:deriv1_CECSP}\label{fig:interCheck_t1}}[0.45\linewidth]{
+  {\rotatebox{90}{\small
+      \begin{tabular}{|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.7cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.4cm}|>{\centering\arraybackslash}m{1.5cm}|}
+        \hline
+        \rule[-0.8em]{0pt}{2em} $\bmin=0$ & \multicolumn{4}{c|}{$W_i\le f_i(\bmin)(\LE -\ES )$} & \multicolumn{5}{c|}{$W_i\ge f_i(\bmin)(\LE -\ES )$}\\
+        \hline
+        $t_2 \ge \smax$  & $t_2 \ge \LE $ & 
+                                            \multicolumn{3}{c|}{$\LE \ge t_2\ge \smax$} & $t_2\ge \LE $&
+                                                                                                         \multicolumn{4}{c|}{$\LE \ge t_2\ge \smax$}\\
+        \cline{3-5}
+        \cline{7-10}
+                                          & &{\rotatebox{-90}{$\emin
+                                              \le \smax$ xor $t_2\ge
+                                              \htd$}} &
+                                                        {\rotatebox{-90}{$t_2\le
+                                                        \emin$}} &
+                                                                   {\rotatebox{-90}{$\emin
+                                                                   >
+                                                                   \smax$
+                                                                   et $\emin
+                                                                   <
+                                                                   t_2
+                                                                   <
+                                                                   \htd$}}
+                                                                                        &
+                                                                                                       &
+                                                                                                         {\rotatebox{-90}{$t_2
+                                                                                                         < 
+                                                                                                         \itd$
+                                                                                                         et
+                                                                                                         $t_2
+                                                                                                         >
+                                                                                                         \emin$
+                                                                                                         et
+                                                                                                         $t_2
+                                                                                                         >
+                                                                                                         \htd)$~}}
+                                          & {\rotatebox{-90}{$t_2\ge
+                                            \itd$}} &
+                                                      {\rotatebox{-90}{$\emin
+                                                      < \ smax$ et $t_2 \le \emin$}} & {\rotatebox{-90}{$\emin \ge \smax $ et $t_2 \le \htd$}} \\
+        \hline
+        \multirow{2}{*}{$\inter[\ES ][t_2]$} & \multirow{2}{*}{$\inter[\ES ][t_2]$} & $[\ES +\LE$ & \multirow{2}{*}{$\inter[\bdp{t_2}][t_2]$} & $\inter[\bdp{t_2}][t_2]$ &\multirow{2}{*}{$\inter[\ES ][t_2]$} & $\inter[\bdp{t_2}][t_2]$ & $\inter[\ES ][t_2]$ &\multirow{2}{*}{$\inter[\bdp{t_2}][t_2]$}& $[\ES +\LE $\\
+                                          & & $ -t_2,t_2[$& & $\inter[\bup{t_2}][t_2]$ & & $\inter[\bup{t_2}][t_2]$ & $\inter[\bup{t_2}][t_2]$ & &  $-t_2,t_2[$ \\
+        \hline
+      \end{tabular}
+    }}
+}
+
+
+
+
+
