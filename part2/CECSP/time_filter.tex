@@ -29,9 +29,9 @@ activité le plus rapidement possible, est celle où l'activité est
 exécutée à son rendement maximal $\bmax$. De ce fait, une borne
 inférieure sur la durée de l'activité vaut $W_i/f_i(\bmax)$. Nous
 pouvons donc calculer la date de début au plus tard de l'activité,
-$\LS=d_i-W_i/f_i(\bmax)$, et sa date de fin au plus tôt,
-$\EE=r_i+W_i/f_i(\bmax)$. La partie obligatoire d'une activité $i$ est
-alors définie de a même manière que pour le \CUSP, i.e la partie
+$\LS=\le -W_i/f_i(\bmax)$, et sa date de fin au plus tôt,
+$\EE=\ES +W_i/f_i(\bmax)$. La partie obligatoire d'une activité $i$ est
+alors définie de la même manière que pour le \CUSP, i.e la partie
 obligatoire de $i$ est l'intervalle $[\LS,\EE]$
 (cf. figure~\ref{fig_mand_CECSP}).
 
@@ -60,23 +60,23 @@ Considérons l'activité suivante:
 \begin{center}
   \begin{tabular}{|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}|}
     \hline
-    \ES & \LE & W_i & \bmin & \bmax & f_i(b)\\
+    \ES & \LE & W_i & \bmin & \bmax & f_i(b_i(t))\\
     \hline
-    1 & 14 & 72 & 2 & 5 & b+3\\
+    1 & 14 & 72 & 2 & 5 & b_i(t)+3\\
     \hline
   \end{tabular}
 \end{center}
 
 Nous pouvons calculer sa date de début au plus tard,
-$\LS=d_i-W_i/f_i(\bmax)=14 - 72/8 =5$, ainsi que sa date de fin au
-plus tôt, $\EE=r_i+ W_i/f_i(\bmax)=1 + 72/8 =10$. Comme $\EE > \LS$,
+$\LS=\le -W_i/f_i(\bmax)=14 - 72/8 =5$, ainsi que sa date de fin au
+plus tôt, $\EE=\ES + W_i/f_i(\bmax)=1 + 72/8 =10$. Comme $\EE > \LS$,
 l'activité possède une partie obligatoire qui est l'intervalle
-$[5,10]$ (voir
+$[5,10[$ (voir
 figure~\ref{fig_mand_CECSP_a},~\ref{fig_mand_CECSP_b}). Cependant,
 nous pouvons seulement en déduire que l'activité sera en cours dans
-cet intervalle et ,grâce à la borne inférieure sur la quantité de
+cet intervalle et, grâce à la borne inférieure sur la quantité de
 ressource que peut consommer l'activité durant son exécution, nous
-pouvons déduire que, sur l'intervalle $[\LS,\EE]$, l'activité est au
+pouvons déduire que, sur l'intervalle $[\LS,\EE{[}=[5,10[$, l'activité est au
 moins exécutée à $\bmin$ (voir figure~\ref{fig_mand_CECSP_c}).
   
 \begin{figure}[htb!]
@@ -162,9 +162,10 @@ moins exécutée à $\bmin$ (voir figure~\ref{fig_mand_CECSP_c}).
 \end{figure}
 \end{ex}
 
-Le profil obligatoire peut aussi être calculé en $O(n)$ à l'aide d'un
-algorithme de balayage en triant au préalable les activités par date
-de début au plus tard et date de fin au plus tôt.
+Comme pour le contrainte cumulative, le profil obligatoire peut aussi
+être calculé en $O(n)$ à l'aide d'un algorithme de balayage en triant
+au préalable les activités par date de début au plus tard et date de
+fin au plus tôt.
 
 Nous détaillons maintenant l'adaptation du Time-Table disjonctif au
 \CECSP. 
@@ -214,11 +215,11 @@ Considérons les deux activités suivantes:
   \end{tabular}
 \end{center}
 
-La fonction $f_j(b)$ est définie par l'expression suivante: 
-\[f_j(b)=\left\{
+La fonction $f_j(b_j(t))$ est définie par l'expression suivante: 
+\[f_j(b_j(t))=\left\{
 \begin{array}{lll}
-2b & & b \in [2,3]\\
-b+3 & & b \in [3,4]
+2b_j(t) & & b_j(t) \in [2,3]\\
+b_j(t)+3 & & b_j(t) \in [3,4]
 \end{array}
 \right.\] 
 et décrite dans la figure~\ref{fig:fonct_CECSP}
@@ -371,10 +372,6 @@ Soit $\EE^{-}$ le point le plus proche de $\EE$, i.e. $\forall \delta
 superposition d'une activité $i$,noté $moi_i$, est alors défini par
 $moi_i=[\EE^{-},\LS{]}$ si $i$ ne possède pas de partie obligatoire et
 $moi_i=\emptyset$ sinon.   
-
-Il s'agit du plus petit intervalle de temps tel que $i$ s’exécute au
-moins durant un point de temps de cet intervalle, et ce peu importe le
-moment auquel l'activité $i$ est exécutée.
 \end{defi}
 
 
@@ -457,7 +454,7 @@ figure~\ref{fig:RDR_CECSP}. Dans les figures~\ref{fig:RDR_CECSPa} et~\ref{fig:RD
 peut constater que si l'activité $j$
 commence à $\ES[j]$, alors elle intersecterait complètement $moi_i$ et
 il serait impossible d'ordonnancer $i$. Sur la figure~\ref{fig:RDR_CECSPc}, $\ES[j]$ a été ajusté et l'activité $j$ ne peut commencer
-avant  $t > \min{moi_i}$.
+avant  $\min\{t \in \H | t \in moi_i\}$.
   \begin{figure}[htb!] 
     \subcaptionbox{Si $j$ commence au temps $2$...\label{fig:RDR_CECSPa}}[0.45\linewidth]{
     \centering
@@ -649,9 +646,9 @@ donc être facilement adaptés au cas du \CECSP~en considérant des
 activités rectangulaires de durée ou de consommation
 minimale. Cependant, ces règles ne prenant en considération que des
 cas ``extrêmes'', elles demeurent moins efficaces que dans le cas du
-\CUSP. C'est pourquoi, dans le paragraphe~\ref{sec:RE_CECSP}, nous
+\CUSP. C'est pourquoi, dans le paragraphe~\ref{sec:ER_CECSP}, nous
 avons choisi d'adapter un des raisonnements les plus forts pour le
-\CUSP dans le cadre du \CECSP: le raisonnement énergétique.
+\CUSP~dans le cadre du \CECSP: le raisonnement énergétique.
 
 Le prochain paragraphe présente quant à lui un raisonnement couplant
 modélisation de problème de flots et Time-Table. 
@@ -670,24 +667,24 @@ décrire un raisonnement complet.
 L'idée de l'algorithme de vérification est donc de s'assurer que, une
 fois les parties obligatoires des activités fixées, l'aire disponible
 est suffisante pour ordonnancer le reste des activités en tenant
-compte des fenêtres de temps de chaque activité. Pour faire cela, nous
+compte des fenêtres de temps de chaque activité. Pour ce faire, nous
 allons, dans un premier temps, contraindre chaque activité à consommer
 une quantité de ressource supérieure à $\bmin$ dans l'intervalle
 $[\LS,\EE{[}$ et ensuite, nous relâchons la contrainte de consommation
-minimale en autorisant une activité à consommer une quantité de
-ressource comprise entre $0$ et $\bmax$ durant l'intervalle
+minimale en autorisant l'activité à consommer une quantité de
+ressource comprise entre $0$ et $\bmax$ durant le reste de l'intervalle
 $[\ES,\LE{]}$. Ceci peut être vu comme une variante de la relaxation
-préemptive du \CECSP, décrite dans le chapitre~\ref{ch:ordo}. 
+préemptive du \CECSP, décrite dans le paragraphe~\ref{sec:ordo_nrj}. 
 Clairement, comme il s'agit d'une relaxation du \CECSP, si aucune
 solution n'existe alors l'instance du \CECSP~correspondante
 ne possède pas de solutions. 
 
 Pour modéliser cette relaxation, nous introduisons $(t_q)_{q \in \Q}$,
-$| \Q | = 4*n$, la suite croissante des bornes des domaines des
+$| \Q | \le 4*n$, la suite croissante des bornes des domaines des
 variables, i.e. $(t_q)$ est composée des dates de début au plus tôt et
 au plus tard ainsi que des dates de fin correspondantes. Pour
 simplifier les notations, nous notons $\Q^* $ l'ensemble $\Q
-\setminus{4*n}$ Nous définissons ensuite deux ensembles de
+\setminus\max\{q \in \Q\}$. Nous définissons ensuite deux ensembles de
 variables. Le premier correspond à la quantité de ressource consommée 
 par une activité $i$ dans la période $[t_q,t_{q+1}[$ et est noté
 $b_{iq},\ i \in \A,\ q \in \Q^*$. Le second permet de modéliser la
@@ -781,10 +778,8 @@ Comme la contrainte~\eqref{boundLP} borne $b_{3q}$ supérieurement par
 $1$ pour $q=0,1,3,4$, la contrainte \eqref{resLP} implique que
 $b_{32}=6$ ce qui est en contradiction avec la
 contrainte~\eqref{maxLP}. Le programme linéaire détecte donc
-l'infaisabilité de l'instance. Dans le paragraphe suivant, nous
-verrons que, pour cette instance, le raisonnement énergétique ne
-détecte pas d'incohérence. Notons aussi que le raisonnement Time-Table
-n'aurait pas détecté l'incohérence.
+l'infaisabilité de l'instance. Notons aussi que le raisonnement
+Time-Table disjonctif n'aurait pas détecté l'incohérence.
 \end{ex}
 
 Dans ce paragraphe, nous avons montré que certaines extensions des

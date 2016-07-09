@@ -2,7 +2,7 @@
 \CECSP}
 \label{sec:PPC_CECSP}
 Dans ce chapitre, nous décrivons des algorithmes et modèles issus de
-la programmation par contrainte. Les deux premières sections sont
+la programmation par contraintes. Les deux premières sections sont
 dédiées à la présentation d'algorithmes de filtrage pour le problème
 de décision du \CECSP. En effet, comme dans le cas du \CUSP, la
 NP-complétude de ce problème implique qu'un algorithme assurant la
@@ -12,20 +12,20 @@ bornes - ne peut s'exécuter en temps polynomial. Par conséquent,
 plusieurs relaxations sont proposées afin de supprimer les valeurs
 possibles de début et fin de tâches incohérentes en temps polynomial.
 
-Dans un premier temps, nous montrons que une partie des raisonnements
+Dans un premier temps, nous montrons qu'une partie des raisonnements
 pour le \CUSP~s'adapte directement au cas du \CECSP. En effet, dans le
 \CECSP, une activité peut être vue comme deux sous-activités: 
 \begin{itemize}
 \item l'une correspondant à une activité rectangulaire, appelée {\it
-partie fixe}, dont la date de début et de fin doivent être
+partie fixe}, dont les dates de début et de fin doivent être
 déterminées et consommant une quantité $\bmin$ de la ressource;
 \item la seconde, appelée {\it partie malléable}, correspondant à une
 activité préemptive de même date de début que la partie minimale et
 dont chaque partie consomme une quantité de ressource comprise entre
 $0$ et $\bmax-\bmin$.
 \end{itemize}
-La présence d'activités rectangulaires permet alors l'adaptation direct
-de certains raisonnement existant pour le \CUSP. Ici, nous
+La présence d'activités rectangulaires permet alors l'adaptation directe
+de certains raisonnements existants pour le \CUSP. Ici, nous
 présenterons les adaptations du raisonnement Time-Table, disjonctif et
 Time-Table disjonctif. 
 
@@ -35,13 +35,14 @@ Dans un second temps, nous présenterons un nouveau raisonnement
 Enfin, une adaptation complète du raisonnement énergétique est décrit
 dans le paragraphe~\ref{sec:ER_CECSP}.
 
-Le dernier paragraphe sera quant à lui consacré à la présentation d'un
-modèle de programmation par contraintes permettant de résoudre le
-\CECSP~ discret, i.e. où les variables ne peuvent prendre que des
-valeurs discrètes.
+% Le dernier paragraphe sera quant à lui consacré à la présentation d'un
+% modèle de programmation par contraintes permettant de résoudre le
+% \CECSP~ discret, i.e. où les variables ne peuvent prendre que des
+% valeurs discrètes.
 
 \input{part2/CECSP/time_filter.tex}
 
 \input{part2/CECSP/ER_filter.tex}
 
-\input{part2/CECSP/modele_PPC.tex}
+%\input{part2/CECSP/modele_PPC.tex}
+\input{part2/CECSP/conclusion.tex}
