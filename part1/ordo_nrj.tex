@@ -1,13 +1,13 @@
 
 \section{L'ordonnancement sous contraintes énergétiques}
 \label{sec:ordo_nrj} 
-La modélisation présentée dans cette section repose sur le problème
+La modélisation présentée dans ce paragraphe repose sur le problème
 d'ordonnancement continu à contraintes
 énergétiques~\cite{ArtiguesLopez}, le \CECSP.
 
-\subsubsection{Définition du problème}
+\subsection{Définition du problème}
 
-Dans ce problème, un ensemble d'activités non-préemptives
+Dans ce problème, un ensemble d'activités non préemptives
 $\A=\{1,\dots,n\}$ utilisant une ressource continue, cumulative et
 renouvelable, de capacité $R$ doit être ordonnancé. Durant son
 exécution, une activité consomme une quantité variable $b_i(t)$ de la
@@ -62,6 +62,8 @@ cette activité telle que:
   \begin{equation}
     \forall i \in \A,\ \int_{st_i}^{et_i}f_i(b_i(t))dt \ge W_i \tag{\ref{nrj_CECSP}a}
   \end{equation}
+  C'est par exemple le cas quand $b_i(t)$ ou $st_i$ et $et_i$ sont
+  contraints à prendre des valeurs entières.
 \end{itemize}
 
 Dans ce manuscrit, nous considérons les trois cas suivants:
@@ -74,22 +76,24 @@ Dans ce manuscrit, nous considérons les trois cas suivants:
 
 L'intérêt de considérer de telles fonctions de rendement est qu'elles
 nous permettent d'approcher un grand nombre de fonctions de
-rendements réelles non linéaires. Un exemple présentant de telles
+rendement réelles non linéaires. Un exemple présentant de telles
 approximations sera présenté (cf. exemple~\ref{ex_approx_CECSP}). 
 
 
-Soit $P_i$ le nombre d'intervalles de définition de la fonction
-$f_i$, i.e. le nombre d'intervalles où la fonction $f_i$ a une
-expression différente. La fonction $f_i$ peut alors s'écrire de la
-manière suivante:  
+Soit $P_i$ le nombre d'intervalles de définition de la fonction $f_i$,
+i.e. le nombre d'intervalles où la fonction $f_i$ a une expression
+différente, et $\P_i=\{1,\dots,P_i\}$ l'ensemble des indices de ces
+intervalles. Les points de cassures de la fonctions $f_i$ sont notés
+$x_\ell^i$, $\forall \l \in \P_i$. La fonction $f_i$ peut alors
+s'écrire de la manière suivante: 
 \[f_i(b_i(t))=\left\{
     \begin{array}{ll}
-      0 & \quad \text{if }b_i(t)=0\\
-      a_{i1}*b_i(t)+c_{i1} &\quad \text{si }\bmin=0\text{ et }b_i(t) \in ]\bmin,x_{2}] \\
+      0 & \quad \text{si }b_i(t)=0\\
+      a_{i1}*b_i(t)+c_{i1} &\quad \text{si }\bmin=0\text{ et }b_i(t) \in ]\bmin,x_{2}^i] \\
       a_{i1}*b_i(t)+c_{i1} &\quad \text{si }\bmin\neq 0 \text{ et }b_i(t) \in
-                            [\bmin,x_{2}] \\
+                            [\bmin,x_{2}^i] \\
       a_{i\ell}*b_i(t)+c_{i\ell} &\quad \text{si } b_i(t) \in
-                                  ]x_{\ell},x_{\ell+1}], \ell \in \P_i=\{2,\dots,P_i\} 
+                                  ]x_{\ell}^i,x_{\ell+1}^i], \ell \in \P_i\setminus\{1\}
     \end{array}
   \right.\]
 De plus, nous considérons que la fonction $f_i$ satisfait les
@@ -113,26 +117,29 @@ $f_i$:
 \end{array}
 \right.
 \]
+De plus, en l'absence de toute ambiguïté et pour simplifier les
+notations, on pourra écrire $f_i(b)$ au lieu de $f_i(b_i(t))$.
 
 \begin{ex}
   \label{ex_approx_CECSP}
   Considérons l'instance à  quatre activités suivante:
   \begin{itemize}
   \item $B=2$
-  \item $\ES={[}0,2,0,5{]}$
-  \item $\LE={[}6,10,9,13{]}$
-  \item $\bmin={[}0,0.25,2,1{]}$
-  \item $\bmax={[}1,1,2,1.5{]}$
+  \item $est={[}0,2,0,5{]}$
+  \item $let={[}6,10,9,13{]}$
+  \item $b^{min}={[}0,0.25,2,1{]}$
+  \item $b^{max}={[}1,1,2,1.5{]}$
   \item $W={[}1,5,7,8{]}$
   \item $f(b)={[}b,\sqrt{b},b,\sqrt{b}{]}$
   \end{itemize}
 
   Nous devons approcher les fonctions $f_2(b)$ et $f_4(b)$. Commençons
-  par le cas où la fonction est approchée par une fonction affine. Pour
+  par approcher l'activité $2$ par une fonction affine. Pour
   cela, nous calculons le coefficient directeur de la tangente en
   $\bmin + (\bmax-\bmin)/ 2 =0.625$. Ce coefficient directeur est égal à
   $\frac{1}{2\sqrt{0.625}}$, et donc,
-  $f'_2(b)=\frac{1}{2\sqrt{0.625}}*b+ \frac{\sqrt{0.625}}{2}$ (cf. figure~\ref{approx_aff}). 
+  $f'_2(b)=\frac{1}{2\sqrt{0.625}}*b+ \frac{\sqrt{0.625}}{2}$
+  (cf. figure~\ref{approx_aff}).  
 
   \begin{figure}[!htb]
     \centering
@@ -201,7 +208,7 @@ $f_i$:
   fonction concave et affine par morceaux. Dans un premier temps,
   nous devons choisir le pas d'approximation $\epsilon$, i.e. la taille
   des intervalles pour lesquels la fonction $f_i$ a une
-  expression différente. Dans cet, exemple, nous choisissons,
+  expression différente. Dans cet exemple, nous choisissons
   $\epsilon=1/4$. Le nombre d'intervalles de définition de la fonction
   $f_2$ est alors $(\bmax-\bmin)/\epsilon=3$. Pour chacun de ces
   intervalles, nous appliquons la procédure utilisée pour
@@ -234,9 +241,9 @@ où ${\bf 1}_{NZ}(t):=\left\{
   \end{array}
 \right.$ est la fonction caractéristique de l'ensemble $\mathbb{R}^+$.
 
-La difficulté du \CECSP~repose, entre autre, sur le fait que la
+La difficulté du \CECSP~repose, entre autres choses, sur le fait que la
 fonction d'allocation de ressource peut n'être ni constante, ni
-constante par morceau. De ce fait, la représentation temps/ressource
+constante par morceaux. De ce fait, la représentation temps/ressource
 d'une activité peut prendre n'importe quelle forme
 (cf. figure~\ref{figure_forme_conso}). 
 
@@ -352,7 +359,7 @@ exemple où il existe une solution dans laquelle toutes les fonctions
 $b_i(t)$ sont constantes par morceaux.
 
 \begin{ex}
-Considérons l'instance à $3$ activités du \CECSP~suivante:
+Considérons l'instance à trois activités du \CECSP~suivante:
 \begin{itemize}
 \item $R=5$
 \item cf. figure~\ref{ex_CECSP}
@@ -360,7 +367,7 @@ Considérons l'instance à $3$ activités du \CECSP~suivante:
 \[f_2(b)=\left\{
 \begin{array}{lll}
 2b & & b \in [3,4]\\
-b+4 & & b \in [4,5]
+b+4 & & b \in ]4,5]
 \end{array}
 \right.\]
 \end{itemize}
@@ -370,15 +377,17 @@ b+4 & & b \in [4,5]
 \begin{tikzpicture}
 [xscale=1.65,yscale=0.56]
 \node (O) at (2,5) {};
-\draw[->] (2,5) -- (5.5,5);
-\draw[->] (2,5) -- (2,10);
+\draw[->] (2,4) -- (5.5,4);
+\draw[dashed] (2,4) -- (2,5.5);
+\draw[->] (2,5.5) -- (2,10);
+
 
 \path[draw] (3,6) -- (4,8) -- (5,9) ;
 
-\draw[dotted] (3,5) node[below] {\footnotesize $3$} -- (3,10);
-\draw[dotted,color=gray!70] (4,5) node[below,color=black] {\footnotesize $4$}
+\draw[dotted] (3,4) node[below] {\footnotesize $3$} -- (3,10);
+\draw[dotted,color=gray!70] (4,4) node[below,color=black] {\footnotesize $4$}
 -- (4,10);
-\draw[dotted] (5,5) node[below] {\footnotesize $5$} -- (5,10);
+\draw[dotted] (5,4) node[below] {\footnotesize $5$} -- (5,10);
 
 \draw (2,6) node[left] {\footnotesize $6$};
 \draw (2,8) node[left] {\footnotesize $8$};
@@ -396,15 +405,20 @@ b+4 & & b \in [4,5]
     \hline
     \multicolumn{7}{c}{}
   \end{tabular}} 
-\caption{Données de l'instance de l'exemple du \CECSP.}
+\caption{Exemple d'une instance pour le \CECSP.}
 \label{ex_CECSP}
 \end{figure}
 La figure~\ref{sol_ex_CECSP} présente une solution réalisable pour le
 \CECSP. Dans cette figure, nous pouvons voir que l'énergie reçue par une
-activité n'est, à priori, pas égale à la quantité de ressource
+activité n'est, a priori, pas égale à la quantité de ressource
 consommée par cette dernière. En effet, regardons l'activité $2$. Sa
-consommation de ressource est égale à $3 + 4 * 2 = 11$ tandis que
-l'énergie qu'elle reçoit est $f_2(3)+ f_2(4) * 2 = 6 + 8 * 2 =22$.
+consommation de ressource sur l'intervalle $[2,3[$ est de $3$. Sur
+cet intervalle, l'énergie reçue par l'activité est alors de
+$f_2(3)=6$. Sur les intervalles $[3,4[$ et $ [4,5[$, l'activité
+consomme $4$ unités de ressource et reçoit une énergie de
+$f_2(4)=8$. Au total, l'activité $2$ consomme $3 + 4 + 4 = 11$ unités
+de ressource et reçoit une quantité d'énergie égale à $f_2(3)+ f_2(4)+
+f_2(4)= 6 + 8 + 8 =22$. 
 
 \begin{figure}[!htb]
 \centering
@@ -441,8 +455,7 @@ Le paragraphe suivant présente les différentes modélisations des
 activités à profil variable présentes dans la
 littérature.
 
-\subsubsection{Contexte}
-
+\subsection{Autres modélisations des activités à profil variable}
 
 Dans un premier temps, nous nous intéressons aux extensions du
 \RCPSP. Une des extensions les plus célèbres est le problème
@@ -466,7 +479,7 @@ possibilité d'allouer $2$ unités de ressource pendant une période de
 temps et $1$ unité pendant la seconde n'est pas représentée ici. 
 
 La principale limitation du MRCPSP est donc que les activités sont
-contraintes à être rectangulaires, i.e. consommation de ressource
+contraintes à être rectangulaires, i.e. avec une consommation de ressource
 constante. 
 
 D'autres extensions du \RCPSP~existent. C'est le cas par exemple des
@@ -482,16 +495,18 @@ problèmes, plusieurs types de ressources sont considérées:
   dépendent de l'utilisation de la ressource principale.
 \item les ressources indépendantes: la consommation de ces ressources
   est indépendante des consommations des autres ressources mais ces
-  utilisations doivent être synchrone. 
+  utilisations doivent être synchrones. 
 \end{itemize}
+
 Bien que plusieurs différences existent entre ces problèmes et le
-\CECSP - l'utilisation de plusieurs ressources, ressource/temps discret
-pour~\cite{FT}... - les principales sont les suivantes: la longueur
-minimale des blocs et les fonctions de rendements. La première
+\CECSP -- l'utilisation de plusieurs ressources, ressource/temps discret
+pour~\cite{FT}... -- les principales sont les suivantes: la longueur
+minimale des blocs et les fonctions de rendement. La première
 correspond au temps minimal qu'il faut attendre entre deux
-ré-allocations de la ressource, que les auteurs appellent longueur
-minimale de bloc et qui est absente dans notre problème. La seconde
-fait référence à l'absence de fonctions de rendement dans~\cite{FT}.
+ré-allocations de la ressource, que les auteurs de~\cite{FT} appellent
+longueur minimale de bloc et qui est absente dans notre problème. La
+seconde fait référence à l'absence de fonctions de rendement
+dans~\cite{FT}. 
 
 Enfin, la dernière extension du \RCPSP~présentée est celle où les
 activités ont une intensité variable~\cite{Kis}. Ici, chaque activité
@@ -500,7 +515,7 @@ chaque période de temps, il est possible de donner une certaine partie
 de cette quantité à l'activité, proportionnelle à l'{\it intensité} à
 laquelle est exécutée l'activité. Dans ce cas, on peut introduire des
 fonctions de rendement mais ces fonctions seraient alors contraintes à
-être linéaire, i.e. $b \rightarrow a*b$. De plus, aucune borne
+être linéaires, i.e. $b \rightarrow a*b$. De plus, aucune borne
 inférieure sur la consommation d'une activité n'est considérée. 
 
 Dans le cadre du \CUSP, d'autre variantes ainsi que des algorithmes de
@@ -516,7 +531,7 @@ ces deux problèmes ne considère de fonctions de rendement.
 
 Dans~\cite{BP}, les auteurs définissent une activité comme une
 séquence de sous-activités trapézoïdales ayant des durées et hauteurs
-(consommations) variables. Enfin, Vil{\`i}m~\cite{V09} considère des
+(consommations) variables. Enfin, Vil{\'i}m~\cite{V09} considère des
 activités pour lesquelles la durée et la hauteur sont définies par des
 intervalles. Pour ces deux problèmes, aucune demande en énergie n'est
 définie pour les activités. De plus, dans le second, l'énergie
@@ -532,7 +547,7 @@ la ressource. De plus, des fonctions représentant le temps d'exécution
 d'une activité en fonction du nombre de processeurs qui lui est
 allouée sont définies. Ce nombre de processeurs peut varier
 continuellement au cours du temps et donc ces fonctions sont
-équivalentes au fonctions de rendement définies dans le cadre du
+équivalentes aux fonctions de rendement définies dans le cadre du
 \CECSP. De plus, dans~\cite{Blaz,Wali}, l'énergie est calculée en
 intégrant une fonction de rendement sur tout l'horizon de temps.
 Cependant, aucune contrainte de consommation maximum et minimum n'est
@@ -544,36 +559,38 @@ entre tous ces problèmes et le \CECSP.
 
 \begin{table}[!htb]
   \centering
-  \begin{tabular}{|>{\centering\arraybackslash} m{2.5cm}|>{\centering\arraybackslash} m{0.8cm}>{\centering\arraybackslash} m{0.8cm}>{\centering\arraybackslash} m{1.9cm}>{\centering\arraybackslash} m{1.5cm}>{\centering\arraybackslash} m{1.3cm}>{\centering\arraybackslash} m{1.2cm}>{\centering\arraybackslash} m{2.4cm}|}
+\small
+  \begin{tabular}{|>{\centering\arraybackslash} m{3cm}|>{\centering\arraybackslash} m{0.8cm}|>{\centering\arraybackslash} m{0.8cm}|>{\centering\arraybackslash} m{1.9cm}|>{\centering\arraybackslash} m{1.4cm}|>{\centering\arraybackslash} m{1.2cm}|>{\centering\arraybackslash} m{1cm}|>{\centering\arraybackslash} m{2.3cm}|}
     \hline    
     Problème & $\bmin$ & $\bmax$ & fonction de rend. ($f_i$) &
                                                                    activités
-                                                                   non-rect.
+                                                                   non
+                                                               rect.
     & 
                                                                  énergie
                                                                    ($W_i$)
     & res. cont. & autre différence \\
 \hline
-MRCPSP \cite{DDH} & X & X & X &    & X &  & \\
+MRCPSP \cite{DDH} & $\surd$ & $\surd$ & $\surd$ &    & $\surd$ &  & \\
 \hline
- FRCPSP \cite{NK} & X & X &    & X & X & X & long. de bloc\\  
+ FRCPSP \cite{NK} & $\surd$ & $\surd$ &    & $\surd$ & $\surd$ & $\surd$ & long. de bloc\\  
 \hline
-Work-content \cite{FT} & X & X & & X & X &  & long. de bloc\\  
+Work-content \cite{FT} & $\surd$ & $\surd$ & & $\surd$ & $\surd$ &  & long. de bloc\\  
 \hline
-Intensité variable \cite{Kis} &  & X&  & X & X & & \\   
+Intensité variable \cite{Kis} &  & $\surd$&  & $\surd$ & $\surd$ & & \\   
 \hline
-Partiellement élastique \cite{BLPN} & & & & X & X & &\\
+Partiellement élastique \cite{BLPN} & & & & $\surd$ & $\surd$ & &\\
 \hline
-Complètement élastique \cite{BLPN} & & & X & X & & &\\
+Complètement élastique \cite{BLPN} & & & $\surd$ & $\surd$ & & &\\
 \hline
-Activité trapézoïdales \cite{BP} & & & & X & & &\#trapèzes fixe\\
+Activités trapézoïdales \cite{BP} & & & & $\surd$ & & &\#trapèzes fixe\\
 \hline
-Représentation par intervalles \cite{V09} & X & X & & & & & achat
+Représentation par intervalles \cite{V09} & $\surd$ & $\surd$ & & & & & achat
                                                             d'énergie\\  
 \hline
-Modèle processeurs \cite{Blaz} & &  & X& X& X& X& \\ 
+Modèle processeurs \cite{Blaz} & &  & $\surd$& $\surd$& $\surd$& $\surd$& \\ 
 \hline
-Continu/discret \cite{Wali}&  & &X &X & X& X& res. discrètes et continues\\ 
+Continu/discret \cite{Wali}&  & &$\surd$ &$\surd$ & $\surd$& $\surd$& res. discrètes et continues\\ 
 \hline
   \end{tabular}
   \caption{Principales différences entre les extensions des problèmes
@@ -590,7 +607,7 @@ techniques existantes peuvent être adaptées dans le cadre du
 Le paragraphe suivant présente des propriétés du \CECSP~qui seront 
 utilisées dans le cadre de sa résolution. 
 
-\subsubsection{Propriétés du \CECSP}
+\subsection{Propriétés du \CECSP}
 
 Dans ce paragraphe, nous allons commencer par présenter la preuve de
 NP-complétude du \CECSP. Ce problème pouvant être vu comme une
@@ -626,16 +643,15 @@ de ressource. Dans la suite, si rien n'est précisé, cela veut dire que
 nous considérons le \CECSP~ sans fonction objectif.
 
 Nous présentons un exemple d'instance ne comprenant que des données
-entières et ne possédant que des solutions non-entières. Ceci permet
-de justifier l'utilisation de modèle à temps continu.
+entières et ne possédant que des solutions non entières. Ceci permet
+de justifier l'utilisation de modèles à temps continu.
 
 \begin{ex}
   \label{exemple_NE}
   Dans cet exemple, nous considérons une instance à deux activités et
-  une ressource de capacité $2$. Le tableau~\ref{instance_exemple_NE}
-  décrit les données de l'instance. 
-  \begin{table}[!htb]
-    \centering
+  une ressource de capacité $2$. Le tableau ci-dessous décrit les
+  données de l'instance:
+\begin{center}
     \begin{tabularx}{12cm}{|>{\centering\arraybackslash}p{0.6cm}|
         *5{>{\centering\arraybackslash}X}>{\centering\arraybackslash}p{2cm}|}
       \hline
@@ -645,11 +661,9 @@ de justifier l'utilisation de modèle à temps continu.
       $2$ & $1$ & $3$ & $3$ & $1$ & $2$ & $b_i(t)$\\
       \hline
     \end{tabularx}
-    \caption{Données de l'instance de l'exemple~\ref{exemple_NE}}
-    \label{instance_exemple_NE}
-  \end{table}
-
-  La seule solution est décrite par la figure~\ref{figure_exemple_NE}.
+  \end{center}
+  
+L'unique solution est décrite par la figure~\ref{figure_exemple_NE}.
   \begin{figure}[!htb]
     \centering
     \begin{tikzpicture}
@@ -666,7 +680,8 @@ de justifier l'utilisation de modèle à temps continu.
       \draw (1.5,2) rectangle (3,0);
       \draw[->] (-0.5,0) -- (T);
     \end{tikzpicture}
-    \caption{Solution de l'instance de l'exemple~\ref{exemple_NE}}
+    \caption{Exemple de solution non-entière pour une instance du
+      \CECSP~à données entières.}
     \label{figure_exemple_NE}
   \end{figure}
 
@@ -679,10 +694,10 @@ tôt, $\EE[1]= \ES[1] + W_i / f_i(\bmax) = 0 + 18/12 = 1.5$.
 \end{ex}
 
 De ce fait, l'espace des solutions peut être réduit par l'utilisation
-du modèle à temps discret mais ceci peut conduire à des infaisabilité ou
+du modèle à temps discret mais ceci peut conduire à des infaisabilités ou
 à des résultats sous-optimaux.
 
-Une solution pour palier à ce problème est de mettre à l'échelle les
+Une solution pour pallier ce problème est de mettre à l'échelle les
 instances, i.e. multiplier les données par un certain coefficient $\alpha$
 afin de s'assurer de l'existence d'une solution optimale entière,
 avant de les résoudre. Cependant, l'utilisation d'un coefficient trop
@@ -691,7 +706,7 @@ importante pour permettre leur résolution.
 
 
 Le théorème suivant présente une des propriétés majeures du \CECSP. En
-effet, il stipule que quelque soit l'instance considérée, il existe
+effet, il stipule que quelle que soit l'instance considérée, il existe
 toujours une solution de cette instance où les fonctions $b_i(t)$ sont
 constantes par morceaux, sous certaines conditions sur les fonctions de
 rendement.  
@@ -705,7 +720,7 @@ Soit $\Pi$ une instance réalisable du \CECSP~telle que:
 \item $\forall i \in \A,\ f_i(0)=0.$
 \end{itemize}
 Une solution ayant la propriété que, $\forall i \in \A,\ b_i(t)$ soit
-constante par morceaux existe.
+constante par morceaux, existe.
 \end{theo}
 
 Afin de prouver le théorème~\ref{theo_LPM_CECSP}, nous commençons par
@@ -803,7 +818,7 @@ la propriété que chaque fonction $b'_i(t)$ est constante par morceaux.
   \item $et'_i=\min(\tau | \int_{st_i}^{\tau} f_i(\tilde{b}_i(t))dt=W_i)$
   \end{itemize}
 
-  Il est facile de voir que $S'$ satisfait les contrainte de fenêtre de
+  Il est facile de voir que $S'$ satisfait les contraintes de fenêtres de
   temps~\eqref{tw_CECSP}, puisque, par le Lemme~\ref{lemmaEn},
   $et'_i\le et_i$. De plus, $S'$ vérifie la contrainte 
   d'énergie~\eqref{nrj_CECSP} puisqu'elle est définie de cette
@@ -842,7 +857,7 @@ $\{t \in \H \ |\ \forall \epsilon>0,\ b_i(t) \neq b_i(t+\epsilon)\}
 \subseteq \{st_i,et_i\ |\ i \in \A \}$.
 \end{coro}
 
-De plus, nous pouvons en déduire que le \CECSP~à date de début et de
+De plus, nous pouvons en déduire que le \CECSP~à dates de début et de
 fin fixées peut être résolu en temps polynomial. 
 
 \begin{prop}
@@ -851,8 +866,8 @@ des dates de fin, $et_i$, fixées. On peut vérifier que $\Pi$ est réalisable e
 polynomial en la taille de l'instance. 
 \end{prop}
 
-En effet, dans ce cas là, il suffit de décider pour chaque intervalle
-composé de deux dates de début/fin consécutifs, i.e. de la forme
+En effet, dans ce cas-là, il suffit de décider pour chaque intervalle
+composé de deux dates de début/fin consécutives, i.e. de la forme
 $[st_i,st_j],\ [st_i,et_j],\ [et_i,et_j]$ ou $[et_i,st_j]$, la
 quantité de ressource consommée par chaque activité à l'intérieur de
 cet intervalle. Ce problème peut facilement être modélisé par un
@@ -882,12 +897,13 @@ t_q \in [st_i,et_i[\label{poly3}\\
 & w_{iq} \le Mb_{iq} & \forall i \in \A,\ \forall q \in
 \{1..Q-1\}\label{poly8}
 \end{align} }
+\noindent
 pour $M$ une constante suffisamment grande et $\P_i=\{1,\dots,P_i\}$
 le nombre d'intervalles de définition de la fonction $f_i$. La
 contrainte~\eqref{poly2} modélise la contrainte de capacité de la
 ressource. Les contraintes~\eqref{poly3} et~\eqref{poly4} assurent que
 les contraintes de consommation minimale et maximale de la ressource
-sot respectées tandis que la contrainte~\eqref{poly5} fixe la
+sont respectées tandis que la contrainte~\eqref{poly5} fixe la
 consommation de la ressource à $0$ si l'activité n'est pas en
 cours. La contrainte~\eqref{poly6} stipule que chaque activité doit
 recevoir la quantité d'énergie requise. Enfin, les

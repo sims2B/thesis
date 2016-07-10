@@ -26,7 +26,7 @@ si cette fonction ne dépend pas du temps, i.e. est constante, le
 paramètre $t$ pourra être omis. 
 
 Selon les problèmes, une activité peut être contrainte à s'exécuter en
-un seul morceau. On parle alors d'activité non-préemptive et dans le
+un seul morceau. On parle alors d'activité non préemptive et dans le
 cas contraire, i.e. les activités peuvent être exécutées en plusieurs
 morceaux, on parle d'activité préemptive.
 
@@ -37,15 +37,19 @@ d'un avion ou encore une étape d'un projet de construction.
 \subsubsection{Les ressources}
 
 Une ressource $k$ est un moyen technique ou humain requis pour la
-réalisation d'une activité et est disponible en quantité limitée $R_k$. 
-Les ressources utilisées par les activités peuvent être de nature
-diverse. Parmi elles, on peut distinguer: 
+réalisation d'une activité et est disponible en quantité
+limitée. Cette quantité, appelée {\it disponibilité de la ressource ou
+  capacité}, peut être soit constante ou varier au cours du
+temps. Dans ce manuscrit, nous considérons des ressources à capacité
+constante et cette capacité est notée $R_k$. Les ressources utilisées
+par les activités peuvent être de nature diverse. Parmi elles, on peut
+distinguer:
 \begin{itemize}
 \item les ressources renouvelables: ces ressources peuvent être
 réutilisées dès lors qu'elles sont libérées. Il s'agit, en fait, de
 ressources qui, après avoir été utilisées par une ou plusieurs
 activités, sont de nouveau disponible en même quantité. Ces ressources
-peuvent, par exemple, représenter la main d'oeuvre d'une entreprise,
+peuvent, par exemple, représenter la main d'\oe uvre d'une entreprise,
 des machines, de l'électricité ou des équipements.
 \item à l'inverse, les ressources consommables sont des ressources
 dont la consommation globale est limitée au cours du temps. Il peut
@@ -54,23 +58,24 @@ s'agir, par exemple, de matières premières ou d'un budget.
 
 Parmi les ressources renouvelables, on distingue par ailleurs, les
 ressources disjonctives qui ne peuvent exécuter qu'une activité à la
-fois - e.g. pistes de décollage, salles - et les ressources cumulatives
+fois -- e.g. pistes de décollage, salles -- et les ressources cumulatives
 qui peuvent, elles,  être utilisées par plusieurs activités en
-parallèle mais sont disponibles en quantité limitée - e.g. main d'oeuvre,
+parallèle mais sont disponibles en quantité limitée -- e.g. main d'\oe
+uvre,
 processeurs.
 
 
 Du point de vue de leur divisibilité, les ressources peuvent aussi
 être divisées selon deux catégories: 
 \begin{itemize}
-\item les ressources continues, i.e. divisible en temps ou en
-  quantité continu: dans le premier cas, il s'agit de ressource
+\item les ressources continues, i.e. divisibles en temps ou en
+  quantité continu: dans le premier cas, il s'agit de ressources
   pouvant être ré-allouées à tout instant $t \in [0,T]$, où $T$ est une
   borne supérieure sur la date de fin de l'ordonnancement; dans le
-  second cas, il s'agit de ressources pouvant être allouée en quantité
+  second cas, il s'agit de ressources pouvant être allouées en quantité
   continue, i.e. non discrète. Ce type de ressource permet, par
-  exemple, de modéliser l'électricité, l'essence, énergie hydraulique...
-\item les ressources discrètes, i.e. divisible en temps ou en quantité
+  exemple, de modéliser l'électricité, l'essence, l'énergie hydraulique...
+\item les ressources discrètes, i.e. divisibles en temps ou en quantité
   discret: à l'inverse, le premier cas décrit une ressource où la
   ré-allocation de cette dernière ne peut être 
   exécutée qu'à des temps discrets $t \in \{0,\dots,T\}$; le second
@@ -95,13 +100,12 @@ principales, on distingue:
     ne peut commencer avant qu'une autre n'ait été achevée, ou des temps
     de transition à respecter entre les activités.
 
-    {\'E}tant donné une activité $i$, la date à partir
-    de laquelle l'activité $i$ peut être exécutée est appelée {\it
-      date de début au plus tôt} et est notée $\ES$ (earliest
-    start time en anglais) . De même, la date avant
-laquelle l'activité $i$ doit avoir été complètement exécutée sera
-appelée {\it date de fin au plus tard} et 
-dénotée par $\LE$ (latest end time en anglais).
+    {\'E}tant donné une activité $i$, la date à partir de laquelle
+    l'activité $i$ peut être exécutée est appelée {\it date de début au
+      plus tôt} et est notée $\ES$ (earliest start time en anglais). De
+    même, la date avant laquelle l'activité $i$ doit avoir été
+    complètement exécutée sera appelée {\it date de fin au plus tard} et
+    notée $\LE$ (latest end time en anglais).
 
 \item les contraintes de ressources:  ce sont des contraintes d'utilisation
   des ressources qui expriment la nature et la quantité de moyens
@@ -114,7 +118,7 @@ dénotée par $\LE$ (latest end time en anglais).
 \subsubsection{Les objectifs}
 
 Lors de la résolution d'un problème d'ordonnancement, deux buts
-différents peuvent exister. Le premier vise à trouver une solution
+différents peuvent être poursuivis. Le premier vise à trouver une solution
 réalisable pour le problème tandis que le second cherche à trouver une
 solution optimisant un ou plusieurs critères ou objectifs.
 
@@ -134,5 +138,5 @@ distingue par exemple:
 \item les objectifs liés à une énergie, un débit...
 \end{itemize}
 
-Deux exemples de problèmes d'ordonnancement sont présentés dans la
-section suivante: le \RCPSP~et le \CUSP.
+Deux exemples de problèmes d'ordonnancement sont présentés dans le
+paragraphe suivant: le \RCPSP~et le \CUSP.
