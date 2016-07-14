@@ -6,27 +6,25 @@
 
 Les problèmes d'ordonnancement étudiés en programmation par
 contraintes sont majoritairement regroupés en trois catégories: les
-problème préemptifs, les problèmes non préemptifs et les problèmes
-élastiques. Les problèmes préemptifs, respectivement non préemptifs,
-sont des problèmes pour lesquels la préemption des activités est
-autorisée, respectivement non autorisée. Une définition d'une activité
-préemptive peut être trouvée dans le paragraphe~\ref{sec:ordo}. Les
-{\it problèmes d'ordonnancement élastiques} correspondent aux
-problèmes où la quantité de ressource attribuée à une activité peut
-varier, à tout instant $t$ de l'horizon de temps, avec la contrainte
-que la quantité totale de ressource consommée par l'activité durant
-son exécution soit égale à une certaine valeur appelée {\it
-  énergie}. Cette dernière notion peut aisément être étendue dans le
-cas où l'énergie reçue par une activité n'est pas égale à la quantité
-de ressource consommée mais où des fonctions de rendement modélisent 
-cette conversion. Clairement, le \CECSP~est un exemple typique d'un
-tel problème. Dans la suite de ce chapitre, nous considérons la notion
-d'énergie au sens de la quantité totale de ressource
-consommée. L'extension de cette notion pour prendre en considération
-les fonctions de rendement sera détaillée dans le
-chapitre~\ref{sec:PPC_CECSP}.
+problèmes préemptifs, les problèmes non préemptifs et les problèmes
+élastiques. Les problèmes préemptifs (respectivement non préemptifs)
+sont des problèmes pour lesquels l'interruption des activités est
+autorisée (resp. non autorisée). Les {\it problèmes d'ordonnancement
+élastiques} correspondent aux problèmes où la quantité de ressource
+attribuée à une activité peut varier, à tout instant $t$ de l'horizon
+de temps, avec la contrainte que la quantité totale de ressource
+consommée par l'activité durant son exécution soit égale à une
+certaine valeur appelée {\it énergie}. Cette dernière notion peut
+aisément être étendue dans le cas où l'énergie reçue par une activité
+n'est pas égale à la quantité de ressource consommée mais où des
+fonctions de rendement modélisent cette conversion. Clairement, le
+\CECSP~est un exemple typique d'un tel problème. Dans la suite de ce
+chapitre, nous considérons la notion d'énergie au sens de la quantité
+totale de ressource consommée. L'extension de cette notion pour
+prendre en considération les fonctions de rendement sera détaillée
+dans le chapitre~\ref{sec:PPC_CECSP}.
 
-La majorité des problèmes d'ordonnancement non-préemptifs classiques
+La majorité des problèmes d'ordonnancement non préemptifs classiques
 peuvent être modélisés à l'aide d'un problème de satisfaction de
 contraintes. En général, trois variables représentant respectivement
 la date de début d'une activité, notée $st_i$, sa date de fin, notée
@@ -41,27 +39,27 @@ quant à elle définie comme la différence entre sa date de fin et sa
 date de début, i.e. $p_i=et_i-st_i$.
 
 Les problèmes préemptifs sont plus difficiles à modéliser. En effet,
-dans ce cas-là, un ordonnancement valide ne peut seulement être
+dans ce cas-là, un ordonnancement valide peut être uniquement 
 représenté par une date de début, de fin et une durée pour chaque
 activité. Pour ces problèmes, au moins deux modélisations différentes
 existent. La première consiste à associer à chaque activité une
 variable d'ensemble, i.e. une variable dont la valeur sera un
-ensemble. Cet variable représente l'ensemble des instants $t$ où
-l'activité est en cours, définie comme un ensemble d'intervalles ou de
-temps $t$ discret. Une second possibilité est de définir une variable
+ensemble. Cette variable représente l'ensemble des instants $t$ où
+l'activité est en cours, défini comme un ensemble d'intervalles ou de
+temps $t$ discret. Une seconde possibilité est de définir une variable
 binaire, pour chaque activité et chaque instant $t$, qui prendra la
 valeur $1$ si l'activité est en cours à l'instant $t$. Notons que,
 dans le cas d'un problème d'ordonnancement continu, une telle solution
 ne peut être envisageable car cela conduirait à un nombre infini de
 telles variables.
 
-Les problèmes élastiques sont, quant à eux, modéliser à travers les
+Les problèmes élastiques sont, quant à eux, modélisés à travers les
 contraintes de ressources. Il existe deux principaux types de
 contraintes de ressource en PPC. Le premier permet de modéliser les
-ressources disjonctives, i.e. qui ne peuvent exécuter qu'une activité
-en parallèle, et le second sert à la modélisation des ressources
-cumulatives. Dans ce manuscrit, nous nous intéressons seulement au
-second cas. 
+ressources disjonctives, i.e. qui ne peuvent exécuter qu'une seule
+activité à un instant donné, et le second sert à la modélisation des
+ressources cumulatives. Dans ce manuscrit, nous nous intéressons
+seulement au second cas.
 
 {\'E}tant donné une activité et une ressource de capacité $R$, une
 variable $b_i$ sert généralement à modéliser la consommation de
@@ -70,7 +68,7 @@ cette variable est remplacée par une variable $W_i$ représentant
 l'énergie requise par l'activité. Pour représenter un ordonnancement,
 un ensemble de variables représentant la quantité de ressource
 utilisée par une activité à l'instant $t$ est introduit. Ces variables
-sont ensuite liés entre elles par un ensemble de contraintes
+sont ensuite liées entre elles par un ensemble de contraintes
 modélisant le fait que chaque activité doit recevoir une énergie
 $W_i$. 
 
@@ -80,19 +78,18 @@ alternatives, des temps de préparation entre les activités, des
 activités optionnelles ou des contraintes de réservoirs.
 
 Dans la suite de ce manuscrit, nous nous intéressons aux problèmes
-d'ordonnancement non-préemptifs avec ressource cumulative et aux
+d'ordonnancement non préemptifs avec ressource cumulative et aux
 problèmes d'ordonnancement élastiques. Le premier cas correspond au
 \CUSP, décrit dans le paragraphe~\ref{sec:ordo_res}. En PPC, le
-problème est modélisé à l'aide d'une contrainte globale appelées
+problème est modélisé à l'aide d'une contrainte globale appelée
 contrainte cumulative. Cette contrainte ainsi que différents
 algorithmes de filtrage mis en place pour cette dernière sont
-présentés dans les deux paragraphes suivant. 
+présentés dans les deux paragraphes suivants. 
 
 Les problèmes d'ordonnancement élastiques seront représentés par le
-\CECSP~(voir paragraphe~\ref{sec:ordo_nrj}), pour lequel une partie
-des algorithmes de filtrage pour la contrainte cumulative sont adaptés
-et un modèle de PPC dans le cas de la restriction discrète du
-\CECSP~seront présentés dans le chapitre~\ref{sec:PPC_CECSP}.
+\CECSP~(voir paragraphe~\ref{sec:ordo_nrj}), pour lequel l'adaptation
+de certains algorithmes de filtrage pour la contrainte cumulative est
+présentée dans le chapitre~\ref{sec:PPC_CECSP}.
 
 \subsection{La contrainte cumulative}
 \label{sec:cumu_cume}
@@ -102,16 +99,17 @@ contexte, une activité est souvent représentée par $4$ variables:
 $st_i,\ et_i,\ p_i$ et $b_i$ correspondant respectivement à la date de
 début de l'activité, sa date de fin, sa durée et sa consommation de
 ressource. En règle générale, les domaines des variables $p_i$ et
-$b_i$ sont restreint à un seul élément, i.e. la durée de l'activité
+$b_i$ sont restreints à un seul élément, i.e. la durée de l'activité
 est fixe et sa consommation de ressource est constante durant toute
-son exécution. 
+son exécution. Les domaines des variables $st_i$ et $et_i$ sont quant
+à eux considérés finis.
 
 La contrainte cumulative vise donc à déterminer seulement les dates de
 début et de fin des activités -- liés par la condition d'intégrité
-$et_i=st_i+p_i$. Cette contrainte prend donc en paramètre l'ensemble
+$et_i=st_i+p_i$. Cette contrainte prend donc en paramètres l'ensemble
 d'activités $\A$ à ordonnancer et la capacité $R$ de la ressource utilisée
 pour exécuter les activités. Avec ces notations la contrainte s'écrit
-$cumulative(\A,R)$ et cette contrainte est satisfaites si et seulement 
+$cumulative(\A,R)$ et cette contrainte est satisfaite si et seulement 
 si:
 \begin{align}
   \forall i \in \A, & \quad  st_i+p_i=et_i \label{eq:CUSP_int}\\
@@ -121,34 +119,33 @@ si:
 La seconde contrainte ainsi qu'un exemple de solution sont détaillés
 dans le paragraphe~\ref{sec:ordo_res}.
 
-L'existence d'une solution au problème cumulatif étant NP-complet, un
-algorithme effectuant un filtrage complet des domaines des variables,
-i.e. retirant toutes les valeurs incohérentes des domaine des
-variables, ne peut s'exécuter en temps polynomial. De ce fait, les
-algorithmes de filtrage se limite souvent à s'assurer de la cohérence
-des bornes des domaines des variables. Ces algorithmes se présentent
-le plus souvent sous la forme de règles permettant d'ajuster ces
-bornes en fonction des données et contraintes du problème,
-i.e. les {\it règles d'ajustement}. Malgré tout, ces techniques
-restent encore trop coûteuse en temps pour être utilisées directement
-sur la contrainte cumulative.  Différentes relaxations de la
-contrainte cumulative ont donc été introduites et des règles
-d'ajustement pouvant être appliquées en temps polynomial ont été mis
-en place pour ces relaxations.
+L'existence d'une solution au problème cumulatif étant un problème
+NP-complet, un algorithme effectuant un filtrage complet des domaines
+des variables, i.e. retirant toutes les valeurs incohérentes des
+domaines des variables, ne peut s'exécuter en temps polynomial. De
+plus, assurer seulement la cohérence des bornes des domaines étant
+aussi NP-complet, les algorithmes utilisés permettent seulement
+d'ajuster seulement certaines bornes des domaines en fonction des
+données et contraintes du problème sans s'assurer de la cohérence de
+toutes les bornes. Ces algorithmes de filtrage se présentent le plus
+souvent sous la forme de règles, appelées {\it règles d'ajustement},
+et sont appliqués sur des relaxations de la contraintes cumulative et
+des règles pouvant être appliquées en temps polynomial ont été mises
+en place pour des relaxations.
 
 Dans ce manuscrit, nous présentons quelques une de ces
 techniques. Pour une description plus détaillée des différentes
 techniques de relaxation existantes pour la contrainte cumulative,
 nous renvoyons le lecteur à~\cite{BLPN,DHP}. 
 Baptiste {\it et al.}~\cite{BLPN} présentent un panorama de ces
-différentes relaxations ainsi que des principales techniques issues de
-la programmation par contraintes mis en place pour résoudre la
-contrainte cumulative. Dans un contexte plus général, Dornoff {\it et
+différentes relaxations ainsi que les principales techniques issues de
+la programmation par contraintes mises en place pour résoudre la
+contrainte cumulative. Dans un contexte plus général, Dorndoff {\it et
 al.}~\cite{DHP} exhibent des règles de cohérence basées sur la
 capacité des intervalles, i.e. la quantité de ressource disponible
 dans un intervalle.
 
-Le paragraphe suivant présente plusieurs des règles d'ajustement
+Le paragraphe suivant présente plusieurs de ces règles d'ajustement
 définies pour la contrainte cumulative. 
 
 
@@ -156,28 +153,29 @@ définies pour la contrainte cumulative.
 \label{sec:cumu_propag}
 
 Le problème cumulatif étant un problème symétrique, les règles
-d'ajustement sont souvent définie pour une seule des deux variables
-$st_i$ et $et_i$. En effet, une fois ces règles définies pour une de
-ces deux variables, les même règles peuvent être définies dans l'autre
-cas de manière vraiment similaire. De ce fait, les raisonnements et
-algorithmes décrit dans ce paragraphe ne présentent que le filtrage du
-début au plus tôt.
+d'ajustement sont souvent définies pour une seule des deux variables
+$st_i$ et $et_i$. En effet, une fois ces règles étant définies pour
+une de ces deux variables, les règles symétriques peuvent être
+déduites pour l'autre variable. Les raisonnements et algorithmes
+décrits dans ce paragraphe ne présentent que le filtrage du début au
+plus tôt.
 
 Dans un premier temps, nous présentons des règles simples permettant
 l'ajustement des bornes des variables. Ensuite, une partie sera
-consacrée aux règles d'ajustement basée sur le concept
-d'énergie. Enfin, ces règles seront ensuite combinées afin de créer
+consacrée aux règles d'ajustement basées sur le concept
+d'énergie. Enfin, ces règles seront combinées afin de créer
 des algorithmes permettant un filtrage plus fort des domaines des
 variables.
 
-Plusieurs des règles présentées dans cette section seront ensuite
+Plusieurs des règles présentées dans ce paragraphe seront ensuite
 adaptées dans le cas du \CECSP~dans le chapitre~\ref{sec:PPC_CECSP}.
 
 \subsubsection{Règles de filtrages simples}
 
 Parmi les raisonnements les plus simples appliqués dans le cadre de la
-contrainte cumulative, on retrouve le Time-Table~\cite{TTLah} et le
-raisonnement disjonctif~\cite{BLPN}.  
+contrainte cumulative, on retrouve le raisonnement basé sur
+l'échéancier (on utilise le terme anglais de Time-Table)~\cite{TTLah}
+et le raisonnement disjonctif~\cite{BLPN}.
 
 \paragraph{Time-Table}
 Le premier algorithme de filtrage de la contrainte cumulative
@@ -192,7 +190,8 @@ $\LS=\LE - p_i$.
 
 
 \begin{defi}
-La partie obligatoire d'une activité $i$ est l'intervalle $[\LS,\EE{[}$.
+La partie obligatoire d'une activité $i$ est définie par l'intervalle
+$[\LS,\EE{[}$.
 \end{defi}
 
 \begin{ex}
@@ -297,18 +296,18 @@ l'activité possède une partie obligatoire qui est l'intervalle $[5,9[$
     }
   \end{tikzpicture}
 }
-\caption{Partie obligatoire d'une activité $i$}
+\caption{Partie obligatoire d'une activité $i$ pour le \CUSP.}
 \label{fig_mand_CUSP}
 \end{figure}
 \end{ex}
 
-Le profil obligatoire des activités peut ensuite être agrégé de
+Les parties obligatoires des activités peuvent ensuite être agrégées de
 manière à obtenir une fonction en escalier, appelée {\it profil
   obligatoire de la ressource}.  
 
 \begin{defi}
 \label{def:profil_oblig}
-  Le {\bf profil obligatoire} d'une ressource $TT_{\cal A}$ est définie
+  Le {\bf profil obligatoire}  $TT_{\cal A}$ d'une ressource est défini
   par la fonction suivante: $TT_{\cal A}(t)= \sum_{\substack{i \in {\cal
         A}\\ \LS \le t < \EE}} b_i ,\ \forall t \in \H$.  Le problème n'admet
   pas de solution si $\exists t \in \H \ : \ TT_{\cal A}(t) > R$.
@@ -331,7 +330,7 @@ manière à obtenir une fonction en escalier, appelée {\it profil
       \draw[dashed] (-1,5) -- (12.5,5);
       \draw[->] (-1,0) -- (-1,5.5) node[left] {$R=5$};
     \end{tikzpicture}
-    \caption{Exemple de profil obligatoire d'une ressource}
+    \caption{Exemple de profil obligatoire d'une ressource cumulative}
     \label{fig_profil_CUSP}
   \end{figure}
   Dans l'exemple décrit par la figure~\ref{fig_profil_CUSP}, nous
@@ -389,21 +388,21 @@ ressource ainsi que l'ajustement déduit de la règle~\ref{reg:TT}.
       \draw[very thick=3pt] (5,-0.1) node[below=0.3cm] {$\ES^{'}$}-- (5,5.5);
       \draw[->] (0.8,-1.8) -- (4.2,-1.8);
     \end{tikzpicture}
-    \caption{Règle d'ajustement du Time-Table}
+    \caption{Règle d'ajustement du Time-Table pour le \CUSP.}
     \label{fig:TT_CUSP}
   \end{figure}
-Dans cet exemple, on voit bien que l'activité ne peut pas commencé au
-temps $t=\ES=1$. En effet, le profil obligatoire de la ressource
+Dans cet exemple, on voit bien que l'activité ne peut pas commencer à
+tout temps $t\in [\ES,6[$. En effet, le profil obligatoire de la ressource
 montre que la quantité de ressource disponible dans l'intervalle
 $[3,6[$ ne permet pas d'exécuter l'activité pendant cet intervalle. La
-date de début au plus tôt peut donc être mise à jour ($\ES=6$).
+date de début au plus tôt peut donc être mise à jour ($\ES^{'}=6$).
 \end{ex}
 
 Beldiceanu {\it et al.}~\cite{BC} ont introduit un algorithme de
 balayage permettant d'appliquer les ajustements décrits ci-dessus en
 $O(n^2)$. D'autres algorithmes ont aussi été mis en place pour ce
 raisonnement~\cite{OQ,LBC,GHS}. Ces algorithmes possèdent des
-complexités théoriques moins élevée ou équivalente avec l'algorithme
+complexités théoriques moins élevées ou équivalentes avec l'algorithme
 de balayage de Beldiceanu {\it et al.} en proposant des filtrages
 moins importants.
 
@@ -426,7 +425,7 @@ vérifiée:
 \item l'activité $i$ doit commencer après la fin de l'activité $j$;
 \item l'activité $i$ doit finir avant le début de l'activité $j$.
 \end{itemize}
-En effet, comme les activités $i$ et $j$ ne peuvent être exécutée en
+En effet, comme les activités $i$ et $j$ ne peuvent être exécutées en
 parallèle, l'une doit forcément finir avant que l'autre ne puisse
 s'exécuter.
 
@@ -508,19 +507,22 @@ Soient $i$ et $j$ les deux activités suivantes:
       % \draw[->] (1.8,5.8) -- (5.2,5.8);
     \end{scope}
   \end{tikzpicture}
-  \caption{Raisonnement disjonctif}
+  \caption{Raisonnement disjonctif pour le \CUSP.}
   \label{fig:disj_CUSP}
 \end{figure}
 Dans l'exemple ci-dessus, nous avons $b_i+b_j=4 > 3$. Donc $i$ et $j$
 ne peuvent s'exécuter en parallèle. Comme $\EE[j] = 8 > 7=\LS$, $i$
-doit forcément être exécuter avant $j$. En effet, $i$ doit forcément
-démarrer avant $\LS=7$ et $j$ ne peut finir avant $\EE=8$. Donc $j$ ne
-peut commencer avant $\EE=6$.
+doit être exécutée avant $j$. En effet, $i$ doit forcément
+démarrer avant $\LS=7$ et ,si $j$ est ordonnancée au plus tôt,
+i.e. $st_j=\ES[j]=1$, $j$ ne peut finir avant $\EE[j]=8$. Donc, dans
+ce cas, $i$ et $j$ se chevauchent. L'activité $j$ ne peut commencer à
+$\ES[j]$ et doit commencer après $\EE=6$. Donc $\ES[j]$ est ajustée à
+cette valeur.
 \end{ex}
 
 L'exemple~\ref{ex:disj_CUSP} montre que, dans certains cas, le
 raisonnement disjonctif est plus fort que le Time-Table. En effet,
-dans cette exemple, aucune des activités ne possèdent de partie
+dans cet exemple, aucune des activités ne possède de partie
 obligatoire. Aucun ajustement n'est donc détecté par la
 règle~\ref{reg:TT}. 
 
@@ -529,11 +531,14 @@ procéder à plus d'ajustements que le raisonnement disjonctif. En
 effet, le raisonnement disjonctif présenté ici ne raisonne que sur des
 paires d'activités tandis que le Time-Table est capable de détecter
 des ajustements déduits de n-uplets d'activités. Il faut cependant que
-les activités possèdent une partie obligatoire.
+les activités possèdent une partie obligatoire. Cependant, le
+Time-Table est souvent plus utilisé en pratique car il peut amener les
+mêmes déductions que les paires de disjonction tout en ayant une plus
+faible complexité.
 
 Dans le paragraphe~\ref{sec:mix_CUSP}, nous montrerons comme il est
 possible de coupler ces deux raisonnements pour en obtenir un nouveau,
-le Time-Table disjonctif. 
+le Time-Table disjonctif~\cite{Gay2015}. 
 
 Le paragraphe suivant est dédié aux règles de filtrage utilisant le
 concept d'{\it énergie}. 
@@ -559,28 +564,28 @@ d'activités $\Omega \subseteq \A$, le but étant de décider si une
 activité $j$ doit commencer avant $\Omega$ dans toute solution
 réalisable. Dans ce cas, l'énergie d'une activité $i$ représente sa
 charge de travail $W_i$ et est simplement exprimée comme
-$W_i=p_i\times b_i$. L'énergie nécessaire pour un ensemble d'activité
+$W_i=p_i\times b_i$. L'énergie nécessaire pour un ensemble d'activités
 $\Omega$ est alors $\sum_{i\in \Omega} W_i$. Les intervalles
-considérés dans ce raisonnement correspondent au fenêtre de temps des
-activités $[\ES,\LE]$. Cette notion est étendue à $\Omega$ de la façon
-suivante: $[\ES[\Omega],\LE[\Omega]=[\min_{j \in \Omega}\ES[j],\max_{j
-\in \Omega} \LE[j] ]$. L'idée du raisonnement est alors  de vérifier
+considérés dans ce raisonnement correspondent aux fenêtres de temps des
+activités $[\ES,\LE{[}$. Cette notion est étendue à $\Omega$ de la façon
+suivante: $[\ES[\Omega],\LE[\Omega]{[}=[\min_{j \in \Omega}\ES[j],\max_{j
+\in \Omega} \LE[j] {[}$. L'idée du raisonnement est alors  de vérifier
 que la ressource disponible permet de faire débuter l'activité $i$
 dans la fenêtre de temps correspondant à $\Omega$. Pour cela,
 l'énergie requise par $\Omega \cup \{ i\}$ est comparée à la quantité
 de ressource disponible dans l'intervalle $[\ES[\Omega],\LE[\Omega\cup
-\{i\}]]$. Si la quantité de ressource n'est pas suffisante, alors
+\{i\}]{[}$. Si la quantité de ressource n'est pas suffisante, alors
 l'activité $i$ doit commencer avant $\ES[\Omega]$ et un ajustement
 peut être effectué.
 
 Dans le cas des activités partiellement et totalement élastiques, les
 contraintes de consommation de ressource sont relâchées et une
 activité n'est plus contrainte de consommer une quantité constante de
-la ressource au cours du temps. Suivant que l'activité est totalement
+la ressource au cours du temps. Selon que l'activité est totalement
 ou partiellement élastique, ces contraintes sont plus ou moins
 relâchées et la consommation de ressource des activités peut subir des
-variations plus ou moins grande au cours du temps. L'avantage de ces
-relaxations est que l'existence d'une solution peut être décider en
+variations plus ou moins grandes au cours du temps. L'avantage de ces
+relaxations est que l'existence d'une solution peut être décidée en
 temps polynomial. La façon dont les ajustements sont calculés étant
 très similaire à celle dont ils sont calculés dans le cadre du
 raisonnement énergétique, ils ne sont pas détaillés dans ce
@@ -595,7 +600,7 @@ intervalle. Dans ce cas, l'énergie requise par une activité dans un
 intervalle $[t_1,t_2[$  équivaut à
 la quantité minimale de ressource qu'elle doit utiliser
 à l'intérieur de cet intervalle. Cette quantité, notée $\bb$, est
-ensuite utilisée pour calculer la fonction de marge $SL(t_1-t_2)$
+ensuite utilisée pour calculer la fonction de marge $SL(t_1,t_2)$
 correspondant à la différence entre la quantité de ressource requise
 par toutes les activités à l'intérieur de $[t_1,t_2[$ et la quantité
 de ressource disponible dans ce même intervalle, $R (t_2-t_1)$. Si
@@ -615,11 +620,10 @@ central du raisonnement énergétique:
  
 \begin{theo}
 \label{th:centerRE}
-Soit $\I$ une instance de la contrainte cumulative. S'il existe
-$t_1 < t_2 \in \mathbb{N}^2$ tel que $SL(t_1,t_2) <0$ alors $\I$ ne
-possède pas de solution, i.e.
+Soit $\I$ une instance de la contrainte cumulative. Alors, nous avons
+la propriété suivante:
 \begin{equation}
-\exists t_1 < t_2 \in \mathbb{N}^2 , SL(t_1,t_2) <0 \Rightarrow \I
+\exists t_1,t_2 \in \mathbb{N}, t_1 < t_2, SL(t_1,t_2) <0 \Rightarrow \I
 \text{ ne possède pas de solution}
 \label{eq:centerRE}
 \end{equation}
@@ -627,10 +631,10 @@ possède pas de solution, i.e.
 
 Pour calculer cette fonction de marge, il faut pouvoir calculer la
 quantité de ressource requise par une activité dans l'intervalle
-$[t_1,t_2[$, $\bb$. {\'E}tant donnée une activité $i$, cette quantité
+$[t_1,t_2[$, $\bb$. {\'E}tant donné une activité $i$, cette quantité
 correspond à l'aire minimale, parmi tous les ordonnancements possibles
 de $i$, occupée par cette dernière à l'intérieur de l'intervalle
-$[t_1,t_2[$. Pour atteindre ce minimum, seulement trois configurations
+$[t_1,t_2[$. Pour atteindre ce minimum, seules trois configurations
 sont possibles et sont décrites ci-dessous:
 \begin{itemize}
 \item l'activité est {\it calée à gauche}: l'activité démarre à $\ES$; 
@@ -647,7 +651,7 @@ introduisons trois notations. $\bbLS$ (respectivement $\bbRS$ et
 $\bbCS$) correspond à la quantité de ressource requise par l'activité $i$
 dans l'intervalle $[t_1,t_2[$  quand l'activité est calée à gauche
 (respectivement calée à droite et centrée). Formellement, ces trois
-quantités peuvent être exprimer de la manière suivante: 
+quantités peuvent être exprimées de la manière suivante: 
 \begin{align}
 \bbLS&=b_i * \max(0,p_i- \max(0,t_1 - \ES)) \label{eq:LS_CUSP}\\
 \bbRS&=b_i * \max(0,p_i- \max(0, \LE-t_2))\label{eq:RS_CUSP}\\
@@ -670,14 +674,14 @@ suivantes:
     \hline
     1 & 0 & 6 & 3 & 1 \\
     2 & 1 & 6 &  5 & 2 \\    
-    3 & 2 & 8 &  4 & 1 \\    
+    3 & 2 & 8 &  4 & 2 \\    
     4 & 2 & 8 &  5 & 1 \\    
     \hline
   \end{tabular}
 \end{center}
 
 Nous montrons comment appliquer le raisonnement énergétique sur
-l'intervalle $[3,6]$. Nous commençons par présenter le calcul de la
+l'intervalle $[3,6[$. Nous commençons par présenter le calcul de la
 consommation minimale de chaque activité. Dans la
 figure~\ref{fig:ex_ER_CUSP}, nous représentons graphiquement les
 activités calées à gauche ($LS$), à droite ($RS$) et centrées ($CS$).
@@ -758,7 +762,8 @@ activités calées à gauche ($LS$), à droite ($RS$) et centrées ($CS$).
       \draw[thick] (\i,-0.1) -- (\i,0);
     } 
   \end{tikzpicture}}
-\caption{Calcul de l'énergie minimale}
+\caption{Calcul de l'énergie minimale dans un intervalle $[t_1,t_2[$
+  pour le \CUSP.}
 \label{fig:ex_ER_CUSP}
 \end{figure}
 
@@ -792,16 +797,16 @@ pratique, n'est pas envisageable. Cependant, Baptiste {\it et al.} ont
 proposé une caractérisation des intervalles sur lesquels il est
 suffisant d'appliquer le raisonnement énergétique. Par suffisant, nous
 entendons que, si une incohérence n'est pas détectée sur cet ensemble
-d'intervalle, alors aucun autre intervalle ne pourra conduire à
+d'intervalles, alors aucun autre intervalle ne permettra de conclure à
 l'insatisfiabilité de l'instance. La taille de cet ensemble
-d'intervalle d'{\it intérêt} est de l'ordre de $O(n^2)$. Le calcul de
+d'intervalles d'{\it intérêt} est de l'ordre de $O(n^2)$. Le calcul de
 la fonction de marge pouvant s'effectuer incrémentalement, la
 complexité du checker énergétique est donc de $O(n^2)$.
 
 Récemment, Derrien {\it et al.}~\cite{DP} ont proposé une
 caractérisation plus fine de l'ensemble des intervalles d'intérêt pour
 le raisonnement énergétique. L'ordre de grandeur de la taille de cet
-ensemble d'intervalle n'est pas modifié et est toujours de l'ordre de
+ensemble d'intervalles n'est pas modifié et est toujours de l'ordre de
 $n^2$ mais le nombre d'intervalles considérés est divisé par $7$. En
 effet, la caractérisation de Baptiste {\it et al.} considère, pour
 chaque paire d'activités, $15$ intervalles tandis que la
@@ -811,37 +816,37 @@ caractérisation de Derrien {\it et al.} n'en considère que $2$.
 Ces caractérisations se basent toutes les deux sur l'idée suivante:
 pour décider de l'existence d'un point $(t_1,t_2)$ pour lequel la
 fonction de marge évaluée en ce point $SL(t_1,t_2)$ est négative, il
-suffit d'évaluer la fonction en ses minimums locaux. La principale
-différence entre ces deux caractérisation est la caractérisation plus
-ou moins fine de ces minimums.
+suffit d'évaluer la fonction en ses minima locaux. La principale
+différence entre ces deux caractérisations est la caractérisation plus
+ou moins fine de ces minima.
 
 Nous allons brièvement détailler la caractérisation de Derrien {\it et
 al.} que nous adapterons dans le cadre du \CECSP~dans le
 chapitre~\ref{sec:PPC_CECSP}.
 
-Pour étudier les minimums locaux de la fonction de marge, les auteurs
+Pour étudier les minima locaux de la fonction de marge, les auteurs
 de~\cite{DP} étudient les variations de cette dernière. L'expression
 de la fonction de marge dépendant de $R(t_2-t_1)$ et de $\sum_{i \in
   \A} \bb$, ses variations dépendent des variations de la fonction
 $(t_1,t_2) \rightarrow \sum_{i \in \A} \bb$. En particulier, ils
 remarquent que tous les changements de variation de cette fonction ne
 peuvent impliquer un minimum local. Pour qu'une variation implique un
-tel minimum il faut que la dérivé à gauche de cette fonction soit
-négative, que la dérivé à droite soit positive et qu'au moins l'une
+tel minimum il faut que la dérivée à gauche de cette fonction soit
+négative, que la dérivée à droite soit positive et qu'au moins l'une
 d'entre elles soit non nulle. En effet, dans l'expression de la
-fonction de marge, cette fonction est multiplié par $-1$.
+fonction de marge, cette fonction est multipliée par $-1$.
 
-Cette propriété, induite par le {\it test de la dérivé seconde}, leur
+Cette propriété, induite par le {\it test de la dérivée seconde}, leur
 permet de décrire des conditions sur les consommations individuelles
-des activités, $\bb$, sous lesquels $(t_1,t_2)$ peut être un minimum
-local de la fonction de marge. Ces conditions sont exprimées dans le
-lemme~\ref{lem:min_CUSP}. 
+des activités, $\bb$, sous lesquelles le point $(t_1,t_2)$ peut être
+un minimum local de la fonction de marge. Ces conditions sont
+exprimées dans le lemme~\ref{lem:min_CUSP}.
 
 \begin{lemma}
 \label{lem:min_CUSP}
-La fonction de marge $SL(t_1,t_2)$ est localement minimale seulement
-s'il existe deux activités $i$ et $j$ telles que les conditions
-ci-dessous sont satisfaites. 
+Si le point $(t_1,t_2)$ est un minimum local de la fonction de marge
+$SL(t_1,t_2)$, alors il existe deux activités $i$ et $j$ telles que les
+conditions ci-dessous sont satisfaites. 
 \begin{align} \frac{\delta^{-}\bb}{\delta t_1} &>
 \frac{\delta^{+}\bb}{\delta t_1} \label{eq:deriv1_CUSP}\\ 
 \frac{\delta^{-}\bb[j]}{\delta t_2}
@@ -852,17 +857,17 @@ ci-dessous sont satisfaites.
 \begin{proof}
 Soit $(t_1,t_2) \in \mathbb{N}^2$ tel qu'il n'existe aucune activité
 $i$ vérifiant la condition~\eqref{eq:deriv1_CUSP}. Alors, $\sum_{i \in
-  \A} \bb$ a sa dérivée à gauche supérieure à sa dérivé à droite. Par
-le test de la seconde dérivé, un minimum local d'une fonction ne peut
-exister que si la dérivé à gauche est plus grande que la dérivé à
-droite. Donc $(t_1,t_2)$ ne peut pas être un minimum local. 
+  \A} \bb$ a sa dérivée à gauche supérieure à sa dérivée à droite. Par
+le test de la dérivée seconde, un minimum local d'une fonction ne peut
+exister que si la dérivée à gauche est plus grande que la dérivée à
+droite. Donc le point $(t_1,t_2)$ ne peut pas être un minimum local. 
 
 De la même façon, on peut prouver que si la
-condition~\eqref{eq:deriv2_CUSP} n'est pas vérifié, alors $(t_1,t_2)$
+condition~\eqref{eq:deriv2_CUSP} n'est pas vérifiée, alors $(t_1,t_2)$
 ne peut pas être un minimum local. 
 \end{proof}
 
-Le lemme~\ref{lem:min_CUSP} peut ensuite être utilisé pour déterminer
+Le lemme~\ref{lem:min_CUSP} peut ensuite être utilisé pour établir 
 les conditions nécessaires permettant de déterminer un l'ensemble des
 intervalles d'intérêt. Pour cela, une étude des fonctions $t_1
 \rightarrow \bb$ et $t_2 \rightarrow \bb$ est nécessaire. Nous montrons
@@ -873,10 +878,10 @@ pouvant s'obtenir de manière similaire.
 \begin{lemma}
   Pour chaque activité $i$ et pour tout début d'intervalle $t_1$ il
   existe au plus un intervalle $[t_1,t_2[$ tel que
-  $\frac{\delta^{-}\bb[j]}{\delta t_2} >
-  \frac{\delta^{+}\bb[j]}{\delta t_2} $:
+  $\frac{\delta^{-}\bb}{\delta t_2} >
+  \frac{\delta^{+}\bb}{\delta t_2} $:
   \begin{enumerate}
-  \item si $t_1 < \ES$ alors seulement l'intervalle $[t_1,\LE {[}$ doit
+  \item si $t_1 \le \ES$ alors seulement l'intervalle $[t_1,\LE {[}$ doit
     être considéré.
   \item si $t_1  > \LS \land t_1 \ge \EE$ alors aucun intervalle ne
     doit être considéré. 
@@ -893,7 +898,7 @@ pouvant s'obtenir de manière similaire.
 Pour prouver ce lemme, nous étudions les variations de la fonction
 $t_2 \rightarrow \bb$, à $t_1$ fixé. Les variations de cette fonction
 dépendent de la position relative de $t_1$ par rapport à $\ES,\ \LS$ et
-$\EE$. Le cas où $t_1 \le \ES$ est présenté ci-dessous pour une
+$\EE$. Le cas où $t_1 \le \ES$ est étudié ci-dessous et illustré pour une
 activité $i$ possédant les caractéristiques suivantes: $\ES=2,\
 \LE=8,\ p_i=4$ et $b_i=1$.
 
@@ -939,30 +944,30 @@ activité $i$ possédant les caractéristiques suivantes: $\ES=2,\
       \draw[dotted] (8,0) -- (8,5);
       \draw (4,0) rectangle (8,1) node[midway] {$i$};
     \end{tikzpicture}
-    \caption{{\'E}volution de $t_2 \rightarrow \bb$}
-
+    \caption{{\'E}volution de la fonction de consommation minimale en
+      fonction de $t_2$ pour le \CUSP.}
   \end{figure}
 \end{minipage}
 \end{minipage}
 
-Le seul point $t_2$ pour lequel $ \frac{\delta^{-}\bb[j]}{\delta t_2} >
-\frac{\delta^{+}\bb[j]}{\delta t_2}$ est $[1,8[= [t_1, \LE{[}$. 
+Le seul point $t_2$ pour lequel $ \frac{\delta^{-}\bb}{\delta t_2} >
+\frac{\delta^{+}\bb}{\delta t_2}$ est $[1,8[= [t_1, \LE{[}$. 
 
-Les trois autres cas peuvent être prouver de façon très similaire. 
+Les trois autres cas peuvent être prouvés de façon très similaire. 
 \end{proof}
 
 Un raisonnement symétrique permet de caractériser l'ensemble des
 points $t_1$ vérifiant la condition~\eqref{eq:deriv1_CUSP}. Une fois
 que ces dates potentielles de début et de fin d'intervalle d'intérêt
 sont caractérisées, elles sont rassemblées pour créer l'ensemble des
-intervalles d'intervalles d'intérêt pour le raisonnement énergétique. 
-La caractérisation complète de ces intervalles est décrit dans le
+intervalles d'intérêt pour le raisonnement énergétique. 
+La caractérisation complète de ces intervalles est décrite dans le
 lemme suivant.
 
 \begin{lemma}
-  La fonction de marge $SL$ est localement minimale en $(t_1,t_2)$
-  seulement s'il existe deux activités $i$ et $j$ telles que $(t_1,t_2)
-  \in \O_C(i,j)$ avec 
+  Si le point $(t_1,t_2)$ est un minimum local de la fonction de marge
+$SL(t_1,t_2)$, alors il existe deux activités $i$ et $j$ telles que
+$(t_1,t_2) \in \O_C(i,j)$ avec:
   
   \[ \O_C(i,j)= \left\{ 
       \begin{aligned} 
@@ -1015,20 +1020,19 @@ lemme suivant.
 \end{lemma}
 
 Une démonstration de ce lemme ainsi que la preuve que ces intervalles
-sont suffisant pour détecter toute incohérence due au raisonnement
-énergétique peut être trouvé dans~\cite{Alb}.
+sont suffisants pour détecter toute incohérence due au raisonnement
+énergétique peut être trouvée dans~\cite{Alb}.
 
 Grâce à cette caractérisation, l'algorithme de détection d'incohérence
 de Baptiste {\it et al.} peut être amélioré. Pour cela, nous
 considérons l'ensemble $\O_1=\cup_{i \in \A} \{\ES,\LS\}$ des dates de
 début possibles d'un intervalle et l'ensemble $\O_2=\cup_{i \in \A}
 \{\EE,\LE \}$ correspondant aux dates de fin. Ceci nous permet de
-décrire l'algorithme de détection d'incohérence en $O(n^2)$ de
-Derrien~\cite{Alb} décrit par l'algorithme~\ref{algo:check_CUSP}.
-
+décrire l'algorithme (cf.~\ref{algo:check_CUSP}) de détection
+d'incohérence en $O(n^2)$ de Derrien~\cite{Alb}.
 \begin{algorithm}[!htb]
 \setstretch{1.35}
-  \caption{Algorithme de détection d'incohérence énergétique}
+  \caption{Algorithme de détection d'incohérence énergétique pour le \CUSP.}
   \label{algo:check_CUSP}
   \PourTous {$(i,t_1) \in \O_1$}{
 
@@ -1098,7 +1102,7 @@ obtenons $\bb[2][2][4]=0$. Enfin, pour l'activité $3$, la quantité de
 ressource requise vaut $\bb[3][2][4]=2$.
 
 La quantité de ressource obtenue en calant l'activité $4$ à droite est de
-$\bbRS[4][2][4]=2$. Nous devons ensuite comparée la somme de toutes
+$\bbRS[4][2][4]=2$. Nous devons ensuite comparer la somme de toutes
 ces consommations, i.e. $4+0+2+2=8$, à la quantité de ressource
 disponible dans l'intervalle $[2,4[$,
 i.e. $R(t_2-t_1)=3*(4-2)=6$. Comme nous avons $6<8$, nous pouvons
@@ -1133,7 +1137,7 @@ $4$ est donc réduit à $\{0\}$.
       }
     \end{tikzpicture}}
   \hfill
-  \subcaptionbox{le domaine de l'activité $4$ peut être ajuster}[0.45\linewidth]{
+  \subcaptionbox{le domaine de l'activité $4$ peut être ajusté}[0.45\linewidth]{
     \begin{tikzpicture}[xscale=0.6,yscale=0.5  ,     every node/.style={color=black},%
       dot/.style={circle,fill=black,minimum size=4pt,inner sep=0pt,%
         outer sep=-1pt}, cross/.style={path picture={ \draw (path picture
@@ -1157,7 +1161,7 @@ $4$ est donc réduit à $\{0\}$.
         \draw[thick] (\i,-0.1) -- (\i,0);
       }
     \end{tikzpicture}}
-  \caption{Ajustement de borne du raisonnement énergétique}
+  \caption{Ajustement de borne du raisonnement énergétique pour le \CUSP.}
   \label{fig:ex_ER_CUSP}
 \end{figure}
 
@@ -1166,42 +1170,42 @@ $4$ est donc réduit à $\{0\}$.
 Le même raisonnement que pour l'algorithme de détection d'incohérence
 nous permet de caractériser l'ensemble des intervalles permettant de
 réaliser des ajustements. Les conditions sous lesquelles un
-intervalles peut conduire à un ajustement sont décrite dans le
+intervalle peut conduire à un ajustement sont décrites dans le
 lemme~\ref{lem:min_ajust_ER_CUSP}. Comment obtenir cette
-caractérisation à partir de ce lemme sera aussi adaptée dans le cadre
+caractérisation à partir de ce lemme sera aussi adapté dans le cadre
 du \CECSP. De ce fait, elle n'est pas décrite ici.
 
 \begin{lemma}
 \label{lem:min_ajust_ER_CUSP}
-La fonction $R(t_2-t_1) -\sum_{\substack{j \in \A \\ j \neq i}} \bb[j]
-- \bbRS $ est localement minimale seulement si une des conditions
-ci-dessous est satisfaite.
-\begin{align} 
-\exists (j,k), \ &~\frac{\delta^{-}\bb[j]}{\delta t_1}
-&>~&~\frac{\delta^{+}\bb[j]}{\delta t_1}
-&\land~&~\frac{\delta^{-}\bb[k]}{\delta t_2} & >~&
-~\frac{\delta^{+}\bb[k]}{\delta t_2} \label{eq:deriv1_adj_CUSP}\\
-\exists j , \ &~\frac{\delta^{-}\bb[j]}{\delta t_1}
-&>~&~\frac{\delta^{+}\bb[j]}{\delta t_1}
-&\land~&\frac{\delta^{-}\bbRS[k]}{\delta t_2} & >~&
-\frac{\delta^{+}\bbRS[k]}{\delta t_2} \label{eq:deriv2_adj_CUSP}\\
-\exists k, \ &\frac{\delta^{-}\bbRS[j]}{\delta t_1}
-&>~&\frac{\delta^{+}\bbRS[j]}{\delta t_1}
-&\land~&~\frac{\delta^{-}\bb[k]}{\delta t_2} & >~&
-~\frac{\delta^{+}\bb[k]}{\delta t_2} \label{eq:deriv3_adj_CUSP}\\
- &\frac{\delta^{-}\bbRS[j]}{\delta t_1}
-&>~&\frac{\delta^{+}\bbRS[j]}{\delta t_1}
-&\land~&\frac{\delta^{-}\bbRS[k]}{\delta t_2} & >~&
-\frac{\delta^{+}\bbRS[k]}{\delta t_2} \label{eq:deriv4_adj_CUSP}
-\end{align}
+  Si le point $(t_1,t_2)$ est un minimum local de la fonction
+  $R(t_2-t_1) -\sum_{\substack{j \in \A \\ j \neq i}} \bb[j] - \bbRS
+  $, alors une des conditions ci-dessous est satisfaite.
+  \begin{align} 
+    \exists (j,k), \ &~\frac{\delta^{-}\bb[j]}{\delta t_1}
+    &>~&~\frac{\delta^{+}\bb[j]}{\delta t_1}
+    &\land~&~\frac{\delta^{-}\bb[k]}{\delta t_2} & >~&
+                                                       ~\frac{\delta^{+}\bb[k]}{\delta t_2} \label{eq:deriv1_adj_CUSP}\\
+    \exists j , \ &~\frac{\delta^{-}\bb[j]}{\delta t_1}
+    &>~&~\frac{\delta^{+}\bb[j]}{\delta t_1}
+    &\land~&\frac{\delta^{-}\bbRS}{\delta t_2} & >~&
+                                                        \frac{\delta^{+}\bbRS}{\delta t_2} \label{eq:deriv2_adj_CUSP}\\
+    \exists k, \ &\frac{\delta^{-}\bbRS}{\delta t_1}
+    &>~&\frac{\delta^{+}\bbRS}{\delta t_1}
+    &\land~&~\frac{\delta^{-}\bb[k]}{\delta t_2} & >~&
+                                                       ~\frac{\delta^{+}\bb[k]}{\delta t_2} \label{eq:deriv3_adj_CUSP}\\
+                     &\frac{\delta^{-}\bbRS}{\delta t_1}
+    &>~&\frac{\delta^{+}\bbRS}{\delta t_1}
+    &\land~&\frac{\delta^{-}\bbRS}{\delta t_2} & >~&
+                                                        \frac{\delta^{+}\bbRS}{\delta t_2} \label{eq:deriv4_adj_CUSP}
+  \end{align}
 \end{lemma}
 
 L'ordre de grandeur de l'ensemble des intervalles d'intérêt pour les
 ajustements est aussi de $n^2$ et l'algorithme permettant de procéder
-à tous les ajustments possibles a une complexité en $O(n^3)$. Ceci
-fait du raisonnement énergétique un des moins utilisés en pratique,
-même si ce raisonnement est un des plus forts pour la contrainte
-cumulative. 
+à tous les ajustements possibles a une complexité en $O(n^3)$. Ceci
+fait du raisonnement énergétique un des moins algorithmes de filtrage
+utilisés en pratique, même si ce raisonnement est un des plus forts
+pour la contrainte cumulative.
 
 
 De manière similaire à la règle~\ref{reg:ajust1_ER_CUSP}, une autre
@@ -1234,49 +1238,50 @@ d'entre elles sont décrites dans le paragraphe suivant.
 \subsubsection{Règles de filtrage étendues}
 \label{sec:mix_CUSP}
 
-Parmi les règles de filtrage étendues ou couplés on trouve le
+Parmi les règles de filtrage étendues ou couplées on trouve le
 raisonnement Edge-Finding étendu~\cite{ExtEF}, le
 Time-Table-Edge-Finding~\cite{V11} ou encore le Time-Table
 disjonctif~\cite{Gay2015}. Dans ce paragraphe, nous montrerons comment
 coupler deux raisonnements en présentant, en premier lieu, l'idée de
-la méthode utilisée pour le Time-Table Edge-Finding et, dans un second
-temps, en détaillant celle utilisée pour le TIme-Table Disjonctif. En
+la méthode utilisée pour le Time-Table-Edge-Finding et, dans un second
+temps, en détaillant celle utilisée pour le Time-Table disjonctif. En
 effet, une adaptation sera présentée dans le
 chapitre~\ref{sec:PPC_CECSP} dans le cadre du \CECSP.
 
 L'idée du Time-Table-Edge-Finding est de renforcer le raisonnement
 existant du Edge-Finding en prenant en considération le profil
-obligatoire des activités. L'algorithme proposé par Vil{\`i}m est en
-$O(n^2)$ et est un des plus performant, en pratique, pour résoudre les
-problème cumulatifs. 
+obligatoire de la ressource. L'algorithme proposé par Vil{\'i}m est en
+$O(n^2)$ et est un des plus performants en pratique pour résoudre les
+problèmes cumulatifs. 
 
 Afin d'ajouter l'énergie déduite du raisonnement Time-Table à celle du
 raisonnement Edge-Finding, les activités sont séparées en deux
 parties, la partie obligatoire et la partie libre. Ceci permet
 d'éviter de comptabiliser l'énergie deux fois lors du calcul de cette
-dernière. L'énergie consommée par un ensemble d'activité dans un
-intervalle est alors égale à la somme des énergie des parties libres
+dernière. L'énergie consommée par un ensemble d'activités dans un
+intervalle est alors égale à la somme des énergies des parties libres
 de ces dernières et de la fonction de profil obligatoire de la
 ressource à l'intérieur de cet intervalle. 
 
-Dans le même esprit, Gay propose de combiner le raisonnement
-disjonctif et le raisonnement Time-Table. Pour ce faire, l'auteur
-définit la notion d'{\it intervalle minimum de superposition}. Cette
-notion va permettre de définir une nouvelle règle de filtrage dans le
-cas où faire débuter une activité $j$ à sa date de début au plus tôt
-$\ES[j]$ implique que cette activité chevauchera forcément une
-activité $i$ vérifiant $b_i+b_j > R$ dans tout ordonnancement
-réalisable. Ceci est dû au fait que la fenêtre de temps de $j$ ne peut
-contenir un point que l'activité $i$ devra forcément chevaucher. Quand
-l'activité $i$ n'a pas de partie obligatoire, l'intervalle que $j$ ne
-peut intersecter peut être caractérisé. 
+Dans le même esprit, Gay~\cite{Gay2015} propose de combiner le
+raisonnement disjonctif et le raisonnement Time-Table. Pour ce faire,
+l'auteur définit la notion d'{\it intervalle minimum de
+superposition}. Cette notion va permettre de définir une nouvelle
+règle de filtrage dans le cas où faire débuter une activité $j$ à sa
+date de début au plus tôt $\ES[j]$ implique que cette activité
+chevauchera forcément une activité $i$ vérifiant $b_i+b_j > R$ dans
+tout ordonnancement réalisable. Ceci est dû au fait que la fenêtre de
+temps de $j$ ne peut contenir un point que l'activité $i$ devra
+forcément chevaucher. Quand l'activité $i$ n'a pas de partie
+obligatoire, l'intervalle que $j$ ne peut intersecter peut être
+caractérisé.
 
 \begin{defi}
 \label{des:moi_CUSP} 
-L'intervalle minimal de superposition d’une activité $i$, dénoté
+L'intervalle minimal de superposition d’une activité $i$, noté
 $moi_i$, est l’intervalle de temps le plus petit tel que $i$ s’exécute
-au moins durant un point de temps de cet intervalle, et ce peu importe
-le moment auquel l'activité $i$ est exécutée.  
+au moins durant un point de temps de cet intervalle, et ce
+indépendamment du moment auquel l'activité $i$ est exécutée.  
 
 Formellement,  l’intervalle minimal de superposition est défini par
 $[\EE-1,\LS{]}$.
@@ -1308,8 +1313,8 @@ obligatoire. \begin{figure}[!htb]
       \draw[line width=3pt] (0,3) -- (0,4.5);
       \draw[line width=3pt] (14,3) -- (14,4.5);
 
-      \fill[gray!80] (3,0.6) rectangle (10,1.9) node[midway,color=black] {$\mathbf{moi_i}$};
-      \fill[gray!80] (3,3.1) rectangle (10,4.4) node[midway,color=black] {$\mathbf{moi_i}$};
+      \fill[gray!80] (3,0.6) rectangle (11,1.9) node[midway,color=black] {$\mathbf{moi_i}$};
+      \fill[gray!80] (3,3.1) rectangle (11,4.4) node[midway,color=black] {$\mathbf{moi_i}$};
       
       \draw (0,3.1) rectangle (4,4.4) node[midway] {$i$};
       \draw (10,0.6) rectangle (14,1.9) node[midway] {$i$};
@@ -1323,18 +1328,18 @@ obligatoire. \begin{figure}[!htb]
     \end{tikzpicture}
   \end{center}
 
-  \caption{Intervalle minimum de superposition d'une activité}
+  \caption{Intervalle minimum de superposition d'une activité pour le \CUSP.}
   \label{fig:moi_CUSP}
 \end{figure}
 \end{ex}
 
 Cette notion permet de définir une première règle d'ajustement. Cette
-règle sera ensuite améliorée dans un second temps. 
+règle sera améliorée dans un second temps. 
 
 \begin{reg}
 \label{reg:RDR_CUSP}
   Soient deux activités $i$ et $j$ telles que $i$ ne possède pas de
-  partie obligatoire et que $b_i+b_j > R$. Si ordonnancer l'activité
+  partie obligatoire et $b_i+b_j > R$. Si ordonnancer l'activité
  $j$ à sa date de début au plus tôt la fait se superposer complètement
  à l’intervalle minimal de superposition de $i$ ($moi_i \subseteq
  [\ES[j],\EE[j]{]}$), alors $\ES[j] \ge \EE$.
@@ -1342,14 +1347,13 @@ règle sera ensuite améliorée dans un second temps.
 
 \begin{ex}
 La règle~\ref{reg:RDR_CUSP} est illustrée par la
-figure~\ref{fig:RDR_CUSP}. Dans la partie gauche de la fiigure, on
-peut constater que les activités $i$ et $j$ ne peuvent être exécutée
+figure~\ref{fig:RDR_CUSP}. Dans la partie gauche de la figure, on
+peut constater que les activités $i$ et $j$ ne peuvent être exécutées
 en parallèle à cause de la capacité de la ressource. Si l'activité $j$
 commence à $\ES[j]$, alors elle intersecterait complètement $moi_i$ et
-il serait impossible d'ordonancer $i$. Sur la partie droite de la
+il serait impossible d'ordonnancer $i$. Sur la partie droite de la
 figure, $\ES[j]$ a été ajusté et l'activité $j$ ne peut commencer
-avant $t > \min{moi_i}$.
-
+avant $\min\{t \in \H|t \in moi_i \}$.
   \begin{figure}[!htb]
     \centering
     \begin{tikzpicture}
@@ -1371,7 +1375,7 @@ avant $t > \min{moi_i}$.
         (9,5.5) ;
 
         \draw[fill=black!70!] (4,2.2) rectangle
-        (11,2.8) node[midway,white] {$\mathbf{moi_i}$};
+        (10,2.8) node[midway,white] {$\mathbf{moi_i}$};
         \draw[fill=white] (0,0.2) rectangle (5,2.2) node[midway]
         {$i$};
 
@@ -1393,15 +1397,15 @@ avant $t > \min{moi_i}$.
         \fill[gray!30] (0,0) rectangle (14,2.4);
         \draw[thick] (0,3.8)  node[left] {$R=3$} -- (14,3.8);
         
-        \draw[densely dotted] (13,-0.1) -- (13,5.5) node[above] {$\EE[j]$};
+        \draw[densely dotted] (14,-0.1) -- (14,5.5) node[above] {$\EE[j]$};
         \draw[densely dotted] (5,-0.1 ) node[below=0.3cm] {$\EE$}-- (5,5.5) node[above] {$\ES[j]$};
         \draw[densely dotted] (9,-0.1) node[below=0.3cm] {$\LS$} -- (9,5.5) ;
         \draw[fill=black!70!] (4,2.2) rectangle
-        (11,2.8) node[midway,white] {$\mathbf{moi_i}$};
+        (10,2.8) node[midway,white] {$\mathbf{moi_i}$};
         
         \draw[fill=white] (0,0.2) rectangle (5,2.2) node[midway]
         {$i$};
-        \draw[fill=white] (5,2.8) rectangle (13,4.8) node[midway]
+        \draw[fill=white] (5,2.8) rectangle (14,4.8) node[midway]
         {$j$};
 
 
@@ -1412,16 +1416,16 @@ avant $t > \min{moi_i}$.
 
       \end{scope}
     \end{tikzpicture}
-    \caption{Illustration de la règle~\ref{reg:RDR_CUSP}.}
+    \caption{Illustration de la règle~\ref{reg:RDR_CUSP} pour le \CUSP.}
     \label{fig:RDR_CUSP}
   \end{figure}
 \end{ex}
 
-Nous montrons maintenant comment les auteurs de~\cite{Gay2015} intègre
-les informations déduites du Time-Table pour proposer une règle de
-filtrage plus forte que celle décrite ci-dessus. Cette règle sera
-décrite seulement dans le cas où les activités $i$ et $j$ ne possèdent
-pas de partie obligatoire. Le cas inverse est décrit
+Nous montrons maintenant comment les auteurs de~\cite{Gay2015}
+intègrent les informations déduites du Time-Table pour proposer une
+règle de filtrage plus forte que celle décrite ci-dessus. Cette règle
+sera décrite seulement dans le cas où les activités $i$ et $j$ ne
+possèdent pas de partie obligatoire. Le cas inverse est décrit
 dans~\cite{Gay2015} et repose sur la séparation des activités en une
 partie obligatoire et une partie libre.
 
@@ -1435,7 +1439,7 @@ ressource.
 
 \begin{reg}
 \label{reg:TTDR_CUSP}
-Soient donc $i$ et $j$ deux activités qui ne possèdent pas de partie
+Soient $i$ et $j$ deux activités qui ne possèdent pas de partie
 obligatoire et telles que $ b_i +b_j + \min_{t \in moi_i} TT_{\A}(t) >
 R$.   Si ordonnancer l'activité
  $j$ à sa date de début au plus tôt la fait se superposer complètement
@@ -1472,25 +1476,25 @@ R$.   Si ordonnancer l'activité
         \draw (\i,0) -- (\i,-0.15) node[below] {\small $\i$};
       }
       
-      \draw (2,0) rectangle (11,1);
+      \draw (2,0) rectangle (11,1) node[midway] {$TT_{\A}$};
       \fill[gray!30] (5,3.8) rectangle (20,5.2);
       \fill[gray!30] (2,5.8) rectangle (11,8.2);
       
       \draw [->] (1.2,4.5) -- (4.8,4.5);
       \draw [->] (1.8,-1.7) -- (4.3,-1.7);
-      \draw[densely dotted] (1,-0.1) node[below=0.3cm] {$\ES[j]$}-- (1,8.2) ;
-      \draw[densely dotted] (5,-0.1 ) node[below=0.3cm] {$\EE$}--
+      \draw[densely dotted] (1,-0.1) node[below=0.3cm] {$\ES[2]$}-- (1,8.2) ;
+      \draw[densely dotted] (5,-0.1 ) node[below=0.3cm] {$\EE[1]$}--
       (5,8.2);
-      \draw[densely dotted] (10,-0.1) node[below=0.3cm] {$\EE[j]$} -- (10,8.2) ;
-      \draw[densely dotted] (8,-0.1) node[below=0.3cm] {$\LS$} -- (8,8.2) ;
+      \draw[densely dotted] (10,-0.1) node[below=0.3cm] {$\EE[2]$} -- (10,8.2) ;
+      \draw[densely dotted] (8,-0.1) node[below=0.3cm] {$\LS[1]$} -- (8,8.2) ;
       
       \draw[fill=black!70!] (4,5) rectangle
-      (8,6) node[midway,white] {$\mathbf{moi_i}$};
+      (8,6) node[midway,white] {$\mathbf{moi_1}$};
       
       \draw[fill=white] (2,6) rectangle (5,8) node[midway]
-      {$i$};
+      {$1$};
       \draw[fill=white] (5,4) rectangle (14,5) node[midway]
-      {$j$};
+      {$2$};
       
       \draw[->] (0,0) -- (21,0);
       \draw[->] (0,0) -- (0,5.5) ;
@@ -1498,21 +1502,20 @@ R$.   Si ordonnancer l'activité
        % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};
       % \draw[->] (1.8,5.8) -- (5.2,5.8);  
     \end{tikzpicture}
-    \caption{Illustration du Time-Tabe disjonctif}
+    \caption{Illustration du Time-Table disjonctif dans le cadre du \CUSP.}
     \label{fig:TTDR_CUSP}
   \end{figure}
-L'intervalle $moi_i=[4,8]$ est complètement inclus dans l'intervalle
-formé par $\ES[j]$ et $\EE[j]$, i.e. $[1,10[$. De plus, le minimum du
-profil de consommation de la ressource dans $moi_i$ est de $1$. Donc,
-les activités $i$ et $j$, consommant respectivement $2$ et $1$ unités
-de ressource, ne peuvent se chevaucher sur l'intervalle $[4,8]$. Donc
-$\ES[j]$ peut être ajuster à $5$. 
+L'intervalle $moi_1=[4,9[$ est complètement inclus dans l'intervalle
+formé par $\ES[2]$ et $\EE[2]$, i.e. $[1,10[$. De plus, le minimum du
+profil de consommation de la ressource dans $moi_1$ est de $1$. Donc,
+les activités $1$ et $2$, consommant respectivement $2$ et $1$ unités
+de ressource, ne peuvent se chevaucher sur l'intervalle $[4,9[$. Donc
+$\ES[2]$ peut être ajusté à $5$. 
 \end{ex}
 
 On peut remarquer qu'aucun des autres raisonnements présentés dans ce
-chapitre n'aurait filtré de valeurs du domaine de $st_j$. En
-particulier, le raisonnement énergétique, le raisonnement permettant
-de filtrer le plus de valeur pour la contrainte cumulative, ne détecte
+chapitre n'aurait filtré de valeurs du domaine de $st_2$. En
+particulier, le raisonnement énergétique  ne détecte
 pas d'ajustement dans ce cas. Le raisonnement Time-Table disjonctif
 n'est donc dominé par aucun autre raisonnement existant. 
 

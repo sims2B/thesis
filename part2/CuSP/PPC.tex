@@ -1,6 +1,6 @@
 \section{La programmation par contraintes}
 
-Cette section s'intéresse à la présentation des concept de base de la
+Ce paragraphe s'intéresse à la présentation des concepts de base de la
 programmation par contraintes (PPC). La programmation par contraintes
 vise à résoudre des problèmes de satisfaction de contraintes (CSP)
 mais aussi des problèmes d'optimisation (ce dernier cas ne sera pas
@@ -9,21 +9,22 @@ modélisé à l'aide d'un réseau de contraintes et la recherche d'une
 solution tend à trouver une affectation des variables satisfaisant
 toutes les contraintes de ce réseau. Une présentation formelle des
 problèmes de satisfaction de contraintes ainsi qu'un aperçu de
-quelques méthodes permettant leur résolution est présentée dans les
+quelques méthodes permettant leur résolution sont présentés dans les
 paragraphes suivants. 
 
 \subsection{Problème de satisfaction de contraintes}
 
-Une instance d'un {\it problème de satisfaction de contraintes}, ou CSP est
-la donnée d'un triplet $Q=(\X,\D,\C)$ où: 
+Une instance d'un {\it problème de satisfaction de contraintes}, ou
+CSP\footnote{en anglais, Constraint Satisfaction Problem.} est
+la donnée d'un triplet $(\X,\D,\C)$ où: 
 \begin{itemize}
-\item $\X=\{X_1,X_2,\dots,X_n\}$ est l'ensemble des variables du problème;
+\item $\X=\{x_1,x_2,\dots,x_n\}$ est l'ensemble des variables du problème;
 \item $\D=\{D_1,D_2,\dots,D_n\}$ est l'ensemble des domaines de ces
-  variables, i.e. $X_i \in D_i,\ i=1,\dots,n$;
-\item $\C=\{C_1,C_2,\dots,C_m\}$ définit l'ensemble des contraintes du
-  problème où chaque $C_j$ définit un sous-ensemble du produit
+  variables, i.e. $x_i \in D_i,\ i=1,\dots,n$;
+\item $\C=\{c_1,c_2,\dots,c_m\}$ est l'ensemble des contraintes du
+  problème où chaque $c_j$ définit un sous-ensemble du produit
   cartésien des domaines des variables sur lesquelles elle porte:
-  $C_j(X_{j1},X_{j2},\dots,X_{jk}) \subseteq D_{j1} \times D_{j2}
+  $c_j(x_{j1},x_{j2},\dots,x_{jk}) \subseteq D_{j1} \times D_{j2}
   \times \dots \times D_{jk}$
 \end{itemize}
 
@@ -31,8 +32,8 @@ La notion de domaine désigne l'ensemble des valeurs que peut prendre
 une variable. La nature de ces domaines peut potentiellement être très
 différente. Par exemple:
 \begin{itemize}
-\item un intervalle d'entiers;
-\item un intervalle de réels;
+\item un ou plusieurs intervalle d'entiers;
+\item un ou plusieurs intervalle de réels;
 \item un ensemble d'entiers non contigus: il est possible d'utiliser
   un ensemble d'entiers quelconque, e.g. $D=\{4,9,26\}$;
 \item un ensemble de valeurs symboliques: on peut vouloir représenter
@@ -40,19 +41,19 @@ différente. Par exemple:
 \end{itemize}
 ~
 
-Une fois les variable définies, nous pouvons ajouter des contraintes
+Une fois les variables définies, nous pouvons ajouter des contraintes
 les liant entre elles. Formellement, une contrainte peut être définie
 comme une relation portant sur un ensemble de variables.  Ici aussi,
 plusieurs types de contraintes existent. Nous détaillons trois d'entre
 elles.
 
 Les premières contraintes présentées sont les contraintes en {\it
-  extension}. Pour ces contraintes, étant donnée un sous-ensemble de
+  extension}. Pour ces contraintes, étant donné un sous-ensemble de
 variables, on définit explicitement la liste des tuples
-autorisés. Suivant les cas, ces contraintes peuvent aussi être définit
-comme une liste de tuples interdits. Le secondes contraintes
-détaillées sont les contraintes en {\it intention}. Dans ce cas, les
-contraintes sont décrites sous forme d'expression arithmétique
+autorisés. Suivant les cas, ces contraintes peuvent aussi être définies
+comme une liste de tuples interdits. Les deuxièmes contraintes
+détaillées sont les contraintes en {\it intention}. Dans ce cas,
+chaque contrainte est décrite sous la forme d'une expression arithmétique
 définissant  une relation entre les variables. Enfin, les dernières
 contraintes décrites sont les contraintes globales. Ces contraintes
 sont des relations prédéfinies, ayant une signification précise. Des
@@ -63,32 +64,33 @@ contraintes peut comprendre un nombre infini de tuples.
 
 \begin{ex}
 \label{ex:contrainte}
-  Soient trois variables $x_0,\ x_1$ et $x_2$ de domaine $D_0=[0,2],\
+  Soient trois variables $x_0,\ x_1$ et $x_2$ de domaines respectifs
+  $D_0=[0,2],\ 
   D_1=[0,2]$ et $D_2=[1,2]$. 
   Nous considérons les contraintes $c_0,\ c_1$ et $c_2$ suivantes:
   \begin{itemize}
-  \item $c_0$ porte sur les variable $x_0$ et $x_1$ et est décrite en
+  \item $c_0$ porte sur les variables $x_0$ et $x_1$ et est décrite en
     intention: $x_0 \le x_1$; 
   \item $c_1$ porte sur $x_1$ et $x_2$ et est décrite en extension:
     $\{(0,1) , (0,2), (1,2), (2,2)\}$; 
   \item $c_2$ est une contrainte  globale portant sur les variable
     $x_0,x_1$ et $x_2$: allDifferent$(x_0,x_1,x_2)$. Cette contrainte
-    stipule que les valeurs affectées à chaque variable soient
-    différentes les une des autres. 
+    stipule que les valeurs affectées à chaque variable sont
+    différentes les unes des autres. 
   \end{itemize}
   Les domaines des variables étant continus, un nombre infini de
 tuples aurait été nécessaire pour écrire $c_0$ en extension.
 \end{ex}
 
 Pour trouver une solution à un CSP, il faut instancier toutes les
-variables du problème de telles sorte que toutes les contraintes
+variables du problème de telle sorte que toutes les contraintes
 soient satisfaites. Une variable est dite {\it instanciée} quand on
 lui assigne une valeur de son domaine. Pour trouver une telle
-instanciation, un certain nombres de techniques ont été mises en
+instanciation, un certain nombre de techniques ont été mises en
 place. Ces techniques reposent principalement sur deux éléments
 centraux: le filtrage des domaines et l'exploration de l'espace de
 recherche. Ces deux concepts sont donc décrits dans les paragraphes
-suivants.
+suivants. 
 
 
 
@@ -99,11 +101,11 @@ suivants.
 l'espace de recherche peuvent être employées pour trouver des
 solutions. Cette exploration se fait en général par {\it séparation et
   évaluation}, i.e. on sépare le problème difficile à résoudre en deux
-sous-problèmes, plus petit, jusqu'à obtenir un problème que l'on sera
+sous-problèmes, plus petits, jusqu'à obtenir un problème que l'on sera
 capable de résoudre en temps raisonnable.  
 
 Une représentation usuelle du processus de recherche d'une solution
-est l'{\it arbre de recherche}. La racine de cette arbre représente le
+est l'{\it arbre de recherche}. La racine de cet arbre représente le
 problème que l'on cherche à résoudre et les sommets sont des problèmes
 réduits, obtenus en décomposant le domaine d'une des variables du
 problème père. Les feuilles de cet arbre correspondent donc à des
@@ -114,18 +116,18 @@ tuples de valeurs possibles et de tester s'ils sont solution du
 problème, i.e. si cette instanciation satisfait bien toutes les
 contraintes du problème. Cela revient à considérer toutes les
 affectations possibles des variables et ce nombre, qui peut ne pas
-être fini dans le cas des variables continues et est égal au produit
-cartésien du cardinal des domaines des variables impliquées dans le
+être fini dans le cas des variables continues, est égal au produit
+cartésien des cardinaux des domaines des variables impliquées dans le
 CSP pour des variables dans $\mathbb{Z}$.
 
 Classiquement, une méthode de séparation, ou de branchement, consiste
 à fixer une variable à une valeur pour le premier sous-problème et de
 retirer cette valeur du domaine de la variable dans le second
-sous-problème. On va alors, à l'aide d'un parcours en profondeur, crée
+sous-problème. On va alors, à l'aide d'un parcours en profondeur, créer
 un premier tuple, i.e. une solution candidate, qui pourra ainsi être
 évalué. Si le tuple satisfait toutes les contraintes du problème,
 alors c'est une solution et l'algorithme peut s'arrêter. Dans le cas 
-contraire, on évaluera le second sous-problème crée lors de la
+contraire, on évaluera le second sous-problème créé lors de la
 dernière séparation. Un tel parcours est décrit dans
 l'exemple~\ref{ex:branchement}.
 
@@ -141,7 +143,7 @@ cette variable en deux (ou plusieurs) sous-domaines.
 
 \begin{ex}
   \label{ex:branchement}
-  Soient $3$ variables, $x_0,\ x_1$ et $x_2$, de domaine
+  Soient $3$ variables, $x_0,\ x_1$ et $x_2$, de domaines
   respectifs: $\{1,2\},\ \{1,2\},\ \{1,2,3\}$. Nous considérons les
   contraintes suivantes: $c_0: x_0<x_1$ et $c_1 : x_1 <x_2$.   
   \begin{figure}[!htb]
@@ -232,7 +234,7 @@ qui ne satisfont pas la contrainte, tandis que celle représentée par
 un noeud carré correspond à une solution réalisable du problème.
 \end{ex}
 
-Ces combinaisons peuvent être générées de différentes manière et donc
+Ces combinaisons peuvent être générées de différentes manières et donc
 testées dans des ordres différents. Cet ordre peut avoir une influence
 déterminante dans le processus de résolution d'un problème. Pour
 définir cet ordre, on utilise des {\it heuristiques} de choix de
@@ -249,7 +251,7 @@ Nous donnons ci-après des exemples de telles heuristiques.
   \begin{itemize}
   \item instanciation des variables dans l'ordre lexicographique,
     c'est l'heuristique utilisée dans la figure~\ref{fig:ex_tree};
-  \item instancitaion des variables suivant un ordre aléatoire;
+  \item instanciation des variables suivant un ordre aléatoire;
   \item instanciation de la variable de plus petit domaine~\cite{min_dom}...
   \end{itemize}
 \item[Heuristiques de choix de valeur] ~
@@ -260,7 +262,7 @@ Nous donnons ci-après des exemples de telles heuristiques.
     figure~\ref{fig:ex_tree}; 
   \item sélectionner une valeur aléatoire dans le domaine de la
     variable courante;
-  \item dans le cas de variables continues, on peut chosir de séparer
+  \item dans le cas de variables continues, on peut choisir de séparer
     l'intervalle en deux ou plus de morceaux et le séparer au milieu,
     au tiers...
   \end{itemize}
@@ -272,9 +274,9 @@ Même si plusieurs heuristiques efficaces existent, on ne peut être sûr
 de ne pas devoir explorer tout l'espace de recherche pour trouver une
 solution. Comme il n'est pas concevable, en pratique, de devoir
 explorer un tel espace, des techniques permettant de réduire l'arbre
-de recherche ont donc été mises en place. Les techniques la plus
+de recherche ont donc été mises en place. Les techniques les plus
 célèbres permettant une telle réduction sont les algorithmes de
-filtrage. Ces algorithmes sont décrits dans la section suivante.
+filtrage. Ces algorithmes sont décrits dans le paragraphe suivante.
 
 \subsection{Détection d'incohérence et Filtrage}
 \label{sec:PPC_propag}
@@ -283,11 +285,14 @@ Afin de réduire l'espace de recherche en programmation par contraintes,
 il est indispensable de mettre en place des techniques permettant de
 vérifier la validité d'une solution afin de ne pas considérer un tuple
 comme étant cohérent s'il ne l'est pas. Ces {\it algorithmes de
-détection d'incohérences}, aussi appelés checker, permettent de
+détection d'incohérences}, aussi appelés checkers, permettent de
 refuser une instanciation des variables si cette dernière n'est pas
-cohérente. Ils peuvent aussi être étendus de manière à détecter une
-incohérence en cours de recherche si aucune solution n'est contenu
-dans le sous-arbre courant.
+cohérente, i.e. si elle viole un des contraintes. Un algorithme de
+vérification est donc défini pour une seule contrainte. 
+
+De plus, ces algorithmes peuvent aussi être étendus de manière à détecter une incohérence en
+cours de recherche si aucune solution n'est contenue dans le sous-arbre
+courant.
 \begin{ex}
 \label{ex:ex_checker}  Soit l'instance définie dans
 l'exemple~\ref{ex:branchement}.    
@@ -349,16 +354,15 @@ détection d'incohérence. Les noeuds noirs correspondent à des noeuds
 pour lesquels aucune solution ne peut exister dans les sous-arbres
 ayant un de ces noeuds pour racine. En effet, l'instanciation
 partielle des variables faites à ce niveau est déjà incohérente avec
-les contraintes $c_0$ et $c_1$.
+les contraintes $c_0$ ($x_0 < x_1$) et $c_1$ ($x_1 < x_2$).
 \end{ex}
 
 
 Une deuxième technique permettant la réduction de l'espace de
 recherche est l'utilisation d'algortihme de {\it filtrage}. Un
-algorithme de filtrage est défini pour chaque contrainte et cet
-algorithme consiste à détecter et à retirer des domaines
-des variables, des valeurs qui ne sont pas cohérentes avec la
-contrainte.
+algorithme de filtrage est aussi défini pour chaque contrainte et cet
+algorithme consiste à détecter et à retirer des domaines des
+variables, des valeurs qui ne sont pas cohérentes avec la contrainte.
 
  La mise en place de techniques de filtrage performantes,
 i.e. qui retirent un maximum de valeurs du domaine des variables,
@@ -431,26 +435,26 @@ La figure~\ref{fig:ex_tree_filtrage} montre un parcours de l'espace de
 recherche si l'algorithme utilisé est muni d'un algorithme de filtrage
 des domaines. Les contraintes sont considérées une par une.  A
 la racine, on ne peut rien déduire, mais une fois que $x_0$ est
-instancié à $1$, alors nous pouvons retirer cette valeur du domaine
-des autres variables car, pour satisfaire la contrainte $c_0$ et
+instanciée à $1$, alors nous pouvons retirer cette valeur du domaine
+des autres variables car, pour satisfaire les contraintes $c_0$ et
 $c_1$, les variables $x_1$ et $x_2$ doivent être strictement
-supérieure à $1$. Puis, on instancie $x_1$ à $2$ et on supprime cette
+supérieures à $1$. Puis, on instancie $x_1$ à $2$ et on supprime cette
 valeur du domaine de $x_2$. La seule valeur possible pour $x_2$ est
 alors $3$ et on obtient une solution.
 
-L'autre cas correspond à l'instanciation de $x_0$ à $2$. Dans ce cas
-là, les valeurs $1$ et $2$ sont rétirées du domaines de $x_1$ qui
+L'autre cas correspond à l'instanciation de $x_0$ à $2$. Dans ce
+cas-là, les valeurs $1$ et $2$ sont rétirées du domaines de $x_1$ qui
 devient vide. Donc il n'existe pas de solution avec $x_0=2$.
 \end{ex}
 
 Dans l'exemple~\ref{ex:ex_filtrage}, nous pouvons remarquer que si on
-avaient considéré simultanément les $2$ contraintes, on
+avait considéré simultanément les $2$ contraintes, on
 aurait pu déduire la solution au noeud racine. 
 
 Quand les contraintes sont binaires, i.e. elles ne concernent que deux
 variables à la fois, on peut représenter schématiquement le CSP par un
 graphe. Dans ce graphe, chaque noeud correspond à une variable et
-chaque arc à une contraintes. Si on vérifie la cohérence des
+chaque arc à une contrainte. Si on vérifie la cohérence des
 contraintes une par une, on parle alors de cohérence d'arcs. Cette
 notion peut être généralisée à la considération simultanée de
 plusieurs contraintes mais aussi à des contraintes contenant plus de
@@ -458,14 +462,14 @@ deux variables.
 
 Enfin, pour certains problèmes, il n'est pas possible de retirer
 toutes les valeurs incohérentes du domaines des variables en temps
-raisonnable. En effet, il peut arriver que les problèmes sous-jacents
-des contraintes que l'on est amené à résoudre soit NP-complet. Dans
+raisonnables. En effet, il peut arriver que les problèmes sous-jacents
+des contraintes que l'on est amené à résoudre soient NP-complets. Dans
 ce cas-là, assurer de retirer les valeurs incohérentes signifie que
 les valeurs restantes sont cohérentes, donc qu'il existe une
 solution, ce qui ne peut être fait en temps raisonnable puisque le
-problèmes est NP-complet.  Dans ce cas, il devient crucial de mettre
+problème est NP-complet.  Dans ce cas, il devient crucial de mettre
 en place des algorithmes qui s'exécutent en temps raisonnable mais qui
-n'assure pas un filtrage total du domaine des variables. De tels
+n'assure pas un filtrage complet du domaine des variables. De tels
 algorithmes seront présentés dans le paragraphe~\ref{sec:cumu_propag}
 dans le but de résoudre le \CUSP. Le paragraphe suivant est quant à
-lui dédié à la modélisationd es problèmes d'ordonnancement en PPC.
+lui dédié à la modélisation des problèmes d'ordonnancement en PPC.

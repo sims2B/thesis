@@ -334,7 +334,8 @@ $[t_1,t_2{[}$ doit donc être considéré.
       \draw[thick] (t1.south) -- (2.5,4.1) node[above] {$t_1$};
       \draw[thick] (t2.south) -- (4,4.1) node[above] {$t_2$}; 
     \end{tikzpicture}}
-  \caption{Les différentes configurations menant à une consommation minimale}
+  \caption{Les différentes configurations menant à une consommation
+    minimale à l'intérieur de $[t_1,t_2[$ pour le \CECSP.}
   \label{fig:conso_CECSP}
 \end{figure}
 
@@ -544,7 +545,7 @@ obtenons:
     \end{tikzpicture}
 }
   \caption{Consommation de ressource dans $[t_1,t_2[$ pour le
-    \CECSP~avec fonction de rendement affine}
+    \CECSP~avec fonction de rendement affine.}
 \label{fig:ex_Lin}
 \end{figure}
 \end{ex}
@@ -697,7 +698,7 @@ utilisée, i.e. $f_i(b)=3b+1 \text{ si } b \in ]2,3]$.
     \end{tikzpicture}
 }
   \caption{Consommation de ressource dans $[t_1,t_2[$ pour le
-    \CECSP~avec fonction de rendement concave et affine par morceaux}
+    \CECSP~avec fonction de rendement concave et affine par morceaux.}
 \label{fig:ex_PWL}
 \end{figure}
 \end{ex}
@@ -871,7 +872,7 @@ de début au plus tôt d'une activité.
         \draw (6,-0.3) -- (6,0);
 
       \end{tikzpicture}
-      \caption{Une solution réalisable du \CECSP}
+      \caption{Une solution réalisable du \CECSP.}
       \label{exSol}
     \end{center}
   \end{figure}
@@ -905,7 +906,7 @@ de début au plus tôt d'une activité.
 \end{ex}
 
 \begin{algorithm}[!htb]
-  \caption{Ajustement des fenêtres de temps}
+  \caption{Ajustement des fenêtres de temps pour le \CECSP.}
   \label{algo1}
     \PourTous {intervalle d'intérêt $[t_1,t_2[$}
     { $W\gets 0$
@@ -1964,7 +1965,8 @@ variations avec: \[expr_{ip}=\frac{1}{a_{ip}}\left(W_i- f_i(\bmax)(\LE
 
    \begin{figure}[!htb]
      \input{part2/CECSP/derivative4.tex}
-     \caption{Intervalle d'intérêt dans le cas où $\ES <t_1 \le D'_{t_1}$.}
+     \caption{Intervalle d'intérêt du raisonnement énergétique du
+       \CECSP~dans le cas où $\ES <t_1 \le D'_{t_1}$.}
      \label{fig:variation}
    \end{figure}
 
@@ -2132,7 +2134,7 @@ les résultats dans ces autres cas.
   \begin{table} 
   \input{part2/CECSP/tabularRS.tex}
   \caption{Intervalles d'intérêt pour les ajustements du
-    raisonnement énergétique pour le \CECSP}
+    raisonnement énergétique pour le \CECSP.}
   \label{tab:interAjust_CECSP}
 \end{table}
 \end{theo}

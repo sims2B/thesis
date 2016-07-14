@@ -1,0 +1,6 @@
+activité preemptive $et_i=st_i+p_i$???
+
+notation (1.3) pour la contrainte cumulative???
+
+raisonnements énergétiques
+
