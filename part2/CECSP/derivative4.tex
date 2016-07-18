@@ -12,31 +12,37 @@
     \draw[dotted](8,0)node[below=0.15cm] {$\LE$} -- (8,8.5) ;
     \draw[thick] (0,1) -- (1,1);
 
-    \draw (0.5,3.5) node[rotate=-90]  {$0$};
+    \draw (0.5,3.5) node[rotate=-90]  {\scriptsize $0$};
     \draw[draw=LightGreen!90!black!90!,ultra thick] (1,1)-- (2,3);
     \draw[ultra thick] (1.5,4.75)
-    node[rotate=-90] {$\frac{\bmin}{f_i(\bmin)}(W_i-
+    node[rotate=-90] {\scriptsize $\frac{\bmin}{f_i(\bmin)}(W_i-
       f_i(\bmax)(\LE-t_2))$};
     \draw[draw=Cornsilk!95!black!100!,ultra thick] (2,3) -- (4,3.5);
     \draw[ultra thick]  (3,4.25)
-    node[rotate=-90]
-    {$\bmin(t_2-t_1)$};
+    node[rotate=-90,text width=4cm, align= center]
+    {\scriptsize $\bmin(t_2-t_1)$};
     \draw[draw=LightGoldenrod!90!black!90!,ultra thick] (4,3.5)-- (5,4);
-    \draw[ultra thick] (4.5,4.25) node[rotate=-90]
-    {$expr_{i1}$};
+    \draw[ultra thick] (4.5,4.25) node[rotate=-90, text width=4cm,
+    align= center] 
+    {\scriptsize $\frac{1}{a_{i1}}(W_i- f_i(\bmax)(\LE 
+        -t_2+$\\$t_1-\ES) - c_{i1}(t_2-t_1))$}; 
     \draw[draw=LightGoldenrod!90!black!90!,ultra thick] (6,5)-- (5,4);
-    \draw[ultra thick] (5.5,4.25) node[rotate=-90]
-    {$expr_{i2}$};
+    \draw[ultra thick] (5.5,4.25) node[rotate=-90,text width=4cm, align= center]
+    {\scriptsize $\frac{1}{a_{i2}}(W_i- f_i(\bmax)(\LE
+        -t_2+$\\$t_1-\ES) - c_{i2}(t_2-t_1))$};
     \draw[draw=LightGoldenrod!90!black!90!,ultra thick] (7,6.5)-- (6,5);
-    \draw[ultra thick] (6.5,4.25) node[rotate=-90]
-    {$expr_{i3}$};
+    \draw[ultra thick] (6.5,4.25) node[rotate=-90,text width=4cm, align= center]
+    {\scriptsize $\frac{1}{a_{i3}}(W_i- f_i(\bmax)(\LE
+        -t_2+$\\$t_1-\ES) - c_{i3}(t_2-t_1))$};
     \draw[draw=LightGoldenrod!90!black!90!,ultra thick] (8,8.5)-- (7,6.5);
-    \draw[ultra thick] (7.5,4.25) node[rotate=-90]
-    {$expr_{i4}$};
+    \draw[ultra thick] (7.5,4.25) node[rotate=-90,text width=4cm, align= center]
+    {\scriptsize $\frac{1}{a_{i4}}(W_i- f_i(\bmax)(\LE
+        -t_2+$\\$t_1-\ES) - c_{i4}(t_2-t_1))$};
     \draw[draw=LightBlue!90!black!90!,ultra thick] (8,8.5)-- (10,8.5);
-    \draw[ultra thick] (9,4.75) node[rotate=-90]
-    {$\frac{1}{a_{i4}}(W_i- f_i(\bmax)(t_1-\ES) - c_{i4}(\LE-t_1))$};
-    \draw[->] (O.center) -- (D.center);
+    \draw[ultra thick] (9,4.75) node[rotate=-90,text width=4cm, align= center]
+    {\scriptsize $\frac{1}{a_{i4}}(W_i- f_i(\bmax)(t_1-\ES) - c_{i4}(\LE-t_1))$};
+    \draw[->] (0,0) -- (D.center) node[below] {$t_2$};
+    \draw[->] (0,0) -- (0,9) node[left] {$\bb$};
   \end{tikzpicture}
 \end{center}
 

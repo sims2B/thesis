@@ -1,36 +1,41 @@
-\chapter{Algorithmes issus de la programmation par contraintes pour le
+\chapter{Propagation de contraintes pour le 
 \CECSP}
 \label{sec:PPC_CECSP}
 Dans ce chapitre, nous décrivons des algorithmes et modèles issus de
-la programmation par contraintes. Les deux premières sections sont
-dédiées à la présentation d'algorithmes de filtrage pour le problème
+la programmation par contraintes. Les deux premiers paragraphes sont
+dédiés à la présentation d'algorithmes de filtrage pour le problème
 de décision du \CECSP. En effet, comme dans le cas du \CUSP, la
 NP-complétude de ce problème implique qu'un algorithme assurant la
-cohérence des bornes de chaque variable - assurant l'existence d'une
-solution où les valeurs de chaque variables sont comprises dans ces
-bornes - ne peut s'exécuter en temps polynomial. Par conséquent,
-plusieurs relaxations sont proposées afin de supprimer les valeurs
-possibles de début et fin de tâches incohérentes en temps polynomial.
+cohérence des bornes de chaque variable -- garantissant l'existence
+d'une solution où les valeurs de chaque variable sont comprises dans
+l'intervalles défini par ces bornes -- ne peut s'exécuter en temps
+polynomial. Par conséquent, plusieurs relaxations sont proposées afin
+de supprimer les valeurs possibles de début et fin de tâches
+incohérentes en temps polynomial.
 
-Dans un premier temps, nous montrons qu'une partie des raisonnements
-pour le \CUSP~s'adapte directement au cas du \CECSP. En effet, dans le
-\CECSP, une activité peut être vue comme deux sous-activités: 
+Le paragraphe~\ref{sec:time_CECSP} est dédié aux extensions pour le
+\CECSP~des raisonnements pour le \CUSP~basés sur le Time-Table (voir
+chapitre précédent). Dans un premier temps, nous montrons qu'une
+partie des raisonnements pour le \CUSP~s'adapte directement au cas du
+\CECSP. En effet, dans le \CECSP, une activité peut être vue comme
+deux sous-activités:
 \begin{itemize}
 \item l'une correspondant à une activité rectangulaire, appelée {\it
 partie fixe}, dont les dates de début et de fin doivent être
 déterminées et consommant une quantité $\bmin$ de la ressource;
 \item la seconde, appelée {\it partie malléable}, correspondant à une
-activité préemptive de même date de début que la partie minimale et
+activité interruptible de même date de début que la partie minimale et
 dont chaque partie consomme une quantité de ressource comprise entre
 $0$ et $\bmax-\bmin$.
 \end{itemize}
 La présence d'activités rectangulaires permet alors l'adaptation directe
 de certains raisonnements existants pour le \CUSP. Ici, nous
-présenterons les adaptations du raisonnement Time-Table, disjonctif et
-Time-Table disjonctif. 
+présenterons les adaptations des raisonnements Time-Table
+(\ref{sec:TT_CECSP}), disjonctif et Time-Table disjonctif
+(\ref{sec:TTDR_CECSP}).  
 
-Dans un second temps, nous présenterons un nouveau raisonnement
-étendu, couplant Time-Table et problème de flots. 
+Dans un second temps (\ref{sec:TTFlot_CECSP}, nous présenterons un nouveau
+raisonnement étendu, couplant Time-Table et problème de flots. 
 
 Enfin, une adaptation complète du raisonnement énergétique est décrit
 dans le paragraphe~\ref{sec:ER_CECSP}.
@@ -44,5 +49,4 @@ dans le paragraphe~\ref{sec:ER_CECSP}.
 
 \input{part2/CECSP/ER_filter.tex}
 
-%\input{part2/CECSP/modele_PPC.tex}
 \input{part2/CECSP/conclusion.tex}

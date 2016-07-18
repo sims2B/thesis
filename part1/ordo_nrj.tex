@@ -368,7 +368,7 @@ Considérons l'instance à trois activités du \CECSP~suivante:
 \[f_2(b)=\left\{
 \begin{array}{lll}
 2b & & b \in [3,4]\\
-b+4 & & b \in ]4,5]
+b+4 & & b \in \ ]4,5]
 \end{array}
 \right.\]
 \end{itemize}
@@ -380,7 +380,7 @@ b+4 & & b \in ]4,5]
 \node (O) at (2,5) {};
 \draw[->] (2,4) -- (5.5,4) node[below] {$b$}; 
 \draw[dashed] (2,4) -- (2,5.5);
-\draw[->] (2,5.5) -- (2,10) node[left] {$f(b)$};
+\draw[->] (2,5.5) -- (2,10) node[left] {$f_2(b)$};
 
 
 \path[draw] (3,6) -- (4,8) -- (5,9) ;
@@ -427,7 +427,7 @@ f_2(4)= 6 + 8 + 8 =22$.
 [xscale=0.75,yscale=0.56]
 \node (O) at (0,0) {};
 \draw[->] (0,0) -- (6.5,0) node[below] {$t$};
-\draw[->] (0,0) -- (0,5.5) node[left] {$b(t)$};
+\draw[->] (0,0) -- (0,5.5) node[above] {$b(t)$};
 
 \draw (0,2) rectangle (2,5) node[midway] {$1$};
 \path[draw] (0,2) -- (3,2) -- (3,1) node[left=0.4cm] {$3$} -- (5,1) -- (5,5) -- (6,5)  -- (6,0);
@@ -609,7 +609,7 @@ Le paragraphe suivant présente des propriétés du \CECSP~qui seront
 utilisées dans le cadre de sa résolution. 
 
 \subsection{Propriétés du \CECSP}
-
+\label{sec:ppte_CECSP}
 Dans ce paragraphe, nous allons commencer par présenter la preuve de
 NP-complétude du \CECSP. Ce problème pouvant être vu comme une
 généralisation du \CUSP, nous utilisons ce problème pour montrer la
@@ -705,7 +705,6 @@ afin de s'assurer de l'existence d'une solution optimale entière,
 avant de les résoudre. Cependant, l'utilisation d'un coefficient trop
 grand peut conduire à une augmentation de la taille des modèles trop
 importante pour permettre leur résolution. 
-
 
 Le théorème suivant présente une des propriétés majeures du \CECSP. En
 effet, il stipule que quelle que soit l'instance considérée, il existe
@@ -854,7 +853,7 @@ i.e. $\{t \in \H \ |\ \forall \epsilon>0,\ b_i(t) \neq b_i(t+\epsilon)\}$,
 est contenue dans l'ensemble formé de toutes les dates de début et de
 fin des activités. C'est ce qu'affirme le corollaire suivant: 
 
-\begin{coro}
+\begin{coro}[\cite{Nattaf_CPDP}]
 $\{t \in \H \ |\ \forall \epsilon>0,\ b_i(t) \neq b_i(t+\epsilon)\}
 \subseteq \{st_i,et_i\ |\ i \in \A \}$.
 \end{coro}
@@ -862,7 +861,7 @@ $\{t \in \H \ |\ \forall \epsilon>0,\ b_i(t) \neq b_i(t+\epsilon)\}
 De plus, nous pouvons en déduire que le \CECSP~à dates de début et de
 fin fixées peut être résolu en temps polynomial. 
 
-\begin{prop}
+\begin{prop}[\cite{Nattaf_Constraints}]
 Soit $\Pi$ une instance du \CECSP~avec des dates de début, $st_i$, et
 des dates de fin, $et_i$, fixées. On peut vérifier que $\Pi$ est réalisable en temps 
 polynomial en la taille de l'instance. 
@@ -919,7 +918,7 @@ $(t_q)_{q=1..Q}$ la suite des différentes dates de début (resp. fin)
 au plus tôt (resp. tard). Alors, le programme linéaire précédent nous
 donne une solution réalisable. 
 
-\begin{theo}
+\begin{theo}[\cite{Nattaf_ORSpectrum}]
 Le \CECSP~préemptif ($\forall i \in \A,\ \bmin=0$) peut être résolu en
 temps polynomial.
 \end{theo}

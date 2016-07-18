@@ -1,4 +1,38 @@
 \part{Implémentations et Expérimentations}
 
-\chapter{Implémentations}
+\chapter{Implémentations et Expérimentations}
+
+Dans ce chapitre, consacré à la présentation des résultats
+expérimentaux, nous allons, dans un premier temps, décrire les
+jeux d'instances utilisés ainsi que certaines méthodes de
+prétraitement qui sont appliquées à ces instances avant leur
+résolution. 
+
+Le paragraphe suivant sera quant à lui dédié aux résultats de la
+programmation linéaire mixte et en nombres entiers. Nous présenterons
+les performances des différents modèles présentés dans le
+chapitre~\ref{sec:PLNE_CECSP} ainsi que l'impact des améliorations
+proposées dans le paragraphe~\ref{sec:amelioration_modele} de ce même
+chapitre. 
+
+Le dernier paragraphe sera consacré à la présentation des performances
+de la Programmation Par Contraintes où les performances des
+algorithmes de filtrage présentés dans le chapitre~\ref{sec:PPC_CECSP}
+seront comparées. 
+
+Tous les tests ont été effectués avec un processeur Intel Core i7-4770
+de 3.40GHz, 8 GB de RAM, tournant sous le système d’exploitation
+Ubuntu 12.04 à 64-bits. Toutes les méthodes présentées ont été codées
+en C++. Les programmes linéaires mixtes sont résolus avec le solveur
+commercial ILOG-Cplex version 12.6. Le temps limite de résolution pour
+chaque instance et chaque méthode a été fixé à 7200 secondes.
 \label{sec:expe}
+\input{part4/instances.tex}
+\input{part4/res_PL.tex}
+\input{part4/res_PPC.tex}
+
+
+
+
+
+

@@ -1,11 +1,10 @@
 \section{Algorithme de filtrage du raisonnement énergétique}
 \label{sec:ER_CECSP}
-\index{raisonnement énergétique!pour le CECSP}
 
 Le paragraphe ci-dessous décrit l'adaptation du raisonnement
-énergétique, introduit par~\cite{RELopez} pour la contrainte cumulative,
+énergétique, introduit dans~\cite{RELopez} pour la contrainte cumulative,
 et décrit dans le paragraphe~\ref{sec:cumu_propag}. Nous commençons,
-dans un premier temps par décrire l'algorithme de vérification de ce
+dans un premier temps, par décrire l'algorithme de vérification de ce
 raisonnement, puis nous présenterons les règles d'ajustements qui
 peuvent être mises en place pour filtrer les domaines des
 variables. Enfin, la dernière partie de ce paragraphe sera consacrée à
@@ -18,7 +17,7 @@ vérification et pour les règles d'ajustement.
 Pour décrire l'algorithme de vérification, nous rappelons d'abord
 l'idée principale sur laquelle repose le raisonnement énergétique. Le
 principe est donc, étant donné un intervalle $[t_1,t_2[$, de calculer
-les consommations minimales de ressource des activités dans cette
+les consommations minimales de ressource des activités dans cet 
 intervalle et de les comparer à la quantité de ressource disponible
 dans ce même intervalle. Si la ressource disponible n'est pas
 suffisante pour ordonnancer les consommations minimales de toutes les
@@ -32,7 +31,7 @@ notée $\wb$, puis nous traduisons cette énergie en une quantité de
 ressource, notée $\bb$. Ceci nous permettra ensuite de la comparer
 avec la ressource disponible dans $[t_1,t_2{[}$.
 
-Formellement ces quantités sont représentées par les expressions
+Formellement, ces quantités sont représentées par les expressions
 suivantes: 
 \begin{align}
   \wb= \min \int_{t_1}^{t_2} f_i(b_i(t))dt & & \text{sous 
@@ -45,9 +44,9 @@ Comme pour le cas du \CUSP, la fonction de marge, notée $SL(t_1,t_2)$,
 permet de mesurer l'écart entre la quantité de ressource disponible et
 les consommations minimales de toutes les tâches dans l'intervalle
 ${[}t_1,t_2{]}$. Cette fonction est définie de la manière suivante:
-\[ SL(t_1,t_2)=B(t_2-t_1)-\sum\limits_{i \in A} \bb \]
+\[ SL(t_1,t_2)=R(t_2-t_1)-\sum\limits_{i \in A} \bb \]
 
-Et ceci nous permet d'énoncer la condition nécessaire d'existence
+Ceci nous permet d'énoncer la condition nécessaire d'existence
 d'une solution qui est à la base de l'algorithme de vérification du
 raisonnement énergétique:
 
@@ -74,7 +73,7 @@ raisonnement énergétique:
   R(t_2-t_1)$. 
 \end{proof}
 
-Dans un premier temps, nous allons nous intéressé au calcul de $\wb$,
+Dans un premier temps, nous allons nous intéresser au calcul de $\wb$,
 le calcul de $\bb$ sera détaillé dans un second temps. 
 
 
@@ -84,8 +83,8 @@ Pour calculer $\wb$, nous analysons les différentes configurations de
 la consommation minimale d'une activité. Remarquons que les
 configurations conduisant à une consommation minimale dans
 l'intervalle $[t_1,t_2{[}$ sont celles où l'activité est ordonnancée à
-$\bmax$ à l'intérieur de cet intervalle. Ces configurations, décrites
-dans la figure~\ref{fig:conso_CECSP}, peuvent être regroupée en trois
+$\bmax$ à l'extérieur de cet intervalle. Ces configurations, décrites
+dans la figure~\ref{fig:conso_CECSP}, peuvent être regroupées en trois
 catégories:
 \begin{itemize}
 \item l'activité est {\it calée à
@@ -102,14 +101,15 @@ catégories:
   $[t_1,t_2[$, soit en étant ordonnancée à $\bmax$ pendant l'intervalle
   $[\ES,t_1{[} \cup [t_2,\LE{[}$, soit en étant ordonnancée à $\bmin$
   durant tout l'intervalle $[t_1,t_2{[}$.
+
+  En effet, lorsque l'activité est ordonnancée à $\bmax$ pendant
+  l'intervalle $[\ES,t_1{[} \cup [t_2,\LE{[}$, il peut arriver que la
+  quantité d'énergie restant à apporter à l'activité durant l'intervalle
+  $[t_1,t_2[$ ne soit pas suffisante pour assurer la satisfaction de la
+  contrainte de consommation minimale~\eqref{req_CECSP}. Le cas où
+  l'activité est ordonnancée à $\bmin$ durant tout l'intervalle
+  $[t_1,t_2{[}$ doit donc être considéré.
 \end{itemize}
-En effet, lorsque l'activité est ordonnancée à $\bmax$ pendant
-l'intervalle $[\ES,t_1{[} \cup [t_2,\LE{[}$, il peut arriver que la
-quantité d'énergie restant à apporter à l'activité durant l'intervalle
-$[t_1,t_2[$ ne soit pas suffisante pour assurer la satisfaction de la
-contrainte de consommation minimale~\eqref{req_CECSP}. Le cas où
-l'activité est ordonnancée à $\bmin$ durant tout l'intervalle
-$[t_1,t_2{[}$ doit donc être considéré.
 
 \begin{figure}[!htb]  
   \centering
@@ -341,21 +341,22 @@ $[t_1,t_2{[}$ doit donc être considéré.
 
 Il est facile de calculer l'expression de la consommation minimale
 d'énergie dans un intervalle pour une fonction $f_i$ croissante. En
-effet, les différentes configurations possibles étant toujours celle
-où la tâche est exécutée à son rendement maximum en dehors de
+effet, les différentes configurations possibles étant toujours celles 
+où l'activité est exécutée à son rendement maximum en dehors de
 l'intervalle ${[}t_1,t_2{[}$, il suffit de retrancher à $W_i$
-l'énergie produite par l'exécution de la tâche en dehors de
-${[}t_1,t_2{]}$. Il existe une exception à cette règle, produite par
-la contrainte du rendement minimal, mais ce cas est facilement traiter
-puisque l'énergie minimale correspond alors à la configuration où la
-tâche est exécutée à son rendement minimal durant ${[}t_1,t_2{[}$. 
+l'énergie produite par l'exécution de l'activité à $\bmax$ en dehors
+de ${[}t_1,t_2{[}$. Il existe une exception à cette règle, produite
+par la contrainte de consommation minimale, mais ce cas est facilement
+traité puisque l'énergie minimale correspond alors à la configuration
+où la tâche est exécutée à son rendement minimal durant
+${[}t_1,t_2{[}$.
 
-Pour donner l'expression mathématique de $\wb$ , nous introduisons
+Pour donner l'expression mathématique de $\wb$, nous introduisons
 trois notations. $\wbLS$ (respectivement $\wbRS$ et $\wbCS$)
 correspond à la quantité d'énergie apportée à l'activité $i$ dans
 l'intervalle $[t_1,t_2[$ quand l'activité est calée à gauche
 (respectivement calée à droite et centrée). Formellement, ces trois
-quantités peuvent être exprimer de la manière suivante:
+quantités peuvent être exprimées de la manière suivante:
 \begin{align}
   \wbLS&= \max\left(0\, ,\, W_i- f_i(\bmax)\max(0,t_1 -
          \ES)\right) \label{eq:LSnrj_CECSP}\\
@@ -377,7 +378,7 @@ $f_i$ pour calculer $\bb$.
 
 Pour calculer l'expression de $\bb$, nous allons utiliser les
 propriétés de la fonction $f_i$. En effet, une fois que nous avons
-calculer $\wb$, nous voulons savoir quelle est la quantité minimale de
+calculé $\wb$, nous voulons savoir quelle est la quantité minimale de
 ressource que nous devons fournir à la tâche pour obtenir cette
 quantité d'énergie dans l'intervalle ${[}t_1,t_2{[}$. Dans le cas où
 la fonction $f_i$ est l'identité, nous avons que: $\bb=\wb$. Dans les
@@ -424,7 +425,7 @@ $\frac{f_i(b_i(t))}{b_i(t)}$ est décroissante.
 
 De ce fait, seule la borne inférieure sur $b_i$, $\bmin$, doit être
 considérée. Or, pour apporter l'énergie $\wb$ à l'activité dans
-l'intervalle $I$, sa consommation $b_i$ doit vérifiée $f_i(b_i) \ge
+l'intervalle $I$, sa consommation $b_i$ doit vérifier $f_i(b_i) \ge
 \frac{\wb}{|I|}$ et donc $b_i \ge
 f_i^{-1}\left(\frac{\wb}{|I|}\right)$. En couplant cette contrainte
 avec la contrainte de consommation minimale, nous obtenons, si $\bmin
@@ -433,7 +434,7 @@ avec la contrainte de consommation minimale, nous obtenons, si $\bmin
   b_i= \max\left(\, \bmin \, ,\, 
     f_i^{-1}\left(\frac{\wb}{|I|}\right)\, \right)
 \]
-Et si $\bmin = 0$, nous avons:
+et si $\bmin = 0$, nous avons:
 \[
   b_i=  f_i^{-1}\left(\frac{\wb}{|I|}\right)
 \]
@@ -450,23 +451,23 @@ cas où la fonction $f_i$ est affine, i.e. de la forme $a_ib_i(t)+c_i$. Dans
 ce cas-là, nous avons:  
 \[f_i^{-1}\left( \frac{\wb}{|I|}\right)= \frac{ \wb- c_i|I|}{a_i|I|}
 \]
-Et donc, si $\bmin\neq 0$: 
+et donc, si $\bmin\neq 0$: 
 \begin{equation}
   \bb= \max\left(b_i^{min} \frac{\wb}{f_i(b_i^{min})} \, ,\,  
     \frac{1}{a_i}\left(\wb-|I|c_{i})\right)\right)
 \end{equation}
-Et si $\bmin=0$: 
+et si $\bmin=0$: 
 \[
   \bb=  \frac{1}{a_i}\left(\wb-|I|c_{i})\right)
 \]
-Notons que, le premier cas correspond au cas où l'intervalle $I$ est
+Notons que le premier cas correspond au cas où l'intervalle $I$ est
 suffisamment grand pour ordonnancer l'activité $i$ à $\bmin$ et lui
 apporter l'énergie requise, i.e. $\wb$. En effet, comme ordonnancer
-$i$ à $\bmin$ a la meilleur rendement, si l'on peut, i.e. l'intervalle
+$i$ à $\bmin$ a le meilleur rendement, si l'on peut, i.e. l'intervalle
 est assez grand, c'est cette valeur que l'on va choisir pour
 $b_i$. Si, au contraire, l'intervalle n'est pas suffisamment grand,
-c'est $f_i^{-1}(\wb/|I|) $ que l'on va choisir. Ceci est
-détaillé dans l'exemple~\ref{ex:convLin_CECSP}.
+c'est $f_i^{-1}(\wb/|I|) $ que l'on va choisir. Ceci est illustré dans
+l'exemple~\ref{ex:convLin_CECSP}. 
 
 \begin{ex}
   \label{ex:convLin_CECSP}
@@ -567,8 +568,10 @@ donc de la taille de l'intervalle $I$.
 Si $\bmin\neq 0$ et si l'intervalle est suffisamment grand, on va donc
 exécuter l'activité à $\bmin$. Sinon, et si l'intervalle est
 suffisamment grand, nous essayons d'exécuter l'activité avec une
-consommation $b_i \in ]\bmin,x_2^i]$, etc. Dans le cas où $\bmin \neq
-0$, l'expression de $\bb$ est formalisée ci-dessous:
+consommation $b_i \in ]\bmin,x_2^i]$, etc. Nous rappelons que les
+points $x_\ell^i$ correspondent aux points de rupture de la fonction
+$f_i$. Dans le cas où $\bmin \neq 0$, l'expression de $\bb$ est
+formalisée ci-dessous:
 \[f_i^{-1}\left(\frac{\wb}{|I|}\right)=\left\{
     \begin{aligned}
       \bmin & \qquad & \text{si } |I| \ge \frac{\wb}{f_i(\bmin)}\\
@@ -577,11 +580,11 @@ consommation $b_i \in ]\bmin,x_2^i]$, etc. Dans le cas où $\bmin \neq
       \frac{\wb -c_{i2}|I|}{a_{i2}|I|} & \qquad & \text{si }  \frac{\wb}{f_i(x^i_2)}
       \ge |I| > \frac{\wb}{f_i(x^i_3)}\\
       & \qquad \vdots& \\
-      \frac{\wb -c_{iP_i}|I|}{a_{iP_i}|I|} & \qquad & \text{si }  \frac{\wb}{f_i(x^i_{P_i}}
+      \frac{\wb -c_{iP_i}|I|}{a_{iP_i}|I|} & \qquad & \text{si }  \frac{\wb}{f_i(x^i_{P_i})}
       \ge |I| > \frac{\wb}{f_i(\bmax)}\end{aligned}
   \right.
 \]
-Et ceci, nous donne l'expression de $\bb$ suivante:
+Et ceci nous donne l'expression de $\bb$ suivante:
 \begin{equation}
   \bb= 
   \max \left\{b_i^{min} \frac{\wb}{f_i(b_i^{min})},
@@ -615,7 +618,7 @@ Si nous calculons $\wb$ et $\bb$ sur l'intervalle $[2,6[$, nous
 obtenons: 
 \begin{itemize}
 \item $\wb[i][2][6] = \wbRS[i][2][6]  = 44$ et 
-\item \begin{align*}
+\item $\begin{aligned}[t]
         \bb[i][2][6]  &= 
   \max (\bmin \frac{ \wb[i][2][6] }{f_i(\bmin)},
   \max_{p  \in \{1,2,3\}} \frac{1}{a_{ip}} ( \wb[i][2][6] 
@@ -624,7 +627,10 @@ obtenons:
   - 4) , \frac{1}{2} (44  - 4 \times 4 ), \frac{1}{1} (44  - 8 \times 4 )
 \right\}\right) \\ &=  
 \max ( \frac{88}{7},
-\max\{\frac{40}{3}, 14, 12 \}) \\ &= 14 \end{align*}
+\max\{\frac{40}{3}, 14, 12 \}) \\ &= 14 \end{aligned}$
+
+~
+
 \end{itemize}
 Dans ce cas, c'est la seconde partie de la fonction $f_i$ qui est
 utilisée, i.e. $f_i(b)=2b+4 \text{ si } b \in ]3,4]$.
@@ -633,7 +639,8 @@ Si maintenant nous calculons $\wb$ et $\bb$ sur l'intervalle $[4,6[$,
 nous obtenons: 
 \begin{itemize}
 \item $\wb[i][4][6] = \wbCS[j][4][6] =18$ et 
-\item \begin{align*}
+
+\item $\begin{aligned}[t]
   \bb[i][4][6] &=\max (\bmin \frac{ \wb[i][4][6] }{f_i(\bmin)},
   \max_{p  \in \{1,2,3\}} \frac{1}{a_{ip}} ( \wb[i][4][6] 
   - c_{ip} |I|)) \\
@@ -642,7 +649,10 @@ nous obtenons:
     \right\}\right) \\ &=  
   \max ( \frac{36}{7},
   \max\{\frac{16}{3}, 5 , 2 \}) \\ &= \frac{16}{3} 
-\end{align*}
+\end{aligned}$
+
+~
+
 \end{itemize}
 Et dans ce cas, c'est la première partie de la fonction $f_i$ qui est
 utilisée, i.e. $f_i(b)=3b+1 \text{ si } b \in ]2,3]$.
@@ -706,8 +716,8 @@ utilisée, i.e. $f_i(b)=3b+1 \text{ si } b \in ]2,3]$.
 \subsection{Les ajustements de borne}
 \label{sec:adjustment_tw}
 
-Dans ce paragraphe nous décrivons les ajustements qui peuvent être
-faits sur les fenêtre de temps des activités. Tout d'abord, nous
+Dans ce paragraphe, nous décrivons les ajustements qui peuvent être
+faits sur les fenêtres de temps des activités. Tout d'abord, nous
 introduisons les notations suivantes: $\bbLS$ (respectivement $\bbRS$
 et $\bbCS$) correspond à la quantité de ressource consommée par
 l'activité $i$ dans l'intervalle $[t_1,t_2[$ quand l'activité est
@@ -723,15 +733,15 @@ la manière suivante:
          \max_{ p \in \P_i} \left(\frac{1}{a_{ip}}(\wbCS-|I|c_{ip})\right)\right\}
 \end{align}
 
-Nous allons décrire deux règles d'ajustements pour les fenêtres du
+Nous allons décrire deux règles d'ajustements pour les fenêtres de
 temps du \CECSP. La première permet d'ajuster $\LS$ et la seconde
-$\ES$ et nous avons des ajustements symétriques pour $\EE$ et $\LE$. 
+$\ES$;nous avons des ajustements symétriques pour $\EE$ et $\LE$. 
 
-Pour les premier ajustements décrits, nous allons essayer de faire
-démarrer l'activité après $t_1$et si la quantité de ressource
+Pour les premiers ajustements décrits, nous allons essayer de faire
+démarrer l'activité après $t_1$ et si la quantité de ressource
 disponible n’est pas suffisante pour ordonnancer les consommations
-minimales de toutes les activités – excepté celle de l’activité i qui
-est remplacée par $\bbRS$ – alors, nous pouvons déduire que l’activité
+minimales de toutes les activités -– excepté celle de l’activité $i$ qui
+est remplacée par $\bbRS$~–- alors, nous pouvons déduire que l’activité
 doit commencer avant $t_1$.
 
 \begin{reg}
@@ -746,7 +756,7 @@ doit commencer avant $t_1$.
 \end{reg}
 
 \begin{proof}
-  Soit $i$ et $[t_1,t_2[$ vérifiant la condition de la
+  Soient $i$ et $[t_1,t_2[$ vérifiant la condition de la
   règle~\ref{reg:ajust_CECSP}. Supposons que l'activité $i$ démarre
   après   $t_1$. 
 
@@ -763,11 +773,11 @@ doit commencer avant $t_1$.
   remarquons que la quantité de ressource devant être consommée avant
   $t_1$ est d'au moins $\sum_{\substack{j \in \A\\ j\neq i}} \bb[j] +
   \bbRS - R(t_2-t_1)$, i.e. ce qui ne ``rentrait'' pas dans
-  $[t_1,t_2[$. Comme nous cherchons une borne supérieure sur la date de
-  début de $i$, nous cherchons donc à ordonnancer cette partie de
+  $[t_1,t_2[$. L'objectif étant d'obtenir une borne supérieure sur la date de
+  début de $i$, nous cherchons donc à exécuter cette partie de
   l'activité le plus rapidement possible. 
 
-  Le temps minimal requis pour ordonnancer cette
+  Le temps minimal requis pour réaliser cette
   consommation étant obtenu en exécutant l'activité à $\bmax$, nous
   obtenons comme borne supérieure sur la date de début de $i$:
   $t_1 - 1/\bmax \times \left(\sum_{\substack{j \in \A\\ j\neq
@@ -788,7 +798,7 @@ de début au plus tôt d'une activité.
 \end{reg}
 
 \begin{proof}
-  Soit $i$ et $[t_1,t_2[$ vérifiant la condition de la
+  Soient $i$ et $[t_1,t_2[$ vérifiant la condition de la
   règle~\ref{reg:ajust_CECSP}. Nous allons décider si $i$ peut commencer
   avant $t_1$. Les configurations où l'activité $i$ démarre avant $t_1$
   et consomme le moins de ressource possible dans $[t_1,t_2[$ sont les
@@ -806,13 +816,13 @@ de début au plus tôt d'une activité.
   Pour calculer la nouvelle date de début au plus tard de $i$,
   remarquons que la quantité de ressource disponible dans $[t_1,t_2[$
   pour exécuter $i$ est de $R(t_2-t_1) -\sum_{\substack{j \in \A\\
-      j\neq i}} \bb[j]$. Comme nous cherchons une borne inférieure sur la date de
+      j\neq i}} \bb[j]$. L'objectif étant d'obtenir une borne inférieure sur la date de
   début de $i$, nous cherchons donc à ordonnancer cette partie de
   l'activité le moins rapidement possible. 
 
-  Le temps maximal requis pour ordonnancer cette consommation étant
+  Le temps maximal requis pour réaliser cette consommation étant
   obtenu en exécutant l'activité à $\bmin$, et, comme $\bmin \neq 0$,
-  l'activité ne peut être préemptée, nous savons que l'activité doit
+  l'activité ne peut être interrompue, nous savons que l'activité doit
   être en cours à $t_2$. Nous obtenons alors comme borne inférieure sur
   la date de début de $i$:
   $t_2 - 1/\bmin \left(R (t_2-t_1) -\sum_{\substack{j
@@ -833,7 +843,7 @@ de début au plus tôt d'une activité.
       \hline
     \end{tabular}
   \end{center}
-  Une solution réalisable est décrit par la figure~\ref{exSol}.
+  Une solution réalisable est décrite par la figure~\ref{exSol}.
   \begin{figure}[!htb]
     \begin{center} 
       \begin{tikzpicture}
@@ -842,7 +852,7 @@ de début au plus tôt d'une activité.
         \node (2) at (4,2) {\LARGE $2$};
         \node (1) at (1,2) {\LARGE $1$};
         \node (3) at (3.5,4) {\LARGE $3$};
-        \node[label={[shift={(-0.4,0)}]$B=5$}] (B) at (0,5) {};
+        \node[label={[shift={(-0.4,0)}]$R=5$}] (B) at (0,5) {};
 
 
         \node (r1) at (0,-0.5) {$\ES[1]$}; 
@@ -885,16 +895,17 @@ de début au plus tôt d'une activité.
   \item $\bbRS[1][2][5]=7$ et $\bbCS[1][2][5]=3$
   \end{itemize}
   Nous avons donc: $\sum_{j\in A;\ j\neq i} \bb[j][2][5] +
-  \bbRS[1][2][5]= 7+7+6 =20 > 5 (5-2) =15$. Donc $\LS[1]$ peut être ajusté
+  \bbRS[1][2][5]= 7+7+6 =20 > 5 (5-2) =15$. Donc $\LS[1]$ peut être
+  ajustée 
   à $ 2 -\frac{1}{5} (20-15) = 1$ .
   En effet, la quantité de ressource disponible dans l'intervalle
   $[2,5[$ pour ordonnancer l'activité $1$ est de $15-7-6=2$. Donc, si
-  l'activité $1$ commence après $t_1$ , elle ne peut consommer que $2$
+  l'activité $1$ commence après $t_1$, elle ne peut consommer que $2$
   unités de ressource dans $[2,5[$.  Or, il faudrait $\bbRS[1][2][5]= 7$
-  unités de ressource disponible dans $[2,5[$ pour que $1$ puisse
+  unités de ressource disponibles dans $[2,5[$ pour que $1$ puisse
   démarrer avant $t_1$. Donc l'activité $1$ ne peut commencer après $t_1$
   et, au moins $5= 7-2$ unités de ressource doivent être exécutées avant
-  $t_1$. Donc $\LS[1]$ peut être ajusté à $2 - \frac{1}{5}(20-15) =1 $.
+  $t_1$. Donc $\LS[1]$ peut être ajustée à $2 - \frac{1}{5}(20-15) =1 $.
 
   De plus, $\LE[1]$ peut être ajusté à $t_1 + 1/ \bmin \times (R(t_2-t_1) -
   \sum_{j\in A;\ j\neq i} \bb[j] )= 2+(15-13)=4$. En effet, si l'activité
@@ -905,10 +916,12 @@ de début au plus tôt d'une activité.
   pouvons ajuster $\LE[1]$ à $4$.
 \end{ex}
 
+L'algorithme~\ref{algo:ajust_CECSP} présente les ajustements pour le
+\CECSP. 
 \begin{algorithm}[!htb]
   \caption{Ajustement des fenêtres de temps pour le \CECSP.}
-  \label{algo1}
-    \PourTous {intervalle d'intérêt $[t_1,t_2[$}
+  \label{algo:ajust_CECSP}
+    \PourTous {intervalles d'intérêt $[t_1,t_2[$}
     { $W\gets 0$
     
       $B\gets 0$
@@ -942,11 +955,11 @@ de début au plus tôt d'une activité.
 \end{algorithm}
 
 
-Nous avons montrer qu'il était possible de calculer, étant donné un
+Nous avons montré qu'il était possible de calculer, étant donné un
 intervalle et une activité, sa consommation minimale et les
 ajustements pouvant être faits sur ses fenêtres de temps en
 $O(1)$. {\'E}tant donné un intervalle, la fonction de marge ainsi que
-tout les ajustements peuvent donc être calculés en $O(n)$. Dans le
+tous les ajustements peuvent donc être calculés en $O(n)$. Dans le
 paragraphe suivant, nous montrons qu'il suffit d'exécuter l'algorithme
 de vérification, ainsi que les ajustements sur un nombre polynomial
 d'intervalles $[t_1,t_2[$.
@@ -987,13 +1000,13 @@ d'intervalles.
   d'intersection est de l'ordre de $O(n^2)$.
 \end{proof}
 
-De la même manière, nous pouvons prouvons prouver que les ajustements
-peuvent être appliquer sur un nombre polynomial d'intervalle. Pour
+De la même manière, nous pouvons prouver que les ajustements
+peuvent être appliqués sur un nombre polynomial d'intervalles. Pour
 cela, il suffit de considérer, à la place de la fonction de marge, la
 fonction $ R(t_2-t_1) - \sum_{\substack{j \in \A\\ j \neq i}} \bb[j] -
 \bbRS$ pour la règle~\ref{reg:ajust_CECSP} et $ R(t_2-t_1) - \sum_{\substack{j \in
     \A\\ j \neq i}} \bb[j] - \min(\bbCS,\bbLS)$ pour la
-règle~\ref{reg:ajustRi_CECSP}. Dans la suite, appellerons ces
+règle~\ref{reg:ajustRi_CECSP}. Dans la suite, nous appellerons ces
 fonctions {\it fonction d'ajustement de $\LS$ et $\ES$} respectivement. 
 
 \begin{theo}
@@ -1021,11 +1034,11 @@ considérer trois cas:
 \item $W_i \le f_i(\bmin)(\LE-\ES)$
 \item $W_i \ge f_i(\bmin)(\LE-\ES)$
 \end{itemize}
-Ces trois cas devront être considérer séparément dans chacune des
+Ces trois cas devront être considérés séparément dans chacune des
 méthodes proposées pour calculer les intervalles d'intérêt du
 raisonnement énergétique (pour l'algorithme de vérification et les
-ajustements). Cependant, seulement le troisième cas sera détaillé dans
-le manuscrit. Les deux autres cas étant traités de manière similaire. 
+ajustements). Cependant, seul le troisième cas sera détaillé dans
+le manuscrit, les deux autres cas étant traités de manière similaire. 
 % Les deux autres cas seront quant à eux détaillés dans
 % l'annexe~\ref{annexe:breakline}. 
 
@@ -1074,13 +1087,13 @@ segments peut être déduit par symétrie.
 \begin{lemma}
   \label{lem:sym2}
   Pour tout $t_1 \ge 0,\ t_2 \ge t_1,\ \bb= \bb[i][\LE+\ES-t_2][\LE +
-  \ES -t_1]$ 
+  \ES -t_1]$.
 \end{lemma}
 
 \begin{proof}
   Pour montrer le lemme, on peut montrer que $ \wb=
   \wb[i][\LE+\ES-t_2][\LE +\ES -t_1]$. En effet, pour une même quantité
-  d'énergie, la conversion de $\wb$ en $\bb$ ne dépendant que de la
+  d'énergie, la conversion de $\wb$ en $\bb$ ne dépend que de la
   taille de l'intervalle et $\LE +\ES -t_1 - \LE - \ES+t_2 =t_2 -
   t_1$. Nous montrons donc le lemme pour $\wb$.
 
@@ -1129,8 +1142,8 @@ défini par les points:
 $A=(\ES,\LE)$ \hfill $\ B=(\frac{\ES+\LE}{2},\frac{\ES+\LE}{2})$
 \hfill $C=( \ES,\ES)$
 
-Les différentes expressions de $\wb$ en fonctions de $t_1,t_2$ et des
-paramètre de l'activité $i$ sont décrits
+Les différentes expressions de $\wb$ en fonction de $t_1,t_2$ et des
+paramètres de l'activité $i$ sont décrits
 dans~\cite{ArtiguesLopez}. Nous commençons donc par brièvement
 présenter ces résultats, puis nous expliquerons comment les étendre
 pour obtenir les différentes expressions de $\bb$.
@@ -1143,8 +1156,8 @@ inférieure $\ES + W_i/f_i(\bmax)$ sur la date de fin de $i$.
 Afin de décrire les zones où l'expression de $\wb$ est identique, il
 faut analyser les conditions sur $t_1$ et $t_2$ selon lesquelles une
 expression est choisie plutôt qu'une autre. Pour cela, les auteurs
-de~\cite{ArtiguesLopez} se propose d'étudier les segments
-correspondants au cas où deux expressions ont la même valeur,
+de~\cite{ArtiguesLopez} se proposent d'étudier les segments
+correspondant au cas où deux expressions ont la même valeur,
 e.g. $f_i(\bmin)(t_2-t_1) = W_i - f_i(\bmax) (t_1-\ES)$. Ces segments
 permettent de délimiter des zones dans lesquelles on doit décider
 l'expression de $\wb$, i.e. quelle expression est minimale à
@@ -1157,14 +1170,14 @@ lignes $t_1 \le \ES$ et $t_2 \ge \LE$ (en rouge sur la
 figure~\ref{fig:breakline_nrj}), l'expression de $\wb$ est $W_i$. 
 
 Notons aussi que le cas $W_i \ge f_i(\bmin)(\LE -\ES)$ correspond au
-cas où l'activité ne peut être ordonnancer à $\bmin$ durant toute sa
+cas où l'activité ne peut être ordonnancée à $\bmin$ durant toute sa
 durée d'exécution. C'est-à-dire que l'énergie requise par l'activité
 $i$ dans l'intervalle $[t_1,t_2[$ peut dépasser $f_i(\bmin)(t_2-t_1)$
-et la cas où $\wb= W_i - f_i(\bmax)(\LE-t_2+t_1-\ES)$ doit être
+et le cas où $\wb= W_i - f_i(\bmax)(\LE-t_2+t_1-\ES)$ doit être
 considéré. De plus, le cas $W_i \ge f_i(\bmin)(\LE -\ES)$ est
 séparé en deux sous cas: $\emin \le \smax$ et $\emin \ge \smax$. Le
 premier cas correspond au cas où le point d'intersection des lignes
-$t_1\le \emin$ et $t_2 \ge smax$ vérifie $t_2 \ge t_1$ et donc le
+$t_1\le \emin$ et $t_2 \ge \smax$ vérifie $t_2 \ge t_1$ et donc le
 point est à l'intérieur du triangle $(A,B,C)$. Le second cas
 correspond au cas où ce point se trouve à l'extérieur du
 triangle. Dans ces deux cas, les segments de définition à considérer
@@ -1185,14 +1198,14 @@ avec les expressions de $\wb$ suivantes:
 \begin{itemize}
 \item la zone rouge correspond à $\underline{w}(i,t_1,t_2)=W_i$;
 \item la zone verte à $\underline{w}(i,t_1,t_2)=W_i-(\LE-t_2)f_i(\bmax)$;
-\item la zone bleu à $\underline{w}(i,t_1,t_2)=W_i-(t_1-\ES)f_i(\bmax)$;
+\item la zone bleue à $\underline{w}(i,t_1,t_2)=W_i-(t_1-\ES)f_i(\bmax)$;
 \item la zone jaune à
   $\underline{w}(i,t_1,t_2)=W_i-(\LE-t_2+t_1-\ES)f_i(\bmax))$;
 \item et la blanche à $\underline{w}(i,t_1,t_2)=(t_2-t_1)f_i(\bmin)$.
 \end{itemize}
 Les autres zones correspondent à $\underline{w}(i,t_1,t_2)=0$.
 
-De plus, les coordonnées de chaque points sont:
+De plus, les coordonnées de chaque point sont:
 \begin{itemize}
 \item $A=(\ES,\LE),\ B=(\emin,\smax),\
   C=(\smax,\smax)$ and $C'=(\emin,\emin)$
@@ -1460,7 +1473,7 @@ De plus, les coordonnées de chaque points sont:
 \end{figure}
 
 Nous avons donc défini les différentes zones correspondant chacune à
-une expression de $\wb$. Dans le cas où, $f_i$ est la fonction
+une expression de $\wb$. Dans le cas où $f_i$ est la fonction
 identité, cela suffit pour définir les segments à considérer, i.e. les
 segments pour lesquels on va tester l'intersection. La méthode
 générale pour calculer les intervalles d'intérêt en fonction de ces
@@ -1472,12 +1485,12 @@ représentés par une boule noire sur la
 figure~\ref{fig:breakline_nrj}. Par exemple, dans le cas où $W_i \ge
 f_i(\bmin)(\LE-\ES)$ les segments à considérer sont donc:
 \begin{itemize}
-\item dans le cas $\emin \le \smax$: $(\ES ,E_{max})A,\ (S_{min},
+\item dans le cas où $\emin \le \smax$: $(\ES ,E_{max})A,\ (S_{min},
   \LE)A,\ (S_{min},\smax)B,\ B(\emin,E_{max})$,  $AD,\ AD',\
-  DD' ,\ DG,\ D'G$ and $GB$.
-\item for case $\emin\ge \smax$: $(\ES ,E_{max})A,\ (S_{min},
+  DD' ,\ DG,\ D'G$ et $GB$.
+\item dans le cas où $\emin\ge \smax$: $(\ES ,E_{max})A,\ (S_{min},
   \LE)A,\ (S_{min},\smax)C,\ C'(\emin,E_{max}),\ AD$, $ AD',\
-  DD' ,\ DC$ and $D'C$.
+  DD' ,\ DC$ et $D'C$.
 \end{itemize}
 avec $D_{t_1}$ (resp. $D_{t_2}$) la projection sur l'axe $x$
 (resp. sur l'axe $y$) du point $D$.
@@ -1495,7 +1508,7 @@ alors l'activité peut être ordonnancée à $\bmin$ et l'expression de
 $\bb$ sera alors $\frac{\wb}{f_i(\bmin)}\times \bmin$. Dans le cas
 inverse, nous avons $\bb=\frac{1}{a_i}(\wb-c_i|I|)$. 
 
-Dans le cas $\bmin=0$, l'inégalité n'a pas besoin d'être considérée et
+Dans le cas où $\bmin=0$, l'inégalité n'a pas besoin d'être considérée et
 nous avons directement $\bb=\frac{1}{a_i}(\wb-c_i|I|)$ dans chaque
 zone. 
 
@@ -1517,7 +1530,7 @@ son expression, nous obtenons l'inégalité suivante:
 \[t_2 \le \frac{f_i(\bmax)\LE - f_i(\bmin)\ES - W_i }{f_i(\bmax) -
     f_i(\bmin)} \]
 Or, $\LE  \le \frac{f_i(\bmax)\LE - f_i(\bmin)\ES - W_i }{f_i(\bmax) -
-  f_i(\bmin)}$. Donc, nous l'inégalité est vérifiée si $t_2 \le d_i$
+  f_i(\bmin)}$. Donc, l'inégalité est vérifiée si $t_2 \le d_i$
 et ceci est vrai dans ce cas. 
 
 Les cas où $|I| = \LE -\ES$ et $|I| =
@@ -1530,7 +1543,7 @@ Dans le cas où $W_i \ge f_i(\bmax)(\LE - \ES)$, si $|I|$ vaut
 $t_2-t_1$, l'inégalité donne $\wb \le f_i(\bmin)(t_2-t_1)$. Donc, si
 $\wbCS=f_i(\bmin) (t_2-t_1)$ alors $\wb=\min(W_i -
 f_i(\bmax)(\LE-t_2), W_i - f_i(\bmax)(t_1-\ES),
-f_i(\bmin)(t_2-t_1))$ et l'inégalité est vérifiée. {\'A}l'inverse, si
+f_i(\bmin)(t_2-t_1))$ et l'inégalité est vérifiée. A l'inverse, si
 $\wbCS=W_i - f_i(\bmax)(\LE - t_2 +t_1 - \ES)$ et comme $[t_1,t_2[
 \subset [\ES,\LE]$, on a forcément $\wb=W_i - f_i(\bmax)(\LE - t_2
 +t_1 - \ES)$. Donc l'inégalité n'est jamais vérifiée et
@@ -1544,7 +1557,7 @@ La partie gauche de cette inégalité correspond exactement à l'ordonnée
 du point $D$ et donc la zone verte est divisée en deux parties:
 \begin{itemize}
 \item la partie claire où $\bb= \bmin \times \wb / f_i(\bmin)$
-\item  et la partie plus foncée où $\bb=\frac{1}{a_i}(\wb - c_i|I|)$
+\item  et la partie plus foncée où $\bb=\frac{1}{a_i}(\wb - c_i|I|)$.
 \end{itemize}
 Les cas où $|I| = \LE -\ES$ et $|I| = \LE -t_1$ sont traités de la
 même façon.
@@ -1558,10 +1571,10 @@ La figure~\ref{fig:breakline_res} présente ces résultats avec les
    \left\{W_i-(\LE-t_2)f_i(\bmax)\right\}/ f_i(\bmin)$;
  \item la zone verte foncée à
    $\bb=\frac{1}{a_i}(W_i-(\LE-t_2)f_i(\bmax) - c_i |I|)$ où $I$ vaut
-   $[t_1,t_2[$ où $[\ES,t_2[$;
- \item la zone bleu claire à $\bb=\bmin \times \left\{W_i-(t_1-\ES)f_i(\bmax)\right\}/f_i(\bmin)$;
- \item la zone bleu foncée à $\bb=\frac{1}{a_i}(W_i-(t_1-\ES)f_i(\bmax) - c_i
-   |I|)$ où $I$ vaut  $[t_1,t_2[$ où $[t_1,\LE{[}$;
+   $[t_1,t_2[$ ou $[\ES,t_2[$;
+ \item la zone bleue claire à $\bb=\bmin \times \left\{W_i-(t_1-\ES)f_i(\bmax)\right\}/f_i(\bmin)$;
+ \item la zone bleue foncée à $\bb=\frac{1}{a_i}(W_i-(t_1-\ES)f_i(\bmax) - c_i
+   |I|)$ où $I$ vaut  $[t_1,t_2[$ ou $[t_1,\LE{[}$;
  \item la zone jaune à
    $\bb=\frac{1}{a_i}(W_i-(\LE-t_2+t_1-\ES)f_i(\bmax) - c_i (t_2 - t_1))$;
  \item et la blanche à $\bb=(t_2-t_1) \bmin$.
@@ -1579,6 +1592,8 @@ La figure~\ref{fig:breakline_res} présente ces résultats avec les
    \LE)A,\ (S_{min},\smax)C,\\ C'(\emin,E_{max}),\ AD,\ AD',\
    D(0,D_{t_2}),\ D'(D'_{t_1},E_{max}),\ DD' ,\ DC$ et $D'C$.
  \end{itemize}
+avec $E_{max}=\max_{i \in \A}\{\LE\}$ et $S_{min}=\min_{i \in
+  \A}\{\ES\}$. 
 
 \begin{figure}[!htb]
   \centering
@@ -1837,13 +1852,13 @@ première est la plus naïve et consiste à considérer toutes les paires
 de segments et calculer leur intersection. La seconde méthode utilise
 l'algorithme de balayage de Bentley-Ottmann~\cite{sweep}.  L'idée
 principale sur laquelle repose l'algorithme de balayage est que deux
-segments ne peuvent s'intersecter s'ils leurs projections sur l'axe
+segments ne peuvent s'intersecter si leurs projections sur l'axe
 des ordonnées et sur l'axe des abscisses ne se chevauchent pas. Une
 ligne horizontale fictive est utilisée pour balayer l'axe des
 abscisses et à certains ``événements'', on teste l'intersection entre
-deux segments s'ils intersectent tous les deux cette ligne fictives et
+deux segments s'ils intersectent tous les deux cette ligne fictive et
 s'ils sont consécutifs dans l'ordre vertical. Avec cet algorithme, le
-nombre de test d'intersection peut grandement décroître par rapport à
+nombre de tests d'intersection peut grandement décroître par rapport à
 l'algorithme naïf.
 
 Dans le cas de l'algorithme naïf, la complexité totale de l'algorithme
@@ -1858,7 +1873,7 @@ ces deux algorithmes sera effectué dans le chapitre~\ref{sec:expe}.
 \subsubsection{Analyses des variations de la fonction de marge et des
   fonctions d'ajustements}
 
-Nous allons décrire ici, une troisième méthode permettant le calcul des
+Nous allons décrire ici une troisième méthode permettant le calcul des
 intervalles d'intérêt du raisonnement énergétique. Cette méthode est
 l'adaptation des travaux de~\cite{DP} dans le cadre du \CUSP. Dans un
 premier temps, nous décrivons la méthode permettant de calculer ces
@@ -1869,8 +1884,8 @@ ce même résultat dans le cadre des ajustements de fenêtres de temps.
  chercher un intervalle $[t_1,t_2[$ vérifiant $SL(t_1,t_2) < 0$, il
  suffit de s'intéresser au point $(t_1,t_2)$ pour lesquels la
  fonction de marge est minimale. Comme, en pratique, il est difficile
- de trouver le minimum globale d'une telle fonction, nous nous
- intéressons à ces minimums locaux. Grâce au test de la dérivée
+ de trouver le minimum global d'une telle fonction, nous nous
+ intéressons à ces minima locaux. Grâce au test de la dérivée
  seconde (voir paragraphe~\ref{sec:nrj_CUSP}), nous pouvons dériver
  des conditions selon lesquels $SL$ est localement minimale.
 
@@ -1878,7 +1893,7 @@ ce même résultat dans le cadre des ajustements de fenêtres de temps.
 \label{lem:min_CECSP}
 La fonction de marge $SL(t_1,t_2)$ est localement minimale seulement
 s'il existe deux activités $i$ et $j$ telles que les conditions
-ci-dessous sont satisfaites. 
+ci-dessous sont satisfaites: 
 \begin{align} \frac{\delta^{-}\bb}{\delta t_1} &>
 \frac{\delta^{+}\bb}{\delta t_1} \label{eq:deriv1_CECSP}\\ 
 \frac{\delta^{-}\bb[j]}{\delta t_2}
@@ -1888,21 +1903,21 @@ ci-dessous sont satisfaites.
 
 Le preuve est identique à celle du lemme~\ref{lem:min_CUSP}. Le
 lemme~\ref{lem:min_CECSP} peut être utilisé pour déterminer les
-conditions nécessaires permettant de déterminer un l'ensemble des
+conditions nécessaires permettant de déterminer l'ensemble des
 intervalles d'intérêt. Pour cela, une étude des fonctions $t_1
 \rightarrow \bb$ et $t_2 \rightarrow \bb$ est nécessaire. 
 
 \begin{theo}
   Pour chaque activité $i$ et pour tout début d'intervalle $t_1$ il
-  existe au plus deux intervalles $[t_1,t_2[$ tel que
-  $\frac{\delta^{-}\bb[j]}{\delta t_2} >
-  \frac{\delta^{+}\bb[j]}{\delta t_2} $. 
-  De même,  pour chaque activité $i$ et pour toute fin d'intervalle $t_2$ il
-  existe au plus deux intervalles $[t_1,t_2[$ tel que
-  $\frac{\delta^{-}\bb[j]}{\delta t_1} >
-  \frac{\delta^{+}\bb[j]}{\delta t_1} $. 
+  existe au plus deux intervalles $[t_1,t_2[$ tels que
+  $\frac{\delta^{-}\bb}{\delta t_2} >
+  \frac{\delta^{+}\bb}{\delta t_2} $. 
+  De même,  pour chaque activité $i$ et pour toute fin d'intervalle $t_2$, il
+  existe au plus deux intervalles $[t_1,t_2[$ tels que
+  $\frac{\delta^{-}\bb}{\delta t_1} >
+  \frac{\delta^{+}\bb}{\delta t_1} $. 
   Ces intervalles sont décrits
-  par la table~\ref{fig:interCheck_CECSP} avec:
+  par le tableau~\ref{fig:interCheck_CECSP} avec:
   \begin{center}
     \begin{tabular}{lcr}
       $\Delta'(t_2)=\frac{t_2(f_i(\bmin)-f_i(\bmax))+\LE f_i(\bmax)-W_i}{f_i(\bmin)}$
@@ -1926,7 +1941,7 @@ de la fonction $t_2 \rightarrow \bb$.
 \begin{table} 
   \input{part2/CECSP/tabular.tex}
   \caption{Intervalles d'intérêt pour l'algorithme de vérification du
-    raisonnement énergétique pour le \CECSP}
+    raisonnement énergétique pour le \CECSP.}
   \label{fig:interCheck_CECSP}
 \end{table}
 \end{theo}
@@ -1941,58 +1956,58 @@ $\Gamma(t_1)=\emin$
 \end{center}
  \begin{proof}
 Nous présentons seulement comment nous obtenons les $t_2$ pertinents
-pour la huitième colonne de la table~\ref{tab:interCheck_t2}. Tous les
-autres cas étant obtenus de manière similaire. 
-Pour prouver le lemme, nous analysons les variations de la fonction
-   $t_2 \rightarrow \underline{b}(i,t_1,t_2)$. 
+pour la huitième colonne du tableau~\ref{tab:interCheck_t2}, tous les
+autres cas étant obtenus de manière similaire. La signification de
+cette colonne est la suivante: si $W_i \ge f_i(\bmax)(\LE-\ES)$, $\ES
+\le t_1 \le \EE$ et $t_1 \le D_{t_1}$, alors les intervalles à
+considérer sont $[t_1,\LE {[}$ et $[t_1, \Gamma(t_1){[}$.
 
-Pour analyser ces variations, nous utilisons les expressions de $\bb$
-en fonctions de $t_1$ et $t_2$ décrites dans le paragraphe
-précédent. Pour adapter ces zones dans le cas des fonctions concaves
-et affines par morceaux, il faut déterminer, dans les zones où
-l'expression de $\bb$ est $\frac{1}{a_i}(\wb - c_i|I|)$, la valeur de
-$\max_{p \in \P_i}(\frac{1}{a_{ip}}(\wb - c_{ip}|I|))$. Pour ce faire,
-notons que le segment $\overline{DD'}$ dans la
-figure~\ref{fig:breakline_res}, sépare la zone où $|I|= t_2 - t_1 \ge
-\wb/ f_i(\bmin)$ de la zone où cette inégalité n'est pas vérifiée. De
-la même manière, nous pouvons définir une série de segments parallèles
-, $\overline{D_{p}D_{p}^{'}}$, séparant les zones où $|I|= t_2 - t_1
-\ge \wb/f_i(x_p^i)$ et celle où cette inégalité n'est pas vérifiée,
+Pour prouver le lemme, nous analysons les variations de la fonction
+$t_2 \rightarrow \underline{b}(i,t_1,t_2)$. Pour analyser ces
+variations, nous utilisons les expressions de $\bb$ en fonction de
+$t_1$ et $t_2$ décrites dans le paragraphe précédent. Pour adapter ces
+zones dans le cas des fonctions concaves et affines par morceaux, il
+faut déterminer, dans les zones où l'expression de $\bb$ est
+$\frac{1}{a_i}(\wb - c_i|I|)$, la valeur de $\max_{p \in
+\P_i}(\frac{1}{a_{ip}}(\wb - c_{ip}|I|))$. Pour ce faire, notons que
+le segment $\overline{DD'}$ dans la figure~\ref{fig:breakline_res},
+sépare la zone où $|I|= t_2 - t_1 \ge \wb/ f_i(\bmin)$ de la zone où
+cette inégalité n'est pas vérifiée. De la même manière, nous pouvons
+définir une série de segments parallèles ,
+$\overline{D_{p}D_{p}^{'}}$, séparant les zones où $|I|= t_2 - t_1 \ge
+\wb/f_i(x_p^i)$ et celle où cette inégalité n'est pas vérifiée,
 i.e. séparant les zones où $\bb= \frac{1}{a_{ip}}(\wb -
 c_{ip}(t_2-t_1))$. La figure~\ref{fig:variation} représente ces
-variations avec: \[expr_{ip}=\frac{1}{a_{ip}}\left(W_i- f_i(\bmax)(\LE
--t_2+t_1-\ES) - c_{ip}(t_2-t_1)\right)\]
-
-   \begin{figure}[!htb]
-     \input{part2/CECSP/derivative4.tex}
-     \caption{Intervalle d'intérêt du raisonnement énergétique du
-       \CECSP~dans le cas où $\ES <t_1 \le D'_{t_1}$.}
+variations.
+   \begin{figure}[!htb] \input{part2/CECSP/derivative4.tex}
+     \caption{Intervalles d'intérêt du raisonnement énergétique du
+\CECSP~dans le cas où $\ES <t_1 \le D'_{t_1}$.}
      \label{fig:variation}
    \end{figure}
 
 
 Les intervalles $\inter$ pour lesquels $t_2 \rightarrow \bb$ vérifie
-que sa dérivé à 
-gauche est inférieure à sa dérivé à droite sont 
+que sa dérivée à 
+gauche est inférieure à sa dérivée à droite sont 
 ${[}t_1,\LE{[}$ et $[t_1,\bd{t_1}[$. En effet, comme $f_i$ est une
 fonction concave et affine par morceaux, nous avons: $a_{ip} >
 a_{ip+1}$ et $c_{ip} <c_{ip+1}$, et donc
 $\frac{\delta^{-}expr_{ip}}{\delta t_2}<
 \frac{\delta^{+}expr_{ip+1}}{\delta t_2}$.
 
-On peut remarquer que dans la figure~\ref{fig:variation}, on l'indice
+On peut remarquer que dans la figure~\ref{fig:variation}, l'indice
 de $expr_{ip}$ va seulement jusqu'à $4$. Ceci est dû à une
-simplification. Dans le cas générale, l'indice de $expr_{ip}$ s'arrête
+simplification. Dans le cas général, l'indice de $expr_{ip}$ s'arrête
 au rang $\ell$ si $W_i \le f_i(x^i_{\ell +1})(\LE - \ES)$.
 \end{proof}
 
 En appliquant un raisonnement symétrique pour toute fin d'intervalle
-$t_2$ fixée, nou obtenons une liste d'intervalle d'intérêt, décrites
+$t_2$ fixée, nous obtenons une liste d'intervalles d'intérêt, décrite
 par le lemme~\ref{listinterval}.
 
 \begin{lemma}
   \label{listinterval} 
-Soit $i$ et $j$ deux activités telles que: $W_l\ge
+Soient $i$ et $j$ deux activités telles que: $W_l\ge
 f_l(\bmin[l])(\LE[l]-\ES[l]),\ l=i,j$. Alors, la fonction de marge est
 localement minimum seulement si $(t_1,t_2)$ correspond à l'un des
 intervalles suivants:
@@ -2038,7 +2053,7 @@ intervalles suivants:
 
 Le lemme~\ref{listinterval} présente les résultats pour le cas où $i$
 et $j$ vérifient $W_l\ge f_l(\bmin[l])(\LE[l]-\ES[l]),\ l=i,j$. Les autres
-cas à considérer:
+cas à considérer sont:
 \begin{itemize}
 \item $\bmin=0$ et $\bmin[j]=0$
 \item $\bmin=0$ et $W_j\le f_j(\bmin[j])(\LE[j]-\ES[j])$
@@ -2064,13 +2079,13 @@ suivantes:
 L'algorithme de détection d'incohérence est alors le suivant:
 \begin{algorithm}[!htb]
 \setstretch{1.35}
-  \caption{Algorithme de détection d'incohérence énergétique du \CECSP}
+  \caption{Algorithme de détection d'incohérence énergétique du \CECSP.}
   \label{algo:check_CECSP}
   \PourTous {$t_1 \in O_1$}{
     \PourTous {$i \in \A$}{
       Calculer $O_{t_2}$ l'ensemble des $t_2$ vérifiant la
-      condition~\eqref{eq:deriv2_CECSP} à l'aide de la
-      table~\ref{tab:interCheck_t2}
+      condition~\eqref{eq:deriv2_CECSP} à l'aide du 
+      tableau~\ref{tab:interCheck_t2}
       \PourTous {$t_2 \in O_{t_2}$}{
         \Si {$R(t_2-t_1) < \sum_{j \in \A} \bb[j]$}{
           Le problème est infaisable}
@@ -2080,8 +2095,8 @@ L'algorithme de détection d'incohérence est alors le suivant:
 \PourTous {$t_2 \in O_2$}{
   \PourTous {$i \in \A$}{
       Calculer $O_{t_1}$ l'ensemble des $t_1$ vérifiant la
-      condition~\eqref{eq:deriv1_CECSP} à l'aide de la
-      table~\ref{tab:interCheck_t1}
+      condition~\eqref{eq:deriv1_CECSP} à l'aide du
+      tableau~\ref{tab:interCheck_t1}
       \PourTous {$t_1 \in O_{t_1}$}{
         \Si {$R(t_2-t_1) < \sum_{j \in \A} \bb[j]$}{
          Le problème est infaisable}
@@ -2090,7 +2105,7 @@ L'algorithme de détection d'incohérence est alors le suivant:
 }
 \end{algorithm}
 
-L'algorithme~\ref{algo:check_CECSP} possède alors une complexité de
+L'algorithme~\ref{algo:check_CECSP} est de complexité 
 $O(n^3)$. En effet, pour chaque couple d'activités $(i,j)$ au plus
 deux intervalles sont considérés. La complexité est donc la même que
 dans la première méthode présentée. Cependant, la constante cachée est
@@ -2104,7 +2119,7 @@ lemme~\ref{lem:min_ajust_ER_CUSP}. Comme nous avons déjà calculé les
 points $t_1$ vérifiant $\frac{\delta^{-}\bb}{\delta
 t_1}>\frac{\delta^{+}\bb}{\delta t_1}$ et les points $t_2$ vérifiant
 $\frac{\delta^{-}\bb}{\delta t_2} >\frac{\delta^{+}\bb}{\delta
-t_2}$. Il suffit, pour caractériser les intervalles d'intérêt pour les
+t_2}$, il suffit, pour caractériser les intervalles d'intérêt pour les
 ajustements, de calculer les points $t_1$ vérifiant:
 \begin{equation}
 \frac{\delta^{-}\bbRS}{\delta t_1} >\frac{\delta^{+}\bbRS}{\delta
@@ -2114,37 +2129,35 @@ et les points $t_2$ vérifiant \begin{equation}
 t_2}\label{eq:derivt2_CECSP}\end{equation}
 Pour cela, nous analysons les variations des fonctions $t_1
 \rightarrow \bbRS$ et $t_2 \rightarrow \bbRS$. Nous allons montrer
-comment cela à été fait pour $t_1 \rightarrow \bbRS$ et dans le cas où
+comment cela a été fait pour $t_1 \rightarrow \bbRS$ et dans le cas où
 $W_i \ge f_i(\bmin) (\LE - \ES)$, les autres cas étant déduits de
-manière similaire. Le tableau~\ref{tab:interAjust_CECSP} présentent
+manière similaire. Le tableau~\ref{tab:interAjust_CECSP} présente 
 les résultats dans ces autres cas. 
 
 
 \begin{theo}
-  Pour chaque activité $i$ et pour tout début d'intervalle $t_1$ il
-  existe au plus deux intervalles $[t_1,t_2[$ tel que
+  Pour chaque activité $i$ et pour tout début d'intervalle $t_1$, il
+  existe au plus deux intervalles $[t_1,t_2[$ tels que
   l'équation~\eqref{eq:derivt2_CECSP} soit vérifiée.
-  $\frac{\delta^{-}\bbRS[j]}{\delta t_2} >
-  \frac{\delta^{+}\bbRS[j]}{\delta t_2} $. 
-  De même,  pour chaque activité $i$ et pour toute fin d'intervalle $t_2$ il
-  existe au plus deux intervalles $[t_1,t_2[$ tel que
-  l'équation~\eqref{eq:derivt2_CECSP} soit vérifiée. 
+  De même,  pour chaque activité $i$ et pour toute fin d'intervalle $t_2$, il
+  existe au plus deux intervalles $[t_1,t_2[$ tels que
+  l'équation~\eqref{eq:derivt1_CECSP} soit vérifiée. 
   Ces intervalles sont décrits
-  par la table~\ref{tab:interAjust_CECSP}.
+  par le tableau~\ref{tab:interAjust_CECSP}.
   \begin{table} 
   \input{part2/CECSP/tabularRS.tex}
   \caption{Intervalles d'intérêt pour les ajustements du
-    raisonnement énergétique pour le \CECSP.}
+    raisonnement énergétique pour le \CECSP (placement à droite).}
   \label{tab:interAjust_CECSP}
 \end{table}
 \end{theo}
 
 \begin{proof}
   Nous présentons seulement comment nous obtenons les $t_2$ pertinents
-pour les deux dernières colonnes de la
-table~\ref{tab:interAjust_t2}. Tous les autres cas étant obtenus de
-manière similaire. Pour prouver le lemme, nous analysons les
-variations de la fonction $t_2 \rightarrow \bbRS$.
+dans le cas où $W_i \ge f_i(\bmax)(\LE - \ES)$, i.e. les deux dernières
+colonnes du tableau~\ref{tab:interAjust_t2}. Les autres cas sont
+obtenus de manière similaire. Pour prouver le lemme, nous analysons
+les variations de la fonction $t_2 \rightarrow \bbRS$.
 
 
 \begin{figure}[!htb]
@@ -2156,12 +2169,12 @@ variations de la fonction $t_2 \rightarrow \bbRS$.
  \subcaptionbox{Cas $\LE > t_1 \ge \smax $
   \label{fig:variation3}}[\linewidth]
 {\input{part2/CECSP/derivative3.tex}}
-\caption{Variation de $\bbRS$ en fonction de $t_2$}
+\caption{Variation de $\bbRS$ en fonction de $t_2$.}
 \end{figure}
 
 
 Les intervalles $\inter$ pour lesquels $t_2 \rightarrow \bbRS$ vérifie
-que sa dérivé à gauche est supérieure à sa dérivé à droite sont:
+que sa dérivée à gauche est supérieure à sa dérivée à droite sont:
 \begin{itemize}
 \item $[t_1, \LE {[}$ dans le cas où $\ES \le t_1 $;
 \item $[t_1, \LE {[}$ et $[t_1, \Delta(t_1) [$ dans le cas où $\ES > t_1 \ge \smax$;
@@ -2171,7 +2184,7 @@ que sa dérivé à gauche est supérieure à sa dérivé à droite sont:
 \end{proof}
 
 Un raisonnement identique amène à la caractérisation des intervalles
-d'intérêt pour $\bbLS$. Ces résultats sont décrits par dans le
+d'intérêt pour $\bbLS$. Ces résultats sont décrits dans le
 tableau~\ref{tab:interAjustLS_CECSP}.
   \begin{table} 
   \input{part2/CECSP/tabularLS.tex}
@@ -2180,15 +2193,15 @@ tableau~\ref{tab:interAjustLS_CECSP}.
   \label{tab:interAjustLS_CECSP}
 \end{table}
 
-Comme dans le cas de l'algorithme de vérification cette
-caractérisation nous permet de définir une liste d'intervalle sur
+Comme dans le cas de l'algorithme de vérification, cette
+caractérisation nous permet de définir une liste d'intervalles sur
 lesquels appliquer les ajustements. Pour cela, il suffit, pour chaque
 couple $(i,t_1)$ et pour chaque activité $j$, de calculer les
 $t_2$ d'intérêt à l'aide du tableau~\ref{tab:interAjust_CECSP} pour
 les ajustements des dates de début et à l'aide du
 tableau~\ref{tab:interAjustLS_CECSP} pour 
-les ajustements des dates de fin. Pour une activité $i$ le nombre
-d'intervalle d'intérêt est donc au plus de $4(n-1)^2 + 2* (2n+3)$.
+les ajustements des dates de fin. Pour une activité $i$, le nombre
+d'intervalles d'intérêt est donc au plus de $4(n-1)^2 + 2* (2n+3)$.
 
 
 

@@ -1,0 +1,361 @@
+bowie
+    description: Ordinateur Mini-Tour
+    produit: Precision T1700 (Precision T1700)
+    fabriquant: Dell Inc.
+    version: 01
+    numéro de série: 1RXY7Z1
+    bits: 64 bits
+    fonctionnalités: smbios-2.7 dmi-2.7 vsyscall32
+    configuration: administrator_password=disabled boot=normal chassis=mini-tower frontpanel_password=disabled keyboard_password=disabled power-on_password=disabled sku=Precision T1700 uuid=44454C4C-5200-1058-8059-B1C04F375A31
+  *-core
+       description: Carte mère
+       produit: 073MMW
+       fabriquant: Dell Inc.
+       identifiant matériel: 0
+       version: A03
+       numéro de série: /1RXY7Z1/CN7220044D019R/
+     *-firmware
+          description: BIOS
+          fabriquant: Dell Inc.
+          identifiant matériel: 0
+          version: A16
+          date: 05/20/2015
+          taille: 64KiB
+          capacité: 11MiB
+          fonctionnalités: pci pnp upgrade shadowing cdboot bootselect edd int13floppy1200 int13floppy720 int13floppy2880 int5printscreen int9keyboard int14serial int17printer acpi usb biosbootspecification netboot uefi
+     *-cpu
+          description: CPU
+          produit: Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz
+          fabriquant: Intel Corp.
+          identifiant matériel: 3a
+          information bus: cpu@0
+          version: Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz
+          emplacement: SOCKET 0
+          taille: 3401MHz
+          capacité: 3800MHz
+          bits: 64 bits
+          horloge: 100MHz
+          fonctionnalités: x86-64 fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cpufreq
+          configuration: cores=4 enabledcores=4 threads=8
+        *-cache:0
+             description: L1 cache
+             identifiant matériel: 3b
+             emplacement: CPU Internal L1
+             taille: 256KiB
+             capacité: 256KiB
+             fonctionnalités: internal write-back
+        *-cache:1
+             description: L2 cache
+             identifiant matériel: 3c
+             emplacement: CPU Internal L2
+             taille: 1MiB
+             capacité: 1MiB
+             fonctionnalités: internal write-back unified
+        *-cache:2
+             description: L3 cache
+             identifiant matériel: 3d
+             emplacement: CPU Internal L3
+             taille: 8MiB
+             capacité: 8MiB
+             fonctionnalités: internal write-back unified
+     *-memory
+          description: Mémoire Système
+          identifiant matériel: 3e
+          emplacement: Carte mère
+          taille: 8GiB
+        *-bank:0
+             description: DIMMProject-Id-Version: @(#) $Id$Report-Msgid-Bugs-To: POT-Creation-Date: 2009-10-08 14:02+0200PO-Revision-Date: 2014-03-11 13:12+0000Last-Translator: Lyonel Vincent <Unknown>Language-Team: MIME-Version: 1.0Content-Type: text/plain; charset=UTF-8Content-Transfer-Encoding: 8bitX-Launchpad-Export-Date: 2014-07-07 12:12+0000X-Generator: Launchpad (build 17086) [vide]
+             produit: [Empty]
+             fabriquant: [Empty]
+             identifiant matériel: 0
+             numéro de série: [Empty]
+             emplacement: DIMM3
+        *-bank:1
+             description: DIMM DDR3 Synchrone 1600 MHz (0,6 ns)
+             produit: M378B5173DB0-CK0
+             fabriquant: Samsung
+             identifiant matériel: 1
+             numéro de série: 09609906D095
+             emplacement: DIMM1
+             taille: 4GiB
+             bits: 64 bits
+             horloge: 1600MHz (0.6ns)
+        *-bank:2
+             description: DIMMProject-Id-Version: @(#) $Id$Report-Msgid-Bugs-To: POT-Creation-Date: 2009-10-08 14:02+0200PO-Revision-Date: 2014-03-11 13:12+0000Last-Translator: Lyonel Vincent <Unknown>Language-Team: MIME-Version: 1.0Content-Type: text/plain; charset=UTF-8Content-Transfer-Encoding: 8bitX-Launchpad-Export-Date: 2014-07-07 12:12+0000X-Generator: Launchpad (build 17086) [vide]
+             produit: [Empty]
+             fabriquant: [Empty]
+             identifiant matériel: 2
+             numéro de série: [Empty]
+             emplacement: DIMM4
+        *-bank:3
+             description: DIMM DDR3 Synchrone 1600 MHz (0,6 ns)
+             produit: M378B5173DB0-CK0
+             fabriquant: Samsung
+             identifiant matériel: 3
+             numéro de série: 0ED09906D095
+             emplacement: DIMM2
+             taille: 4GiB
+             bits: 64 bits
+             horloge: 1600MHz (0.6ns)
+     *-pci
+          description: Host bridge
+          produit: 4th Gen Core Processor DRAM Controller
+          fabriquant: Intel Corporation
+          identifiant matériel: 100
+          information bus: pci@0000:00:00.0
+          version: 06
+          bits: 32 bits
+          horloge: 33MHz
+        *-pci:0
+             description: PCI bridge
+             produit: Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller
+             fabriquant: Intel Corporation
+             identifiant matériel: 1
+             information bus: pci@0000:00:01.0
+             version: 06
+             bits: 32 bits
+             horloge: 33MHz
+             fonctionnalités: pci pm msi pciexpress normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             ressources: irq:41 portE/S:e000(taille=4096) mémoire:f6000000-f70fffff portE/S:e8000000(taille=167772160)
+           *-display
+                description: VGA compatible controller
+                produit: GF119 [NVS 310]
+                fabriquant: NVIDIA Corporation
+                identifiant matériel: 0
+                information bus: pci@0000:01:00.0
+                version: a1
+                bits: 64 bits
+                horloge: 33MHz
+                fonctionnalités: pm msi pciexpress vga_controller bus_master cap_list rom
+                configuration: driver=nouveau latency=0
+                ressources: irq:46 mémoire:f6000000-f6ffffff mémoire:e8000000-efffffff mémoire:f0000000-f1ffffff portE/S:e000(taille=128) mémoire:f7000000-f707ffff
+           *-multimedia
+                description: Audio device
+                produit: GF119 HDMI Audio Controller
+                fabriquant: NVIDIA Corporation
+                identifiant matériel: 0.1
+                information bus: pci@0000:01:00.1
+                version: a1
+                bits: 32 bits
+                horloge: 33MHz
+                fonctionnalités: pm msi pciexpress bus_master cap_list
+                configuration: driver=snd_hda_intel latency=0
+                ressources: irq:17 mémoire:f7080000-f7083fff
+        *-usb:0
+             description: USB controller
+             produit: 8 Series/C220 Series Chipset Family USB xHCI
+             fabriquant: Intel Corporation
+             identifiant matériel: 14
+             information bus: pci@0000:00:14.0
+             version: 04
+             bits: 64 bits
+             horloge: 33MHz
+             fonctionnalités: pm msi xhci bus_master cap_list
+             configuration: driver=xhci_hcd latency=0
+             ressources: irq:42 mémoire:f7120000-f712ffff
+        *-communication
+             description: Communication controller
+             produit: 8 Series/C220 Series Chipset Family MEI Controller #1
+             fabriquant: Intel Corporation
+             identifiant matériel: 16
+             information bus: pci@0000:00:16.0
+             version: 04
+             bits: 64 bits
+             horloge: 33MHz
+             fonctionnalités: pm msi bus_master cap_list
+             configuration: driver=mei_me latency=0
+             ressources: irq:45 mémoire:f713c000-f713c00f
+        *-network
+             description: Ethernet interface
+             produit: Ethernet Connection I217-LM
+             fabriquant: Intel Corporation
+             identifiant matériel: 19
+             information bus: pci@0000:00:19.0
+             nom logique: em1
+             version: 04
+             numéro de série: 34:17:eb:a8:ea:b8
+             taille: 100Mbit/s
+             capacité: 1Gbit/s
+             bits: 32 bits
+             horloge: 33MHz
+             fonctionnalités: pm msi bus_master cap_list ethernet physical tp 10bt 10bt-fd 100bt 100bt-fd 1000bt-fd autonegotiation
+             configuration: autonegotiation=on broadcast=yes driver=e1000e driverversion=2.3.2-k duplex=full firmware=0.13-4 ip=140.93.3.19 latency=0 link=yes multicast=yes port=twisted pair speed=100Mbit/s
+             ressources: irq:44 mémoire:f7100000-f711ffff mémoire:f7139000-f7139fff portE/S:f040(taille=32)
+        *-usb:1
+             description: USB controller
+             produit: 8 Series/C220 Series Chipset Family USB EHCI #2
+             fabriquant: Intel Corporation
+             identifiant matériel: 1a
+             information bus: pci@0000:00:1a.0
+             version: 04
+             bits: 32 bits
+             horloge: 33MHz
+             fonctionnalités: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             ressources: irq:16 mémoire:f7138000-f71383ff
+        *-multimedia
+             description: Audio device
+             produit: 8 Series/C220 Series Chipset High Definition Audio Controller
+             fabriquant: Intel Corporation
+             identifiant matériel: 1b
+             information bus: pci@0000:00:1b.0
+             version: 04
+             bits: 64 bits
+             horloge: 33MHz
+             fonctionnalités: pm msi pciexpress bus_master cap_list
+             configuration: driver=snd_hda_intel latency=0
+             ressources: irq:47 mémoire:f7130000-f7133fff
+        *-pci:1
+             description: PCI bridge
+             produit: 8 Series/C220 Series Chipset Family PCI Express Root Port #1
+             fabriquant: Intel Corporation
+             identifiant matériel: 1c
+             information bus: pci@0000:00:1c.0
+             version: d4
+             bits: 32 bits
+             horloge: 33MHz
+             fonctionnalités: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             ressources: irq:16
+        *-pci:2
+             description: PCI bridge
+             produit: 8 Series/C220 Series Chipset Family PCI Express Root Port #2
+             fabriquant: Intel Corporation
+             identifiant matériel: 1c.1
+             information bus: pci@0000:00:1c.1
+             version: d4
+             bits: 32 bits
+             horloge: 33MHz
+             fonctionnalités: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             ressources: irq:17
+           *-pci
+                description: PCI bridge
+                produit: XIO2001 PCI Express-to-PCI Bridge
+                fabriquant: Texas Instruments
+                identifiant matériel: 0
+                information bus: pci@0000:03:00.0
+                version: 00
+                bits: 32 bits
+                horloge: 33MHz
+                fonctionnalités: pci pm msi pciexpress normal_decode bus_master cap_list
+        *-pci:3
+             description: PCI bridge
+             produit: 8 Series/C220 Series Chipset Family PCI Express Root Port #5
+             fabriquant: Intel Corporation
+             identifiant matériel: 1c.4
+             information bus: pci@0000:00:1c.4
+             version: d4
+             bits: 32 bits
+             horloge: 33MHz
+             fonctionnalités: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             ressources: irq:16 portE/S:2000(taille=4096) mémoire:e0000000-e01fffff portE/S:e0200000(taille=2097152)
+        *-usb:2
+             description: USB controller
+             produit: 8 Series/C220 Series Chipset Family USB EHCI #1
+             fabriquant: Intel Corporation
+             identifiant matériel: 1d
+             information bus: pci@0000:00:1d.0
+             version: 04
+             bits: 32 bits
+             horloge: 33MHz
+             fonctionnalités: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             ressources: irq:23 mémoire:f7137000-f71373ff
+        *-isa
+             description: ISA bridge
+             produit: C226 Series Chipset Family Server Advanced SKU LPC Controller
+             fabriquant: Intel Corporation
+             identifiant matériel: 1f
+             information bus: pci@0000:00:1f.0
+             version: 04
+             bits: 32 bits
+             horloge: 33MHz
+             fonctionnalités: isa bus_master cap_list
+             configuration: driver=lpc_ich latency=0
+             ressources: irq:0
+        *-storage
+             description: RAID bus controller
+             produit: SATA Controller [RAID mode]
+             fabriquant: Intel Corporation
+             identifiant matériel: 1f.2
+             information bus: pci@0000:00:1f.2
+             version: 04
+             bits: 32 bits
+             horloge: 66MHz
+             fonctionnalités: storage msi pm bus_master cap_list
+             configuration: driver=ahci latency=0
+             ressources: irq:43 portE/S:f090(taille=8) portE/S:f080(taille=4) portE/S:f070(taille=8) portE/S:f060(taille=4) portE/S:f020(taille=32) mémoire:f7136000-f71367ff
+        *-serial NON-RÉCLAMÉ
+             description: SMBus
+             produit: 8 Series/C220 Series Chipset Family SMBus Controller
+             fabriquant: Intel Corporation
+             identifiant matériel: 1f.3
+             information bus: pci@0000:00:1f.3
+             version: 04
+             bits: 64 bits
+             horloge: 33MHz
+             configuration: latency=0
+             ressources: mémoire:f7135000-f71350ff portE/S:f000(taille=32)
+     *-scsi:0
+          identifiant matériel: 1
+          nom logique: scsi1
+          fonctionnalités: emulated
+        *-disk
+             description: ATA Disk
+             produit: WDC WD5000AAKX-7
+             fabriquant: Western Digital
+             identifiant matériel: 0.0.0
+             information bus: scsi@1:0.0.0
+             nom logique: /dev/sda
+             version: 20.0
+             numéro de série: WD-WCC2E1YYLYT7
+             taille: 465GiB (500GB)
+             fonctionnalités: partitioned partitioned:dos
+             configuration: ansiversion=5 sectorsize=512 signature=0007cde1
+           *-volume:0
+                description: Linux filesystem partition
+                fabriquant: Linux
+                identifiant matériel: 1
+                information bus: scsi@1:0.0.0,1
+                nom logique: /dev/sda1
+                nom logique: /boot
+                version: 1.0
+                numéro de série: 14c721ce-2584-4445-8b1f-b62909043736
+                taille: 243MiB
+                capacité: 243MiB
+                fonctionnalités: primary bootable extended_attributes ext2 initialized
+                configuration: filesystem=ext2 lastmountpoint=/boot modified=2016-06-22 23:25:40 mount.fstype=ext2 mount.options=rw,relatime mounted=2016-06-22 23:25:40 state=mounted
+           *-volume:1
+                description: Extended partition
+                identifiant matériel: 2
+                information bus: scsi@1:0.0.0,2
+                nom logique: /dev/sda2
+                taille: 465GiB
+                capacité: 465GiB
+                fonctionnalités: primary extended partitioned partitioned:extended
+              *-logicalvolume
+                   description: Linux LVM Physical Volume partition
+                   identifiant matériel: 5
+                   nom logique: /dev/sda5
+                   numéro de série: YEzWUb-sZGi-woPP-hqB6-Soj0-gLyQ-VF4nC5
+                   taille: 465GiB
+                   capacité: 465GiB
+                   fonctionnalités: multi lvm2
+     *-scsi:1
+          identifiant matériel: 2
+          nom logique: scsi3
+          fonctionnalités: emulated
+        *-cdrom
+             description: DVD reader
+             produit: DVD-ROM SH-116AB
+             fabriquant: TSSTcorp
+             identifiant matériel: 0.0.0
+             information bus: scsi@3:0.0.0
+             nom logique: /dev/cdrom
+             nom logique: /dev/sr0
+             version: D200
+             fonctionnalités: removable audio dvd
+             configuration: ansiversion=5 status=nodisc

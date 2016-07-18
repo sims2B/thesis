@@ -1,0 +1,102 @@
+%TODO : fonction LPM et résultats time index RCPSP avc RE?
+\section{Génération des instances et pré-traitement}
+
+Ce paragraphe présente, dans un premier temps, la méthode utilisée
+pour générer des ensembles d'instances de test pour le \CECSP. Nous
+détaillons ensuite les jeux d'instances du \RCPSP sur lesquelles nous
+avons évalué l'impact des améliorations proposées pour les modèles à
+événements. Nous présenterons aussi une méthode de calcul des fenêtres
+de temps pour le \RCPSP, appliqué sur les instances comme
+pré-traitement à leur résolution.
+
+\subsection{Instances du \CECSP}
+
+Les instances utilisées dans le cadre du \CECSP sont regroupées en
+quatre familles selon les caractéristiques de leurs fonctions de
+rendements et de l'énergie que les activités requièrent. Dans un
+premier temps, les instances sont générées selon un modèle commun,
+puis plusieurs types de modifications spécifiques sont appliquées sur
+celles-ci afin de les séparées en différentes familles. 
+
+Tout d'abord, cinq instances de $10$ et $60$ activités ainsi que dix
+instances de respectivement $20$, $25$ et $30$ activités sont
+générées. Pour toutes ces instances, la disponibilité de la ressource
+est fixée à $R=10$ et les autres paramètres du problème sont générés
+de façon aléatoire selon une loi uniforme et dans les intervalles
+suivants:
+\begin{itemize}
+\item $W_i \in [1 , \frac{5}{4} * R]$,
+\item $\bmin \in [0, \frac{1}{4} * W_i]$,
+\item $\bmax \in [\bmin , 2 * \bmin {]}$,
+\item $\ES \in [0,\frac{1}{2}*n]$ et
+\item $\LE \in [ \EE, \EE + n ]$ avec $\EE = \ES +
+\frac{W_i}{f_i(\bmax)}$.
+\end{itemize}
+
+Une première famille d'instance, appelée Famille 4, est construit en
+utilisant comme fonction de rendement la fonction identité pour toutes
+les activités, i.e. $\forall i \in \A,\ f_i(b_i(t))= b_i(t)$. Ensuite,
+des fonctions de rendement affines sont générées aléatoirement pour
+chaque activité. Pour cela, nous générons, pour chaque activité $i \in
+\A$, les paramètres $a_i$ et $c_i$ de la fonctions $f_i$ suivant une
+loi uniforme et telle que:
+\begin{itemize}
+\item $a_i \in [1,10]$ et
+\item $c_i \in [1,10]$.
+\end{itemize} La valeur de $W_i$ est ensuite modifiée à l'aide de ces
+fonctions $f_i$. Les trois autres familles d'instances sont classées
+suivant cette modification. Pour la première famille, appelée Famille
+1, $W_i$ est généré aléatoirement, selon une loi uniforme, dans
+l'intervalle $[0,f_i(W_i)]$ et pour la Famille 2 dans l'intervalle
+$[f_i(W_i)/2, f_i(W_i)]$. Enfin, pour la Famille 3, la valeur
+$f_i(W_i)$ est affectée $W_i$. 
+
+Nous avons donc défini quatre familles d'instances pour le \CECSP. Ces
+instances serviront à calculer les performances relatives des méthodes
+présentées dans les chapitres précédents de ce manuscrit. 
+
+Dans le prochain paragraphe, nous présentons les instances utilisées
+pour évaluer les performances des améliorations des modèles du
+\RCPSP~ainsi qu'une méthode de calcul des fenêtres de temps.
+  
+\subsection{Instances et pré-calcul des fenêtres de temps pour le
+  \RCPSP}
+
+\subsubsection{Génération des instances}
+Les instances utilisées sont les instances définies par
+Kone~\cite{theseOumar} pour évaluer la performances des modèles à
+événements par rapport aux modèles indexés par le temps. Ces instances
+sont générées à partir des instances à $30$ activités de la
+PSPLIB~\cite{PSPLIB}. Ces instances, au nombre de $480$, sont des
+instances à $4$ ressources renouvelables et avec des activités ayant
+une durée aléatoire comprise entre $1$ et $10$ unités de temps. Ces
+durée étant relativement courtes, les modèles indexés par le temps
+sont particulièrement efficaces sur ces dernières (voir
+paragraphe~\ref{sec:motiv_event_RCPSP}). L'auteur de~\cite{theseOumar}
+a donc modifié ces instances afin d'allonger la durée des
+activités. En effet, dans certaines applications pratiques (notamment
+dans le domaine pharmaceutique ou de la pétrochimie), il arrive que
+les activités aient des durées relativement longues.
+
+Les instances de Kone sont crées selon le principe suivant: 
+\begin{enumerate}
+\item les $15$ premières activités non-fictives de l’instance sont
+  sélectionnées (les autres activités ainsi que les contraintes de
+  précédence qui leur sont adjacentes sont laissées de côté).
+\item parmi les activités sélectionnées, celles sans prédécesseurs
+  sont connectées à l’activité 0 et celles sans successeurs à l’activité
+  $16$.
+\item  $7$ activités parmi les $15$ sélectionnées sont ensuite
+  choisies de façon aléatoire et leur durée est multipliée par un
+  coefficient $25+b$, où $b$ est un nombre aléatoire généré entre $0$
+  et  $1$.
+
+  Les durées obtenues sont ensuite arrondies au nombre entier le plus
+  proche. 
+\end{enumerate}
+$480$ instances de taille plus réduite sont obtenues ($n=15$), mais
+avec des durées opératoires plus grandes, allant ainsi de $1$ à
+approximativement $250$ unités de temps. 
+
+\subsubsection{Calcul des fenêtres de temps}
+

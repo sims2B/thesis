@@ -1,0 +1,12 @@
+\centering
+\begin{tikzpicture}
+[yscale=0.4,xscale=0.8]
+\tikzstyle{every node} = [align=center]
+\node[ellipse,draw,text width=1.7cm] (R) at (0,0) {Problème $P$\\ $st_i \in [2,6]$};
+
+\node[ellipse,draw,text width=1.7cm] (C1) at (-4,-4) {Problème $P1$\\ $st_i \in [2,4]$};
+\node[ellipse,draw,text width=1.7cm] (C2) at (4,-4) {Problème $P2$\\ $st_i \in ]4,6]$};
+
+\draw[->] (R.south west) -- (C1.north east);
+\draw[->] (R.south east) -- (C2.north west);
+\end{tikzpicture}

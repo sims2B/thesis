@@ -1,0 +1,75 @@
+\section{Performances de la Programmation Par Contraintes}
+
+Dans ce paragraphe, nous présentons les résultats des experimentations
+portant sur les méthodes présentées dans le
+chapitre~\ref{sec:PPC_CECSP}. Dans un premier temps, nous définissons
+le cadre des expérimentations, notamment les algorithmes et
+heuristiques de choix de variables utilisées. Puis, dans un second
+temps, nous présenterons en détails les résultats numériques issus de
+ces expérimentations. 
+
+\subsection{Cadre des expérimentations}
+
+Pour mesurer les performances relatives des différents raisonnements
+présentés dans le chapitre~\ref{sec:PPC_CECSP}, nous les intégrons
+dans une procédure de branchement
+hybride~\cite{Nattaf_Constraints,Nattaf_ORSpectrum}. Cette procédure
+se divise en deux temps. Dans un premier temps, une méthode 
+arborescente est utilisée afin de réduire la taille des domaines des
+début et fin des activités jusqu'à ce que chaque domaine ait une
+taille inférieure à un certain paramètre $\epsilon >0$. Une fois les
+domaines réduits suffisamment, nous utilisons le modèle à événement
+On/Off afin de fixer les dates de début et de fin et de calculer, pour
+chaque activité $i$, sa fonction d'allocation de ressource
+$b_i(t)$. Nous rappelons que, pour ce faire, seule la valeur de
+$b_i(t)$ à chaque début et fin d'activité doit être calculée
+(conséquence du théorème~\ref{theo_LPM_CECSP}).
+
+La procédure de branchement est inspirée du travail de Carlier{\it et
+  al.}~\cite{Carlier}. Au début de cette procédure, une activité peut
+commencer (respectivement finir) à tout instant $t \in [\ES,\LS{]}$
+(resp. $t \in [\EE,\LE{]}$). L'idée de l'algorithme est donc, à chaque
+noeud, de réduire la taille d'un de ces intervalles. Par exemple,
+supposons que l'on ait choisi de réduire la taille du domaine de
+$st_i$, alors deux nouveaux noeuds sont créés: le premier avec la
+contrainte supplémentaire $st_i \in [\ES , (\ES+\LS) / 2]$ et le
+second avec la contrainte $st_i \in ](\ES+\LS) / 2,\LS{]}$ (voir
+figure~\ref{fig:branching}); et à chaque noeud, un des raisonnements
+présentés au chapitre~\ref{PPC_CECSP} est appliqué.
+
+\begin{figure}[!htb] 
+  \input{part4/branching.tex}
+  \caption{Procédure de branchement du l'algorithme hybride du \CECSP.}
+  \label{fib:branching}
+\end{figure}
+
+Cette procédure est répétée jusqu'à ce que tous les domaines de toutes
+les variables soient plus petit qu'un certain paramètre $\epsilon
+>0$. Quand ceci arrive, cela veut dire que nous sommes au niveau d'une
+feuille de notre arbre de recherche et nous pouvons évaluer la
+satisfiabilité du noeud courant. Pour cela, nous utilisons le modèle
+On/Off, le plus efficace dans le cadre d'une résolution exacte, pour
+tester si une solution avec les contraintes supplémentaires définies
+le long de la procédure de branchement existe.
+
+Si une telle solution existe alors l'algorithme s'arrête et nous avons
+trouvé une solution pour l'instance de \CECSP~testée. Sinon, nous
+faisons marche arrière dans l'arbre de recherche afin d'évaluer
+d'autres feuilles de l'arbre, i.e. d'autres solutions potentielles. 
+
+Le parcours de l'arbre est fait en suivant un parcours en profondeur
+et, à chaque noeud,  la variable dont on va réduire le domaine est
+choisie selon l'une des deux heuristiques suivantes: 
+\begin{itemize}
+\item nous choisissons la variable de plus petit domaine ou 
+\item la variable est choisie de manière aléatoire.
+\end{itemize}
+De plus, la taille moyenne des domaines des variables étant de $32$,
+les valeurs de $\epsilon$ testées sont $10$, $5$, $2.5$, $1$.
+
+\subsection{Raisonnement énergétique}
+\label{sec:expe_RE}
+
+\subsection{Raisonnements basés sur le Time-Table}
+\label{sec:expe_TT}
+

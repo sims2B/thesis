@@ -30,8 +30,8 @@ d'allocation de ressource est une fonction constante par morceaux et
 que ces points de rupture correspondent aux dates de début et de fin
 des activités. Cette propriété nous permet de définir des méthodes de
 résolution pour le \CECSP et aussi d'adapter plusieurs méthodes
-existantes définies pour d'autres problèmes. Ces méthodes peuvent être
-classées en deux catégories: 
+existantes définies pour d'autres problèmes. Ces méthodes peuvent être classées en deux 
+catégories: 
 \begin{itemize}
 \item les techniques adaptées du \CUSP~et issues de la programmation
   par contraintes. Ces techniques seront détaillées dans la
