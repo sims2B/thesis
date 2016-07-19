@@ -8,5 +8,66 @@
 \parttoc 
 \end{minipage}
 
+\newpage
+\thispagestyle{empty}
+\vspace*{\stretch{1}}
+\begin{center}
+  \begin{minipage}{\textwidth}
+    \hrule
+    \vspace{0.5cm}
+    {\it Dans cette partie consacrée à l'adaptation des techniques de
+      résolution issues de la programmation par contraintes (PPC), nous
+      commençons par présenter les concepts généraux de ce
+      paradigme. Cette introduction non exhaustive à la programmation
+      par contraintes est suivie d'une description de la modélisation
+      des problèmes d'ordonnancement en PPC. 
+
+      La fin du chapitre~\ref{sec:PPC_CUSP} présente la contrainte
+      cumulative et quelques uns des principaux algorithmes de filtrage décrits
+      pour cette contrainte. Pour ces algorithmes de filtrage, nous
+      distinguons trois grands types de raisonnements: les
+      raisonnements simples, ceux utilisant le concept d'énergie et
+      ceux combinant plusieurs raisonnements simples que nous
+      appellerons raisonnements étendus. 
+    
+      Enfin, nous montrons comment nous avons adapté plusieurs de ces
+      raisonnements dans le cadre du \CECSP~dans le
+      chapitre~\ref{sec:PPC_CECSP}. Dans un premier temps, nous présentons
+      l'adaptation de deux raisonnements simples: le Time-Table et le
+      raisonnement disjonctif. Ces deux raisonnements s'adaptent 
+      naturellement au cas du \CECSP~en considérant les activités
+      rectangulaires de durée maximale ou de consommation
+      minimale. Sur le même principe, nous adaptons un des
+      raisonnements étendus pour la contrainte cumulative: le 
+      Time-Table disjonctif~\cite{Gay2015}. Un nouveau raisonnement
+      basé sur le Time-Table et couplé avec un modèle de flots est
+      aussi présenté~\cite{Nattaf_CPDP}.
+
+      Le dernier paragraphe du chapitre~\ref{sec:PPC_CECSP} est
+      consacré à l'adaptation d'un des raisonnements  le plus fort défini pour la
+      contrainte cumulative: le raisonnement énergétique. Pour ce
+      raisonnement, nous montrons comment adapter les calculs de
+      consommation minimale dans le cadre du \CECSP. De plus, trois
+      méthodes permettant de calculer les intervalles sur lesquels
+      appliquer le raisonnement énergétique (pour l'algorithme de
+      vérification et les ajustements) sont présentées. 
+
+      Les résultats sur le raisonnement énergétique ont été publiés
+      dans~\cite{Nattaf_CPDP,Nattaf_Constraints,Nattaf_ORSpectrum}.
+
+      Afin d'assurer la cohérence du manuscrit et par souci de
+      longueur, certains travaux préliminaires ne sont pas présentés
+      dans ce manuscrit. C'est le cas, par exemple, du modèle de PPC
+      pour le \CECSP à temps discret présenté
+      dans~\cite{Nattaf_JFPC}. Pour plus de précisions, nous invitons
+      le lecteur à se référer à l'annexe~\ref{ann:JFPC}.
+ }
+    \vspace{0.5cm}
+    \hrule
+  \end{minipage}
+\end{center}
+\vspace*{\stretch{1}}
+
+
 \input{part2/CuSP/PPC_CuSP.tex}
 \input{part2/CECSP/PPC_CECSP.tex}

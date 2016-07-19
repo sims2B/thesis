@@ -326,7 +326,7 @@ manière à obtenir une fonction en escalier, appelée {\it profil
       
       \draw (0,0) -- (0,2) -- (2,2) -- (2,4) -- (4,4) -- (4,6) --
       (5,6) -- (5,1) -- (9,1) -- (9,3) -- (11,3) -- (11,0);
-      \draw[->] (-1,0) -- (12.5,0);
+      \draw[->] (-1,0) -- (12.5,0) node[below] {$t$};
       \draw[dashed] (-1,5) -- (12.5,5);
       \draw[->] (-1,0) -- (-1,5.5) node[left] {$R=5$};
     \end{tikzpicture}
@@ -381,7 +381,7 @@ ressource ainsi que l'ajustement déduit de la règle~\ref{reg:TT}.
       {$st_i=\ES$};
       \draw (0,0) -- (0,2) -- (2,2) -- (2,4) -- 
       (5,4) -- (5,1) -- (9,1) -- (9,3) -- (11,3) -- (11,0);
-      \draw[->] (-1,0) -- (12.5,0);
+      \draw[->] (-1,0) -- (12.5,0)  node[below] {$t$};
       \draw[dashed] (-1,5) -- (12.5,5);
       \draw[->] (-1,0) -- (-1,5.5) node[left] {$R=5$};
       \draw[very thick=3pt] (0,-0.1) node[below=0.4cm] {$\ES$}-- (0,5.5);
@@ -468,7 +468,7 @@ Soient $i$ et $j$ les deux activités suivantes:
       {$j$};
       \draw[white, pattern=north west lines] (7,0) rectangle (8,5.5);
 
-      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (14,0) node[below] {$t$};
       \draw[->] (0,0) -- (0,5.5) ;
       \draw (0,3) node[left] {$R=3$};
       \draw[densely dotted] (1,-0.1) -- (1,5.5) node[above] {$\ES[j]$};
@@ -494,7 +494,7 @@ Soient $i$ et $j$ les deux activités suivantes:
       \draw[fill=white] (6,2.8) rectangle (13,4.8) node[midway]
       {$j$};
 
-      \draw[->] (0,0) -- (14,0);
+      \draw[->] (0,0) -- (14,0) node[below] {$t$};
       \draw[->] (0,0) -- (0,5.5) ;
       \draw (0,3) node[left] {$R=3$};
       \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]$};
@@ -695,7 +695,7 @@ activités calées à gauche ($LS$), à droite ($RS$) et centrées ($CS$).
    rectangle (6.5,8)  node[above,black] {$t_2$};
    \draw[dotted] (6.5,0) -- (6.5,8);
    \draw[dotted] (3.5,0) -- (3.5,8);
-   \draw[->] (0,0) -- (9,0);
+   \draw[->] (0,0) -- (9,0)  node[below] {$t$};
    \draw[thick] (6.5,0) node[below] {$\LE[1]$} -- (6.5, 8.5);
    \draw[thick] (0.5,0) node[below] {$\ES[1]$} -- (0.5, 8.5);
    \draw (0.5,0) rectangle (3.5,1) node[midway] {\small $LS$};
@@ -714,7 +714,7 @@ activités calées à gauche ($LS$), à droite ($RS$) et centrées ($CS$).
     rectangle (6.5,8)  node[above,black] {$t_2$};
     \draw[dotted] (6.5,0) -- (6.5,8);
     \draw[dotted] (3.5,0) -- (3.5,8);
-    \draw[->] (0,0) -- (9,0);
+    \draw[->] (0,0) -- (9,0)  node[below] {$t$};
     \draw[thick] (6.5,0) node[below] {$\LE[2]$} -- (6.5, 8.5);
     \draw[thick] (1.5,0) node[below] {$\ES[2]$} -- (1.5, 8.5);
     \draw (1.5,0) rectangle (6.5,2) node[midway] {\small $LS$};
@@ -733,7 +733,7 @@ activités calées à gauche ($LS$), à droite ($RS$) et centrées ($CS$).
     rectangle (6.5,8)  node[above,black] {$t_2$};
     \draw[dotted] (6.5,0) -- (6.5,8);
     \draw[dotted] (3.5,0) -- (3.5,8);
-    \draw[->](0,0) -- (9,0);
+    \draw[->](0,0) -- (9,0) node[below] {$t$};
     \draw[thick] (8.5,0) node[below] {$\LE[3]$} -- (8.5, 8.5);
     \draw[thick] (2.5,0) node[below] {$\ES[3]$} -- (2.5, 8.5);
     \draw (2.5,0) rectangle (6.5,2) node[midway] {\small $LS$};
@@ -752,7 +752,7 @@ activités calées à gauche ($LS$), à droite ($RS$) et centrées ($CS$).
     rectangle (6.5,8)  node[above,black] {$t_2$};
     \draw[dotted] (6.5,0) -- (6.5,8);
     \draw[dotted] (3.5,0) -- (3.5,8);
-    \draw[->](0,0) -- (9,0);
+    \draw[->](0,0) -- (9,0)  node[below] {$t$};
     \draw[thick] (8.5,0) node[below] {$\LE[4]$} -- (8.5, 8.5);
     \draw[thick] (2.5,0) node[below] {$\ES[4]$} -- (2.5, 8.5);
     \draw (2.5,0) rectangle (7.5,1) node[midway] {\small $LS$};
@@ -932,7 +932,8 @@ activité $i$ possédant les caractéristiques suivantes: $\ES=2,\
       \fill[gray!20] (2,0) rectangle (8,1);
 
       \node (O) at (0,0) {};
-      \draw[->] (0,0) -- (10.5,0); \foreach \i in {0,1,...,10}{ \draw
+      \draw[->] (0,0) -- (10.5,0) node[below] {$t$}; 
+\foreach \i in {0,1,...,10}{ \draw
         (\i,-0.1) -- (\i,0); }
 
       \draw (1,0) -- (1,3) node[above] {\small $t_1=1$}; 
@@ -1125,7 +1126,7 @@ $4$ est donc réduit à $\{0\}$.
       rectangle (4.5,3.2)  node[above,black] {$t_2$};
       \draw[dotted] (4.5,0) -- (4.5,3.5);
       \draw[dotted] (2.5,0) -- (2.5,3.5);
-      \draw[->] (0,0) -- (7,0);
+      \draw[->] (0,0) -- (7,0) node[below] {$t$};
       \draw[decorate,decoration={brace,mirror}] (0.5,-0.3) --
       (2.5,-0.3) node[midway,below] {début de $4$};
       \draw (0.5,1) rectangle (5.5,3) node[midway] {\small $1$};
@@ -1149,7 +1150,7 @@ $4$ est donc réduit à $\{0\}$.
       rectangle (4.5,3.2)  node[above,black] {$t_2$};
       \draw[dotted] (4.5,0) -- (4.5,3.5);
       \draw[dotted] (2.5,0) -- (2.5,3.5);
-      \draw[->] (0,0) -- (7,0);
+      \draw[->] (0,0) -- (7,0)  node[below] {$t$};
 
       \draw[decorate,decoration={brace,mirror}] (0.2,-0.3) --
       (0.8,-0.3) node[midway,below] {début de $4$};
@@ -1382,7 +1383,7 @@ avant $\min\{t \in \H|t \in moi_i \}$.
         \draw[fill=white] (2,2.8) rectangle (11,4.8) node[midway]
         {$j$};
 
-        \draw[->] (0,0) -- (14,0);
+        \draw[->] (0,0) -- (14,0) node[below] {$t$};
         \draw[->] (0,0) -- (0,5.5) ;
         % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};
         % \draw[->] (1.8,5.8) -- (5.2,5.8);
@@ -1409,7 +1410,7 @@ avant $\min\{t \in \H|t \in moi_i \}$.
         {$j$};
 
 
-        \draw[->] (0,0) -- (14,0);
+        \draw[->] (0,0) -- (14,0)  node[below] {$t$};
         \draw[->] (0,0) -- (0,5.5) ;
         % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};
         % \draw[->] (1.8,5.8) -- (5.2,5.8);  
@@ -1496,7 +1497,7 @@ R$.   Si ordonnancer l'activité
       \draw[fill=white] (5,4) rectangle (14,5) node[midway]
       {$2$};
       
-      \draw[->] (0,0) -- (21,0);
+      \draw[->] (0,0) -- (21,0) node[below] {$t$};
       \draw[->] (0,0) -- (0,5.5) ;
        \draw[thick] (0,3)  node[left] {$R=3$} -- (20,3);
        % \draw[densely dotted] (6,-0.1) -- (6,5.5) node[above] {$\ES[j]^{'}$};

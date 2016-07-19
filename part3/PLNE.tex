@@ -11,6 +11,60 @@
 \vspace{15mm} % l'espacement souhaité
 \parttoc 
 \end{minipage}
+\newpage
+\thispagestyle{empty}
+\vspace*{\stretch{1}}
+\begin{center}
+  \begin{minipage}{\textwidth}
+    \hrule
+    \vspace{0.5cm}
+    {\it Dans cette partie consacrée à l'adaptation des techniques de
+      résolution issues de la programmation linéaire mixtes et en
+      nombres entiers, les concepts généraux qu'elles utilisent sont
+      décrits dans le paragraphe~\ref{sec:PLNE}. Ces techniques sont
+      ensuite présentées dans le cadre d'un célèbre problème
+      d'ordonnacement: le RCPSP. 
+
+      Pour ce problème, trois modèles sont présentés. Le premier est
+      un modèle indexé par le temps et fait partie des classes de modèles
+      les plus performants pour la résolution des instances de la
+      PSPLIB~\cite{PSPLIB} pour le \RCPSP. Cependant, ces modèles ont leurs
+      limitations puisqu'entre autre, leur taille dépent grandement de
+      l'horizon de temps du projet. Pour des plannification à long terme,
+      d'autres modèles plus performants sont introduits: les modèles à
+      événements. Ils ont l'avantage d'avoir un nombre polynomiale de
+      variables et de contraintes et permettent la modélisation des
+      problèmes continus. Cependant, leur relaxation linéaire sont
+      relativement moins fortes que celles des modèles indexés par le temps,
+      ce qui les rend non compétitivés dans le cas des instances ayant un
+      petit horizon de temps. Ces modèles dans le cadre du \RCPSP~ont été
+      introduit par Kone et al.~\cite{modele_RCPSP}.
+
+      Dans le chapitre~\ref{sec:PLNE_CECSP}, nous présentons
+      l'adaptation de ces modèles dans le cadre du \CECSP. Ces modèles
+      sont présentés
+      dans~\cite{Nattaf_Constraints,Nattaf_ORSpectrum,Nattaf_CPDP}. De plus,
+      pour chacun des trois modèles, des techniques visant à améliorer leurs
+      performances sont présentées. Pour le modèle indexé par le
+      temps, nous utilisons le raisonnement énergétique afin de
+      décrire des inégalités valides pouvant être ajoutées au modèle
+      (avant ou pendant la résolution). Cette technique a été
+      présentée dans~\cite{Nattaf_JFPC}.
+
+      Pour les modèles à événements, plusieurs ensembles d'inégalités
+      sont présentées: des inégalités permettant de borner la distance
+      entre deux événements, d'autres permettant de borner la date des
+      événements ou des inégalités dérivées du problème du
+      sac-à-dos. De plus, des coupes appelées inégalités de
+      non-préemption sont définies et une étude polyhédrale de
+      l'ensemble des vecteurs binaires solution d'un des modèles
+      présenté est détaillé. Ces résultats ont été présenté
+      dans~\cite{Nattaf_ROADEF16,Nattaf_ECCO16}. }
+    \vspace{0.5cm}
+    \hrule
+  \end{minipage}
+\end{center}
+\vspace*{\stretch{1}}
 
 \input{part3/RCPSP/PLNE_RCPSP.tex} 
 \input{part3/CECSP/PLNE_CECSP.tex}
