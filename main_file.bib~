@@ -180,6 +180,38 @@ abstract = "In deterministic sequencing and scheduling problems, jobs are to be 
 }
 
 
+@inproceedings{Nattaf_ROADEF16,
+  TITLE = {{Inégalités valides pour les modèles à évènements des problèmes d'ordonnancement sous contraintes de ressource}},
+  AUTHOR = {Nattaf, Margaux and Artigues, Christian and Kis, Tam{\'a}s and Lopez, Pierre},
+  BOOKTITLE = {{ROADEF - 17{\`e}me congr{\`e}s annuel de la Soci{\'e}t{\'e} fran{\c c}aise de recherche op{\'e}rationnelle et d'aide {\`a} la d{\'e}cision}},
+  ADDRESS = {Compiègne, France},
+  ORGANIZATION = {{Soci{\'e}t{\'e} fran{\c c}aise de recherche op{\'e}rationnelle et d'aide {\`a} la d{\'e}cision}}
+  YEAR = {2016},
+  MONTH = Feb
+}
+
+@inproceedings{Nattaf_ECCO16,
+  TITLE = {{Polyhedral results and valid inequalities for resource-constrained scheduling problem event-based models}},
+  AUTHOR = {Nattaf, Margaux and Artigues, Christian and Kis, Tam{\'a}s and Lopez, Pierre},
+  URL = {https://www.euro-online.org/conf/ecco2016/treat_abstract?paperid=268},  
+	BOOKTITLE = {{29th Conference of the European Chapter on Combinatorial Optimization (ECCO)}},
+  ADDRESS = {Budapest, Hungary},
+  YEAR = {2016},
+  MONTH = May
+}
+
+
+@inproceedings{Nattaf_JFPC,
+  TITLE = {{Programmation linéaire mixte et programmation par contraintes pour un problème d'ordonnancement à contraintes énergétiques}},
+  AUTHOR = {Nattaf, Margaux and Artigues, Christian and Lopez, Pierre},
+  URL = {https://www.supagro.fr/jfpc_jiaf_2016/actes_jfpc206.pdf},
+  BOOKTITLE = {{Douzi{\`e}mes Journ{\'e}es Francophones de Programmation par Contraintes (JFPC)}},
+  ADDRESS = {Montpellier, France},
+  YEAR = {2016},
+  PDF = {https://www.supagro.fr/jfpc_jiaf_2016/actes_jfpc206.pdf}
+}
+
+
 @article{modele_RCPSP,
  author = {Kon{\'e}, Oumar and Artigues, Christian and Lopez, Pierre and Mongeau, Marcel},
  title = {Event-based {MILP M}odels for {R}esource-constrained {P}roject {S}cheduling {P}roblems},
@@ -411,7 +443,7 @@ url="http://dx.doi.org/10.1007/978-3-642-33558-7_33"
 
 
 @article{Carlier,
-author = {Carlier, Jacques, Latapie, Bruno},
+author = {Carlier, Jacques and Latapie, Bruno},
 journal = {RAIRO - Operations Research - Recherche Opérationnelle},
 keywords = {resource constraints; project scheduling; minimal makespan; precedence and cumulative constraints; NP-hardness; branch and bound},
 language = {fre},
@@ -708,7 +740,7 @@ url="http://dx.doi.org/10.1007/s00291-003-0155-1"
 
 
 @article{ABKKLM,
-title = {A note on {\"a}event-based \{MILP\} models for resource-constrained project scheduling problems{\"a}},
+title = {A note on {\"a} an event-based \{MILP\} models for resource-constrained project scheduling problems{\"a}},
 journal = {Computers \& Operations Research},
 volume = "40",
 number = "4",

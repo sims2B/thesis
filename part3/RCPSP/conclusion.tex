@@ -1,0 +1,27 @@
+\section*{Conclusion}
+
+Dans ce chapitre, nous avons rappelé les principales notions de la
+programmation linéaire, puis de la programmation linéaire mixte et en
+nombres entiers. Nous avons ensuite vu plusieurs méthodes de
+modélisation pour un problème d'ordonnancement avec contraintes de
+ressource: le \RCPSP. Pour ce problème, nous avons vu deux types de
+modèles. Le premier fait partie des modèles indexés par le temps. Ces
+derniers possèdent de relativement bonnes relaxation, ce qui en fait
+un des types de modèles les plus efficaces pour le \RCPSP~et en
+particulier sur les célèbres instances de la PSPLIB~\cite{PSPLIB}. 
+
+Cependant, ces modèles souffrent de limitations dues à leur taille,
+dépendante de l'horizon de temps du projet. De ce fait, quand
+l'horizon de temps des instances devient grand, la tailles des modèles
+associés augmente et leurs performances décroissent. Pour pallier ce
+problème, un autre type de modèle est mis en place: les modèles à
+événements. L'avantage de ces modèles est leur taille, polynomiale en
+fonction de la taille de l'instance et surtout indépendante de
+l'horizon de temps. Dans~\cite{modele_RCPSP}, Kone {\it et al.}
+comparent les performances de ces modèles avec ceux indexés par le
+temps sur des instances ayant de grand horizon de temps. De plus, ces
+modèles permettent la modélisation de problèmes continus. De ce fait,
+nous allons adapter ces modèles dans le cadre du \CECSP~dans le
+chapitre suivant. De plus, un modèle indexés par le temps est aussi
+présenté, permettant d'avoir des solutions plus rapidement (mais pas
+forcément optimales).

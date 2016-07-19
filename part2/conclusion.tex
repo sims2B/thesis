@@ -1,0 +1,56 @@
+\chapter*{Conclusion}
+
+Dans cette partie présentant des méthodes issues de la programmation
+par contraintes, nous avons commencé par brièvement rappeler les
+principales notions sur lesquelles reposent ce paradigme. De plus, une
+description des principales techniques de modélisation des problèmes
+d'ordonnancement à été donnée. 
+
+Ces deux paragraphes introductifs nous ont ensuite permis de décrire
+un problème d'ordonnancement particulier, le problème cumulatif. Pour
+ce problème, un grand nombre d'algorithmes de vérification et de
+filtrage ont été présentés. Ces algorithmes se classent en trois
+catégories: les algorithmes impliquant des raisonnements simples, ceux
+utilisant le concept d'énergie et enfin ceux combinant plusieurs
+raisonnements, souvent simples, pour améliorer leurs
+performances. Pour chacune de ces catégories, au moins un exemple d'un
+tel algorithme est détaillé: le Time-Table et le raisonnement
+disjonctif dans le cas des algorithmes simples, le raisonnement
+énergétique pour les algorithmes utilisant le concept d'énergie et
+enfin le Time-Table disjonctif dans le dernier cas. Pour le
+raisonnement énergétique, une étude de Derrien {\it et al.}~\cite{DP}
+permettant de caractériser les intervalles d'intérêt du raisonnement
+énergétique pour la contrainte cumulative est présentée.
+
+Les raisonnements présentés pour la contrainte cumulative sont ensuite
+adapté dans le cas du \CECSP. Le premier raisonnement que nous avons
+adapté au \CECSP~est le raisonnement énergétique. En effet,
+l'adaptation d'un raisonnement pour la contrainte cumulative dans le
+cas du \CECSP~est généralement beaucoup moins fort. De ce fait, nous
+avons choisi de commencer par adapter un des raisonnements les plus
+forts au \CECSP. Pour ce raisonnement, nous avons aussi appliqué au
+cas du \CECSP~les travaux de Derrien {\it et al.}~\cite{DP} pour la
+contrainte cumulative, ce qui a permis de prouver la polynomialité de
+ce raisonnement dans le cadre du \CECSP. De plus, deux autres
+méthodes de calcul de ces intervalles pour l'algorithme de
+vérification sont présentées. Ces deux méthodes reposent sur une étude
+des segments de définition des fonctions de consommation individuelle
+des activités.
+
+D'autres adaptations des raisonnements cumulatifs sont aussi
+détaillés. Ces raisonnements s'adapte aisément au cas du \CECSP. Ils
+restent cependant beaucoup moins puissants en terme de déduction que
+leur homologues cumulatifs. De ce fait, un nouvel algorithme de
+vérification couplant un programme linéaire adapté d'un problème de
+flot et le raisonnement Time-Table est présenté. Ce raisonnement
+n'étant pas dominé par le raisonnement énergétique peut être couplé
+avec ce dernier afin de déduire plus d'incohérence. Il peut aussi être
+couplé avec des algorithmes de filtrage tels que celui du raisonnement
+disjonctif ou du Time-Table. 
+
+Pour la poursuite de ces travaux, il est raisonnable de chercher à
+déterminer des règles ou propriétés selon lesquelles un raisonnement a
+plus de chance d'appliquer des ajustements qu'un autre. De plus,
+l'adaptation d'autres raisonnements définis pour la contrainte
+cumulative peut être envisagée. Cependant, la mise en place de
+raisonnements dédiés semble être une perspective plus prometteuse. 
