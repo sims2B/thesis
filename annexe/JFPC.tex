@@ -1,4 +1,4 @@
-\chapter{Annexe1 - Article JFPC}  
+\chapter*{Annexe1 - Article JFPC}  
 
 Nous considérerons un problème d'ordonnancement cumulatif dans
 lequel les tâches ont une durée et un profil de consommation de
@@ -37,31 +37,30 @@ continues, croissantes, affines et peuvent être exprimées de la
 manière suivante: 
  
 \noindent
-{\scriptsize
   $f_i(b)=\left\{
     \begin{array}{ll} 0 & \quad \text{si }b=0\\ a_i*b+c_i &\quad
                                                             \text{si }\bmin=0\text{ et }b \in ]\bmin,\bmax] \\ a_i*b+c_i &\quad
                                                                                                                            \text{si }\bmin\neq 0 \text{ et }b \in [\bmin,\bmax]
-    \end{array} \right.$ }
+    \end{array} \right.$ 
+  
+  \noindent
+  avec $a_i>0$ et $c_i \geq -a_i*\bmin $ pour
+  s'assurer que $f_i(b) \geq 0,\ \forall b \in \inter[\bmin][\bmax]$.
 
-\noindent
-avec $a_i>0$ et $c_i \geq -a_i*\bmin $ pour
-s'assurer que $f_i(b) \geq 0,\ \forall b \in \inter[\bmin][\bmax]$.
-
-Dans la suite, nous dénotons par $\underline{s_i}$ et $\overline{s_i}$
+Dans la suite, nous dénotons par $\ES$ et $\LS$
 la date de début au plus tôt et au plus tard de $i$ et par
-$\underline{e_i}$ et $\overline{e_i}$ la date de fin au plus tôt et au
+$\EE$ et $\LE$ la date de fin au plus tôt et au
 plus tard de $i$.
 
 Pour trouver une solution pour le CECSP, nous devons déterminer, pour
 chaque tâche $i \in {\cal A}$, sa date de début $s_i$, sa date de fin
 $e_i$ et sa fonction d'allocation de ressource $b_i(t)$, $\forall t
-\in {\cal T}=[\min_{i\in{\cal A}} \underline{s}_i, \max_{i\in {\cal
-    A}} \overline{e}_i]$. De plus, ces variables doivent satisfaire
+\in {\cal T}=[\min_{i\in{\cal A}} \ES, \max_{i\in {\cal
+    A}} \LE]$. De plus, ces variables doivent satisfaire
 les contraintes suivantes:
 {\scriptsize
 \begin{eqnarray} 
-  \underline{s}_i\le s_i < e_i \le \overline{e}_i & & \forall i \in
+  \ES\le s_i < e_i \le \LE & & \forall i \in
 {\cal A} \label {tw_CECSP}\\
   b_i^{min} \le b_i(t) \le b_i^{max} & & \forall i \in {\cal A},\
 \forall t \in [s_i,e_i] \label {bminmax_CECSP}\\
@@ -89,7 +88,7 @@ Problem). Dans ce problème, toutes les données sont supposées entières
 et les domaines de chaque variable ne contiennent
 que des valeurs entières, i.e. $s_i,\ e_i,\ b_i(t) \in \mathbb{N}$ et
 $b_i(t)$ est défini $\forall t \in {\cal T}_{\cal D}=\{\min_{i\in{\cal
-A}} \underline{s}_i,\dots, \max_{i\in {\cal A}} \overline{e}_i\}$. 
+A}} \ES,\dots, \max_{i\in {\cal A}} \LE\}$. 
 
 Pour ce problème, nous présentons un modèle de
 programmation par contraintes (PPC) permettant l'utilisation des
@@ -115,8 +114,8 @@ en même temps que $i_{min}$. Cette tâche est elle-même divisée en
 sous-tâches $i_{preem}^\ell,\ \ell \in \{1,\dots, e_i-s_i\}={\cal L}_i$. Notons
 que $|{\cal L}_i|=e_i - s_i \le \lceil \frac{W_i}{f_i(\bmin)}\rceil$. 
 \begin{ex}
-Considérons la tâche possédant les attributs suivant:  $\underline{s_i}= 0$,
-$\overline{e_i}=6$, $W_i=28$, $b^{min}=1$,
+Considérons la tâche possédant les attributs suivant:  $\ES= 0$,
+$\LE=6$, $W_i=28$, $b^{min}=1$,
 $b^{max}=5$ et $f_i(b)=2b+1$. La Figure~\ref{fig:ex:PPC} présente un
 ordonnancement de cette tâche (à droite) et l'ordonnancement
 correspondant donné par le modèle (à gauche) avec $b_{i^2_{preem}}=0$. 
@@ -220,15 +219,15 @@ de $[t_1,t_2[$, tout en respectant les contraintes
 configurations suivantes:
 \begin{itemize}
 \item la tâche est calée à gauche: ordonnancée à $\bmax$ durant
-$[\underline{s_i},t_1[$;
+$[ \ES , t_1 [$;
 \item la tâche est calée à droite: ordonnancée à $\bmax$ durant
-$[t_2,\overline{e_i}[$;
+$[t_2,\LE{[}$;
 \item la tâche est centrée: ordonnancée à $\bmax$ durant
-$[\underline{s_i},t_1[ \cup [t_2,\overline{e_i}[$ ou ordonnancée à
+$[\ES,t_1[ \cup [t_2,\LE{[}$ ou ordonnancée à
 $\bmin$ durant $[t_1,t_2[$.
 \end{itemize} En effet, dans le dernier cas, il peut arriver
-qu'ordonnancer la tâche à $\bmax$ dans $[\underline{s_i},t_1[ \cup
-[t_2,\overline{e_i}[$ implique que la quantité d'énergie restant à
+qu'ordonnancer la tâche à $\bmax$ dans $[\ES,t_1[ \cup
+[t_2,\LE{[}$ implique que la quantité d'énergie restant à
 apporter à la tâche dans $[t_1,t_2[$ ne soit pas suffisante pour
 ordonnancer la tâche à $\bmin$ durant $[t_1,t_2[$. Or, ceci
 impliquerait une violation de la
@@ -272,11 +271,11 @@ contraintes du modèle.
 
 Les contraintes liant $b_{it}$ et $w_{it}$, $\quad \forall t\in {\cal T}_{\cal D},\
 \forall i \in {\cal A}$ sont les suivantes:
-\begin{equation} \small w_{it}=a_ib_{it}+c_i\left(\sum_{\tau=\underline{s_i}}^t
-x_{i\tau}-\sum_{\tau=\underline{s_i}+1}^t y_{i\tau}\right)  \label{conv_CECSP_TI}
+\begin{equation} \small w_{it}=a_ib_{it}+c_i\left(\sum_{\tau=\ES}^t
+x_{i\tau}-\sum_{\tau=\ES+1}^t y_{i\tau}\right)  \label{conv_CECSP_TI}
 \end{equation} Cette contrainte nous permet de modéliser la fonction
 de rendement $f_i,\ \forall i \in {\cal A}$. En effet,
-$\left(\sum_{\tau=\underline{s_i}}^t x_{i\tau}-\sum_{\tau=\underline{s_i}+1}^t
+$\left(\sum_{\tau=\ES}^t x_{i\tau}-\sum_{\tau=\ES+1}^t
 y_{i\tau}\right) $ est égale à $1$ si et seulement si l'activité $i$
 est en cours à l'instant $t$.  Dans ce cas là, la valeur de l'énergie
 apportée à $i$ est bien $w_{it}=a_ib_{it}+c_i$. Le second cas se
@@ -293,17 +292,17 @@ Ce paragraphe décrit des inégalités valides déduites du raisonnement
 d'intérêt pour le raisonnement énergétique.
 {\scriptsize
 \begin{align}
-&(x_{i\underline{s}_i} + y_{i\overline{e}_i} -1 ) \, \bb + \sum_{j\neq i}
+&(x_{i\ES} + y_{i\LE} -1 ) \, \bb + \sum_{j\neq i}
   \bb[j] \le \nonumber\\ 
 &  B(t_2-t_1) \quad \forall i \in {\cal A},\ \forall
   [t_1,t_2] \in {\cal R}
 \label{both}\\[2mm] 
-&(x_{i\underline{s}_i} + \sum_{t=t_1}^{t_2}y_{it} -1) \, \bb + \sum_{j\neq i}
+&(x_{i\ES} + \sum_{t=t_1}^{t_2}y_{it} -1) \, \bb + \sum_{j\neq i}
   \bb[j] \le \nonumber \\
 &  B(t_2-t_1) \quad \forall i \in {\cal A},\ \forall
   [t_1,t_2] \in {\cal R}
 \label{left}\\[2mm] 
-&(\sum_{t=t_1}^{t_2}x_{it} + y_{i\overline{e}_i}-1) \, \bb + \sum_{j\neq i}
+&(\sum_{t=t_1}^{t_2}x_{it} + y_{i\LE}-1) \, \bb + \sum_{j\neq i}
   \bb[j] \le \nonumber\\
 &  B(t_2-t_1) \quad \forall i \in {\cal A},\ \forall
   [t_1,t_2] \in {\cal R}
@@ -321,12 +320,12 @@ B(t_2-t_1) \nonumber\\
 \end{align}
 }
 L'inégalité~\eqref{both} correspond au cas où la tâche est centrée et est
-ordonnancée à $\bmax$ durant $[\underline{s_i},t_1] \cup
-[t_2,\overline{e_i}]$. En effet, cette inégalité n'est active que dans
-le cas où $(x_{i\underline{s}_i} + y_{i\overline{e}_i} -1 )= 1 \Rightarrow
-\left[x_{i\underline{s}_i}=1\land y_{i\overline{e}_i}=1\right]$. Or,
-ceci implique que la tâche commence à $\underline{s_i}$ et finit
-$\overline{e_i}$. Donc, la ressource disponible dans $[t_1,t_2[$ doit
+ordonnancée à $\bmax$ durant $[\ES,t_1] \cup
+[t_2,\LE{]}$. En effet, cette inégalité n'est active que dans
+le cas où $(x_{i\ES} + y_{i\LE} -1 )= 1 \Rightarrow
+\left[x_{i\ES}=1\land y_{i\LE}=1\right]$. Or,
+ceci implique que la tâche commence à $\ES$ et finit
+$\LE$. Donc, la ressource disponible dans $[t_1,t_2[$ doit
 être suffisante pour donner la quantité de ressource minimale requise
 par $i$ dans $[t_1,t_2[$ dans cette configuration.  Dans tous les
 autres cas, l'inégalité devient $\sum_{j\neq i} \bb[j] \le B(t_2-t_1)$
@@ -425,8 +424,8 @@ dilatées dans le but de garantir l'existence de solutions entières.
 La dilatation est effectuée de la manière suivante. Soit $\alpha$ le
 plus petit commun 
 multiple à tous les $\bmin$ et $\bmax$. Alors, la dilatation
-consiste à multiplier $\overline{e}_i,\ \underline{e}_i,\
-\overline{s}_i,\ \underline{s}_i$ et $W_i$ par $\alpha$. Ces
+consiste à multiplier $\LE,\ \EE,\
+\LS,\ \ES$ et $W_i$ par $\alpha$. Ces
 expérimentations n'ont pas donné de résultats dû à la grande taille
 de ces modèles. Les modèles continus pourraient donc rester  la
 seule alternative pour obtenir des solutions optimales dans le cas où
@@ -463,11 +462,6 @@ Timetable Edge Finding Filtering Algorithm for Discrete Cumulative Resources.
 
 
 \end{thebibliography}
-
-% Vous pouvez aussi générer vos références en utilisant BibTeX
-% Pour cela, remplacez l'ensemble de l'environnement ``thebibliographie''
-% par la commande ``\bibliography{biblio}''
-% où biblio.bib est le nom de votre fichier de références bibtex.
 
 \end{document}
 
