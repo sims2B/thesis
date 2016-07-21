@@ -37,12 +37,18 @@
 \makesomeone{referee}{2}{Claude-Guy QUIMPER}{}{}
 
 %% Judges
-\njudge{5}
-\makesomeone{judge}{1}{Premier MEMBRE}{Professeur d'Universit\'e}{Pr\'esident du Jury}
-\makesomeone{judge}{2}{Second MEMBRE}{Astronome Adjoint}{Membre du Jury}
-\makesomeone{judge}{3}{Troisi\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
-\makesomeone{judge}{4}{Quatri\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
-\makesomeone{judge}{5}{Ciqui\`eme MEMBRE}{Charg\'e de Recherche}{Membre du Jury}
+\njudge{8}
+\makesomeone{judge}{1}{Christian ARTIGUES}{Directeur de recherche au CNRS, LAAS-CNRS}{Directeur de thèse}
+\makesomeone{judge}{2}{Philippe BAPTISTE}{Directeur de recherche au CNRS}{Rapporteur}
+\makesomeone{judge}{3}{Cyril BRIAND}{Professeur,
+  Université Toulouse 3-Paul Sabatier}{Examinateur}
+\makesomeone{judge}{4}{Tam{\'a}s KIS}{Research fellow, MTA SZTAKI, Budapest, Hongrie}{Examinateur}
+\makesomeone{judge}{5}{Philippe LABORIE}{Principal Scientist, IBM, Paris}{Examinateur}
+\makesomeone{judge}{6}{Pierre LOPEZ}{Directeur de recherche au CNRS, LAAS-CNRS}{Directeur
+  de thèse} 
+\makesomeone{judge}{7}{Alain QUILLOT}{Professeur, Université Blaise Pascal, Clermont-Ferrand }{Examinateur}
+\makesomeone{judge}{8}{Claude-Guy QUIMPER}{Professeur associé,
+  Université de Laval, Québec, Canada}{Rapporteur}
 
 % ============================================================
 % DOCUMENT
@@ -50,20 +56,42 @@
 \makeflyleaf
 \doparttoc
 \tableofcontents
+%
+\clearemptydoublepage%
 
 \thispagestyle{empty}
 
 \listoffigures
+%
+\clearemptydoublepage%
 \listoftables
+%
+\clearemptydoublepage%
 %\listofalgorithms
-\input{part1/chap1.tex}
+\input{intro.tex}
+%
+\clearemptydoublepage%
+\input{part1/chap1.tex}%
+\clearemptydoublepage%
 \input{part2/PPC.tex}
+%
+\clearemptydoublepage%
 \input{part3/PLNE.tex}
+%
+\clearemptydoublepage%
 \input{part4/expe.tex}
-
+%
+\clearemptydoublepage%
 \bibliographystyle{alpha}
-\bibliography{main_file}
+\bibliography{main_file,JFPC}
 
-
+\begin{bibunit}[alpha]
+\nocite{main_file}
+\nocite*
+\putbib[main_file]
+\end{bibunit}
+%
+\clearemptydoublepage%
+\appendix
 \input{annexe/Annexe.tex}
 \end{document}

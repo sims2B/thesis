@@ -1,0 +1,57 @@
+
+\begin{thebibliography}{99}  
+@book{Baptiste2001,
+   title = "Constraint-based scheduling : applying constraint programming to scheduling problems",
+   author = "Baptiste, Philippe and Le Pape, Claude and Nuijten, Wim",
+   series = "International series in operations research \& management science",
+   publisher = "Kluwer Academic",
+   address = "Boston",
+   url = "http://opac.inria.fr/record=b1099395",
+   isbn = "0-7923-7408-8",
+   note = "Réimpression : 2003",
+   year = 2001
+}
+@inproceedings{Lopez1990,
+author = "J. Erschler and P. Lopez",
+title = "Energy-based
+approach for task scheduling under time and resources constraints",
+booktitle = "2nd International Workshop on Project Management and
+Scheduling",
+year = "1990",
+address = "Compi{\`e}gne, France",
+pages = "115--121"
+} 
+
+@inproceedings{Gay2015,
+  title={Time-table disjunctive reasoning for the cumulative constraint},
+  author={Gay, Steven and Hartert, Renaud and Schaus, Pierre},
+  booktitle={International Conference on AI and OR Techniques in Constriant Programming for Combinatorial Optimization Problems},
+  pages={157--172},
+  year={2015},
+  organization={Springer International Publishing}
+}
+
+@article{Nattaf2015,
+  TITLE = {{Energetic reasoning and mixed-integer linear programming for scheduling with a continuous resource and linear efficiency functions}},
+  AUTHOR = {Nattaf, Margaux and Artigues, Christian and Lopez, Pierre and Rivreau, David},
+  URL = {https://hal.archives-ouvertes.fr/hal-01234466},
+  JOURNAL = {{OR Spectrum}},
+  PUBLISHER = {{Springer}},
+  VOLUME = {38},
+  NUMBER = {2},
+  PAGES = {pp. 459-492},
+  YEAR = {2016},
+  MONTH = Mar
+}
+
+@inproceedings{Vilim2011,
+  title={Timetable Edge Finding Filtering Algorithm for Discrete Cumulative Resources},
+  author={Vil{\'i}m, Petr},
+  booktitle={Integration of AI and OR Techniques in Constraint Programming for Combinatorial Optimization Problems: 8th International Conference, CPAIOR 2011, Berlin, Germany, May 23-27, 2011. Proceedings",
+year="2011},
+  pages={230--245},
+  year={2011},
+  organization={Springer International Publishing}
+}
+
+\end{thebibliography}

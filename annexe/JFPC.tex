@@ -1,5 +1,5 @@
-\chapter*{Annexe1 - Article JFPC}  
-
+\chapter{Annexe1 - Article JFPC}  
+\label{ann_JFPC}
 Nous considérerons un problème d'ordonnancement cumulatif dans
 lequel les tâches ont une durée et un profil de consommation de
 ressource variable. Ce profil, qui peut varier en fonction du temps, est
@@ -53,24 +53,23 @@ $\EE$ et $\LE$ la date de fin au plus tôt et au
 plus tard de $i$.
 
 Pour trouver une solution pour le CECSP, nous devons déterminer, pour
-chaque tâche $i \in {\cal A}$, sa date de début $s_i$, sa date de fin
-$e_i$ et sa fonction d'allocation de ressource $b_i(t)$, $\forall t
+chaque tâche $i \in {\cal A}$, sa date de début $st_i$, sa date de fin
+$et_i$ et sa fonction d'allocation de ressource $b_i(t)$, $\forall t
 \in {\cal T}=[\min_{i\in{\cal A}} \ES, \max_{i\in {\cal
     A}} \LE]$. De plus, ces variables doivent satisfaire
 les contraintes suivantes:
-{\scriptsize
 \begin{eqnarray} 
-  \ES\le s_i < e_i \le \LE & & \forall i \in
+  \ES\le st_i < et_i \le \LE & & \forall i \in
 {\cal A} \label {tw_CECSP}\\
-  b_i^{min} \le b_i(t) \le b_i^{max} & & \forall i \in {\cal A},\
-\forall t \in [s_i,e_i] \label {bminmax_CECSP}\\
+  \bmin \le b_i(t) \le \bmax & & \forall i \in {\cal A},\
+\forall t \in [st_i,et_i] \label {bminmax_CECSP}\\
   b_i(t)=0 & & \forall i \in {\cal A},\ \forall t \not\in
-[s_i,e_i] \label {b0_CECSP}\\
-  \int_{s_i}^{e_i} f_i(b_i(t))dt =W_i & & \forall i \in {\cal
+[st_i,et_i] \label {b0_CECSP}\\
+  \int_{st_i}^{et_i} f_i(b_i(t))dt =W_i & & \forall i \in {\cal
 A} \label{nrj_CECSP}\\
   \sum_{i \in {\cal A}} b_i(t) \le B & & \forall t \in {\cal
 T} \label{res_CECSP}
-\end{eqnarray}}
+\end{eqnarray}
 L'objectif auquel nous nous sommes intéressés est la minimisation de
 la consommation totale de la ressource. Dans~\cite{Nattaf2015}, les
 auteurs montrent que trouver une solution admissible pour le CECSP est
@@ -86,7 +85,7 @@ nous sommes intéressés, dans un premier temps, à la version discrète
 du CECSP, le DECSP (Discrete Energy Constrained Scheduling
 Problem). Dans ce problème, toutes les données sont supposées entières
 et les domaines de chaque variable ne contiennent
-que des valeurs entières, i.e. $s_i,\ e_i,\ b_i(t) \in \mathbb{N}$ et
+que des valeurs entières, i.e. $st_i,\ et_i,\ b_i(t) \in \mathbb{N}$ et
 $b_i(t)$ est défini $\forall t \in {\cal T}_{\cal D}=\{\min_{i\in{\cal
 A}} \ES,\dots, \max_{i\in {\cal A}} \LE\}$. 
 
@@ -105,24 +104,24 @@ entières, avec et sans dilatation.
 Pour modéliser le DECSP à l'aide de la PPC, nous divisons chaque tâche
 $i$ en deux sous-tâches $i_{min}$ et $i_{preem}$. La première,
 $i_{min}$, est une tâche ayant une consommation de ressource fixe,
-égale à $b_i^{min}$, et une durée variable $p_i$. Cette tâche
+égale à $\bmin$, et une durée variable $p_i$. Cette tâche
 représente la quantité de ressource obligatoirement consommée par une
 activité durant son exécution, i.e. $\bmin$.  La seconde, $i_{preem}$
 est une tâche préemptive optionnelle, consommant une quantité variable
 de ressource comprise entre $0$ et $\bmax-\bmin$ et devant s'exécuter
 en même temps que $i_{min}$. Cette tâche est elle-même divisée en
-sous-tâches $i_{preem}^\ell,\ \ell \in \{1,\dots, e_i-s_i\}={\cal L}_i$. Notons
-que $|{\cal L}_i|=e_i - s_i \le \lceil \frac{W_i}{f_i(\bmin)}\rceil$. 
+sous-tâches $i_{preem}^\ell,\ \ell \in \{1,\dots, et_i-st_i\}={\cal L}_i$. Notons
+que $|{\cal L}_i|=et_i - st_i \le \lceil \frac{W_i}{f_i(\bmin)}\rceil$. 
 \begin{ex}
 Considérons la tâche possédant les attributs suivant:  $\ES= 0$,
-$\LE=6$, $W_i=28$, $b^{min}=1$,
-$b^{max}=5$ et $f_i(b)=2b+1$. La Figure~\ref{fig:ex:PPC} présente un
+$\LE=6$, $W_i=28$, $r^{min}=1$,
+$r^{max}=5$ et $f_i(b)=2b+1$. La Figure~\ref{fig:ex:PPC} présente un
 ordonnancement de cette tâche (à droite) et l'ordonnancement
-correspondant donné par le modèle (à gauche) avec $b_{i^2_{preem}}=0$. 
+correspondant donné par le modèle (à gauche) avec $r_{i^2_{preem}}=0$. 
 \begin{figure}[!htb]
   \centering
   \begin{tikzpicture}
-[xscale=0.5,yscale=0.46]
+[xscale=0.8,yscale=0.75]
 \node (O) at (0,0) {};
 \draw (0,0) rectangle (4,1) node[midway] {$i_{min}$};
 \draw (0,1) rectangle (1,5) node[midway,rotate=-90] {$i_{preem}^1$};
@@ -152,7 +151,6 @@ correspondant donné par le modèle (à gauche) avec $b_{i^2_{preem}}=0$.
 \end{figure}
 \end{ex}
 Le problème du DECSP peut alors être formulé à l'aide des variables:
-{\scriptsize
 \begin{itemize}
 \item $i_{min}=\{s_{i_{min}}, e_{i_{min}}, b_{i_{min}},p_{i_{min}}\},\ 
   \forall i \in {\cal A}$ 
@@ -175,7 +173,7 @@ et des contraintes:
 \item $\forall i \in {\cal A}:\ \sum_{l \in {\cal L}_i} \left(f_i(b_{i_{preem}^\ell})
     (e_{i_{preem}^\ell}-s_{i_{preem}^\ell})\right) +
   f_i(b_{i_{min}}) (e_{i_{min}}-s_{i_{min}}) \ge W_i $
-\end{enumerate}}
+\end{enumerate}
 La première contrainte permet d'ordonner les sous-tâches de
 $i_{preem}$. Ceci dans le but de faciliter la modélisation des autres
 contraintes. La seconde contrainte modélise le fait que $i_{preem}$
@@ -271,7 +269,7 @@ contraintes du modèle.
 
 Les contraintes liant $b_{it}$ et $w_{it}$, $\quad \forall t\in {\cal T}_{\cal D},\
 \forall i \in {\cal A}$ sont les suivantes:
-\begin{equation} \small w_{it}=a_ib_{it}+c_i\left(\sum_{\tau=\ES}^t
+\begin{equation}  w_{it}=a_ib_{it}+c_i\left(\sum_{\tau=\ES}^t
 x_{i\tau}-\sum_{\tau=\ES+1}^t y_{i\tau}\right)  \label{conv_CECSP_TI}
 \end{equation} Cette contrainte nous permet de modéliser la fonction
 de rendement $f_i,\ \forall i \in {\cal A}$. En effet,
@@ -290,7 +288,6 @@ T}_{\cal D}|*(6n+1)$ contraintes.
 Ce paragraphe décrit des inégalités valides déduites du raisonnement
 énergétique pour le PLNE. Soit ${\cal R}$ l'ensemble des intervalles
 d'intérêt pour le raisonnement énergétique.
-{\scriptsize
 \begin{align}
 &(x_{i\ES} + y_{i\LE} -1 ) \, \bb + \sum_{j\neq i}
   \bb[j] \le \nonumber\\ 
@@ -318,7 +315,7 @@ B(t_2-t_1) \nonumber\\
 [t_1,t_2] \in {\cal R}
 \label{min}
 \end{align}
-}
+
 L'inégalité~\eqref{both} correspond au cas où la tâche est centrée et est
 ordonnancée à $\bmax$ durant $[\ES,t_1] \cup
 [t_2,\LE{]}$. En effet, cette inégalité n'est active que dans
@@ -372,7 +369,6 @@ résultats expérimentaux plus détaillées seront proposés lors de la
 conférence.
 \begin{table}
 \centering
-    \footnotesize
     \begin{tabular}{|c|c|cc|cc|}
       \hline
        & & \multicolumn{2}{c|}{$1^{ère}$ sol.} & \multicolumn{2}{c|}{fin algo.}\\
@@ -396,7 +392,6 @@ conférence.
 
 
 \begin{table}
-    \footnotesize
 \centering
     \begin{tabular}{|c|cc|cc|}
       \hline
@@ -434,39 +429,12 @@ la solution est réelle.
 Parmi les poursuites de recherche possibles, on trouve l'amélioration
 des modèles avec la réduction du nombre de variable et/ou de contraintes et la
 mise en place d'algorithmes de propagation dédiés.
-
-\begin{thebibliography}{99}  
-\bibitem{Baptiste2001} P. Baptiste, C. Le Pape and W. Nuijten (2001).
-\emph{Constraint-based scheduling}, Kluwer Academic Publishers,
-Boston/Dordrecht/London.
-  
-\bibitem{Lopez1990} J. Erschler and P. Lopez (1990).  Energy-based
-approach for task scheduling under time and resources constraints.
-\emph{2nd International Workshop on Project Management and
-Scheduling}, pp. 115-121, Compi{\`e}gne, France.
-  
-\bibitem{Gay2015}
-S. Gay, R. Hartert and P.Schaus (2015).
-Time-Table Disjunctive Reasoning for the Cumulative Constraint.
-\emph{CPAIOR 2015, Proceedings}, pp 157--172.
-
-\bibitem{Nattaf2015} M. Nattaf, C. Artigues, P. Lopez and D. Rivreau
-(2015).  Energetic reasoning and mixed-integer linear programming for
-scheduling with a continuous resource and linear efficiency functions.
-\emph{OR Spectrum}, pp 1--34.
-
-\bibitem{Vilim2011}
-P. Vil{\'i}m (2011).
-Timetable Edge Finding Filtering Algorithm for Discrete Cumulative Resources.
-\emph{CPAIOR 2011, Proceedings}, pp 230--245.
-
-
-\end{thebibliography}
-
-\end{document}
-
-
-
+\newpage
+\begin{bibunit}[alpha]
+\nocite{JFPC}
+\nocite*
+\putbib[JFPC]
+\end{bibunit}
 
 
 

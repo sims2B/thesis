@@ -1,0 +1,134 @@
+\chapter*{Introduction\markboth{INTRODUCTION}{}}
+
+De nos jours, de nombreuses tâches, auparavant fastidieuses, ont vu
+leur complexité largement diminuée grâce à la mise en place d'outils
+informatiques permettant leur traitement. Ces outils sont constamment
+améliorés et l'augmentation des performances des ordinateurs les
+rendent de plus en plus efficaces. Cependant, nombre de ces outils
+reposent sur des problèmes complexes dont la résolution demande un
+grand nombre d'opérations. Le plus souvent, ce nombre d'opérations est
+exponentiel en fonction de la taille du problème. Dans ce cas, la
+résolution de tels problèmes peut prendre plusieurs centaines
+d'années. 
+
+La mise en place de techniques dédiées permettant de prendre en
+considération les propriétés intrinsèques du problème est donc un
+axe de recherche majeur dans le domaine de l'informatique. Parmi les
+classes de problèmes les plus étudiés, on retrouve les problèmes
+d'ordonnancement, les problèmes de tournée de véhicules ou les
+problèmes d'affectation. 
+
+Dans cette thèse, nous nous sommes intéressé aux problèmes
+d'ordonnancement et, plus particulièrement, aux problèmes
+d'ordonnancement avec contraintes de ressource. Parmi les problèmes
+les plus étudiés dans la littérature, nous retrouvons le problème
+d'ordonnancement de projet avec contraintes de ressource et le problème
+cumulatif. 
+
+Dans le problème d'ordonnancement de projet avec contraintes de
+ressource, nous devons ordonnancer un ensemble d'activités, chacune
+d'entre elles consommant une partie d'une ou plusieurs ressources (de
+capacité limitée) et étant liées par des relations de précédence. Le
+plus souvent, ces activités doivent être ordonnancées de manière à
+minimiser la date de fin du projet mais de nombreux autres objectifs,
+tels que la minimisation du coût ou des retards peuvent être trouvés 
+dans la littérature.
+
+Dans le problème cumulatif, les activités consomment une quantité
+d'une et une seule ressource. Il s'agit de la même ressource pour
+toutes les activités. Dans ce problème, il n'y a pas de relation de
+précédence entre les activités mais chaque activité dispose d'une
+fenêtre de temps dans laquelle elle doit s'exécuter. 
+
+La plus grande limites de ces problème est que les activités sont
+supposées de durée fixes et consommant une quantité de ressource
+constante au cours du temps. Cependant, il existe de nombreuses
+applications pratiques dans lesquelles ces contraintes ne sont pas
+respectées~\cite{HaitArtiguesLopez,Blaz,W80}. En effet, la
+possibilité, pour une activité, de consommer plus de ressource
+(respectivement moins) afin de finir plus rapidement (resp. lentement)
+n'est pas modélisée dans ces problèmes. Les activités satisfaisant
+cette propriété sont dites {\it malléables} dans le sens où leur
+forme, définie par leur durée et consommation de ressource pendant
+leur exécution, doit être décidée pendant le processus de résolution. 
+
+Cette thèse étudie une nouvelle modélisation des activités malléables
+représentée par un problème appelé le problème d'ordonnancement
+continu avec contraintes énergétiques. Dans ce problème, un ensemble
+d'activités,  utilisant une ressource continue et cumulative de
+capacité limitée, doit être ordonnancé. La quantité de ressource
+nécessaire à l'exécution d'une tâche n'est pas fixée mais doit
+être déterminé. Une fois la tâche commencée et jusqu'à sa date de fin,
+la quantité de ressource consommée par l'activité doit être comprise
+entre une valeur maximale et une valeur minimale. De plus, la
+consommation, à un instant donnée,  d'une partie de la ressource
+permet à l'activité de recevoir une certaine quantité d'énergie,
+calculée par le biais d'une fonction de rendement. Cette énergie nous
+permet de savoir quand l'activité est terminée, i.e. quand elle a
+reçue une quantité suffisante d'énergie. 
+
+Pour le problème cumulatif et le problème d'ordonnancement de projet
+avec contraintes de ressource, différentes techniques permettant de
+trouver des solutions ont été mises en place. Ces techniques utilisent
+des concepts et théorie pouvant être très variés. Cependant, deux de
+ceux figurant parmi les plus utilisées demeurent les techniques issues
+de la programmation par contraintes et de la programmation linéaire
+mixte (ou en nombres entiers). En effet, ces techniques se sont
+révélées très efficace dans le processus de résolution de ces deux
+problèmes. Ce sont quelques unes de ces méthodes que nous nous
+proposons d'appliquer dans cette thèse.
+
+Le plan de la thèse est le suivant: 
+\begin{itemize}
+\item le chapitre~\ref{sec:chapter1} commence par détailler les
+principales caractéristiques des problèmes d'ordonnancement
+(paragraphe~\ref{sec:ordo}). Ensuite, une définition formelle des
+problèmes d'ordonnancement cumulatifs et d'ordonnancement de projet
+avec contrainte de ressource ainsi qu'une description des principales
+limitations de ces problèmes sont données
+(paragraphe~\ref{sec:ordo_res}).  Enfin, le
+paragraphe~\ref{sec:ordo_nrj} décrit le problème étudié dans ce
+manuscrit: le problème d'ordonnancement continu avec contraintes
+énergétiques. De plus, ce paragraphe d'écrit les modélisations
+pré-existantes des activités malléables tout en expliquant en quoi ces
+modélisations ne suffisaient pas à la modélisation de tous les problèmes
+réels. La dernière chose abordée dans ce chapitre est la présentation
+d'un certains nombres de propriétés satisfaites par ce problème.
+\item les chapitres~\ref{sec:PPC_CUSP} et~\ref{sec:PPC_CECSP} sont
+  dédiés aux méthodes issues de la programmation par
+  contraintes. Après une brève introduction à la programmation par
+  contraintes (paragraphe~\ref{sec:PPC}) et à l'ordonnancement en
+  programmation par contraintes (paragraphe~\ref{sec:cumu_ordo}), nous
+  présentons les principaux algorithmes de filtrages mis en place pour
+  le problème cumulatif (paragraphe~\ref{sec:cumu_propag}). Une partie
+  de ces algorithmes est ensuite adapté au cas du problème
+  d'ordonnancement continu avec contraintes énergétiques dans le
+  chapitre~\ref{sec:PPC_CECSP}. 
+\item les chapitres~\ref{sec:PLNE_RCPSP} et~\ref{sec:PLNE_CECSP}
+  présentent les techniques de résolution issues de la programmation
+  linéaire mixte. Dans un premier temps, nous décrivons les concepts généraux
+  de la programmation linéaire mixte (paragraphe~\ref{sec:PLNE}). Nous
+  présentons ensuite un certain nombre de modèles mis en place pour
+  résoudre le problème d'ordonnancement de projet avec contraintes de
+  ressource (paragraphe~\ref{sec:PLNE_ordo_res}). Ces modèles sont
+  ensuite adaptés dans le cadre du problème d'ordonnancement continu
+avec contraintes énergétiques (paragraphe~\ref{sec:modele_CECSP}). De
+plus, des résultats venant renforcer ces modèles sont présentés dans
+le paragraphe~\ref{sec:amelioration_modele}.
+\item le chapitre~\ref{sec:expe} présente les résultats expérimentaux
+  conduits pour valider les notions théoriques décrites dans les
+  chapitres précédents. 
+\item les annexes~\ref{ann:JFPC} et~\ref{ann:IESM} présentent des
+  travaux réalisés pendant la thèse mais pas assez aboutis ou trop
+  éloignés du sujet de ce manuscrit pour y figurer à part entière. 
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
