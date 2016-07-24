@@ -148,8 +148,6 @@ inégalités sont de la forme:
  \sum_{\tau=\ES}^{t} x_{i\tau}
 -\sum_{\tau=\ES+1}^{t} y_{i\tau} \le 0 \quad \forall t \in \{\ES,\dots,\LE-1\}
 \end{equation}
-L'intérêt de l'ajout de ces équations sera discuté dans le
-chapitre~\ref{sec:expe}.  
 
 La contrainte~\eqref{nrj_CECSP_TI} modélise le fait qu'une activité
 doit recevoir au moins la quantité d'énergie requise par la donnée du
@@ -442,8 +440,7 @@ avant d'avoir fini. De plus, pour renforcer la formulation, nous
 pouvons ajouter les contraintes~\eqref{xby_RCPSP_SE} modélisant
 explicitement le fait qu'un événement ``début d'activité'' se produit
 forcément avant l'événement ``fin d'activité'' lui
-correspondant. L'intérêt de l'ajout de telles contraintes sera discuté
-dans le chapitre~\ref{sec:expe}.
+correspondant. 
 
 Cette formulation possède $4n^2$ variables binaires, $2n^2+n$
 variables continues et $2n^3+13n^2+4n-2$ contraintes.
@@ -752,8 +749,8 @@ ne finit pas à l'événement $e$ ou avant, i.e. $\sum_{f=1}^ey_{if}=
 contraintes~\eqref{bmin_CECSP_OO},~\eqref{bmax_CECSP_OO} et
 \eqref{res0_CECSP_OO} s'obtiennent donc facilement à partir
 de~\eqref{bmin_CECSP_SE},~\eqref{bmax_CECSP_SE} et
-\eqref{res0_CECSP_SE} en remplaçant $\sum_{f=0}^{e}
-x_{if}-\sum_{f=0}^{e}y_{if}$ par $z_{ie}$.
+\eqref{res0_CECSP_SE} en remplaçant $\sum_{f=1}^{e}
+x_{if}-\sum_{f=1}^{e}y_{if}$ par $z_{ie}$.
 
 
 Le modèle ainsi défini possède $2n^2-n$ variables binaires, $2n^2+n$

@@ -100,3 +100,30 @@ approximativement $250$ unités de temps.
 
 \subsubsection{Calcul des fenêtres de temps}
 
+Afin d'améliorer les performances des modèles pour le \RCPSP, nous
+calculons par prétraitement, pour chaque activité, les fenêtres de
+temps $[\ES,\LS{]}$ et $[\EE,\LE{]}$ dans lesquelles elle peut
+respectivement commencer et finir. Pour calculer ces fenêtres de
+temps, rappelons que, si chaque arc $(i,j)$ du graphe des précédences
+$G$ est pondéré par $p_i$, la date de début au plus tôt de $i$, $\ES$
+peut prendre la valeur du plus long chemin entre l'activité $0$ et
+l'activité $i$ et la date de début au plus tard $\LS$ est égale à
+$\ES[n+1]$, la date de début au plus tôt de l'activité terminale
+$n+1$, moins la valeur du plus long chemin entre $i$ et $n+1$.
+
+Notons que la date de fin au plus tard de l'activité fictive $n+1$
+correspondant à une borne supérieure sur la date de fin du projet peut
+être calculée au moyen d'une heuristique. L'heuristique utilisée pour
+calculer cette valeur ici est la méthode d'ordonnancement parallèle
+avec comme règle de priorité la plus petite date de fin au plus tard
+des activités~\cite{heur_RCPSP}. 
+
+En plus des calculs décrits ci-dessus, nous utilisons d'autres
+techniques de déductions basées sur la propagation de contraintes. En
+particulier, nous utilisons des techniques décrites dans la thèse de
+Demassey~\cite{these_Sophie}. Parmi celles utilisées, nous trouvons
+les techniques de sélection immédiate, Edge-Finding sur les cliques de
+disjonction et de triplets symétriques. Ces techniques n'étant pas
+détaillées ici, à l'exception du Edge-Finding au
+paragraphe~\ref{sec:nrj_CUSP}, nous renvoyons le lecteur au chapitre 2
+de~\cite{these_Sophie} pour une description de ces techniques.

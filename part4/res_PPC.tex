@@ -9,7 +9,7 @@ temps, nous présenterons en détails les résultats numériques issus de
 ces expérimentations. 
 
 \subsection{Cadre des expérimentations}
-
+\label{sec:hybridBB}
 Pour mesurer les performances relatives des différents raisonnements
 présentés dans le chapitre~\ref{sec:PPC_CECSP}, nous les intégrons
 dans une procédure de branchement
@@ -35,12 +35,12 @@ $st_i$, alors deux nouveaux noeuds sont créés: le premier avec la
 contrainte supplémentaire $st_i \in [\ES , (\ES+\LS) / 2]$ et le
 second avec la contrainte $st_i \in ](\ES+\LS) / 2,\LS{]}$ (voir
 figure~\ref{fig:branching}); et à chaque noeud, un des raisonnements
-présentés au chapitre~\ref{PPC_CECSP} est appliqué.
+présentés au chapitre~\ref{sec:PPC_CECSP} est appliqué.
 
 \begin{figure}[!htb] 
   \input{part4/branching.tex}
   \caption{Procédure de branchement du l'algorithme hybride du \CECSP.}
-  \label{fib:branching}
+  \label{fig:branching}
 \end{figure}
 
 Cette procédure est répétée jusqu'à ce que tous les domaines de toutes
@@ -53,7 +53,7 @@ tester si une solution avec les contraintes supplémentaires définies
 le long de la procédure de branchement existe.
 
 Si une telle solution existe alors l'algorithme s'arrête et nous avons
-trouvé une solution pour l'instance de \CECSP~testée. Sinon, nous
+trouvé une solution pour l'instance du \CECSP~testée. Sinon, nous
 faisons marche arrière dans l'arbre de recherche afin d'évaluer
 d'autres feuilles de l'arbre, i.e. d'autres solutions potentielles. 
 
@@ -70,6 +70,97 @@ les valeurs de $\epsilon$ testées sont $10$, $5$, $2.5$, $1$.
 \subsection{Raisonnement énergétique}
 \label{sec:expe_RE}
 
+Dans un premier temps, nous allons commencer par comparer les
+différentes méthodes de calcul des intervalles d'ntérêt pour
+l'algorithme de vérification de ce raisonnement présentées dans le
+paragraphe~\ref{sec:intervalle_CECSP}. 
+
+\subsubsection{Comparaison des méthodes de calcul des intervalles
+  d'intérêt pour l'algorithme de vérification du raisonnement
+  énergétique}
+
+Les résultats comparant les trois méthodes de calcul des intervalles
+d'intérêt de l'algorithme de vérification du raisonnement énergétique
+sont présentés dans le tableau~\ref{tab:intervalle_CECSP}. La première
+colonne correspond à l'algorithme naïf de calcul d'intersection des
+segments de définition des fonctions de consommation individuelle des
+activités. La seconde colonne correspond quant à elle au calcul de ces
+mêmes intersections à l'aide de l'algorithme de balayage de
+Bentley-Ottmann. Enfin, la troisième colonne présente les résultats de
+l'adaptation de la méthode de calcul de Derrien {\it et al.}~\cite{DP}
+pour le problème cumulatif dans le cadre du \CECSP. Toutes ces
+méthodes sont décrites dans le
+paragraphe~\ref{sec:intervalle_CECSP}.
+
+L'algorithme de balayage fait partie de la librairie C++  CGAL
+\footnote{\textsc{Cgal}, {C}omputational {G}eometry {A}lgorithms
+  {L}ibrary. http://www.cgal.org.}. Pour calculer ces performances,
+nous appliquons l'algorithme de vérification du raisonnement
+énergétique et les ajustements correspondant sur les intervalles de
+l'algorithme de vérifiaction seulement. Cet algorithme est appliqué
+sur toutes les instances des Familles 1, 2, 3 et 4. Le temps est
+représenté en millisecondes.
+
+\begin{table}[ht] \centering
+  \begin{tabular}{|>{\centering\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}m{4cm}>{\centering\arraybackslash}m{4cm}>{\centering\arraybackslash}m{4cm}|}
+\hline \# tasks & méthode naïve & algorithme de balayage & adaptation
+                                                           de
+                                                           l'algorithme
+                                                           de~\cite{DP}\\
+\hline 10 & 0,46 & 1,57 & 0,39 \\ 20 & 3,9 & 6,2 & 1,05 \\ 25 &
+7,18 & 7,50 & 1,73 \\ 30 & 11,54 & 11,78 & 3,06 \\ 60 & 45,97 &
+62,82 & 14,40 \\
+    \hline
+  \end{tabular}
+  \caption{Comparaison des méthodes de calcul des intervalles
+    d'intéret du raiosnnement énergétique.}
+  \label{tab:intervalle_CECSP}
+\end{table} 
+
+La meilleure méthode permettant le calcul des intervalles d'intérêt de
+l'algorithme de vérification du raisonnement énergétique est la
+méthode adaptée de~\cite{DP}. En effet, un des avantages de cette
+méthode était que le nombre d'intervalles à calculer était beaucoup
+plus faible que dans les autres cas. Il paraît donc cohérent que cet
+algorithme ait les mailleures performances. 
+
+Cependant, il est moins naturel que l'algorithme par balayage ait de
+moins bonnes performances que la méthode naïve. Ceci est du au fait
+que la complexité de l'algorithme de balayage dépend du nombre
+d'intersection que l'algorithme doit calculer. Or, dans ce cas, ce
+nombre est très grand, ce qui ralentit grandement le temps de calucl
+de l'algorithme. 
+
+Dans le reste des expérimentations conduites sur le raisonnement
+énergétique, nous utiliserons donc la méthode de calcul de~\cite{DP}. 
+
+\subsubsection{Intégration du raisonnement énergétique dans
+  l'algorithme de branchement hybrides}
+
+Dans ce paragraphe, nous présentons les résultats des expérimentations
+faites pour le raisonnement énergétique. Ce raisonnement est intégré
+dans l'algorithme de branchement hybride décrit dans le
+paragraphe~\ref{sec:hybridBB}. Cet algorithme a été testé avec deux
+heuristique de sélection des variables différentes. La première est
+l'heuristique qui consiste à choisir la variable sur laquelle on va
+brancher de manière aléatoire. La seconde, quant à elle, choisit la
+variable de plus petit domaine. 
+
+
 \subsection{Raisonnements basés sur le Time-Table}
 \label{sec:expe_TT}
 
+Dans ce paragraphe, nous montrons l'intérêt d'ajouter le
+raisonnement basé sur un problème de flot et sur le raisonnement
+Time-Table. Pour ce faire, nous le couplons avec un autre raisonnement
+présenté dans ce manuscrit, le raisonnement énergétique. C'est-à-dire
+qu'à chaque noeud de l'arbre de recherche, au lieu d'appliquer
+seulement le raisonnement énergétique comme dans le paragraphe
+précédent, nous appliquons l'algorithme de Time-Table/Flot et, dans
+le cas où le test ne prouve pas l'infaisabilité du sous-problème, on
+applique alors le raisonnement énergétique (le checker et les
+ajustements). 
+
+Pour ces expérimentations, nous avons aussi considéré les heuristiques
+de branchement aléatoire et celle choisissant la variable de plus
+petit domaine.   
