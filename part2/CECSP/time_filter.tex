@@ -711,7 +711,7 @@ est noté $w_{iq},\ i \in \A,\ q \in \Q^*$. Le problème de
   &w_{iq} \le a_{ip}b_{iq}+c_{ip}(t_{q+1}-t_q) & &
   \forall i \in \A, \ \forall q \in \Q^*,\  \forall p \in \P_i \label{eq:flot5}\\
   &w_{iq} \le Mb_{iq} & &
-  \forall i \in \A,\ \forall q \in \Q^*\ \label{eq:flot6}\\
+  \forall i \in \A\ |\ \bmin\neq 0,\ \forall q \in \Q^*\ \label{eq:flot6}\\
   &\sum_{q\in \Q^*} w_{iq} = W_i  & &
   \forall i \in \A \label{eq:flot7}
   \end{align}
@@ -739,7 +739,13 @@ justification de la validité de cette contrainte est faite dans le
 chapitre~\ref{sec:PLNE_CECSP}. La contrainte~\eqref{eq:flot6}
 stipule quant à elle que, pour une constante $M$ suffisament grande,
 si l'activité ne consomme pas de ressource, i.e. $b_{iq}=0$, alors
-elle ne reçoit pas d'énergie, i.e. $w_{iq}=0$.
+elle ne reçoit pas d'énergie, i.e. $w_{iq}=0$. Notons que cette
+contrainte ne peut être définie dans le cas où $\bmin = 0$ car une
+telle constante $M$ ne peut être trouvée. Dans ce
+cas-là, nous ommetons cette contrainte et ceci ne contredit pas la
+véracité de la formulation. Cependant, l'algorithme de vérification
+sera moins fort dans le cas où de nombreuses activités vérifient
+$\bmin=0$. 
 
 La contrainte~\eqref{eq:flot7} assure que la quantité d'énergie
 requise est bien apportée à l'activité. 

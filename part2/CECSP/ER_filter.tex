@@ -2145,7 +2145,7 @@ les résultats dans ces autres cas.
   l'équation~\eqref{eq:derivt1_CECSP} soit vérifiée. 
   Ces intervalles sont décrits
   par le tableau~\ref{tab:interAjust_CECSP}.
-  \begin{table} 
+  \begin{table}[!htb]
   \input{part2/CECSP/tabularRS.tex}
   \caption{Intervalles d'intérêt pour les ajustements du
     raisonnement énergétique pour le \CECSP (placement à droite).}
@@ -2162,12 +2162,12 @@ les variations de la fonction $t_2 \rightarrow \bbRS$.
 
 
 \begin{figure}[!htb]
- \subcaptionbox{Cas $\ES \le t_1 $  \label{fig:variation1}}[\linewidth] {
+ \subcaptionbox{Cas $t_1 \le \ES$  \label{fig:variation1}}[\linewidth] {
    \input{part2/CECSP/derivative1.tex} }
- \subcaptionbox{Cas $\ES > t_1 \ge \smax$
+ \subcaptionbox{Cas $\ES < t_1 < \smax$
    \label{fig:variation2}}[\linewidth]{
   \input{part2/CECSP/derivative2.tex}}
- \subcaptionbox{Cas $\LE > t_1 \ge \smax $
+ \subcaptionbox{Cas $\smax \le  t_1 < \LE $
   \label{fig:variation3}}[\linewidth]
 {\input{part2/CECSP/derivative3.tex}}
 \caption{Variation de $\bbRS$ en fonction de $t_2$.}
@@ -2177,17 +2177,22 @@ les variations de la fonction $t_2 \rightarrow \bbRS$.
 Les intervalles $\inter$ pour lesquels $t_2 \rightarrow \bbRS$ vérifie
 que sa dérivée à gauche est supérieure à sa dérivée à droite sont:
 \begin{itemize}
-\item $[t_1, \LE {[}$ dans le cas où $\ES \le t_1 $;
-\item $[t_1, \LE {[}$ et $[t_1, \Delta(t_1) [$ dans le cas où $\ES > t_1 \ge \smax$;
-\item $[t_1, \LE {[}$ dans le cas où $\LE > t_1 \ge \smax $.
+\item $[t_1, \LE {[}$ dans le cas où $t_1 \le \ES$;
+\item $[t_1, \LE {[}$ et $[t_1, \Delta(t_1) [$ dans le cas où $\ES <
+  t_1 < \smax$;
+\item $[t_1, \LE {[}$ dans le cas où $\smax \le t_1 < \LE$.
 \end{itemize}
-
+En simplifiant et rassemblant les cas ci-dessus, nous obtenons: \begin{itemize}
+\item $[t_1, \LE {[}$ dans le cas où $t_1 < \LE$;
+\item $[t_1, \Delta(t_1) [$ dans le cas où $\ES <
+  t_1 < \smax$.
+\end{itemize}
 \end{proof}
 
 Un raisonnement identique amène à la caractérisation des intervalles
 d'intérêt pour $\bbLS$. Ces résultats sont décrits dans le
 tableau~\ref{tab:interAjustLS_CECSP}.
-  \begin{table} 
+  \begin{table}[!htb]
   \input{part2/CECSP/tabularLS.tex}
   \caption{Intervalles d'intérêt pour les ajustements du
     raisonnement énergétique pour le \CECSP (placement à gauche).}
