@@ -1,0 +1,155 @@
+\chapter*{Conclusions et Perspectives\markboth{CONCLUSIONS ET PERSPECTIVES}{}}
+
+Beaucoup de problèmes d'ordonnancement cumulatifs définis dans la
+littérature souffrent d'une limitation imposant que chaque activité
+aille une durée et une consommation de ressource fixe durant son 
+exécution. Il arrive cependant, dans de nombreux cas pratique, que
+cette limitation empêche la modélisation correcte du problème. De ce
+fait, de nouveaux problèmes permettant de modéliser la malléabilité
+des activités, i.e. ayant une durée et une consommation de ressource
+variable, ont été introduits~\cite{DDH,NK,FT,Kis,BLN}. Cette thèse
+introduit un nouveau problème appartenant à cette classe, le \CECSP. 
+Une comparaison des différents problèmes existant permettant de
+modéliser des activités malléables a été réalisée et a permis de
+montrer que le \CECSP~est très différents de ces derniers. 
+
+La principale difficulté du \CECSP~repose sur la combinaison entre
+ressource continue et malléabilité des activités. En effet, ces deux
+caractéristiques impliquent que les activités peuvent prendre des
+formes quasi quelconques. De ce fait, un des premiers travail effectué
+dans cette thèse a été une étude détaillée du problème. Cette étude a
+permis de décrire des cas particuliers du \CECSP~pouvant être résolus
+en temps polynomial mais aussi a permis, dans certains cas, la mise en
+place d'une propriété permettant de décomplexifier le problème en
+caractérisant les différentes formes que peut prendre une activité. 
+Cette simplification du problème a ensuite été utilisée pour mettre en
+place des méthodes de résolution pour le \CECSP, souvent adaptées de
+méthodes existantes dans le cadre des problèmes d'ordonnancement
+cumulatifs. 
+
+Les méthodes de résolution dédiées au \CECSP~et décrites dans ce
+manuscrit sont regroupées en deux catégories: les méthodes issues de
+la programmation par contraintes et adaptées des méthodes définies
+pour la contrainte cumulative et les méthodes issues de la
+programmation linéaire mixte et en nombres entiers adaptées des
+méthodes définies pour le \RCPSP. 
+
+Plusieurs des techniques de programmation par contraintes utilisées dans le
+cadre de la résolution de la contrainte cumulative ont décrites et, en
+particulier, les principaux algorithmes de filtrage qui lui sont
+dédiés. Une partie de ces algorithmes a été adaptés au cas du
+\CECSP. C'est le cas, par exemple, du raisonnement énergétique qui
+prend une part importante de ce manuscrit. Ce raisonnement comptant
+parmi les plus forts dans le cas de la contrainte cumulative a été le
+premier à avoir été adapté. De plus, les récents travaux de Derrien
+{\it et al.} permettant l'accélération de ce raisonnement ont aussi pu
+être adaptés. D'autres raisonnements comme le Time-Table, le
+raisonnement disjonctif et le raisonnement Time-Table disjonctif ont
+aussi pu être transformés afin de s'appliquer dans le cas du
+\CECSP. Enfin, un nouvel algorithme de détection d'incohérence
+utilisant un programme linéaire basé sur un problème de flot couplé
+avec le raisonnement Time-Table a été présenté. Les expérimentations
+conduites sur ces raisonnements -- inclus à l'intérieur d'une méthode
+de branchement hybride -- ont permis de montrer que ce nouvel
+algorithme de vérification permet la détection d'un plus grand nombre
+d'incohérences que le raisonnement énergétique à lui seul.
+
+Différents modèles de programmation linéaire en nombres entiers pour le
+\RCPSP~ont été décrits dans le chapitre~\ref{sec:PLNE_RCPSP}. Parmi
+ces modèles, le premier repose sur une formulation indexée par le temps
+et les deux autres sur des formulations basées sur les événements. Ces
+dernières ont montré leur efficacité dans le cas où l'horizon de temps
+des modèles devient très grand. De plus, contrairement aux modèles
+indexés par le temps, ils permettent de modéliser des dates de début
+et de fin d'activités continue. De ce fait, nous avons adapté ces
+modèles au cas du \CECSP. Un modèle indexé par le temps est aussi
+détaillé. En effet, ces modèles ont prouvé leur efficacité dans le
+cadre du \RCPSP.
+
+Pour chacun des modèles présentés, des inégalités valides et/ou des
+techniques de coupes ont été présenté afin de renforcer ces
+derniers. Des inégalités directement déduites du raisonnement
+énergétique sont introduites pour les modèles indexés par le temps du
+\CECSP~et du \RCPSP. Pour les modèles à événements, une comparaison
+des relaxations linéaires des deux modèles présentés est
+effectuée. Des inégalités permettant de renforcer le modèle ayant les
+moins bonnes relaxations, le modèle On/Off, sont présentées. Ces
+inégalités, appelées inégalités de non-préemption, ont été montré
+comme appartenant à l'enveloppe convexe du polyèdre formé par
+l’ensemble de toutes les affectations possibles pour les variables
+binaires correspondant à une seule activité. Enfin, plusieurs autres
+ensembles d'inégalités pour les modèles à événements ont été présentés
+et les performances relatives à l'ajout de différentes combinaisons de
+ces inégalités au modèle ont été détaillées. 
+
+Malgré tout, le \CECSP~reste un problème difficile, en particulier
+dans sa forme générale. En effet, es résultats présentés dans cette
+thèse nous ont permis de résoudre des instances allant jusqu'à $60$
+activités pour la version décisionnelle de ce problème et seulement
+jusqu'à $30$ pour la version ayant pour objectif la minimisation de la
+consommation de la ressource. 
+
+Le \CECSP~est un nouveau problème pour lequel de nombreux travaux
+restent à faire. Parmi les perspectives directes des résultats
+présentés dans ce manuscrit, on trouve:
+\paragraph{La considération de fonction de rendement plus générale.} Même si les fonctions concaves permettent une plus grande
+  liberté d'expression du problème, elles restent insuffisante pour
+  modéliser certains problèmes réels. Dans un premier temps, la
+  considération de fonctions de rendement convexes est une
+  continuation naturelle de ce travail. Cependant, ce n'est toujours
+  pas suffisant dans certains cas. En effet, beaucoup de fonctions 
+  de rendement ne sont ni totalement concave, ni totalement convexe
+  mais sont convexes sur certains intervalles et concaves sur les
+  autres intervalles. 
+
+\paragraph{La mise en place d'algorithme de filtrage plus
+  performants.} Qu'il s'agisse d'algorithme plus performant en termes
+de temps de calcul ou plus performant en termes de filtrage, cette
+direction de recherche est une perspective importante. L'adaptation
+d'autres algorithmes de filtrage mis en place pour la contrainte
+cumulative semble une piste intéressante mais l'accélération du temps
+de calcul de ces derniers est fait au prix d'un filtrage de moins
+bonne qualité. Ceci peut s'avérer critique dans le cas du \CECSP~où
+les algorithmes de filtrage pour la contrainte cumulative sont
+beaucoup plus faibles. A l'inverse, la mise en place d'algorithmes
+dédiés au problème ayant un pouvoir de filtrage plus grand sera
+probablement effectuée au prix d'une augmentation importante du temps 
+de calcul. 
+
+\paragraph{Amélioration des modèles de programmation linéaire mixte.}
+Dans un premier temps, les modèles décrits dans ce manuscrit
+pourraient encore être renforcés. En effet, les inégalités
+énergétiques décrites pour le modèle indexé par le temps sont un moyen
+intéressant de coupler des techniques issues de la programmation par
+contraintes à la programmation linéaire mixte. D'autres inégalités de
+ce type pourraient être définies ou de meilleures techniques
+d'intégration de ces inégalités dans le processus de résolution
+pourraient être mises en place. 
+
+L'amélioration des modèles à événement est aussi une piste de
+recherche importante puisque, contrairement aux modèles indexés par le
+temps, ces derniers permettent d'obtenir des solutions exactes pour le
+\CECSP~mais au prix d'un temps de calcul beaucoup plus important. Pour
+renforcer ces modèles, d'autres jeux d'inégalités, plus fortes,
+peuvent être mises en place. Par exemple, des inégalités décrivant des
+facettes du polyèdre formé par l'ensemble des solutions de chaque
+modèle peuvent être exhibées.
+
+\paragraph{L'utilisation d'autres méthodes de résolution.}
+Les techniques décrites dans ce manuscrit utilisent principalement des
+techniques de programmation linéaire mixte et de programmation par
+contraintes. Cependant, d'autres paradigmes existent et des techniques
+issues de ces derniers pourraient être considérées. De même, des
+techniques appliquées sur des problèmes connexes pourraient aussi être
+adaptées, quitte à discrétiser le problème. Parmi ces techniques, on
+pourra trouver les techniques de génération de colonnes, de
+branch-and-cut, la programmation dynamique ou des techniques utilisant
+des règles de priorités, etc. 
+
+
+
+
+
+
+
+

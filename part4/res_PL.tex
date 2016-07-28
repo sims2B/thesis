@@ -1,4 +1,11 @@
 \section{Performances de la Programmation Linéaire Mixte}
+\label{sec:expe_PLNE}
+Dans ce paragraphe, nous détaillons les résultats expérimentaux
+obtenus par les modèles présentés dans le
+chapitre~\ref{sec:PLNE_CECSP} et l'influence des techniques de
+renforcement présentées dans ce même chapitre. Nous commençons, dans
+un premier temps, par présenter les résultats obtenus pour le modèle
+indexé par le temps puis nous détaillerons les résultats des modèles à événement.
 
 \subsection{Modèles indexés par le temps}
 Dans ce paragraphe, nous décrivons les performances du modèle indexé
@@ -317,8 +324,60 @@ ajoutée au modèle, est:
 \end{ex}  
 
 \subsubsection{Modèles Start/End}
+Dans ce paragraphe, nous présentons les résultats obtenus pour le
+modèle Start/End.  Les expérimentations ont été conduites
+sur les quatre familles d'instances présentées dans le
+paragraphe~\ref{sec:instance_CECSP} et avec une limite de temps de
+1000 secondes. Le modèle, avec pour objectif la minimisation de la
+consommation totale de ressource est utilisé
+pour résoudre les instances. Le
+tableau~\ref{tab:SE_CECSP} présente ces résultats.
 
+Dans ce tableau, nous avons comparé la qualité et le temps d'obtention
+des premières solutions pour chaque famille d'instances testées. Nous
+avons aussi comparé le temps nécessaire à l'obtention de la 
+solution optimale (1000 secondes si la solution trouvé n'est pas
+optimale), la qualité de la solution, le nombre d'instances résolues
+et le nombre d'entre elles résolues à l'optimal.
 
+\begin{table}[!htb]
+  \begin{center}\small
+    \begin{tabularx}{\linewidth}{|Y|YY|YYYY|YY|YYYY|}
+      \hline
+      \multirow{2}{*}{\#act.} & \multicolumn{2}{c|}{$1^{ère}$ sol.}&
+      \multicolumn{4}{c|}{final sol.} & \multicolumn{2}{c|}{$1^{ère}$ 
+        sol.}&
+      \multicolumn{4}{c|}{sol. finale} \\ 
+      \cline{2-13} 
+                               & tps(s) & gap & tps & gap  &  \%opt.&\%solv.&
+                                                                 tps
+                                                                 & gap
+                                                                 &
+                                                                 tps
+                                                                 & gap
+                                                                 &
+                                                                 \%opt. &\%solv.  \\ 
+      \hline
+      \multicolumn{7}{|l|}{Famille 1} & \multicolumn{6}{|l|}{Famille 2}\\
+      \hline
+      $10 $&$ 0,058 $&$ 38 $&$ 45 $&$ 2,9$ &$ 60 $&$ 100$ &$ 0,075 $&$ 24 $&$ 100 $&$ 5,6$ &$ 0 $&$ 100$ \\ 
+      $20 $&$ 0,25 $&$ 17 $&$ 100 $&$ 8,4$ &$ 0 $&$ 100$ & $ 0,37 $&$ 8,8 $&$ 100 $&$ 6,5$ &$ 0 $&$ 100$\\ 
+      $25 $&$ 0,88 $&$ 21 $&$ 100 $&$ 9,4$ &$ 0 $&$ 100$ &$ 2 $&$ 12 $&$ 100 $&$ 5,8$ &$ 0 $&$ 100$ \\ 
+      $30 $&$ 1,3 $&$ 35 $&$ 100 $&$ 10$ &$ 0 $&$ 100$&$ 3,1 $&$ 14 $&$ 100 $&$ 6,3$ &$ 0 $&$ 100$  \\ 
+      \hline   
+      \multicolumn{7}{|l|}{Famille 3} &  \multicolumn{6}{|l|}{Famille 4}\\
+      \hline 
+    $10 $&$ 0,064 $&$ 4,1 $&$ 64 $&$ 1,8$ &$ 40 $&$ 100$ &$ 0,037 $&$ 0 $&$ 0,037 $&$ 0$ &$ 100 $&$ 100$\\ 
+$20 $&$ 2,8 $&$ 6,8 $&$ 100 $&$ 3,9$ &$ 0 $&$ 100$ &$ 0,61 $&$ 0,72 $&$ 0,63 $&$ 0$ &$ 100 $&$ 100$\\ 
+$25 $&$ 17 $&$ 4,5 $&$ 100 $&$ 4,5$ &$ 0 $&$ 100$ &$ 1,5 $&$ 0,31 $&$ 1,5 $&$ 0$ &$ 100 $&$ 100$\\ 
+$30 $&$ 24 $&$ 6,4 $&$ 100 $&$ 4,1$ &$ 0 $&$ 80$ &$ 4,8 $&$ 0,07 $&$ 15 $&$ 0$ &$ 89 $&$ 89$ \\ 
+      \hline 
+    \end{tabularx}
+  \end{center}
+  \caption{Résultats du PLNE indexé par le temps du \CECSP~avec et
+    sans coupes énergétiques.} 
+  \label{tab:TI_CECSP}
+\end{table}
 
 \subsubsection{Modèles On/Off}
 
@@ -393,7 +452,7 @@ résultats sont quant à eux obtenus en combinant seulement inégalités
 de non-préemption et les deux ensembles d'inégalités portant sur les
 dates des événements, i.e. {\it Sep} et {\it Date}. Cependant, les
 résultats obtenus en combinant toutes les inégalités ne sont pas très
-éloignés de ceux obtenant les meilleurs résultats/ 
+éloignés de ceux obtenant les meilleurs résultats.
 
 Pour les instances de la Famille 1, seulement un petit nombre
 d'instances sont résolues de manière optimale. C'est pourquoi nous
@@ -434,7 +493,7 @@ utilisées dans le tableau~\ref{tab:OO_f4}.
 \end{table}
 
 Dans le tableau~\ref{tab:OO_f4}, nous pouvons voir que les meilleurs
-résultats sont obtenus en combinant {\it Sep, Date}et {\it
+résultats sont obtenus en combinant {\it Sep, Date} et {\it
 SàD}. Cependant, des résultats comparables sont obtenus en combinant
 {\it Sep, Date} et {\it $\overline{Preem.}$} ou {\it Sep, Date, SàD} et
 {\it $\overline{Preem.}$}.
