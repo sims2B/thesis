@@ -326,7 +326,7 @@ ajoutée au modèle, est:
 Dans ce paragraphe, nous présentons les résultats obtenus pour le
 modèle On/Off. Les expérimentations conduites pour ce modèle dans le
 cadre du \CECSP~l'ont été
-sur les instances de la Famille 4 (cf. tableau~\ref{tab:OO_F4}) et sur les
+sur les instances de la Famille 4 (cf. tableau~\ref{tab:OO_f4}) et sur les
 instances de la Famille 1 (cf. tableau~\ref{tab:OO_f1}) avec une
 limite de temps de 1000 secondes.  
 
@@ -340,13 +340,14 @@ de la manière suivantes:
  bornant supérieurement la distance entre deux événements;
 \item {\it Date} ou {\it D.} les inégalités bornant supérieurement la
   date des événements;
-\item {\it SàD} les inégalités déduites du problème du sac-à-dos (cf. paragraphe~\ref{maxDist}), et 
+\item {\it SàD} les inégalités déduites du problème du sac-à-dos
+  (cf. paragraphe~\ref{sec:maxDist}), et  
 \item {\it $\overline{Preem.}$} ou {\it $\overline{P.}$} les
   inégalités de non-préemption (cf. paragraphe~\ref{sec:nonPreem}).
 \end{itemize}
  Les deux premiers ensembles d'inégalités sont ajoutés directement
  dans le modèle et sont aussi utilisées comme borne plus fine dans les
- contraintes du modèle (voir paragraphe~\ref{maxDist}).
+ contraintes du modèle (voir paragraphe~\ref{sec:maxDist}).
 
 
 \begin{table}[!htb]
@@ -432,7 +433,7 @@ utilisées dans le tableau~\ref{tab:OO_f4}.
   \label{tab:OO_f1}
 \end{table}
 
-Dans le tableau~\ref{tab:OO_f1}, nous pouvons voir que les meilleurs
+Dans le tableau~\ref{tab:OO_f4}, nous pouvons voir que les meilleurs
 résultats sont obtenus en combinant {\it Sep, Date}et {\it
 SàD}. Cependant, des résultats comparables sont obtenus en combinant
 {\it Sep, Date} et {\it $\overline{Preem.}$} ou {\it Sep, Date, SàD} et
@@ -559,19 +560,20 @@ sur-contraint bien le problème initial.
 \%feas. \\ \hline 
     \multicolumn{10}{|c|}{Famille 1}\\
     \hline
-   $ 10	$&$	0.03	$&$	100	$&$	60	$&$	0,22	$&$	100	$&$	100	$&$	0,71	$&$	100	$&$	100$	\\
-   $ 20	$&$	0,08	$&$	100	$&$	54,5	$&$	17,05	$&$	100	$&$	100	$&$	355,4	$&$	100	$&$	100$	\\
-    $25	$&$	0,22	$&$	100	$&$	66,7	$&$	305,6	$&$	100	$&$	100	$&$	2226,7	$&$	77,8	$&$	77,8$	\\
-    $30	$&$	0,25	$&$	100	$&$	60	$&$	1415,1	$&$	100	$&$	100	$&$	6247,2	$&$	20	$&$	20$	\\
-    $60	$&$	420	$&$	100	$&$	100	$&$	7200	$&$	0	$&$	0	$&$	6219,8	$&$	20	$&$	20$	\\
+   $ 10	$&$	0.03	$&$	100	$& $60$& $0,22$ & $100$ & $100$&$	0,71	$&$	100	$&$	100$	\\
+   $ 20	$&$	0,08	$&$	100	$&$	54,5	$& $11,57$ & $100$ & $100$&$	355,4	$&$	100	$&$	100$	\\
+    $25	$&$	0,22	$&$	100	$&$	66,7	$&$58,79$ & $100$ & $100	$&$	2226,7	$&$	77,8	$&$	77,8$	\\
+    $30	$&$	0,25	$&$	100	$&$	60	$& $1582,9$ &
+                                                                     $80$ & $80 $&$	6247,2	$&$	20	$&$	20$	\\
+    $60	$&$	420	$&$	100	$&$	100	$&$4969,51$ & $80$ & $80	$&$	6219,8	$&$	20	$&$	20$	\\
     \hline 
     \multicolumn{10}{|c|}{Famille 3}\\
     \hline
-   $ 10	$&$	0,04	$&$	100	$&$	100	$&$	0,23	$&$	100	$&$	100	$&$	0,88	$&$	100	$&$	100$	\\
-   $ 20	$&$	0,24	$&$	100	$&$	100	$&$	105,6	$&$	100	$&$	100	$&$	1430,6	$&$	90,9	$&$	90,9$	\\
-   $ 25	$&$	0,45	$&$	100	$&$	88,9	$&$	2192,2	$&$	100	$&$	100	$&$	5816,1	$&$	33,3	$&$	33,3$	\\
-   $ 30	$&$	1,38	$&$	100	$&$	100	$&$	5666,4	$&$	30	$&$	30	$&$	6011,8	$&$	20	$&$	20$	\\
-  $  60	$&$	328,7	$&$	100	$&$	80	$&$	7200	$&$	0	$&$	0	$&$	7200	$&$	0	$&$	0$	\\
+   $ 10	$&$	0,04	$&$	100	$&$	100	$&$0,46$ & $100$ & $100$&$0,88	$&$	100	$&$	100$	\\
+   $ 20	$&$	0,24	$&$	100	$&$	100	$&$658,362$ & $100$ & $100$&$	1430,6	$&$	90,9	$&$	90,9$	\\
+   $ 25	$&$	0,45	$&$	100	$&$	88,9	$&$	1900,17$ & $77,78$ & $77,78	$&$	5816,1	$&$	33,3	$&$	33,3$	\\
+   $ 30	$&$	1,38	$&$	100	$&$	100	$&$	2819,7$ & $80$ & $80$&$	6011,8	$&$	20	$&$	20$	\\
+  $  60	$&$	328,7	$&$	100	$&$	80	$&$6358,15$ & $20$ & $20$&$	7200	$&$	0	$&$	0$	\\
     \hline 
     \multicolumn{10}{|c|}{Famille 4}\\
     \hline
@@ -587,7 +589,7 @@ sur-contraint bien le problème initial.
   \label{MIPresult}
 \end{table} 
 
-Comme nous pouvons le voir dans le tableau~\ref{MIPresults}, le
+Comme nous pouvons le voir dans le tableau~\ref{MIPresult}, le
 modèle indexé permet de trouver des solutions beaucoup plus rapidement
 que les modèles à événements. Cependant, ce modèle ne peut être
 employé comme une méthode de résolution exacte  puisque, pour

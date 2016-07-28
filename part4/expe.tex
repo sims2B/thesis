@@ -1,4 +1,55 @@
+\cleardoublepage
+\begin{minipage}{0.95\linewidth}
+
 \part{Implémentations et Expérimentations}
+\label{sec:expe}
+\vspace{15mm} % l'espacement souhaité
+\parttoc 
+\end{minipage}
+\newpage
+\thispagestyle{empty}
+\vspace*{\stretch{1}}
+\begin{center}
+  \begin{minipage}{\textwidth}
+    \hrule
+    \vspace{0.5cm}
+    {\it  La dernière partie de cette thèse est consacrée à la
+      présentation des résultats des expérimentations que nous avons
+      conduites pour valider les méthodes présentées dans les
+      chapitres précédents. Nous commençons, dans un premier temps,
+      par présenter les instances sur lesquelles ces expérimentations
+      ont été menées ainsi que les algorithmes de prétraitement
+      utilisés. 
+
+   La suite de cette partie est ensuite consacrée à la présentation
+   des résultats des méthodes décrites dans le
+   chapitre~\ref{sec:PLNE_CECSP} issues de la programmation linéaire
+   mixte. Le modèle indexé par le temps pour le \CECSP~est comparé à
+   ce même modèle auquel on a ajouté les inégalités déduites du
+   raisonnement énergétique et présentées dans le
+   paragraphe~\ref{sec:ER_TI}. Les modèles à événements sont ensuite
+   comparés entre eux et l'ajout des inégalités et coupes décrites
+   dans le paragraphe~\ref{sec:amelioration_OO} au modèle On/Off dans le cas du \CECSP~et
+   du \RCPSP~est discuté. La dernière  partie  du paragraphe traitant
+   de la programmation linéaire est  consacrée à la comparaison des
+   trois modèles.  
+
+   Le dernier paragraphe concerne les résultats des méthodes issues de
+   la programmation par contraintes présentées dans le
+   chapitre~\ref{sec:PPC_CECSP}. Dans un premier temps, nous
+   décrivons le cadre dans lequel ces expérimentations ont été
+   conduite: les algorithmes de propagation détaillés dans ce manuscrit
+   sont inclus dans une méthode arborescente hybride. Une fois le cadre
+   des expérimentations posé, nous comparons les trois méthodes permettant
+   de calculer les intervalles d'intérêt du raisonnement
+   énergétique. Enfin, la suite de cette partie détaille les résultats de
+   cette méthode arborescente avec les différents algorithmes de
+   propagation. }
+    \vspace{0.5cm}
+    \hrule
+  \end{minipage}
+\end{center}
+\vspace*{\stretch{1}}
 
 \chapter{Implémentations et Expérimentations}
 
@@ -26,7 +77,7 @@ Ubuntu 12.04 à 64-bits. Toutes les méthodes présentées ont été codées
 en C++. Les programmes linéaires mixtes sont résolus avec le solveur
 commercial ILOG-Cplex version 12.6. Le temps limite de résolution pour
 chaque instance et chaque méthode a été fixé à 7200 secondes.
-\label{sec:expe}
+
 \input{part4/instances.tex}
 \input{part4/res_PL.tex}
 \input{part4/res_PPC.tex}

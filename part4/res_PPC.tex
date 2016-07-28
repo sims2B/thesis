@@ -58,14 +58,10 @@ faisons marche arrière dans l'arbre de recherche afin d'évaluer
 d'autres feuilles de l'arbre, i.e. d'autres solutions potentielles. 
 
 Le parcours de l'arbre est fait en suivant un parcours en profondeur
-et, à chaque noeud,  la variable dont on va réduire le domaine est
-choisie selon l'une des deux heuristiques suivantes: 
-\begin{itemize}
-\item nous choisissons la variable de plus petit domaine ou 
-\item la variable est choisie de manière aléatoire.
-\end{itemize}
-De plus, la taille moyenne des domaines des variables étant de $32$,
-les valeurs de $\epsilon$ testées sont $10$, $5$, $2.5$, $1$.
+et, à chaque noeud, la variable dont on va réduire le domaine est
+choisie selon l'heuristique choisissant la variable de plus petit
+domaine.  De plus, la taille moyenne des domaines des variables étant
+de $32$, les valeurs de $\epsilon$ testées sont $10$, $5$, $2.5$.
 
 \subsection{Raisonnement énergétique}
 \label{sec:expe_RE}
@@ -103,13 +99,13 @@ représenté en millisecondes.
 
 \begin{table}[ht] \centering
   \begin{tabular}{|>{\centering\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}m{4cm}>{\centering\arraybackslash}m{4cm}>{\centering\arraybackslash}m{4cm}|}
-\hline \# tasks & méthode naïve & algorithme de balayage & adaptation
-                                                           de
-                                                           l'algorithme
-                                                           de~\cite{DP}\\
-\hline 10 & 0,46 & 1,57 & 0,39 \\ 20 & 3,9 & 6,2 & 1,05 \\ 25 &
-7,18 & 7,50 & 1,73 \\ 30 & 11,54 & 11,78 & 3,06 \\ 60 & 45,97 &
-62,82 & 14,40 \\
+    \hline \# tasks & méthode naïve & algorithme de balayage & adaptation
+                                                               de
+                                                               l'algorithme
+                                                               de~\cite{DP}\\
+    \hline 10 & 0,46 & 1,57 & 0,39 \\ 20 & 3,9 & 6,2 & 1,05 \\ 25 &
+                                                                    7,18 & 7,50 & 1,73 \\ 30 & 11,54 & 11,78 & 3,06 \\ 60 & 45,97 &
+                                                                                                                                    62,82 & 14,40 \\
     \hline
   \end{tabular}
   \caption{Comparaison des méthodes de calcul des intervalles
@@ -140,12 +136,68 @@ Dans le reste des expérimentations conduites sur le raisonnement
 Dans ce paragraphe, nous présentons les résultats des expérimentations
 faites pour le raisonnement énergétique. Ce raisonnement est intégré
 dans l'algorithme de branchement hybride décrit dans le
-paragraphe~\ref{sec:hybridBB}. Cet algorithme a été testé avec deux
-heuristique de sélection des variables différentes. La première est
-l'heuristique qui consiste à choisir la variable sur laquelle on va
-brancher de manière aléatoire. La seconde, quant à elle, choisit la
-variable de plus petit domaine. 
+paragraphe~\ref{sec:hybridBB}. Cet algorithme a été testé avec
+l'heuristique de sélection de variable qui choisit la variable de plus
+petit domaine.
 
+Le tableau~\ref{tab:res_BB_ER} présente les résultats obtenus avec 
+pour valeur de $\epsilon$ $??$ . Cette valeur est choisie car c'est celle
+qui permettait d'obtenir les meilleurs résultats. Les autres valeurs
+de paramètres testées étant: $??$. Dans ce tableau, la première
+colonne décrit le temps nécessaire pour résoudre les instances. Les
+deuxièmes et troisième colonnes montrent le pourcentage de temps passé
+dans la résolution du PLNE et dans l'arbre de recherche
+respectivement. La quatrième colonne énonce le pourcentage d'instances
+résolues. Les cinquième et sixièmes colonnes décrivent respectivement
+le nombre de noeud contenus dans l'arbre de recherche et de programme
+linéaire en nombre entiers résolus. Enfin, les deux dernières colonnes
+exhibent le nombre de fois où l'algorithme de vérification a détecté
+une incohérence et le nombre d'ajustements appliqués. 
+
+\begin{table}[!htb]
+  \begin{center}
+    \begin{tabular}{|c|M{1.8cm}M{1.8cm}M{1.8cm}ccccc|}
+      \hline
+      \#act. &  \multicolumn{8}{c|}{Méthode de branchement hybride}\\ 
+             &  \multicolumn{8}{c|}{$\epsilon=5$} \\ 
+      \hline 
+      \multicolumn{9}{|l|}{Famille 1}\\ 
+      \hline 
+             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
+      \hline 
+      $10$ & $0.28$ & $4.77$ & $0.22$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
+      $20$ & $25.9$ & $9.92$ & $0.069$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
+      $25$ & $143.7$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
+      $30$ & $1643.9$ & $5.74$ & $0.00$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
+      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
+
+      \hline 	
+      \multicolumn{9}{|l|}{Famille 2}\\ 
+      \hline 
+             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE& \#fail. & \#adj. \\ 
+      \hline 
+      $10$ & $0.28$ & $4.7$ & $0.2$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
+      $20$ & $25.2$ & $9.92$ & $0.06$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
+      $25$ & $143.7$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
+      $30$ & $1643.9$ & $5.74$ & $0.00$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
+      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
+      
+      \hline 	\multicolumn{9}{|l|}{Famille 4}\\ 
+      \hline 
+             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
+      \hline 
+      $10$ & $0.28$ & $4.77$ & $0.22$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
+      $20$ & $25.91$ & $9.92$ & $0.06$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
+      $25$ & $143.76$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
+      $30$ & $1643.9$ & $5.74$ & $0.0$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
+      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
+      \hline 
+    \end{tabular}
+  \end{center}
+  \caption{Résultats du raisonnement énergétique dans la méthode de
+    branchement hybride pour le \CECSP.}
+  \label{tab:res_BB_ER}
+\end{table}
 
 \subsection{Raisonnements basés sur le Time-Table}
 \label{sec:expe_TT}
@@ -161,6 +213,102 @@ le cas où le test ne prouve pas l'infaisabilité du sous-problème, on
 applique alors le raisonnement énergétique (le checker et les
 ajustements). 
 
-Pour ces expérimentations, nous avons aussi considéré les heuristiques
-de branchement aléatoire et celle choisissant la variable de plus
-petit domaine.   
+Pour ces expérimentations, nous avons aussi considéré l'heuristique
+choisissant la variable de plus petit domaine.   Le
+tableau~\ref{tab:res_BB_ERFlot} présente les résultats obtenus avec  
+pour valeur de $\epsilon$ $??$. Les colonnes du tableau correspondent
+à celle du tableau~\ref{tab:res_BB_ER}. 
+
+\begin{table}[!htb]
+  \begin{center}
+    \begin{tabular}{|c|cccccccc|}
+      \hline
+      \#act. &  \multicolumn{8}{c|}{Méthode de branchement hybride}\\ 
+             &  \multicolumn{8}{c|}{$\epsilon=5$} \\ 
+      \hline 
+      \multicolumn{9}{|l|}{Famille 1}\\ 
+      \hline 
+             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
+      \hline 
+      $10$ & $0.28$ & $4.77$ & $0.22$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
+      $20$ & $25.9$ & $9.92$ & $0.069$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
+      $25$ & $143.7$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
+      $30$ & $1643.9$ & $5.74$ & $0.00$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
+      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
+
+      \hline 	
+      \multicolumn{9}{|l|}{Famille 2}\\ 
+      \hline 
+             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE& \#fail. & \#adj. \\ 
+      \hline 
+      $10$ & $0.28$ & $4.7$ & $0.2$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
+      $20$ & $25.2$ & $9.92$ & $0.06$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
+      $25$ & $143.7$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
+      $30$ & $1643.9$ & $5.74$ & $0.00$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
+      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
+      
+      \hline 	\multicolumn{9}{|l|}{Famille 4}\\ 
+      \hline 
+             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
+      \hline 
+      $10$ & $0.28$ & $4.77$ & $0.22$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
+      $20$ & $25.91$ & $9.92$ & $0.06$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
+      $25$ & $143.76$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
+      $30$ & $1643.9$ & $5.74$ & $0.0$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
+      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
+      \hline 
+    \end{tabular}
+  \end{center}
+  \caption{Résultats du Time-Table basé sur les flots dans la méthode de
+    branchement hybride pour le \CECSP.}
+  \label{tab:res_BB_ERFlot}
+\end{table}
+
+\subsection{Comparaison des différentes approches}
+
+Dans ce paragraphe, nous allons comparer les résultats obtenus avec le
+modèle On/Off avec ceux obtenus par la méthode de branchement
+hybride. Ces résultats sont décrits dans le
+tableau~\ref{tab:comp_OOBB}.
+
+Dans ce tableau, les trois premières colonnes présentent les résultats
+obtenus par le modèle On/Off et les trois suivantes ceux obtenus par
+la méthode de branchement hybride.   
+\begin{table}[!htb]
+  \begin{center}
+    \begin{tabular}{|c|ccc|}
+      \hline
+      \#tasks & \multicolumn{3}{c|}{Modèle On/Off}\\ 
+      \hline 
+              & time(s) &\%solv. &\%feas. \\ 
+      \hline
+      \multicolumn{4}{|c|}{Famille 1}\\
+      \hline 
+      $10 $& $0,22$ & $100$ & $100 $ \\ 
+      $20 $& $11,56$ & $100$ & $100 $ \\ 
+      $25 $& $58,79$ & $100$ & $100 $ \\ 
+      $30 $& $1582,9$ & $80$ & $80 $ \\ 
+      $60 $& $4969,51$ & $80$ & $80 $ \\ 
+      \hline 
+      \multicolumn{4}{|c|}{Famille 2}\\
+      \hline 
+      $10 $& $0,29$ & $100$ & $100 $ \\ 
+      $20 $& $27,2$ & $100$ & $100 $ \\ 
+      $25 $& $380,20$ & $100$ & $100 $ \\ 
+      $30 $& $2634,3$ & $70$ & $70 $ \\ 
+      $60 $& $6104,6$ & $50$ & $50 $ \\ 
+      \hline 
+      \multicolumn{4}{|c|}{Famille 3}\\
+      \hline 
+      $10 $& $0,46$ & $100$ & $100 $ \\ 
+      $20 $& $658,4$ & $100$ & $100 $ \\ 
+      $25 $& $1900,2$ & $77,78$ & $77,78 $ \\ 
+      $30 $& $2819,7$ & $80$ & $80 $ \\ 
+      $60 $& $6358,1$ & $20$ & $20 $ \\ 
+      \hline 
+    \end{tabular}
+  \end{center}
+  \caption{Comparaison des résultats du modèle On/Off et de ceux de la
+    méthode de branchement hybride pour le \CECSP.}
+  \label{tab:comp_OOBB}
+\end{table}
