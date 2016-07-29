@@ -1,4 +1,7 @@
-\chapter{Annexe1 - Article JFPC}  
+\chapter{Programmation linéaire mixte et programmation par contraintes
+  pour un problème d'ordonnancement à contraintes énergétiques}  
+\chaptermark{PLNE et PPC
+  pour un problème à contraintes énergétiques}
 \label{ann:JFPC}
 Nous considérerons un problème d'ordonnancement cumulatif dans
 lequel les tâches ont une durée et un profil de consommation de
@@ -273,7 +276,7 @@ Les contraintes liant $b_{it}$ et $w_{it}$, $\quad \forall t\in {\cal T}_{\cal D
 x_{i\tau}-\sum_{\tau=\ES+1}^t y_{i\tau}\right)  \label{conv_CECSP_TI}
 \end{equation} Cette contrainte nous permet de modéliser la fonction
 de rendement $f_i,\ \forall i \in {\cal A}$. En effet,
-$\left(\sum_{\tau=\ES}^t x_{i\tau}-\sum_{\tau=\ES+1}^t
+$\left(\sum_{\tau=\ES}^t x_{i\tau}\right.$ $\left.-\sum_{\tau=\ES+1}^t
 y_{i\tau}\right) $ est égale à $1$ si et seulement si l'activité $i$
 est en cours à l'instant $t$.  Dans ce cas là, la valeur de l'énergie
 apportée à $i$ est bien $w_{it}=a_ib_{it}+c_i$. Le second cas se
@@ -429,7 +432,7 @@ la solution est réelle.
 Parmi les poursuites de recherche possibles, on trouve l'amélioration
 des modèles avec la réduction du nombre de variable et/ou de contraintes et la
 mise en place d'algorithmes de propagation dédiés.
-
+\section*{Bibliographie\markboth{}{BIBLIOGRAPHIE}}
 \begin{bibunit}[alpha]
 \nocite{JFPC}
 \nocite*

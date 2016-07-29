@@ -24,6 +24,7 @@ la donnée d'un triplet $(\X,\D,\C)$ où:
 \item $\C=\{c_1,c_2,\dots,c_m\}$ est l'ensemble des contraintes du
   problème où chaque $c_j$ définit un sous-ensemble du produit
   cartésien des domaines des variables sur lesquelles elle porte:
+
   $c_j(x_{j1},x_{j2},\dots,x_{jk}) \subseteq D_{j1} \times D_{j2}
   \times \dots \times D_{jk}$
 \end{itemize}
@@ -288,11 +289,11 @@ comme étant cohérent s'il ne l'est pas. Ces {\it algorithmes de
 détection d'incohérences}, aussi appelés checkers, permettent de
 refuser une instanciation des variables si cette dernière n'est pas
 cohérente, i.e. si elle viole un des contraintes. Un algorithme de
-vérification est donc défini pour une seule contrainte. 
+vérification est donc associé à chaque contrainte.
 
-De plus, ces algorithmes peuvent aussi être étendus de manière à détecter une incohérence en
-cours de recherche si aucune solution n'est contenue dans le sous-arbre
-courant.
+De plus, ces algorithmes peuvent aussi être étendus de manière à
+détecter une incohérence en cours de recherche si aucune solution
+n'est contenue dans le sous-arbre courant.
 \begin{ex}
 \label{ex:ex_checker}  Soit l'instance définie dans
 l'exemple~\ref{ex:branchement}.    

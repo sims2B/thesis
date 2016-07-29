@@ -19,9 +19,9 @@
     \hrule
     \vspace{0.5cm}
     {\it Dans cette partie consacrée à l'adaptation des techniques de
-      résolution issues de la programmation linéaire mixtes et en
+      résolution issues de la programmation linéaire mixte et en
       nombres entiers, les concepts généraux qu'elles utilisent sont
-      décrits dans le paragraphe~\ref{sec:PLNE}. Ces techniques sont
+      décrits dans le chapitre~\ref{sec:PLNE_RCPSP}. Ces techniques sont
       ensuite présentées dans le cadre d'un célèbre problème
       d'ordonnacement: le RCPSP. 
 
@@ -29,14 +29,14 @@
       un modèle indexé par le temps et fait partie des classes de modèles
       les plus performants pour la résolution des instances de la
       PSPLIB~\cite{PSPLIB} pour le \RCPSP. Cependant, ces modèles ont leurs
-      limitations puisqu'entre autre, leur taille dépent grandement de
-      l'horizon de temps du projet. Pour des plannification à long terme,
+      limitations puisqu'entre autre, leur taille dépent directement de
+      l'horizon de temps du projet. Pour des planifications à long terme,
       d'autres modèles plus performants sont introduits: les modèles à
-      événements. Ils ont l'avantage d'avoir un nombre polynomiale de
+      événements. Ils ont l'avantage d'avoir un nombre polynomial de
       variables et de contraintes et permettent la modélisation des
-      problèmes continus. Cependant, leur relaxation linéaire sont
-      relativement moins fortes que celles des modèles indexés par le temps,
-      ce qui les rend non compétitivés dans le cas des instances ayant un
+      problèmes continus. Cependant, leurs relaxations linéaires sont
+      beaucoup moins fortes que celles des modèles indexés par le temps,
+      ce qui les rend non compétitifs dans le cas d'instances ayant un
       petit horizon de temps. Ces modèles dans le cadre du \RCPSP~ont été
       introduit par Kone et al.~\cite{modele_RCPSP}.
 
@@ -52,13 +52,13 @@
       présentée dans~\cite{Nattaf_JFPC}.
 
       Pour les modèles à événements, plusieurs ensembles d'inégalités
-      sont présentées: des inégalités permettant de borner la distance
+      sont présentés: des inégalités permettant de borner la distance
       entre deux événements, d'autres permettant de borner la date des
       événements ou des inégalités dérivées du problème du
       sac-à-dos. De plus, des coupes appelées inégalités de
       non-préemption sont définies et une étude polyhédrale de
       l'ensemble des vecteurs binaires solution d'un des modèles
-      présenté est détaillé. Ces résultats ont été présenté
+      présenté est détaillée. Ces résultats ont été présentés 
       dans~\cite{Nattaf_ROADEF16,Nattaf_ECCO16}. }
     \vspace{0.5cm}
     \hrule

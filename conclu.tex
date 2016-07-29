@@ -51,8 +51,8 @@ utilisant un programme linéaire basé sur un problème de flot couplé
 avec le raisonnement Time-Table a été présenté. Les expérimentations
 conduites sur ces raisonnements -- inclus à l'intérieur d'une méthode
 de branchement hybride -- ont permis de montrer que ce nouvel
-algorithme de vérification permet la détection d'un plus grand nombre
-d'incohérences que le raisonnement énergétique à lui seul.
+algorithme de vérification peut s'avérer plus efficace en pratique que
+le raisonnement énergétique.
 
 Différents modèles de programmation linéaire en nombres entiers pour le
 \RCPSP~ont été décrits dans le chapitre~\ref{sec:PLNE_RCPSP}. Parmi
@@ -147,7 +147,15 @@ branch-and-cut, la programmation dynamique ou des techniques utilisant
 des règles de priorités, etc. 
 
 
-
+\paragraph{L'étude de la version discrète du problème.} Malgré le fait
+que la restriction discrète du \CECSP~peut conduire à l'obtention de
+solutions non optimales, cette dernière offre de bonnes approximations
+dans le cas général. De ce fait, étudier la version discrète du
+problème peut s'avérer intéressant. De plus, les bonnes performances
+des méthodes discrètes, notamment du modèle indexé par le temps ou du
+modèle de programmation par contraintes présenté dans
+l'annexe~\ref{ann:JFPC}, nous poussent à diriger la recherche dans
+cette direction. 
 
 
 

@@ -18,8 +18,9 @@ pour résoudre les instances. Dans un second temps, nous ajoutons les
 inégalités issues du raisonnement énergétiques décrites dans le
 paragraphe~\ref{sec:ER_TI}. Ces inégalités sont seulement ajouter au
 n\oe ud racine de l'arbre de recherche. En effet, dû à leur grand
-nombre, il est difficile, sans algorithme de séparation, de les
-inclure dynamiquement pendant la recherche. Le
+nombre ($5*|\I|*n$, avec $\I$ l'ensemble des intervalles d'intérêt du
+raisonnement énergétique) , il est difficile, sans algorithme de
+séparation, de les inclure dynamiquement pendant la recherche. Le
 tableau~\ref{tab:TI_CECSP} présente ces résultats.
 
 Dans ce tableau, nous avons comparé la qualité et le temps d'obtention
@@ -324,6 +325,7 @@ ajoutée au modèle, est:
 \end{ex}  
 
 \subsubsection{Modèles Start/End}
+\textcolor{red}{\LARGE pour ce paragraphe => que le texte}
 Dans ce paragraphe, nous présentons les résultats obtenus pour le
 modèle Start/End.  Les expérimentations ont été conduites
 sur les quatre familles d'instances présentées dans le
@@ -376,7 +378,7 @@ $30 $&$ 24 $&$ 6,4 $&$ 100 $&$ 4,1$ &$ 0 $&$ 80$ &$ 4,8 $&$ 0,07 $&$ 15 $&$ 0$ &
   \end{center}
   \caption{Résultats du PLNE indexé par le temps du \CECSP~avec et
     sans coupes énergétiques.} 
-  \label{tab:TI_CECSP}
+  \label{tab:SE_CECSP}
 \end{table}
 
 \subsubsection{Modèles On/Off}

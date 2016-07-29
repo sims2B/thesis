@@ -21,30 +21,40 @@
       ont été menées ainsi que les algorithmes de prétraitement
       utilisés. 
 
-   La suite de cette partie est ensuite consacrée à la présentation
-   des résultats des méthodes décrites dans le
-   chapitre~\ref{sec:PLNE_CECSP} issues de la programmation linéaire
-   mixte. Le modèle indexé par le temps pour le \CECSP~est comparé à
-   ce même modèle auquel on a ajouté les inégalités déduites du
-   raisonnement énergétique et présentées dans le
-   paragraphe~\ref{sec:ER_TI}. Les modèles à événements sont ensuite
-   comparés entre eux et l'ajout des inégalités et coupes décrites
-   dans le paragraphe~\ref{sec:amelioration_OO} au modèle On/Off dans le cas du \CECSP~et
-   du \RCPSP~est discuté. La dernière  partie  du paragraphe traitant
-   de la programmation linéaire est  consacrée à la comparaison des
-   trois modèles.  
+      La suite de cette partie est ensuite consacrée à la présentation
+      des résultats des méthodes décrites dans le
+      chapitre~\ref{sec:PLNE_CECSP} et issues de la programmation linéaire
+      mixte. Le modèle indexé par le temps pour le \CECSP~est comparé
+      à ce même modèle auquel on a ajouté les inégalités déduites du
+      raisonnement énergétique et présentées dans le
+      paragraphe~\ref{sec:ER_TI}. Pour les modèles à événements, nous
+      commençons par détailler l'algorithme utilisé pour séparer les
+      inégalités de non-préemption (voir
+      paragraphe~\ref{sec:nonPreem}). Les modèles sont ensuite comparés
+      entre eux et l'ajout des inégalités et coupes décrites dans le
+      paragraphe~\ref{sec:amelioration_OO} au modèle On/Off dans le cas du
+      \CECSP~et du \RCPSP~est discuté. La dernière partie du paragraphe
+      traitant de la programmation linéaire est consacrée à la comparaison
+      des trois modèles.
 
-   Le dernier paragraphe concerne les résultats des méthodes issues de
-   la programmation par contraintes présentées dans le
-   chapitre~\ref{sec:PPC_CECSP}. Dans un premier temps, nous
-   décrivons le cadre dans lequel ces expérimentations ont été
-   conduite: les algorithmes de propagation détaillés dans ce manuscrit
-   sont inclus dans une méthode arborescente hybride. Une fois le cadre
-   des expérimentations posé, nous comparons les trois méthodes permettant
-   de calculer les intervalles d'intérêt du raisonnement
-   énergétique. Enfin, la suite de cette partie détaille les résultats de
-   cette méthode arborescente avec les différents algorithmes de
-   propagation. }
+      Le dernier paragraphe concerne les résultats des méthodes issues de
+      la programmation par contraintes présentées dans le
+      chapitre~\ref{sec:PPC_CECSP}. Dans un premier temps, nous
+      décrivons le cadre dans lequel ces expérimentations ont été
+      conduites: les algorithmes de propagation détaillés dans ce manuscrit
+      sont inclus dans une méthode arborescente hybride. Une fois le cadre
+      des expérimentations posé, nous comparons les trois méthodes permettant
+      de calculer les intervalles d'intérêt du raisonnement
+      énergétique. Enfin, la suite de cette partie détaille les résultats de
+      cette méthode arborescente avec les différents algorithmes de
+      propagation. 
+
+    Dû à la difficulté du \CECSP, les expérimentations présentées
+    dans cette partie ont majoritairement été conduites sur des
+    instances dans lesquelles les activités ont des fonctions de
+    rendement affines. Quelques résultats sur des instances de petite
+    taille avec des fonctions de rendement concaves et affines par
+    morceaux sont présentés à la fin de cette partie.}
     \vspace{0.5cm}
     \hrule
   \end{minipage}
@@ -81,6 +91,7 @@ chaque instance et chaque méthode a été fixé à 7200 secondes.
 \input{part4/instances.tex}
 \input{part4/res_PL.tex}
 \input{part4/res_PPC.tex}
+\input{part4/conclusion.tex}
 
 
 

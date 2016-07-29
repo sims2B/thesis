@@ -51,7 +51,28 @@ l'intervalle $[0,f_i(W_i)]$ et pour la Famille 2 dans l'intervalle
 $[f_i(W_i)/2, f_i(W_i)]$. Enfin, pour la Famille 3, la valeur
 $f_i(W_i)$ est affectée $W_i$. 
 
-Nous avons donc défini quatre familles d'instances pour le \CECSP. Ces
+Pour générer des instances où les activités ont des fonctions de
+rendement concaves et affines par morceaux, nous utilisons les
+instances de la Famille 4. Dans un premier temps, nous générons
+aléatoirement $P_i,\ \forall i \in \A$, le nombre de segments de
+définition de la fonction $f_i$, dans l'intervalle $[1 ,\bmax -
+\bmin]$. L'intervalle $[\bmin,\bmax]$ est ensuite divisé en $P_i$
+morceaux. Pour chacun de ces morceaux $ p \in [1,P_i]$, nous générons
+un coefficient $a_{ip}$ aléatoire tel que $a_{i1}<10$ et $1 < a_{ip} <
+a_{ip-1}$ et $c_{ip}$ est calculé de manière à préserver la continuité
+de la fonction. Enfin, $W_i$ est généré dans l'intervalle
+$[f_i(\bmin)(\LE-\ES), 0,8*f_i(\bmax)(\LE-\ES)]$. Ce processus est
+répété deux fois afin d'obtenir $10$ instances de $10$ et $60$
+activités et $20$ instances de $20,\ 25$ et $30$ activités. Cette
+famille d'instance est appelée Famille $LP$. 
+ 
+Afin de comparer les approximations des fonctions de rendement, nous
+avons aussi généré les instances correspondantes mais avec des
+fonctions de rendement affines en approximant par le bas les fonctions de
+rendement affine par morceaux par des fonctions affines. Cette famille
+d'instances est appelée Famille $L$. 
+
+Nous avons donc défini six familles d'instances pour le \CECSP. Ces
 instances serviront à calculer les performances relatives des méthodes
 présentées dans les chapitres précédents de ce manuscrit. 
 
@@ -64,13 +85,13 @@ pour évaluer les performances des améliorations des modèles du
 \label{sec:instances_RCPSP}
 \subsubsection{Génération des instances}
 Les instances utilisées sont les instances définies par
-Kone~\cite{theseOumar} pour évaluer la performances des modèles à
+Kone~\cite{theseOumar} pour évaluer les performances des modèles à
 événements par rapport aux modèles indexés par le temps. Ces instances
 sont générées à partir des instances à $30$ activités de la
 PSPLIB~\cite{PSPLIB}. Ces instances, au nombre de $480$, sont des
 instances à $4$ ressources renouvelables et avec des activités ayant
 une durée aléatoire comprise entre $1$ et $10$ unités de temps. Ces
-durée étant relativement courtes, les modèles indexés par le temps
+durées étant relativement courtes, les modèles indexés par le temps
 sont particulièrement efficaces sur ces dernières (voir
 paragraphe~\ref{sec:motiv_event_RCPSP}). L'auteur de~\cite{theseOumar}
 a donc modifié ces instances afin d'allonger la durée des

@@ -1,6 +1,6 @@
 \section{Performances de la Programmation Par Contraintes}
 \label{sec:expe_PPC}
-Dans ce paragraphe, nous présentons les résultats des experimentations
+Dans ce paragraphe, nous présentons les résultats des expérimentations
 portant sur les méthodes présentées dans le
 chapitre~\ref{sec:PPC_CECSP}. Dans un premier temps, nous définissons
 le cadre des expérimentations, notamment les algorithmes et
@@ -34,7 +34,7 @@ supposons que l'on ait choisi de réduire la taille du domaine de
 $st_i$, alors deux nouveaux noeuds sont créés: le premier avec la
 contrainte supplémentaire $st_i \in [\ES , (\ES+\LS) / 2]$ et le
 second avec la contrainte $st_i \in ](\ES+\LS) / 2,\LS{]}$ (voir
-figure~\ref{fig:branching}); et à chaque noeud, un des raisonnements
+figure~\ref{fig:branching}); et à chaque n\oe ud, un des raisonnements
 présentés au chapitre~\ref{sec:PPC_CECSP} est appliqué.
 
 \begin{figure}[!htb] 
@@ -47,7 +47,7 @@ Cette procédure est répétée jusqu'à ce que tous les domaines de toutes
 les variables soient plus petit qu'un certain paramètre $\epsilon
 >0$. Quand ceci arrive, cela veut dire que nous sommes au niveau d'une
 feuille de notre arbre de recherche et nous pouvons évaluer la
-satisfiabilité du noeud courant. Pour cela, nous utilisons le modèle
+satisfiabilité du n\oe ud courant. Pour cela, nous utilisons le modèle
 On/Off, le plus efficace dans le cadre d'une résolution exacte, pour
 tester si une solution avec les contraintes supplémentaires définies
 le long de la procédure de branchement existe.
@@ -58,7 +58,7 @@ faisons marche arrière dans l'arbre de recherche afin d'évaluer
 d'autres feuilles de l'arbre, i.e. d'autres solutions potentielles. 
 
 Le parcours de l'arbre est fait en suivant un parcours en profondeur
-et, à chaque noeud, la variable dont on va réduire le domaine est
+et, à chaque n\oe ud, la variable dont on va réduire le domaine est
 choisie selon l'heuristique choisissant la variable de plus petit
 domaine.  De plus, la taille moyenne des domaines des variables étant
 de $32$, les valeurs de $\epsilon$ testées sont $10$, $5$, $2.5$.
@@ -67,8 +67,8 @@ de $32$, les valeurs de $\epsilon$ testées sont $10$, $5$, $2.5$.
 \label{sec:expe_RE}
 
 Dans un premier temps, nous allons commencer par comparer les
-différentes méthodes de calcul des intervalles d'ntérêt pour
-l'algorithme de vérification de ce raisonnement présentées dans le
+différentes méthodes de calcul des intervalles d'intérêt pour
+l'algorithme de vérification de ce raisonnement, présentées dans le
 paragraphe~\ref{sec:intervalle_CECSP}. 
 
 \subsubsection{Comparaison des méthodes de calcul des intervalles
@@ -93,7 +93,7 @@ L'algorithme de balayage fait partie de la librairie C++  CGAL
   {L}ibrary. http://www.cgal.org.}. Pour calculer ces performances,
 nous appliquons l'algorithme de vérification du raisonnement
 énergétique et les ajustements correspondant sur les intervalles de
-l'algorithme de vérifiaction seulement. Cet algorithme est appliqué
+l'algorithme de vérification seulement. Cet algorithme est appliqué
 sur toutes les instances des Familles 1, 2, 3 et 4. Le temps est
 représenté en millisecondes.
 
@@ -118,13 +118,13 @@ l'algorithme de vérification du raisonnement énergétique est la
 méthode adaptée de~\cite{DP}. En effet, un des avantages de cette
 méthode était que le nombre d'intervalles à calculer était beaucoup
 plus faible que dans les autres cas. Il paraît donc cohérent que cet
-algorithme ait les mailleures performances. 
+algorithme ait les meilleures performances. 
 
 Cependant, il est moins naturel que l'algorithme par balayage ait de
-moins bonnes performances que la méthode naïve. Ceci est du au fait
+moins bonnes performances que la méthode naïve. Ceci est dû au fait
 que la complexité de l'algorithme de balayage dépend du nombre
 d'intersection que l'algorithme doit calculer. Or, dans ce cas, ce
-nombre est très grand, ce qui ralentit grandement le temps de calucl
+nombre est très grand, ce qui ralentit grandement le temps de calcul
 de l'algorithme. 
 
 Dans le reste des expérimentations conduites sur le raisonnement
@@ -132,7 +132,7 @@ Dans le reste des expérimentations conduites sur le raisonnement
 
 \subsubsection{Intégration du raisonnement énergétique dans
   l'algorithme de branchement hybrides}
-
+\textcolor{red}{\LARGE pour ce paragraphe => que le texte}
 Dans ce paragraphe, nous présentons les résultats des expérimentations
 faites pour le raisonnement énergétique. Ce raisonnement est intégré
 dans l'algorithme de branchement hybride décrit dans le
@@ -149,8 +149,8 @@ deuxièmes et troisième colonnes montrent le pourcentage de temps passé
 dans la résolution du PLNE et dans l'arbre de recherche
 respectivement. La quatrième colonne énonce le pourcentage d'instances
 résolues. Les cinquième et sixièmes colonnes décrivent respectivement
-le nombre de noeud contenus dans l'arbre de recherche et de programme
-linéaire en nombre entiers résolus. Enfin, les deux dernières colonnes
+le nombre de n\oe ud contenus dans l'arbre de recherche et de programme
+linéaire en nombres entiers résolus. Enfin, les deux dernières colonnes
 exhibent le nombre de fois où l'algorithme de vérification a détecté
 une incohérence et le nombre d'ajustements appliqués. 
 
@@ -159,38 +159,36 @@ une incohérence et le nombre d'ajustements appliqués.
     \begin{tabular}{|c|M{1.8cm}M{1.8cm}M{1.8cm}ccccc|}
       \hline
       \#act. &  \multicolumn{8}{c|}{Méthode de branchement hybride}\\ 
-             &  \multicolumn{8}{c|}{$\epsilon=5$} \\ 
+             &  \multicolumn{8}{c|}{$\epsilon=2.5$} \\ 
       \hline 
-      \multicolumn{9}{|l|}{Famille 1}\\ 
+      \multicolumn{9}{|l|}{Famille 1 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
       \hline 
-      $10$ & $0.28$ & $4.77$ & $0.22$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
-      $20$ & $25.9$ & $9.92$ & $0.069$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
-      $25$ & $143.7$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
-      $30$ & $1643.9$ & $5.74$ & $0.00$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
-      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
-
+$10$ & $0.117917$ & $87.6697$ & $12.3304$ & $100$ & $15$ & $6$ & $0$ & $2$ \\ 
+$20$ & $7.04862$ & $98.1343$ & $1.86568$ & $100$ & $38$ & $12$ & $0$ & $14$ \\ 
+$25$ & $33.8461$ & $99.0295$ & $0.970495$ & $100$ & $54$ & $10$ & $0$ & $34$ \\ 
+$30$ & $146.39$ & $99.3763$ & $0.623653$ & $100$ & $69$ & $11$ & $0$ &
+                                                                       $28$ \\
+  \hline 	
+      \multicolumn{9}{|l|}{Famille 2 }\\ 
+      \hline 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE& \#fail. & \#adj. \\ 
+      \hline 
+$10$ & $1109.53$ & $81.2472$ & $18.7527$ & $100$ & $46783$ & $140276$ & $0$ & $65446$ \\ 
+$20$ & $728.035$ & $97.5542$ & $2.44579$ & $90$ & $1930$ & $9296$ & $4$ & $3851$ \\ 
+$25$ & $1825.15$ & $98.7036$ & $1.29653$ & $75$ & $495$ & $761$ & $3$ & $458$ \\ 
+$30$ & $1971.81$ & $99.6238$ & $0.376182$ & $75$ & $150$ & $5$ & $7$ & $659$ \\ 
+$60$ & $7216.47$ & $0$ & $0$ & $0$ & $3831$ & $1217$ & $12$ & $1915$ \\ 
       \hline 	
-      \multicolumn{9}{|l|}{Famille 2}\\ 
+      \multicolumn{9}{|l|}{Famille 4 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE& \#fail. & \#adj. \\ 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
       \hline 
-      $10$ & $0.28$ & $4.7$ & $0.2$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
-      $20$ & $25.2$ & $9.92$ & $0.06$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
-      $25$ & $143.7$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
-      $30$ & $1643.9$ & $5.74$ & $0.00$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
-      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
-      
-      \hline 	\multicolumn{9}{|l|}{Famille 4}\\ 
-      \hline 
-             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
-      \hline 
-      $10$ & $0.28$ & $4.77$ & $0.22$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
-      $20$ & $25.91$ & $9.92$ & $0.06$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
-      $25$ & $143.76$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
-      $30$ & $1643.9$ & $5.74$ & $0.0$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
-      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
+ $10$ & $0.18712$ & $87.5469$ & $12.4531$ & $100$ & $25$ & $5$ & $0$ & $33$ \\ 
+$20$ & $1617.07$ & $98.9689$ & $1.03107$ & $77$ & $68$ & $9$ & $1$ & $246$ \\ 
+$25$ & $104.934$ & $99.6018$ & $0.398301$ & $100$ & $66$ & $6$ & $0$ & $252$ \\ 
+$30$ & $1749.76$ & $99.7266$ & $0.273242$ & $77$ & $107$ & $9$ & $1$ & $424$ \\  
       \hline 
     \end{tabular}
   \end{center}
@@ -202,60 +200,54 @@ une incohérence et le nombre d'ajustements appliqués.
 \subsection{Raisonnements basés sur le Time-Table}
 \label{sec:expe_TT}
 
+\textcolor{red}{\LARGE pour ce paragraphe => que le texte}
 Dans ce paragraphe, nous montrons l'intérêt d'ajouter le
 raisonnement basé sur un problème de flot et sur le raisonnement
-Time-Table. Pour ce faire, nous le couplons avec un autre raisonnement
-présenté dans ce manuscrit, le raisonnement énergétique. C'est-à-dire
-qu'à chaque noeud de l'arbre de recherche, au lieu d'appliquer
-seulement le raisonnement énergétique comme dans le paragraphe
-précédent, nous appliquons l'algorithme de Time-Table/Flot et, dans
-le cas où le test ne prouve pas l'infaisabilité du sous-problème, on
-applique alors le raisonnement énergétique (le checker et les
-ajustements). 
+Time-Table. Pour ce faire, à chaque n\oe ud de l'arbre de recherche,
+nous appliquons l'algorithme de Time-Table/Flot pour détecter une
+incohérence. 
 
 Pour ces expérimentations, nous avons aussi considéré l'heuristique
-choisissant la variable de plus petit domaine.   Le
-tableau~\ref{tab:res_BB_ERFlot} présente les résultats obtenus avec  
+choisissant la variable de plus petit domaine. Le
+tableau~\ref{tab:res_BB_ERFlot} présente les résultats obtenus avec
 pour valeur de $\epsilon$ $??$. Les colonnes du tableau correspondent
-à celle du tableau~\ref{tab:res_BB_ER}. 
+à celle du tableau~\ref{tab:res_BB_ER}.
 
 \begin{table}[!htb]
   \begin{center}
     \begin{tabular}{|c|M{1.8cm}M{1.8cm}M{1.8cm}ccccc|}
       \hline
       \#act. &  \multicolumn{8}{c|}{Méthode de branchement hybride}\\ 
-             &  \multicolumn{8}{c|}{$\epsilon=5$} \\ 
+             &  \multicolumn{8}{c|}{$\epsilon=2.5$} \\ 
       \hline 
-      \multicolumn{9}{|l|}{Famille 1}\\ 
+      \multicolumn{9}{|l|}{Famille 1 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
       \hline 
-      $10$ & $0.28$ & $4.77$ & $0.22$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
-      $20$ & $25.9$ & $9.92$ & $0.069$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
-      $25$ & $143.7$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
-      $30$ & $1643.9$ & $5.74$ & $0.00$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
-      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
-
+     $10$ & $0.123956$ & $51.4955$ & $48.5045$ & $100$ & $25$ & $6$ & $0$ & $0$ \\ 
+$20$ & $5.00496$ & $88.7034$ & $11.2967$ & $100$ & $58$ & $12$ & $0$ & $0$ \\ 
+$25$ & $26.6403$ & $85.7958$ & $14.2041$ & $100$ & $79$ & $10$ & $0$ & $0$ \\ 
+$30$ & $70.8224$ & $96.6868$ & $3.31319$ & $100$ & $100$ & $11$ & $0$
+                                                                                 & $0$ \\ 
+\hline 	
+      \multicolumn{9}{|l|}{Famille 2 }\\ 
+      \hline 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE& \#fail. & \#adj. \\ 
+      \hline 
+ $10$ & $0.171939$ & $63.031$ & $36.969$ & $100$ & $24$ & $6$ & $0$ & $0$ \\ 
+$20$ & $9.03365$ & $86.4555$ & $13.5445$ & $100$ & $59$ & $12$ & $0$ & $0$ \\ 
+$25$ & $155.237$ & $96.3074$ & $3.6925$ & $100$ & $96$ & $5$ & $6$ & $0$ \\ 
+$30$ & $98.656$ & $96.7409$ & $3.25907$ & $100$ & $107$ & $5$ & $3$ & $0$ \\ 
       \hline 	
-      \multicolumn{9}{|l|}{Famille 2}\\ 
+\multicolumn{9}{|l|}{Famille 4 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE& \#fail. & \#adj. \\ 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
       \hline 
-      $10$ & $0.28$ & $4.7$ & $0.2$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
-      $20$ & $25.2$ & $9.92$ & $0.06$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
-      $25$ & $143.7$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
-      $30$ & $1643.9$ & $5.74$ & $0.00$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
-      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
-      
-      \hline 	\multicolumn{9}{|l|}{Famille 4}\\ 
-      \hline 
-             & Tps total(s) & Tps CPLEX(s) & Tps arbre(s) & \%solv.  & \#n\oe ud & \#PLNE &\#fail. & \#adj. \\ 
-      \hline 
-      $10$ & $0.28$ & $4.77$ & $0.22$ & $100$ & $0$ & $5$ & $0$ & $0$ \\ 
-      $20$ & $25.91$ & $9.92$ & $0.06$ & $100$ & $1$ & $10$ & $0$ & $1$ \\ 
-      $25$ & $143.76$ & $6.98$ & $0.01$ & $100$ & $1$ & $7$ & $0$ & $1$ \\ 
-      $30$ & $1643.9$ & $5.74$ & $0.0$ & $87$ & $2$ & $6$ & $0$ & $4$ \\ 
-      $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ & $0$ \\ 
+ $10$ & $0.286098$ & $77.2834$ & $22.7167$ & $100$ & $27$ & $6$ & $1$ & $0$ \\ 
+$20$ & $1476.08$ & $93.1846$ & $6.8154$ & $80$ & $98$ & $10$ & $11$ & $0$ \\ 
+$25$ & $2568.54$ & $90.1947$ & $9.80506$ & $66$ & $18973$ & $8$ & $9424$ & $0$ \\ 
+$30$ & $3181.35$ & $98.254$ & $1.74586$ & $60$ & $20908$ & $8$ & $10368$ & $0$ \\ 
+$60$ & $3600.59$ & $0$ & $0$ & $50$ & $16155$ & $0$ & $8033$ & $0$ \\ 
       \hline 
     \end{tabular}
   \end{center}
@@ -266,6 +258,7 @@ pour valeur de $\epsilon$ $??$. Les colonnes du tableau correspondent
 
 \subsection{Comparaison des différentes approches}
 
+\textcolor{red}{\LARGE pour comparaison BB/OO => que le texte}
 Dans ce paragraphe, nous allons comparer les résultats obtenus avec le
 modèle On/Off avec ceux obtenus par la méthode de branchement
 hybride. Ces résultats sont décrits dans le
@@ -298,13 +291,13 @@ la méthode de branchement hybride.
       $30 $& $2634,3$ & $70$ & $70 $ \\ 
       $60 $& $6104,6$ & $50$ & $50 $ \\ 
       \hline 
-      \multicolumn{4}{|c|}{Famille 3}\\
+      \multicolumn{4}{|c|}{Famille 4}\\
       \hline 
-      $10 $& $0,46$ & $100$ & $100 $ \\ 
-      $20 $& $658,4$ & $100$ & $100 $ \\ 
-      $25 $& $1900,2$ & $77,78$ & $77,78 $ \\ 
-      $30 $& $2819,7$ & $80$ & $80 $ \\ 
-      $60 $& $6358,1$ & $20$ & $20 $ \\ 
+$10$&$	0,23	$&$	100	$&$	100	$\\
+$20$&$	734,04	$&$	90,9	$&$	90,9	$\\
+$25$ &     $	2102,85	$&$	77,8	$&$	77,8	$\\ 
+$30$   &   $	4483,4	$&$	60	$&$	60$\\
+$60$ & $	7200	$&$	0	$&$	0$\\ 
       \hline 
     \end{tabular}
   \end{center}
@@ -312,3 +305,62 @@ la méthode de branchement hybride.
     méthode de branchement hybride pour le \CECSP.}
   \label{tab:comp_OOBB}
 \end{table}
+
+
+\textcolor{red}{\LARGE texte ok + tableau ok}
+Nous allons maintenant présenté les quelques résultats obtenus pour
+les instances de la famille $LP$ (avec des fonctions de rendement
+concaves et affines par morceaux). Cependant, comme seules les
+instances à $10$ ont pu être résolues. Ce sont donc seulement ces
+résultats que nous présentons. Le tableau~\ref{tab:BB_LPM} présente
+ces résultats avec une limite de temps fixée à $3600$ secondes et
+$\epsilon=5$. La première ligne du tableau décrit les résultats de la
+méthode arborescente hybride avec le raisonnement basé sur les flots,
+la seconde avec le raisonnement énergétique et la dernière avec les
+deux raisonnements combinés. Pour chaque ligne, la première colonne
+correspond au temps nécessaire à la résolution des instances. La
+seconde exhibe le temps passé dans l'arbre de branchement. Enfin, la
+troisième et quatrième colonne présentent respectivement le nombre de
+PLNE résolus et le nombre de n\oe ud dans l'arbre.
+
+
+\begin{table}[!htb]
+\centering 
+\begin{tabular}{|c|cccc|}
+\hline
+ & Tps Total (s)  & Tps arbre (s) & \#PLNE & \#n\oe ud\\
+\hline
+TTFlot &3100,8 &0,01&	1	& 8\\
+RE&2315,9&0,07&	14,8	&40\\
+RE + TTFlot &1709,9&	0,14&	9,25	&37,75\\
+\hline
+\end{tabular}
+\caption{Résultats de la méthode de branchement arborescente sur les
+  instances avec fonctions de rendement concaves et affines par
+  morceaux. }
+\label{tab:BB_LPM}
+\end{table}
+
+Dans le tableau~\ref{tab:BB_LPM}, nous pouvons voir que le
+raisonnement basé sur l'algorithme de flot est moins efficace
+lorsqu'il est utilisé sans le raisonnement énergétique mais lorsque
+les deux raisonnements sont combinés ils deviennent plus efficace que
+l'un ou l'autre utilisé seul. 
+
+La deuxième chose que nous pouvons remarquer est que, lors de la
+résolution, la plupart du temps est passé dans la recherche d'une
+solution au PLNE. De ce fait, l'amélioration des performances de cette
+méthode devra obligatoirement passée par une amélioration des
+performances du PLNE. 
+
+Pour les instances de la Famille $L$, une solution a été trouvée pour
+seulement $75\%$ des instances. Donc, quand on compare ces résultats
+avec ceux obtenus pour la Famille $LP$, on peut conclure que dans un
+cas sur quatre, approximer la fonction de rendement par une fonction
+affine rend l'instance infaisable. Ceci permet, malgré la difficulté
+de résolution de ces instances, de justifier la considération de
+fonctions de rendement concaves et affines par morceaux.
+
+
+
+

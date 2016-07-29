@@ -1,1 +1,78 @@
 \chapter*{Conclusion\markboth{CONCLUSION}{}}
+
+Dans cette partie, nous avons présenté les résultats obtenus par les
+expérimentations que nous avons conduites. Ces expérimentations ont
+permis de valider et de comparer les méthodes présentées dans ce
+manuscrit. 
+
+Dans un premier temps, nous avons présenté la procédure utilisée pour
+générer des instances hétérogènes du \CECSP~et les caractéristiques
+des instances utilisées dans les expérimentations sur le \RCPSP. Pour
+ce dernier, nous expliquons aussi comment sont précalculées les
+fenêtres de temps dans lesquelles les activités doivent s'exécuter. 
+
+Nous présentons ensuite les résultats obtenus par le modèle indexé par
+le temps du \CECSP. Une comparaison des résultats avec et sans coupes
+énergétiques est réalisée montrant l'intérêt de ces coupes. En effet,
+même si l'ajout de ces coupes augmente le temps de résolution du
+modèle, cela permet de trouver une première solution de meilleure
+qualité que pour le modèle sans ces coupes. En effet, le nombre
+important d'inégalités ajoutées au modèle rend la résolution plus
+délicate mais ces dernières rendent le modèle plus fort. La mise en
+place d'un algorithme de séparation permettant d'ajouter seulement une
+partie de ces inégalités à chaque n\oe ud de l'arbre de branchement est
+donc une piste de recherche intéressante. 
+
+Le paragraphe suivant détaille les résultats obtenus par les modèles à
+événement. Nous avons présenté, dans un premier temps, un algorithme
+polynomial utilisé pour séparer les inégalités de non-préemption définies dans le
+paragraphe~\ref{sec:nonPreem}. Ensuite, les résultats obtenus par le
+modèle Start/End pour résoudre le \CECSP~sont détaillés. Ce dernier,
+malgré le fait qu'il ait de meilleure relaxation que le modèle On/Off,
+ne permet pas de résoudre autant d'instances car il comprend deux fois
+plus de variables binaires.
+
+Les expérimentations conduites sur le modèle On/Off pour résoudre le
+\CECSP~ont permis de valider les ensembles d'inégalités et de coupes
+définies dans le paragraphe~\ref{sec:amelioration_modele}. En effet,
+plusieurs sous-ensembles de ces inégalités ont successivement été
+ajoutées au modèle et une comparaison des résultats a été effectuée,
+montrant que les meilleures performances étaient obtenus quand ces
+inégalités étaient ajoutées au modèle. De plus, l'intérêt de l'ajout
+d'une partie de ces inégalités dans le cadre de la résolution du
+\RCPSP~a aussi été démontré.
+
+Enfin, une comparaison des résultats obtenus pour les trois modèles
+est effectuée dans le paragraphe suivant permettant de démontrer que
+le modèle indexé par le temps ne peut être utilisé comme une méthode
+de résolution exacte pour le \CECSP. De plus, cette comparaison a
+de nouveau permis de montrer que les résultats obtenus avec le modèle
+On/Off était meilleurs que ceux obtenus par le modèle Start/End. 
+
+Le paragraphe suivant est consacré aux résultats obtenus par les
+algorithmes de filtrage pour le \CECSP. Ces derniers sont inclus dans
+une méthode de branchement hybride, couplant règle de branchement et
+modèle On/Off. Les expérimentations conduite sont
+permis de montrer que cet algorithme obtenait de meilleurs résultats
+que le modèle On/Off seul. De plus, l'intérêt de l'algorithme du
+raisonnement énergétique et de l'algorithme de vérification basé sur
+les flots présentés dans le chapitre~\ref{sec:PLNE_CECSP}. En effet,
+pour certaines familles d'instances l'algorithme de flot obtient de
+meilleurs résultats et, pour d'autres familles, c'est le raisonnement
+énergétique qui les obtient. 
+
+Enfin, la fin de cette partie compare les deux algorithmes de
+filtrage sur des instances comportant des fonctions de rendement
+concaves et affines par morceaux. Pour ces instances, difficiles à
+résoudre, nous appliquons l'algorithme de branchement hybride avec un
+des deux raisonnements puis avec les deux. Ceci nous permet de
+démontrer que, dans ce cas, l'algorithme de vérification basé sur les
+flots obtient de meilleures performances lorsqu'il est couplé avec le
+raisonnement énergétique. La dernière chose que ces expérimentations
+nous permettent de conclure est que l'approximation des fonctions de
+rendement par des fonctions affines peut conduire à l'infaisabilité de
+l'instance alors que l'approximation par des fonctions concaves et
+affines par morceaux permet de trouver une solution. Ce dernier point
+permet, malgré la difficulté de résolution de ces instances, de
+justifier la considération de fonctions de rendement concaves et
+affines par morceaux. 
