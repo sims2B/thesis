@@ -28,7 +28,7 @@ Le paragraphe suivant détaille les résultats obtenus par les modèles à
 polynomial utilisé pour séparer les inégalités de non-préemption définies dans le
 paragraphe~\ref{sec:nonPreem}. Ensuite, les résultats obtenus par le
 modèle Start/End pour résoudre le \CECSP~sont détaillés. Ce dernier,
-malgré le fait qu'il ait de meilleure relaxation que le modèle On/Off,
+bien qu'il ait de meilleure relaxation que le modèle On/Off,
 ne permet pas de résoudre autant d'instances car il comprend deux fois
 plus de variables binaires.
 
@@ -43,33 +43,34 @@ d'une partie de ces inégalités dans le cadre de la résolution du
 \RCPSP~a aussi été démontré.
 
 Enfin, une comparaison des résultats obtenus pour les trois modèles
-est effectuée dans le paragraphe suivant permettant de démontrer que
-le modèle indexé par le temps ne peut être utilisé comme une méthode
+a été effectuée dans le paragraphe suivant permettant de vérifier
+expérimentalement que
+le modèle indexé par le temps ne peut pas être utilisé comme une méthode
 de résolution exacte pour le \CECSP. De plus, cette comparaison a
 de nouveau permis de montrer que les résultats obtenus avec le modèle
 On/Off était meilleurs que ceux obtenus par le modèle Start/End. 
 
-Le paragraphe suivant est consacré aux résultats obtenus par les
+Le paragraphe suivant a été consacré aux résultats obtenus par les
 algorithmes de filtrage pour le \CECSP. Ces derniers sont inclus dans
 une méthode de branchement hybride, couplant règle de branchement et
-modèle On/Off. Les expérimentations conduite sont
+modèle On/Off. Les expérimentations conduites ont
 permis de montrer que cet algorithme obtenait de meilleurs résultats
-que le modèle On/Off seul. De plus, l'intérêt de l'algorithme du
-raisonnement énergétique et de l'algorithme de vérification basé sur
-les flots présentés dans le chapitre~\ref{sec:PLNE_CECSP}. En effet,
+que le modèle On/Off seul. De plus, l'intérêt et la complémentarité de l'algorithme du
+raisonnement énergétique et celui de l'algorithme de vérification basé sur
+les flots présentés dans le chapitre~\ref{sec:PLNE_CECSP} ont été montrés. En effet,
 pour certaines familles d'instances l'algorithme de flot obtient de
 meilleurs résultats et, pour d'autres familles, c'est le raisonnement
 énergétique qui les obtient. 
 
-Enfin, la fin de cette partie compare les deux algorithmes de
+Enfin, cette partie a comparé les deux algorithmes de
 filtrage sur des instances comportant des fonctions de rendement
 concaves et affines par morceaux. Pour ces instances, difficiles à
 résoudre, nous appliquons l'algorithme de branchement hybride avec un
 des deux raisonnements puis avec les deux. Ceci nous permet de
 démontrer que, dans ce cas, l'algorithme de vérification basé sur les
 flots obtient de meilleures performances lorsqu'il est couplé avec le
-raisonnement énergétique. La dernière chose que ces expérimentations
-nous permettent de conclure est que l'approximation des fonctions de
+raisonnement énergétique. La dernière information que ces expérimentations
+nous permettent d'obtenir est que l'approximation des fonctions de
 rendement par des fonctions affines peut conduire à l'infaisabilité de
 l'instance alors que l'approximation par des fonctions concaves et
 affines par morceaux permet de trouver une solution. Ce dernier point

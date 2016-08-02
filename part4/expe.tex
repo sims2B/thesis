@@ -2,7 +2,6 @@
 \begin{minipage}{0.95\linewidth}
 
 \part{Implémentations et Expérimentations}
-\label{sec:expe}
 \vspace{15mm} % l'espacement souhaité
 \parttoc 
 \end{minipage}
@@ -62,6 +61,7 @@
 \vspace*{\stretch{1}}
 
 \chapter{Implémentations et Expérimentations}
+\label{sec:expe}
 
 Dans ce chapitre, consacré à la présentation des résultats
 expérimentaux, nous allons, dans un premier temps, décrire les
@@ -77,7 +77,7 @@ proposées dans le paragraphe~\ref{sec:amelioration_modele} de ce même
 chapitre. 
 
 Le dernier paragraphe sera consacré à la présentation des performances
-de la Programmation Par Contraintes où les performances des
+de la programmation par contraintes où les performances des
 algorithmes de filtrage présentés dans le chapitre~\ref{sec:PPC_CECSP}
 seront comparées. 
 
@@ -85,8 +85,7 @@ Tous les tests ont été effectués avec un processeur Intel Core i7-4770
 de 3.40GHz, 8 GB de RAM, tournant sous le système d’exploitation
 Ubuntu 12.04 à 64-bits. Toutes les méthodes présentées ont été codées
 en C++. Les programmes linéaires mixtes sont résolus avec le solveur
-commercial ILOG-Cplex version 12.6. Le temps limite de résolution pour
-chaque instance et chaque méthode a été fixé à 7200 secondes.
+commercial ILOG-Cplex version 12.6.
 
 \input{part4/instances.tex}
 \input{part4/res_PL.tex}

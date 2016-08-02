@@ -54,13 +54,16 @@ n'est pas modélisée dans ces problèmes. Les activités satisfaisant
 cette propriété sont dites {\it malléables} dans le sens où leur
 forme, définie par leur durée et consommation de ressource pendant
 leur exécution, doit être décidée pendant le processus de
-résolution. Des exemples de tels activités sont variés lorsque les
-activités doivent consommer une ressource de type, par
-exemple, énergétiques comme l'électricité où la quantité de ressource
-allouée à une activité peut être modulée à tout instant pour accélérer
-ou diminuer leur consommation (souvent pour réduire les coûts
+résolution. Des exemples de telles activités sont variés lorsque les
+activités doivent consommer, par exemple, une ressource de type
+énergétique comme 
+l'électricité.  La quantité de ressource 
+allouée à une activité peut alors être modulée à tout instant pour
+accélérer l'activité 
+ou au contraire la ralentir et diminuer sa consommation (souvent
+pour réduire les coûts 
 énergétiques). Un autre exemple intervient dans l'ordonnancement de
-projet où la durée d'une activités dépend de la quantité de ressource
+projet où la durée d'une activité dépend de la quantité de ressource
 qui lui est attribuée (p.e. personnel). 
 
 Cette thèse étudie une nouvelle modélisation des activités malléables
@@ -75,15 +78,17 @@ l'activité doit être comprise entre une valeur maximale et une valeur
 minimale. De telles bornes dans des problèmes pratiques
 peuvent représentées, par exemple, la quantité d'énergie
 minimale requise pour qu'une réaction chimique ou thermodynamique
-puisse se faire dans les conditions prescrites ou le nombre minimum et
+puisse se faire dans les conditions prescrites ou encore le nombre
+minimum et 
 maximum d'employés pouvant être affectés à une activité.
 De plus, la consommation, à un instant donné, d'une partie
 de la ressource permet à l'activité de recevoir une certaine quantité
 d'énergie, calculée par le biais d'une fonction de rendement. Ces
-fonctions de rendement peuvent, par exemple, représentées les pertes
+fonctions de rendement peuvent, par exemple, représenter les pertes
 dues à la conversion de la ressource en énergie (p.e. AC/DC) ou les
 coûts de communication dans des architectures multiprocesseurs. 
-L'énergie reçue par une activité nous permet de savoir quand
+La connaissance de l'énergie reçue par une activité nous permet de
+savoir quand 
 l'activité est terminée, i.e. quand elle a reçue une quantité
 suffisante d'énergie. 
 
@@ -114,22 +119,22 @@ manuscrit: le problème d'ordonnancement continu avec contraintes
 énergétiques. De plus, ce paragraphe décrit les modélisations
 préexistantes des activités malléables tout en expliquant en quoi ces
 modélisations ne suffisaient pas à la modélisation de certains problèmes
-réels. La dernière chose abordée dans ce chapitre est la présentation
+réels. La dernière partie du chapitre est consacrée à la présentation
 d'un certain nombre de propriétés remarquables satisfaites par ce problème.
 \item les chapitres~\ref{sec:PPC_CUSP} et~\ref{sec:PPC_CECSP} sont
   dédiés aux méthodes de programmation par
   contraintes. Après une brève introduction à la programmation par
   contraintes (paragraphe~\ref{sec:PPC}) et à l'ordonnancement en
-  programmation par contraintes (paragraphe~\ref{sec:cumu_ordo}), nous
+  programmation par contraintes, nous
   présentons les principaux algorithmes de filtrage mis en place pour
-  le problème cumulatif (paragraphe~\ref{sec:cumu_propag}). Dans le
+  le problème cumulatif (paragraphe~\ref{sec:cumu}). Dans le
   chapitre~\ref{sec:PPC_CECSP}, nous adaptons une partie de ces
   algorithmes au problème d'ordonnancement continu avec contraintes
   énergétiques. Dans un premier temps, nous montrons qu'une partie de
-  ces algorithmes peuvent facilement être adaptés en considérant
+  ces algorithmes peut facilement être adaptée en considérant
   l'ordonnancement des activités dans le pire des cas en termes de
   durée ou de consommation de ressource (voir
-  paragraphe~\ref{sec:TT_CECSP}). Le paragraphe~\ref{sec:ER_CECSP} est
+  paragraphe~\ref{sec:time_CECSP}). Le paragraphe~\ref{sec:ER_CECSP} est
   consacré à l'adaptation du raisonnement énergétique. Pour ce
   raisonnement, nous présentons plusieurs méthodes permettant de
   caractériser les intervalles sur lesquels appliquer ce
@@ -148,12 +153,12 @@ d'un certain nombre de propriétés remarquables satisfaites par ce problème.
   ressource (paragraphe~\ref{sec:PLNE_ordo_res}). Le premier est un
   modèle indexé par le temps et les deux autres utilisent des
   formulations basées sur les événements. Ces modèles sont
-  ensuite adaptés dans le cadre du problème d'ordonnancement continu
+  ensuite adaptés au problème d'ordonnancement continu
 avec contraintes énergétiques (paragraphe~\ref{sec:modele_CECSP}). Le
-paragraphe~\ref{sec:amelioration_modele} présente quant à lui plusieurs
+paragraphe~\ref{sec:amelioration_modele} présente plusieurs
 ensembles d'inégalités permettant de renforcer les modèles
 présentés. Pour le modèle indexé par le temps, des inégalités
-directement déduites du raisonnement énergétiques sont exhibées. Pour
+directement déduites du raisonnement énergétique sont exhibées. Pour
 les modèles à événements, cinq jeux d'inégalités sont présentés et
 l'un d'entre eux est utilisée pour donner une description minimale de
 l'enveloppe convexe du polyèdre formé par toutes les affectations
@@ -163,10 +168,10 @@ possibles des variables binaires correspondant à une seule activité.
   chapitres précédents. Dans un premier temps, nous présentons les
   instances sur lesquelles les algorithmes ont été appliqués (voir
   paragraphe~\ref{sec:instance}). Le paragraphe~\ref{sec:expe_PLNE}
-  présente les performances des différents modèle de programmation
+  présente les performances des différents modèles de programmation
   linéaire mixte définis pour le \CECSP. De plus, l'influence des 
   inégalités définies pour renforcer les modèles est évaluée. Le
-  paragraphe suivant (~\ref{sec:expe_PPC}) présente les résultats obtenus
+  paragraphe suivant (\ref{sec:expe_PPC}) présente les résultats obtenus
   lors des expérimentations portant sur la programmation par
   contraintes. Les raisonnements présentés dans le manuscrit sont
   intégrés dans une méthode de branchement hybride utilisant un modèle
@@ -181,7 +186,8 @@ possibles des variables binaires correspondant à une seule activité.
   d'ordonnancement avec contraintes et objectifs énergétiques. Ce
   travail s'inscrit dans le cadre d'une collaboration pour un projet
   franco-chilien et a été publié dans la conférence IESM (International
-  Conference on Industrial Engineering and Systems Management).
+  Conference on Industrial Engineering and Systems
+  Management~\cite{Nattaf_IESM}). 
 \end{itemize}
 
 

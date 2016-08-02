@@ -3,24 +3,25 @@
 \label{sec:instance}
 Ce paragraphe présente, dans un premier temps, la méthode utilisée
 pour générer des ensembles d'instances de test pour le \CECSP. Nous
-détaillons ensuite les jeux d'instances du \RCPSP sur lesquelles nous
+détaillons ensuite les jeux d'instances du \RCPSP~sur lesquelles nous
 avons évalué l'impact des améliorations proposées pour les modèles à
 événements. Nous présenterons aussi une méthode de calcul des fenêtres
-de temps pour le \RCPSP, appliqué sur les instances comme
+de temps pour le \RCPSP, appliquée sur les instances comme
 pré-traitement à leur résolution.
 
 \subsection{Instances du \CECSP}
 \label{sec:instance_CECSP}
-Les instances utilisées dans le cadre du \CECSP sont regroupées en
+Les instances utilisées dans le cadre du \CECSP~sont regroupées en
 quatre familles selon les caractéristiques de leurs fonctions de
-rendements et de l'énergie que les activités requièrent. Dans un
+rendement et de l'énergie que les activités requièrent. Dans un
 premier temps, les instances sont générées selon un modèle commun,
 puis plusieurs types de modifications spécifiques sont appliquées sur
-celles-ci afin de les séparées en différentes familles. 
+celles-ci afin de les séparer en différentes familles. 
 
-Tout d'abord, cinq instances de $10$ et $60$ activités ainsi que dix
-instances de respectivement $20$, $25$ et $30$ activités sont
-générées. Pour toutes ces instances, la disponibilité de la ressource
+Tout d'abord, deux ensembles de cinq instances chacun comportant
+respectivement $10$ et $60$ activités ainsi que trois ensembles de dix
+instances chacun comportant respectivement $20$, $25$ et $30$ activités sont
+générés. Pour toutes ces instances, la disponibilité de la ressource
 est fixée à $R=10$ et les autres paramètres du problème sont générés
 de façon aléatoire selon une loi uniforme et dans les intervalles
 suivants:
@@ -33,7 +34,7 @@ suivants:
 \frac{W_i}{f_i(\bmax)}$.
 \end{itemize}
 
-Une première famille d'instance, appelée Famille 4, est construit en
+Une première famille d'instance, appelée Famille 4, est construite en
 utilisant comme fonction de rendement la fonction identité pour toutes
 les activités, i.e. $\forall i \in \A,\ f_i(b_i(t))= b_i(t)$. Ensuite,
 des fonctions de rendement affines sont générées aléatoirement pour
@@ -46,10 +47,10 @@ loi uniforme et telle que:
 \end{itemize} La valeur de $W_i$ est ensuite modifiée à l'aide de ces
 fonctions $f_i$. Les trois autres familles d'instances sont classées
 suivant cette modification. Pour la première famille, appelée Famille
-1, $W_i$ est généré aléatoirement, selon une loi uniforme, dans
-l'intervalle $[0,f_i(W_i)]$ et pour la Famille 2 dans l'intervalle
-$[f_i(W_i)/2, f_i(W_i)]$. Enfin, pour la Famille 3, la valeur
-$f_i(W_i)$ est affectée $W_i$. 
+1, la nouvelle valeur de $W_i$ est générée aléatoirement, selon une
+loi uniforme, dans l'intervalle $[0,f_i(W_i)]$ et pour la Famille 2
+dans l'intervalle $[f_i(W_i)/2, f_i(W_i)]$. Enfin, pour la Famille 3,
+$W_i$ est transformé en $f_i(W_i)$. 
 
 Pour générer des instances où les activités ont des fonctions de
 rendement concaves et affines par morceaux, nous utilisons les
@@ -57,14 +58,15 @@ instances de la Famille 4. Dans un premier temps, nous générons
 aléatoirement $P_i,\ \forall i \in \A$, le nombre de segments de
 définition de la fonction $f_i$, dans l'intervalle $[1 ,\bmax -
 \bmin]$. L'intervalle $[\bmin,\bmax]$ est ensuite divisé en $P_i$
-morceaux. Pour chacun de ces morceaux $ p \in [1,P_i]$, nous générons
-un coefficient $a_{ip}$ aléatoire tel que $a_{i1}<10$ et $1 < a_{ip} <
-a_{ip-1}$ et $c_{ip}$ est calculé de manière à préserver la continuité
-de la fonction. Enfin, $W_i$ est généré dans l'intervalle
+morceaux. Pour chacun de ces morceaux $ p \in \{1,\dots,P_i\}$, nous
+générons un coefficient $a_{ip}$ aléatoire tel que $a_{i1}<10$ et $1 <
+a_{ip} < a_{ip-1}$ et $c_{ip}$ est calculé de manière à préserver la
+continuité de la fonction. Enfin, $W_i$ est généré dans l'intervalle
 $[f_i(\bmin)(\LE-\ES), 0,8*f_i(\bmax)(\LE-\ES)]$. Ce processus est
-répété deux fois afin d'obtenir $10$ instances de $10$ et $60$
-activités et $20$ instances de $20,\ 25$ et $30$ activités. Cette
-famille d'instance est appelée Famille $LP$. 
+répété deux fois afin d'obtenir deux ensembles de $10$ instances
+chacun, comportant respectivement $10$ et $60$ activités et trois
+ensembles de $20$ instances chacun comportant $20,\ 25$ et $30$
+activités. Cette famille d'instance est appelée Famille $LP$.
  
 Afin de comparer les approximations des fonctions de rendement, nous
 avons aussi généré les instances correspondantes mais avec des
@@ -94,12 +96,13 @@ une durée aléatoire comprise entre $1$ et $10$ unités de temps. Ces
 durées étant relativement courtes, les modèles indexés par le temps
 sont particulièrement efficaces sur ces dernières (voir
 paragraphe~\ref{sec:motiv_event_RCPSP}). L'auteur de~\cite{theseOumar}
-a donc modifié ces instances afin d'allonger la durée des
+a donc modifié ces instances afin d'allonger la durée de certaines 
 activités. En effet, dans certaines applications pratiques (notamment
 dans le domaine pharmaceutique ou de la pétrochimie), il arrive que
-les activités aient des durées relativement longues.
+les activités aient des durées disparates, certaines étant très
+courtes et d'autres relativement longues.
 
-Les instances de Kone sont crées selon le principe suivant: 
+Les instances de Kone sont créées selon le principe suivant: 
 \begin{enumerate}
 \item les $15$ premières activités non-fictives de l’instance sont
   sélectionnées (les autres activités ainsi que les contraintes de
