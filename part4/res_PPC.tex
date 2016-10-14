@@ -1,11 +1,11 @@
 \section{Performances de la Programmation Par Contraintes}
 \label{sec:expe_PPC}
-Dans ce paragraphe, nous présentons les résultats des expérimentations
+Dans cette section, nous présentons les résultats des expérimentations
 portant sur les méthodes présentées dans le
 chapitre~\ref{sec:PPC_CECSP}. Dans un premier temps, nous définissons
 le cadre des expérimentations, notamment les algorithmes et
 heuristiques de choix de variables utilisées. Puis, dans un second
-temps, nous présenterons en détails les résultats numériques issus de
+temps, nous présenterons en détail les résultats numériques issus de
 ces expérimentations. 
 
 \subsection{Cadre des expérimentations}
@@ -18,7 +18,7 @@ se divise en deux temps. Dans un premier temps, une méthode
 arborescente est utilisée afin de réduire la taille des domaines des
 début et fin des activités jusqu'à ce que chaque domaine ait une
 taille inférieure à un certain paramètre $\epsilon >0$. Une fois les
-domaines réduits suffisamment, nous utilisons le modèle à événement
+domaines réduits suffisamment, nous utilisons le modèle à événements 
 On/Off afin de fixer les dates de début et de fin et de calculer, pour
 chaque activité $i$, sa fonction d'allocation de ressource
 $b_i(t)$. Nous rappelons que, pour ce faire, seule la valeur de
@@ -44,7 +44,7 @@ présentés au chapitre~\ref{sec:PPC_CECSP} est appliqué.
 \end{figure}
 
 Cette procédure est répétée jusqu'à ce que tous les domaines de toutes
-les variables soient plus petit qu'un certain paramètre $\epsilon
+les variables soient plus petits qu'un certain paramètre $\epsilon
 >0$. Quand ceci arrive, cela veut dire que nous sommes au niveau d'une
 feuille de notre arbre de recherche et nous pouvons évaluer la
 satisfiabilité du n\oe ud courant. Pour cela, nous utilisons le modèle
@@ -68,8 +68,8 @@ de $32$, les valeurs de $\epsilon$ testées sont $10$, $5$, $2.5$.
 
 Dans un premier temps, nous allons commencer par comparer les
 différentes méthodes de calcul des intervalles d'intérêt pour
-l'algorithme de vérification de ce raisonnement, présentées dans le
-paragraphe~\ref{sec:intervalle_CECSP}. 
+l'algorithme de vérification de ce raisonnement, présentées dans la
+sous-section~\ref{sec:intervalle_CECSP}. 
 
 \subsubsection{Comparaison des méthodes de calcul des intervalles
   d'intérêt pour l'algorithme de vérification du raisonnement
@@ -85,8 +85,7 @@ mêmes intersections à l'aide de l'algorithme de balayage de
 Bentley-Ottmann. Enfin, la troisième colonne présente les résultats de
 l'adaptation de la méthode de calcul de Derrien {\it et al.}~\cite{DP}
 pour le problème cumulatif dans le cadre du \CECSP. Toutes ces
-méthodes sont décrites dans le
-paragraphe~\ref{sec:intervalle_CECSP}.
+méthodes sont décrites dans la sous-section~\ref{sec:intervalle_CECSP}.
 
 L'algorithme de balayage fait partie de la librairie C++  CGAL
 \footnote{\textsc{Cgal}, {C}omputational {G}eometry {A}lgorithms
@@ -99,7 +98,7 @@ représenté en millisecondes.
 
 \begin{table}[ht] \centering
   \begin{tabular}{|>{\centering\arraybackslash}m{1.5cm}|>{\centering\arraybackslash}m{4cm}>{\centering\arraybackslash}m{4cm}>{\centering\arraybackslash}m{4cm}|}
-    \hline \# tasks & méthode naïve & algorithme de balayage & adaptation
+    \hline \# act. & méthode naïve & algorithme de balayage & adaptation
                                                                de
                                                                l'algorithme
                                                                de~\cite{DP}\\
@@ -109,7 +108,7 @@ représenté en millisecondes.
     \hline
   \end{tabular}
   \caption{Comparaison des méthodes de calcul des intervalles
-    d'intéret du raiosnnement énergétique.}
+    d'intéret du raisonnement énergétique.}
   \label{tab:intervalle_CECSP}
 \end{table} 
 
@@ -131,12 +130,12 @@ Dans le reste des expérimentations conduites sur le raisonnement
 énergétique, nous utiliserons donc la méthode de calcul adaptée de~\cite{DP}. 
 
 \subsubsection{Intégration du raisonnement énergétique dans
-  l'algorithme de branchement hybrides}
+  l'algorithme de branchement hybride}
 
 Dans ce paragraphe, nous présentons les résultats des expérimentations
 faites pour le raisonnement énergétique. Ce raisonnement est intégré
-dans l'algorithme de branchement hybride décrit dans le
-paragraphe~\ref{sec:hybridBB}. Cet algorithme a été testé avec
+dans l'algorithme de branchement hybride décrit dans la
+sous-section~\ref{sec:hybridBB}. Cet algorithme a été testé avec 
 l'heuristique de sélection de variable qui choisit la variable de plus
 petit domaine.
 
@@ -148,10 +147,10 @@ colonne décrit le temps nécessaire pour résoudre les instances. Les
 deuxième et troisième colonnes montrent le pourcentage de temps passé
 dans la résolution du PLNE et dans l'arbre de recherche
 respectivement. La quatrième colonne énonce le pourcentage d'instances
-résolues. Les cinquième et sixièmes colonnes décrivent respectivement
- le nombre de n\oe ud contenus dans l'arbre de recherche et de programme
-linéaire en nombres entiers résolus. Enfin, la dernière colonne
-exhibe le nombre d'ajustements appliqués. 
+résolues. Les cinquième et sixième colonnes décrivent respectivement
+le nombre de noeuds contenus dans l'arbre de recherche et de
+programmes linéaires en nombres entiers résolus. Enfin, la dernière
+colonne exhibe le nombre d'ajustements appliqués.
 
 \begin{table}[!htb]
   \begin{center}
@@ -162,7 +161,7 @@ exhibe le nombre d'ajustements appliqués.
       \hline 
       \multicolumn{8}{|l|}{Famille 1 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE  & \#adj. \\ 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#noeuds & \#PLNE  & \#adj. \\ 
       \hline 
 $10$ & $0,09$ & $83,19$ & $16,81$ & $100$ & $25$ & $6$ & $6$ \\ 
 $20$ & $660,21$ & $96,97$ & $3,03$ & $90$ & $3809$ & $20611$ & $2716$ \\ 
@@ -171,7 +170,8 @@ $30$ & $112,58$ & $99,14$ & $0,86$ & $100$ & $102$ & $10$ &  $114$ \\
 \hline 	
       \multicolumn{8}{|l|}{Famille 2 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE& \#adj. \\ 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.
+                                            & \#noeuds & \#PLNE& \#adj. \\ 
       \hline 
 $10$ & $1109,5$ & $81,2$ & $18,75$ & $100$ & $46783$ & $140276$ & $65446$ \\ 
 $20$ & $728,04$ & $97,55$ & $2,45$ & $90$ & $1930$ & $9296$  & $3851$ \\ 
@@ -180,7 +180,7 @@ $30$ & $1971,81$ & $99,62$ & $0,38$ & $75$ & $150$ & $5$ &  $659$ \\
       \hline 	
       \multicolumn{8}{|l|}{Famille 4 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE  & \#adj. \\ 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#noeuds & \#PLNE  & \#adj. \\ 
       \hline 
 $10$ & $0,19$ & $87,55$ & $12,45$ & $100$ & $25$ & $5$ &  $33$ \\ 
 $20$ & $1617,07$ & $98,97$ & $1,03$ & $77$ & $68$ & $9$ & $246$ \\ 
@@ -196,17 +196,17 @@ $30$ & $1749,76$ & $99,72$ & $0,27$ & $77$ & $107$ & $9$ &  $424$ \\
 
 Tout d'abord, nous pouvons remarquer que l'algorithme de branchement
 hybride permet de résoudre des instances jusqu'à $30$ activités en
-moins de $7200$ secondes. De plus, nous pouvons voir qu'une bonne
-partie du temps de résolution est passé dan s le programme linéaire
+moins de $2000$ secondes. De plus, nous pouvons voir qu'une bonne
+partie du temps de résolution est passé dans le programme linéaire
 mixte. Enfin, le raisonnement énergétique permet de procéder à un
 nombre important d'ajustements. 
 
 \subsection{Raisonnements basés sur le Time-Table}
 \label{sec:expe_TT}
 
-Dans ce paragraphe, nous montrons l'intérêt d'ajouter le
+Dans cette sous-section, nous montrons l'intérêt d'ajouter le
 raisonnement basé sur un problème de flot et sur le raisonnement
-Time-Table. Pour ce faire, à chaque n\oe ud de l'arbre de recherche,
+Time-Table. Pour ce faire, à chaque noeuds de l'arbre de recherche,
 nous appliquons l'algorithme de Time-Table/Flot pour détecter une
 incohérence. 
 
@@ -225,7 +225,7 @@ pour valeur de $\epsilon=2,5$. Les colonnes du tableau correspondent
       \hline 
       \multicolumn{7}{|l|}{Famille 1 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE \\ 
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#noeuds & \#PLNE \\ 
       \hline 
 $10$ & $0,12$ & $51,5$ & $48,5$ & $100$ & $25$ & $6$ \\ 
 $20$ & $5,0$ & $88,7$ & $11,3$ & $100$ & $58$ & $12$ \\
@@ -234,7 +234,7 @@ $30$ & $70,8$ & $96,69$ & $3,3$ & $100$ & $100$ & $11$ \\
 \hline 	
       \multicolumn{7}{|l|}{Famille 2 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE\\
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#noeuds & \#PLNE\\
       \hline 
 $10$ & $0,17$ & $63,0$ & $37,0$ & $100$ & $24$ & $6$ \\
 $20$ & $9,03$ & $86,5$ & $13,5$ & $100$ & $59$ & $12$ \\
@@ -243,7 +243,7 @@ $30$ & $118,9$ & $96,7$ & $3,3$ & $100$ & $106$ & $11$ \\
      \hline 	
 \multicolumn{7}{|l|}{Famille 4 }\\ 
       \hline 
-             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#n\oe ud & \#PLNE \\
+             & Tps total(s) & Tps CPLEX(\%) & Tps arbre(\%) & \%solv.  & \#noeuds & \#PLNE \\
       \hline 
 $10$ & $0,29$ & $77,3$ & $22,7$ & $100$ & $27$ & $6$ \\
 $20$ & $1476,1$ & $93,2$ & $6,8$ & $80$ & $98$ & $10$ \\
@@ -266,11 +266,11 @@ mixte. Le raisonnement basé sur les flots permet aussi d'obtenir de
 meilleurs résultats que le raisonnement énergétique pour les Familles 2
 et 1 et de moins bons résultats pour la Famille 4. La recherche de
 propriétés inhérentes au problème permettant de savoir quel 
-raisonnement appliqué est une direction de recherche intéressante. 
+raisonnement appliquer est une direction de recherche intéressante. 
 
 \subsection{Comparaison des différentes approches}
 
-Dans ce paragraphe, nous allons comparer les résultats obtenus avec le
+Dans cette sous-section, nous allons comparer les résultats obtenus avec le
 modèle On/Off avec ceux obtenus par la méthode de branchement
 hybride. Ces résultats sont décrits dans le
 tableau~\ref{tab:comp_OOBB}.
@@ -282,7 +282,7 @@ la méthode de branchement hybride.
   \begin{center}
     \begin{tabular}{|c|cc|cc|}
       \hline
-      \#tasks & \multicolumn{2}{c|}{Modèle On/Off}&
+      \#act. & \multicolumn{2}{c|}{Modèle On/Off}&
                                                     \multicolumn{2}{c|}{Algo. hybride}\\ 
       \hline 
               & tps(s) &\%solv. & tps & \%solv.\\ 
@@ -317,8 +317,8 @@ rapide grâce à l'utilisation de cette méthode.
 Nous allons maintenant présenter les quelques résultats obtenus pour
 les instances de la famille $LP$ (avec des fonctions de rendement
 concaves et affines par morceaux). Cependant, comme seules les
-instances à $10$ ont pu être résolues. Ce sont donc seulement ces
-résultats que nous présentons. Le tableau~\ref{tab:BB_LPM} présente
+instances à $10$ activités ont pu être résolues, nous présentons
+uniquement ces résultats. Le tableau~\ref{tab:BB_LPM} présente
 ces résultats avec une limite de temps fixée à $3600$ secondes et
 $\epsilon=5$. La première ligne du tableau décrit les résultats de la
 méthode arborescente hybride avec le raisonnement basé sur les flots,
@@ -327,14 +327,14 @@ deux raisonnements combinés. Pour chaque ligne, la première colonne
 correspond au temps nécessaire à la résolution des instances. La
 seconde exhibe le temps passé dans l'arbre de branchement. Enfin, la
 troisième et quatrième colonne présentent respectivement le nombre de
-PLNE résolus et le nombre de n\oe uds dans l'arbre.
+PLNE résolus et le nombre de noeudss dans l'arbre.
 
 
 \begin{table}[!htb]
 \centering 
 \begin{tabular}{|c|cccc|}
 \hline
- & Tps Total (s)  & Tps arbre (s) & \#PLNE & \#n\oe ud\\
+ & Tps Total (s)  & Tps arbre (s) & \#PLNE & \#noeuds\\
 \hline
 TTFlot &3100,8 &0,01&	1	& 8\\
 RE&2315,9&0,07&	14,8	&40\\
@@ -361,7 +361,7 @@ performances du PLNE.
 
 Pour les instances de la Famille $L$, une solution a été trouvée pour
 seulement $75\%$ des instances. Donc, quand on compare ces résultats
-avec ceux obtenus pour la Famille $LP$, on peut conclure que dans un
+avec ceux obtenus pour la Famille $LP$, on peut conclure que, dans un
 cas sur quatre, approximer la fonction de rendement par une fonction
 affine rend l'instance infaisable. Ceci permet, malgré la difficulté
 de résolution de ces instances, de justifier la considération de

@@ -5,7 +5,7 @@
 
 \section{Algorithmes de filtrage basés sur le Time-Table}
 \label{sec:time_CECSP}
-Le paragraphe suivant présente plusieurs algorithmes de filtrage pour le
+La section suivante présente plusieurs algorithmes de filtrage pour le
 \CECSP. Tous ces algorithmes utilisant une adaptation du Time-Table
 pour le \CUSP, nous commençons donc par présenter brièvement comment
 ce raisonnement est modifié pour être adapté dans le cadre du \CECSP.
@@ -16,23 +16,23 @@ le \CUSP~\cite{Gay2015} et le dernier utilise une combinaison entre
 problème de flots et profil obligatoire.
 
 \subsection{Le Time-Table}
-\label{sec:TT_CECSP}
+\label{sec:TT_CECSP} 
 Comme pour le \CUSP, le Time-Table pour le \CECSP~se base sur la
 notion de partie obligatoire des activités, i.e. l'intervalle pendant
 lequel une activité est en cours d'exécution dans tous les
-ordonnancements réalisables. Cependant, comme dans le cas du \CECSP
-nous ne connaissons pas la durée exacte d'une activité, nous utilisons 
-une borne inférieure sur sa durée pour calculer la date de début au
-plus tard, $\LS$, et la date de fin au plus tôt, $\EE$. Pour calculer
-cette borne, remarquons que la configuration permettant de finir une
-activité le plus rapidement possible, est celle où l'activité est
-exécutée à son rendement maximal $\bmax$. De ce fait, une borne
-inférieure sur la durée de l'activité vaut $W_i/f_i(\bmax)$. Nous
-pouvons donc calculer la date de début au plus tard de l'activité,
-$\LS=\LE -W_i/f_i(\bmax)$, et sa date de fin au plus tôt,
-$\EE=\ES +W_i/f_i(\bmax)$. La partie obligatoire d'une activité $i$ est
-alors définie de la même manière que pour le \CUSP, i.e la partie
-obligatoire de $i$ est l'intervalle $[\LS,\EE{[}$
+ordonnancements réalisables. Cependant, comme dans le cas du
+\CECSP~nous ne connaissons pas la durée exacte d'une activité, nous
+utilisons une borne inférieure sur sa durée pour calculer la date de
+début au plus tard, $\LS$, et la date de fin au plus tôt, $\EE$. Pour
+calculer cette borne, remarquons que la configuration permettant de
+finir une activité le plus rapidement possible, est celle où
+l'activité est exécutée à son rendement maximal $\bmax$. De ce fait,
+une borne inférieure sur la durée de l'activité vaut
+$W_i/f_i(\bmax)$. Nous pouvons donc calculer la date de début au plus
+tard de l'activité, $\LS=\LE -W_i/f_i(\bmax)$, et sa date de fin au
+plus tôt, $\EE=\ES +W_i/f_i(\bmax)$. La partie obligatoire d'une
+activité $i$ est alors définie de la même manière que pour le \CUSP,
+i.e la partie obligatoire de $i$ est l'intervalle $[\LS,\EE{[}$
 (cf. figure~\ref{fig_mand_CECSP}).
 
 Cependant, dans le cas où $\LS \le \EE$, i.e. où l'activité possède
@@ -175,7 +175,7 @@ Nous détaillons maintenant l'adaptation du Time-Table disjonctif au
 
 Le second algorithme de filtrage proposé repose sur un raisonnement
 appelé Time-Table disjonctif et utilisé, en premier lieu, pour le
-\CUSP~(cf. paragraphe~\ref{sec:mix_CUSP}). Ce dernier repose sur le
+\CUSP~(cf. sous-section~\ref{sec:mix_CUSP}). Ce dernier repose sur le
 raisonnement Time-Table décrit précédemment et sur le raisonnement
 disjonctif.
 
@@ -199,7 +199,7 @@ arriver avant la date de fin au plus tôt de $i$, et donc: $\ES[j] \ge
 pour le \CUSP.
 
 \begin{reg}
-Soient $i, j \in \A, i \neq j$ telles que $\bmin+\bmin[j] < R$ et $\LS
+Soient $i, j \in \A, i \neq j$ telles que $\bmin+\bmin[j] > R$ et $\LS
 < \EE[j]$. Alors la date de début au plus tôt de l’activité peut être
 ajustée et on a : $\ES[j] \ge \EE$.
 \end{reg}
@@ -654,25 +654,25 @@ donc être facilement adaptés au cas du \CECSP~en considérant des
 activités rectangulaires de durée ou de consommation
 minimale. Cependant, ces règles ne prenant en considération que des
 cas ``extrêmes'', elles demeurent moins efficaces que dans le cas du
-\CUSP. C'est pourquoi, dans le paragraphe~\ref{sec:ER_CECSP}, nous
+\CUSP. C'est pourquoi, dans la section~\ref{sec:ER_CECSP}, nous
 avons choisi d'adapter un des raisonnements les plus forts pour le
 \CUSP~dans le cadre du \CECSP: le raisonnement énergétique.
 
-Le prochain paragraphe présente quant à lui un raisonnement couplant
+La prochaine sous-section présente quant à lui un raisonnement couplant
 modélisation de problème de flots et Time-Table. 
 
 \subsection{Le Time-Table basé sur les flots}
 \label{sec:TTFlot_CECSP}
-Le raisonnement décrit dans ce paragraphe propose d'intégrer le
+Le raisonnement décrit dans cette sous-section propose d'intégrer le
 raisonnement Time-Table dans un programme linéaire basé sur un
 problème de flots. Ce programme linéaire peut ensuite être utilisé
 comme algorithme de vérification, ou checker, pour s'assurer que les
 valeurs des domaines des variables ne vont pas amener à une
 incohérence. Il peut aussi être couplé avec des algorithmes de
-propagation tels que ceux décrits dans le paragraphe précédent pour
-décrire un raisonnement complet. 
+propagation tels que ceux décrits dans la sous-section précédente pour
+décrire un raisonnement complet.
 
-L'idée de l'algorithme de vérification est donc de s'assurer qu' une
+L'idée de l'algorithme de vérification est donc de s'assurer qu'une
 fois les parties obligatoires des activités fixées, l'aire disponible
 est suffisante pour ordonnancer le reste des activités en tenant
 compte des fenêtres de temps de chaque activité. Pour ce faire, nous
@@ -682,7 +682,7 @@ $[\LS,\EE{[}$ et ensuite, nous relâchons la contrainte de consommation
 minimale en autorisant l'activité à consommer une quantité de
 ressource comprise entre $0$ et $\bmax$ durant le reste de l'intervalle
 $[\ES,\LE{]}$. Ceci peut être vu comme une variante de la relaxation
-préemptive du \CECSP, décrite dans le paragraphe~\ref{sec:ordo_nrj}. 
+préemptive du \CECSP, décrite dans la section~\ref{sec:ordo_nrj}. 
 Clairement, comme il s'agit d'une relaxation du \CECSP, si aucune
 solution n'existe alors l'instance du \CECSP~correspondante
 ne possède pas de solutions. 
@@ -797,7 +797,7 @@ l'infaisabilité de l'instance. Notons aussi que le raisonnement
 Time-Table disjonctif n'aurait pas détecté l'incohérence.
 \end{ex}
 
-Dans ce paragraphe, nous avons montré que certaines extensions des
+Dans cette section, nous avons montré que certaines extensions des
 relaxations du \CUSP~était directement adaptable au cas du \CECSP. En
 effet, nous avons décrit l'extension des raisonnements Time-Table,
 disjonctif et Time-Table disjonctif. D'autres raisonnements existants
@@ -806,5 +806,5 @@ ses extensions. Nous avons aussi montré que la programmation linéaire
 pouvait être utilisée pour décrire un algorithme de vérification qui
 pouvait être couplée à des algorithmes d'ajustements existants.
 
-Dans le paragraphe suivant nous décrivons une extension non triviale du
+Dans la section suivante nous décrivons une extension non triviale du
 raisonnement énergétique, un des raisonnements les plus forts pour le \CUSP.

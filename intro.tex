@@ -1,7 +1,7 @@
-e\chapter*{Introduction\markboth{INTRODUCTION}{}}
+\chapter*{Introduction\markboth{INTRODUCTION}{}}
 
 De nos jours, de nombreuses tâches, auparavant fastidieuses, ont vu
-leur complexité largement diminuer grâce à la mise en place d'outils
+leur complexité largement diminuée grâce à la mise en place d'outils
 informatiques permettant leur traitement. Ces outils sont constamment
 améliorés et l'augmentation des performances des ordinateurs les
 rendent de plus en plus efficaces. Cependant, nombre de ces outils
@@ -32,8 +32,8 @@ d'entre elles consommant une partie d'une ou plusieurs ressources (de
 capacité limitée) et étant liées par des relations de précédence. Le
 plus souvent, ces activités doivent être ordonnancées de manière à
 minimiser la date de fin du projet mais de nombreux autres objectifs,
-tels que la minimisation du coût ou des retards peuvent être trouvés 
-dans la littérature.
+tels que la minimisation du coût ou des retards peuvent être
+rencontrés dans la littérature.
 
 Dans le problème cumulatif, les activités consomment une quantité
 d'une et une seule ressource. Il s'agit de la même ressource pour
@@ -43,10 +43,10 @@ fenêtre de temps dans laquelle elle doit s'exécuter. Ce problème
 correspond à une relaxation de la variante décisionnelle du problème d'ordonnancement de projet avec contraintes de
 ressource.
 
-La plus grande limites de ces problème est que les activités sont
-supposées de durée fixes et consommant une quantité de ressource
+La plus grande limite de ces problèmes est que les activités sont
+supposées de durée fixe et consommant une quantité de ressource
 constante au cours du temps. Cependant, il existe de nombreuses
-applications pratiques dans lesquelles ces contraintes ne sont pas
+applications pratiques dans lesquelles ces hypothèses ne sont pas
 respectées~\cite{HaitArtiguesLopez,Blaz,W80}. En effet, la
 possibilité, pour une activité, de consommer plus de ressource
 (respectivement moins) afin de finir plus rapidement (resp. lentement)
@@ -76,7 +76,7 @@ nécessaire à l'exécution d'une activité n'est pas fixée mais doit
 jusqu'à sa date de fin, la quantité de ressource consommée par
 l'activité doit être comprise entre une valeur maximale et une valeur
 minimale. De telles bornes dans des problèmes pratiques
-peuvent représentées, par exemple, la quantité d'énergie
+peuvent représenter, par exemple, la quantité d'énergie
 minimale requise pour qu'une réaction chimique ou thermodynamique
 puisse se faire dans les conditions prescrites ou encore le nombre
 minimum et 
@@ -89,7 +89,7 @@ dues à la conversion de la ressource en énergie (p.e. AC/DC) ou les
 coûts de communication dans des architectures multiprocesseurs. 
 La connaissance de l'énergie reçue par une activité nous permet de
 savoir quand 
-l'activité est terminée, i.e. quand elle a reçue une quantité
+l'activité est terminée, i.e. quand elle a reçu une quantité
 suffisante d'énergie. 
 
 Pour le problème cumulatif et le problème d'ordonnancement de projet
@@ -100,7 +100,7 @@ variés. Cependant, deux de celles figurant parmi les plus utilisées
 demeurent les techniques issues de la programmation par contraintes et
 de la programmation linéaire mixte (ou en nombres entiers). En effet,
 ces techniques se sont révélées très efficace dans le processus de
-résolution de ces deux problèmes. Ce sont quelques unes de ces
+résolution de ces deux problèmes. Ce sont quelques-unes de ces
 méthodes que nous nous proposons d'étendre au problème considéré dans
 cette thèse.
 
@@ -108,15 +108,15 @@ Le plan de la thèse est le suivant:
 \begin{itemize}
 \item le chapitre~\ref{sec:chapter1} commence par détailler les
 principales caractéristiques des problèmes d'ordonnancement
-(paragraphe~\ref{sec:ordo_def}). Ensuite, une définition formelle des
+(sous-section~\ref{sec:ordo_def}). Ensuite, une définition formelle des
 problèmes d'ordonnancement cumulatif et de projet
 avec contraintes de ressource ainsi qu'une description des principales
 limitations de ces problèmes en termes de modélisation de certaines
 ressources sont données
-(paragraphe~\ref{sec:ordo_res}).  Enfin, le
-paragraphe~\ref{sec:ordo_nrj} décrit le problème étudié dans ce
+(sous-section~\ref{sec:ordo_res}).  Enfin, la
+section~\ref{sec:ordo_nrj} décrit le problème étudié dans ce 
 manuscrit: le problème d'ordonnancement continu avec contraintes
-énergétiques. De plus, ce paragraphe décrit les modélisations
+énergétiques. De plus, cette section décrit les modélisations
 préexistantes des activités malléables tout en expliquant en quoi ces
 modélisations ne suffisaient pas à la modélisation de certains problèmes
 réels. La dernière partie du chapitre est consacrée à la présentation
@@ -124,18 +124,18 @@ d'un certain nombre de propriétés remarquables satisfaites par ce problème.
 \item les chapitres~\ref{sec:PPC_CUSP} et~\ref{sec:PPC_CECSP} sont
   dédiés aux méthodes de programmation par
   contraintes. Après une brève introduction à la programmation par
-  contraintes (paragraphe~\ref{sec:PPC}) et à l'ordonnancement en
+  contraintes (section~\ref{sec:PPC}) et à l'ordonnancement en
   programmation par contraintes, nous
   présentons les principaux algorithmes de filtrage mis en place pour
-  le problème cumulatif (paragraphe~\ref{sec:cumu}). Dans le
+  le problème cumulatif (section~\ref{sec:cumu}). Dans le
   chapitre~\ref{sec:PPC_CECSP}, nous adaptons une partie de ces
   algorithmes au problème d'ordonnancement continu avec contraintes
   énergétiques. Dans un premier temps, nous montrons qu'une partie de
   ces algorithmes peut facilement être adaptée en considérant
   l'ordonnancement des activités dans le pire des cas en termes de
-  durée ou de consommation de ressource (voir
-  paragraphe~\ref{sec:time_CECSP}). Le paragraphe~\ref{sec:ER_CECSP} est
-  consacré à l'adaptation du raisonnement énergétique. Pour ce
+  durée ou de consommation de ressource (voir 
+  section~\ref{sec:time_CECSP}). La section~\ref{sec:ER_CECSP} est
+  consacrée à l'adaptation du raisonnement énergétique. Pour ce
   raisonnement, nous présentons plusieurs méthodes permettant de
   caractériser les intervalles sur lesquels appliquer ce
   raisonnement. Nous attirons ici l'attention du lecteur sur
@@ -147,31 +147,31 @@ d'un certain nombre de propriétés remarquables satisfaites par ce problème.
 \item les chapitres~\ref{sec:PLNE_RCPSP} et~\ref{sec:PLNE_CECSP}
   présentent les techniques de résolution issues de la programmation
   linéaire mixte. Dans un premier temps, nous décrivons les concepts généraux
-  de la programmation linéaire mixte (paragraphe~\ref{sec:PLNE}). Nous
+  de la programmation linéaire mixte (section~\ref{sec:PLNE}). Nous
   présentons ensuite trois modèles mis en place pour
   résoudre le problème d'ordonnancement de projet avec contraintes de
-  ressource (paragraphe~\ref{sec:PLNE_ordo_res}). Le premier est un
+  ressource (section~\ref{sec:PLNE_ordo_res}). Le premier est un
   modèle indexé par le temps et les deux autres utilisent des
   formulations basées sur les événements. Ces modèles sont
   ensuite adaptés au problème d'ordonnancement continu
-avec contraintes énergétiques (paragraphe~\ref{sec:modele_CECSP}). Le
-paragraphe~\ref{sec:amelioration_modele} présente plusieurs
+avec contraintes énergétiques (section~\ref{sec:modele_CECSP}). La 
+section~\ref{sec:amelioration_modele} présente plusieurs
 ensembles d'inégalités permettant de renforcer les modèles
 présentés. Pour le modèle indexé par le temps, des inégalités
 directement déduites du raisonnement énergétique sont exhibées. Pour
 les modèles à événements, cinq jeux d'inégalités sont présentés et
-l'un d'entre eux est utilisée pour donner une description minimale de
+l'un d'entre eux est utilisé pour donner une description minimale de
 l'enveloppe convexe du polyèdre formé par toutes les affectations
 possibles des variables binaires correspondant à une seule activité.
 \item le chapitre~\ref{sec:expe} présente les résultats expérimentaux
   conduits pour valider les notions théoriques décrites dans les
   chapitres précédents. Dans un premier temps, nous présentons les
   instances sur lesquelles les algorithmes ont été appliqués (voir
-  paragraphe~\ref{sec:instance}). Le paragraphe~\ref{sec:expe_PLNE}
+  section~\ref{sec:instance}). La section~\ref{sec:expe_PLNE}
   présente les performances des différents modèles de programmation
   linéaire mixte définis pour le \CECSP. De plus, l'influence des 
-  inégalités définies pour renforcer les modèles est évaluée. Le
-  paragraphe suivant (\ref{sec:expe_PPC}) présente les résultats obtenus
+  inégalités définies pour renforcer les modèles est évaluée. La
+  section suivante (\ref{sec:expe_PPC}) présente les résultats obtenus
   lors des expérimentations portant sur la programmation par
   contraintes. Les raisonnements présentés dans le manuscrit sont
   intégrés dans une méthode de branchement hybride utilisant un modèle
@@ -180,7 +180,7 @@ possibles des variables binaires correspondant à une seule activité.
   travaux réalisés pendant la thèse mais pas assez aboutis ou trop
   éloignés du sujet de ce manuscrit pour y figurer à part entière.
   L'annexe~\ref{ann:JFPC} présente l'étude du cas discret du problème
-  (article publié aux Journées Francophones de la Programmation par
+  (article publié aux Journées Francophones de Programmation par
   Contraintes~\cite{Nattaf_JFPC}). L'annexe~\ref{ann:IESM} porte sur
   la mise en place d'une matheuristique pour un problème industriel
   d'ordonnancement avec contraintes et objectifs énergétiques. Ce

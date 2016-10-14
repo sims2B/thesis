@@ -1,7 +1,7 @@
 %TODO : fonction LPM et résultats time index RCPSP avc RE?
 \section{Génération des instances et pré-traitement}
 \label{sec:instance}
-Ce paragraphe présente, dans un premier temps, la méthode utilisée
+Cette section présente, dans un premier temps, la méthode utilisée
 pour générer des ensembles d'instances de test pour le \CECSP. Nous
 détaillons ensuite les jeux d'instances du \RCPSP~sur lesquelles nous
 avons évalué l'impact des améliorations proposées pour les modèles à
@@ -34,7 +34,7 @@ suivants:
 \frac{W_i}{f_i(\bmax)}$.
 \end{itemize}
 
-Une première famille d'instance, appelée Famille 4, est construite en
+Une première famille d'instances, appelée Famille 4, est construite en
 utilisant comme fonction de rendement la fonction identité pour toutes
 les activités, i.e. $\forall i \in \A,\ f_i(b_i(t))= b_i(t)$. Ensuite,
 des fonctions de rendement affines sont générées aléatoirement pour
@@ -78,7 +78,7 @@ Nous avons donc défini six familles d'instances pour le \CECSP. Ces
 instances serviront à calculer les performances relatives des méthodes
 présentées dans les chapitres précédents de ce manuscrit. 
 
-Dans le prochain paragraphe, nous présentons les instances utilisées
+Dans la prochaine sous-section, nous présentons les instances utilisées
 pour évaluer les performances des améliorations des modèles du
 \RCPSP~ainsi qu'une méthode de calcul des fenêtres de temps.
   
@@ -87,7 +87,7 @@ pour évaluer les performances des améliorations des modèles du
 \label{sec:instances_RCPSP}
 \subsubsection{Génération des instances}
 Les instances utilisées sont les instances définies par
-Kone~\cite{theseOumar} pour évaluer les performances des modèles à
+Koné~\cite{theseOumar} pour évaluer les performances des modèles à
 événements par rapport aux modèles indexés par le temps. Ces instances
 sont générées à partir des instances à $30$ activités de la
 PSPLIB~\cite{PSPLIB}. Ces instances, au nombre de $480$, sont des
@@ -95,14 +95,14 @@ instances à $4$ ressources renouvelables et avec des activités ayant
 une durée aléatoire comprise entre $1$ et $10$ unités de temps. Ces
 durées étant relativement courtes, les modèles indexés par le temps
 sont particulièrement efficaces sur ces dernières (voir
-paragraphe~\ref{sec:motiv_event_RCPSP}). L'auteur de~\cite{theseOumar}
+sous-section~\ref{sec:motiv_event_RCPSP}). L'auteur de~\cite{theseOumar}
 a donc modifié ces instances afin d'allonger la durée de certaines 
 activités. En effet, dans certaines applications pratiques (notamment
 dans le domaine pharmaceutique ou de la pétrochimie), il arrive que
 les activités aient des durées disparates, certaines étant très
 courtes et d'autres relativement longues.
 
-Les instances de Kone sont créées selon le principe suivant: 
+Les instances de Koné sont créées selon le principe suivant: 
 \begin{enumerate}
 \item les $15$ premières activités non-fictives de l’instance sont
   sélectionnées (les autres activités ainsi que les contraintes de
@@ -128,7 +128,7 @@ Afin d'améliorer les performances des modèles pour le \RCPSP, nous
 calculons par prétraitement, pour chaque activité, les fenêtres de
 temps $[\ES,\LS{]}$ et $[\EE,\LE{]}$ dans lesquelles elle peut
 respectivement commencer et finir. Pour calculer ces fenêtres de
-temps, rappelons que, si chaque arc $(i,j)$ du graphe des précédences
+temps, rappelons que, si chaque arc $(i,j)$ du graphe de précédences
 $G$ est pondéré par $p_i$, la date de début au plus tôt de $i$, $\ES$
 peut prendre la valeur du plus long chemin entre l'activité $0$ et
 l'activité $i$ et la date de début au plus tard $\LS$ est égale à
@@ -136,11 +136,11 @@ $\ES[n+1]$, la date de début au plus tôt de l'activité terminale
 $n+1$, moins la valeur du plus long chemin entre $i$ et $n+1$.
 
 Notons que la date de fin au plus tard de l'activité fictive $n+1$
-correspondant à une borne supérieure sur la date de fin du projet peut
-être calculée au moyen d'une heuristique. L'heuristique utilisée pour
-calculer cette valeur ici est la méthode d'ordonnancement parallèle
-avec comme règle de priorité la plus petite date de fin au plus tard
-des activités~\cite{heur_RCPSP}. 
+correspondant à une borne supérieure sur la date de fin du projet,
+elle peut être calculée au moyen d'une heuristique. L'heuristique
+utilisée pour calculer cette valeur ici est la méthode
+d'ordonnancement parallèle avec comme règle de priorité la plus petite
+date de fin au plus tard des activités~\cite{heur_RCPSP}.
 
 En plus des calculs décrits ci-dessus, nous utilisons d'autres
 techniques de déductions basées sur la propagation de contraintes. En
@@ -148,6 +148,6 @@ particulier, nous utilisons des techniques décrites dans la thèse de
 Demassey~\cite{these_Sophie}. Parmi celles utilisées, nous trouvons
 les techniques de sélection immédiate, Edge-Finding sur les cliques de
 disjonction et de triplets symétriques. Ces techniques n'étant pas
-détaillées ici, à l'exception du Edge-Finding au
-paragraphe~\ref{sec:nrj_CUSP}, nous renvoyons le lecteur au chapitre 2
-de~\cite{these_Sophie} pour une description de ces techniques.
+détaillées ici, à l'exception du Edge-Finding à la
+sous-section~\ref{sec:nrj_CUSP}, nous renvoyons le lecteur au chapitre
+2 de~\cite{these_Sophie} pour une description de ces techniques.

@@ -80,14 +80,14 @@ activités optionnelles ou des contraintes de réservoirs.
 Dans la suite de ce manuscrit, nous nous intéressons aux problèmes
 d'ordonnancement non préemptifs avec ressource cumulative et aux
 problèmes d'ordonnancement élastiques. Le premier cas correspond au
-\CUSP, décrit dans le paragraphe~\ref{sec:ordo_res}. En PPC, le
+\CUSP, décrit dans la sous-section~\ref{sec:ordo_res}. En PPC, le
 problème est modélisé à l'aide d'une contrainte globale appelée
 contrainte cumulative. Cette contrainte ainsi que différents
 algorithmes de filtrage mis en place pour cette dernière sont
-présentés dans les deux paragraphes suivants. 
+présentés dans les deux sous-sections suivantes. 
 
 Les problèmes d'ordonnancement élastiques seront représentés par le
-\CECSP~(voir paragraphe~\ref{sec:ordo_nrj}), pour lequel l'adaptation
+\CECSP~(voir section~\ref{sec:ordo_nrj}), pour lequel l'adaptation
 de certains algorithmes de filtrage pour la contrainte cumulative est
 présentée dans le chapitre~\ref{sec:PPC_CECSP}.
 
@@ -117,7 +117,7 @@ si:
   [st_i,et_i[}} b_i \le R  \tag{\ref{eq:CUSP_res}} 
 \end{align}
 La seconde contrainte ainsi qu'un exemple de solution sont détaillés
-dans le paragraphe~\ref{sec:ordo_res}.
+dans la sous-section~\ref{sec:ordo_res}.
 
 L'existence d'une solution au problème cumulatif étant un problème
 NP-complet, un algorithme effectuant un filtrage complet des domaines
@@ -145,7 +145,7 @@ al.}~\cite{DHP} exhibent des règles de cohérence basées sur la
 capacité des intervalles, i.e. la quantité de ressource disponible
 dans un intervalle.
 
-Le paragraphe suivant présente plusieurs de ces règles d'ajustement
+La sous-section suivante présente plusieurs de ces règles d'ajustement
 définies pour la contrainte cumulative. 
 
 
@@ -157,7 +157,7 @@ d'ajustement sont souvent définies pour une seule des deux variables
 $st_i$ et $et_i$. En effet, une fois ces règles étant définies pour
 une de ces deux variables, les règles symétriques peuvent être
 déduites pour l'autre variable. Les raisonnements et algorithmes
-décrits dans ce paragraphe ne présentent que le filtrage du début au
+décrits dans cette sous-section ne présentent que le filtrage du début au
 plus tôt.
 
 Dans un premier temps, nous présentons des règles simples permettant
@@ -167,7 +167,7 @@ d'énergie. Enfin, ces règles seront combinées afin de créer
 des algorithmes permettant un filtrage plus fort des domaines des
 variables.
 
-Plusieurs des règles présentées dans ce paragraphe seront ensuite
+Plusieurs des règles présentées dans cette sous-section seront ensuite
 adaptées dans le cas du \CECSP~dans le chapitre~\ref{sec:PPC_CECSP}.
 
 \subsubsection{Règles de filtrages simples}
@@ -536,7 +536,7 @@ Time-Table est souvent plus utilisé en pratique car il peut amener les
 mêmes déductions que les paires de disjonction tout en ayant une plus
 faible complexité.
 
-Dans le paragraphe~\ref{sec:mix_CUSP}, nous montrerons comme il est
+Dans la sous-section~\ref{sec:mix_CUSP}, nous montrerons comme il est
 possible de coupler ces deux raisonnements pour en obtenir un nouveau,
 le Time-Table disjonctif~\cite{Gay2015}. 
 
@@ -1022,7 +1022,7 @@ $(t_1,t_2) \in \O_C(i,j)$ avec:
 
 Une démonstration de ce lemme ainsi que la preuve que ces intervalles
 sont suffisants pour détecter toute incohérence due au raisonnement
-énergétique peut être trouvée dans~\cite{Alb}.
+énergétique peuvent être trouvées dans~\cite{Alb}.
 
 Grâce à cette caractérisation, l'algorithme de détection d'incohérence
 de Baptiste {\it et al.} peut être amélioré. Pour cela, nous
@@ -1204,9 +1204,9 @@ du \CECSP. De ce fait, elle n'est pas décrite ici.
 L'ordre de grandeur de l'ensemble des intervalles d'intérêt pour les
 ajustements est aussi de $n^2$ et l'algorithme permettant de procéder
 à tous les ajustements possibles a une complexité en $O(n^3)$. Ceci
-fait du raisonnement énergétique un des moins algorithmes de filtrage
-utilisés en pratique, même si ce raisonnement est un des plus forts
-pour la contrainte cumulative.
+fait du raisonnement énergétique un des algorithmes de filtrage le
+moins utilisé en pratique, même si ce raisonnement est un des plus
+forts pour la contrainte cumulative.
 
 
 De manière similaire à la règle~\ref{reg:ajust1_ER_CUSP}, une autre
@@ -1229,6 +1229,11 @@ cas, en considérant la fonction suivante au lieu de $\bbRS$:
 $b_i*\max\Big(\, 0\, , \, \min(\, \LE\, ,\, t_2\,) - \max(\, \LS\, ,
   \, t_1\,) \,\Big)$. 
 
+D'autres algorithmes ont été mis en place pour améliorer le
+raisonnement énergétique. Ces derniers possèdent souvent une
+complexité théorique moins élevée que celle de l'algorithme de Derrien
+{\it et al.} mais les ajustements appilqués par ces derniers sont
+souvent incomplets~\cite{Tesch2016,Berthold2011,Bonifas}.
 
 Les différentes règles de filtrages présentées dans les paragraphes
 précédents ont parfois été étendues ou couplées afin de définir de
@@ -1240,7 +1245,7 @@ d'entre elles sont décrites dans le paragraphe suivant.
 \label{sec:mix_CUSP}
 
 Parmi les règles de filtrage étendues ou couplées on trouve le
-raisonnement Edge-Finding étendu~\cite{ExtEF}, le
+Edge-Finding étendu~\cite{ExtEF}, le 
 Time-Table-Edge-Finding~\cite{V11} ou encore le Time-Table
 disjonctif~\cite{Gay2015}. Dans ce paragraphe, nous montrerons comment
 coupler deux raisonnements en présentant, en premier lieu, l'idée de

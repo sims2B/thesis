@@ -5,19 +5,20 @@ obtenus par les modèles présentés dans le
 chapitre~\ref{sec:PLNE_CECSP} et l'influence des techniques de
 renforcement présentées dans ce même chapitre. Nous commençons, dans
 un premier temps, par présenter les résultats obtenus pour le modèle
-indexé par le temps puis nous détaillerons les résultats des modèles à événement.
+indexé par le temps puis nous détaillerons les résultats des modèles à
+événements. 
 
-\subsection{Modèles indexés par le temps}
-Dans ce paragraphe, nous décrivons les performances du modèle indexé
-par le temps pour le \CECSP. Les expérimentations ont été conduites
-sur les quatre familles d'instances présentées dans le
-paragraphe~\ref{sec:instance_CECSP} et avec une limite de temps de 100
-secondes. Le modèle, avec pour objectif la minimisation de la
+\subsection{Modèle indexé par le temps}
+Dans cette sous-section, nous décrivons les performances du modèle
+indexé par le temps pour le \CECSP. Les expérimentations ont été
+conduites sur les quatre familles d'instances présentées dans la
+sous-section~\ref{sec:instance_CECSP} et avec une limite de temps de
+100 secondes. Le modèle, avec pour objectif la minimisation de la
 consommation totale de ressource, est dans un premier temps utilisé
 pour résoudre les instances. Dans un second temps, nous ajoutons les
-inégalités issues du raisonnement énergétiques décrites dans le
-paragraphe~\ref{sec:ER_TI}. Ces inégalités sont seulement ajoutées au
-n\oe ud racine de l'arbre de recherche. En effet, dû à leur grand
+inégalités issues du raisonnement énergétique décrites dans la
+sous-section~\ref{sec:ER_TI}. Ces inégalités sont seulement ajoutées
+au n\oe ud racine de l'arbre de recherche. En effet, dû à leur grand
 nombre ($5*|\I|*n$, avec $\I$ l'ensemble des intervalles d'intérêt du
 raisonnement énergétique) , il est difficile, sans algorithme de
 séparation, de les inclure dynamiquement pendant la recherche. Le
@@ -33,7 +34,7 @@ mesurée de la manière suivante:
 Nous avons aussi comparé le temps nécessaire à l'obtention de la
 solution optimale (100 secondes si la solution trouvée n'est pas
 optimale), la qualité de la solution, le nombre d'instances résolues
-et le nombre d'entre elles résolues à l'optimum.
+($\%solv.$) et le nombre d'entre elles résolues à l'optimum ($\%opt.$).
 
 \begin{table}[!htb]
   \begin{center}\small
@@ -96,7 +97,7 @@ Les résultats présentés dans le tableau~\ref{tab:TI_CECSP} montrent
 que, dans la majorité des cas, le modèle avec les coupes énergétiques
 obtient une première solution de meilleure qualité que celle obtenue
 sans ces coupes. De plus, le temps de calcul de cette première
-solution, bien que légèrement plus élevé dans le cas des coupés
+solution, bien que légèrement plus élevé dans le cas des coupes
 énergétiques, est du même ordre de grandeur dans les deux cas.
 
 Cependant, sauf dans le cas des instances à 30 activités de la Famille
@@ -113,10 +114,10 @@ encourageante dans un futur proche.
 
 \subsection{Modèles à événements}
 
-Ce paragraphe, dédié à la présentation des résultats obtenus pour les
+Cette sous-section, dédié à la présentation des résultats obtenus pour les
 modèles à événements, commence par présenter l'algorithme de
 séparation qui sera utilisé dans le modèle On/Off pour séparer les
-inégalités de non-préemption. Cet algorithme a été conçu en
+inégalités de non préemption. Cet algorithme a été conçu en
 collaboration avec Tam{\'a}s Kis. Nous présenterons ensuite les
 différents résultats obtenus pour les modèles Start/End et On/Off.
 
@@ -124,7 +125,7 @@ différents résultats obtenus pour les modèles Start/End et On/Off.
   préemption} 
 
 L'idée principale de la procédure de séparation pour les inégalités de
-non préemption (voir paragraphe~\ref{sec:nonPreem} est que, pour
+non préemption (voir sous-section~\ref{sec:nonPreem}) est que, pour
 chaque activité $i$, trouver la coupe à ajouter au modèle est
 équivalent à trouver un plus long chemin dans un certain graphe. Ce
 graphe orienté et acyclique est défini de la manière suivante:
@@ -241,7 +242,7 @@ représentés.
 Pour séparer un vecteur $\overline{z}_i \in \mathbb{R}^{\E^*}$, nous
 calculons un plus long chemin dans le graphe à l'aide de la
 programmation dynamique. Pour cela, nous calculons, pour chaque $v \in
-\{1,\dots,2n-1\}$, la valeur  du plus long chemin jusqu'à ce somment
+\{1,\dots,2n-1\}$, la valeur  du plus long chemin jusqu'à ce sommet
 $F(v)$ de la manière suivante:
 \begin{equation}
   F(v) = \max\{ F(u) + cost (u,v) \ : \ u=1,\dots,v-2 \}
@@ -313,25 +314,25 @@ correspond au chemin vide. De plus,nous avons:
   long chemin n'est donc pas mis à jour. 
 
 \item $F(6)= 0.2$ et $F(6)+\overline{z}_{1,6}=0,2+0=0,2$. Le plus long  
-  chemin n'es pas mis à jour. 
+  chemin n'est pas mis à jour. 
 \item $F(7) = F(4) +\overline{z}_{1,4} -
   \min\{\overline{z}_{1,5},\overline{z}_{1,6}\}= 0,2 + 0,6 - 0 =
   0,8$. De plus, $F(7)+\overline{z}_{1,7}=0,8+1=1,8$. La longueur du
   plus long est donc mise à jour, vaut $1,8$ et correspond au chemin $\{1,2,4,6,7\}$
 \end{itemize}
 
-{\'A} la fin de la procédure, le plus long chemin trouvé est donc
+A la fin de la procédure, le plus long chemin trouvé est donc
 $\{1,2,4,6,7\}$ et l'inégalité correspondante, i.e. celle qui sera
 ajoutée au modèle, est:
 \[  z_{1,1} - z_{1,2} + z_{1,4} - z_{1,6} + z_{1,7} \le 1  \]
 \end{ex}  
 
 \subsubsection{Modèles Start/End}
-\textcolor{red}{\LARGE pour ce paragraphe => que le texte}
+
 Dans ce paragraphe, nous présentons les résultats obtenus pour le
 modèle Start/End.  Les expérimentations ont été conduites
-sur les instances de la Famille 1 présentée dans le
-paragraphe~\ref{sec:instance_CECSP} et avec une limite de temps de
+sur les instances de la Famille 1 présentée dans la
+sous-section~\ref{sec:instance_CECSP} et avec une limite de temps de 
 1000 secondes. Le modèle est utilisé avec l'objectif de minimisation de la
 consommation totale de ressource. Le
 tableau~\ref{tab:SE_CECSP} présente ces résultats.
@@ -350,7 +351,7 @@ et le nombre d'entre elles résolues à l'optimum.
       \multirow{2}{*}{\#act.} & \multicolumn{2}{c|}{$1^{ère}$ sol.}&
       \multicolumn{4}{c|}{sol. finale}\\
        	\cline{2-7} 
- & time(s) & gap & time & gap &\%solved &  \%opt \\ 
+        & tps(s) & gap & tps & gap &\%solv. &  \%opt. \\ 
  \hline 
 $10$ & $0,42$ & $95$ & $5200$ & $42$ & $100$ & $33 $\\ 
 $20$ & $73$ & $80$ & $7200$ & $29$ & $100$ & $0 $\\ 
@@ -360,17 +361,16 @@ $60$ & $310$ & $140$ & $7200$ & $63$ & $100$ & $0 $\\
 \hline 
     \end{tabularx}
   \end{center}
-  \caption{Résultats du PLNE indexé par le temps du \CECSP~avec et
-    sans coupes énergétiques.} 
+  \caption{Résultats du modèle Start/End pour le \CECSP.} 
   \label{tab:SE_CECSP}
 \end{table}
 
 Dans le tableau~\ref{tab:SE_CECSP}, nous pouvons voir que le modèle
 Start/End permet de résoudre seulement une petite partie des instances
 à l'optimum. Une solution est cependant trouvée pour toutes les
-instances mais la qualité de ces dernières ne sont pas très bonne. De
+instances mais la qualité de ces dernières n'est pas très bonne. De
 meilleures solutions, obtenues avec le modèle On/Off, sont présentées
-dans le paragraphe suivante. 
+dans le paragraphe suivant. 
 
 \subsubsection{Modèles On/Off}
 
@@ -386,7 +386,7 @@ Pour la Famille 4, le tableau~\ref{tab:OO_f4} présente le pourcentage
 d'instances résolues à l'optimum ainsi que le temps nécessaire à leur 
 résolution pour différentes combinaisons de coupes ajoutées au
 modèle. Dans le tableau, ces différentes inégalités sont représentées
-de la manière suivantes: 
+de la manière suivante: 
 \begin{itemize}
 \item {\it Sep.} ou {\it S.} représente les inégalités
  bornant supérieurement la distance entre deux événements;
@@ -394,12 +394,12 @@ de la manière suivantes:
   date des événements;
 \item {\it KP} les inégalités déduites du problème du sac-à-dos, et  
 \item {\it $\overline{Preem.}$} ou {\it $\overline{P.}$} les
-  inégalités de non-préemption.
+  inégalités de non préemption.
 \end{itemize}
-Ces inégalités sont décrites dans le paragraphe~\ref{sec:maxDist}. 
+Ces inégalités sont décrites dans la sous-section~\ref{sec:maxDist}. 
  Les deux premiers ensembles d'inégalités sont ajoutés directement
  dans le modèle et sont aussi utilisées comme borne plus fine dans les
- contraintes du modèle (voir paragraphe~\ref{sec:maxDist}).
+ contraintes du modèle (voir sous-section~\ref{sec:maxDist}).
 
 
 \begin{table}[!htb]
@@ -442,14 +442,14 @@ instances à $25$ activités, les résultats sont plus hétérogènes mais
 les meilleurs résultats sont obtenus en combinant toutes les
 inégalités. Enfin, pour les instances à $30$ activités, les meilleurs
 résultats sont quant à eux obtenus en combinant seulement inégalités
-de non-préemption et les deux ensembles d'inégalités portant sur les
+de non préemption et les deux ensembles d'inégalités portant sur les
 dates des événements, i.e. {\it Sep} et {\it Date}. Cependant, les
 résultats obtenus en combinant toutes les inégalités ne sont pas très
 éloignés de ceux obtenant les meilleurs résultats.
 
-Pour les instances de la Famille 1, seulement un petit nombre
+Pour les instances de la Famille 1, seules un petit nombre
 d'instances sont résolues de manière optimale. C'est pourquoi nous
-présentons seulement le pourcentage d'instances pour lesquelles une
+présentons uniquement le pourcentage d'instances pour lesquelles une
 solution a été trouvée et nous calculons la distance entre cette
 solution et la meilleure borne inférieure trouvée à la fin du temps
 imparti. Ces résultats sont présentés dans le
@@ -496,11 +496,11 @@ KP}. Cependant, des résultats comparables sont obtenus en combinant
 
 Nous allons maintenant évaluer les performances relatives des
 améliorations du modèle On/Off dans le cadre du \RCPSP. Pour ce faire,
-les expérimentations ont été conduites sur les instances de Kone {\it
-et al}~\cite{modele_RCPSP} et décrites dans le
-paragraphe~\ref{sec:instances_RCPSP} avec un pré-calcul des fenêtres de
-temps des activités aussi décrit dans le
-paragraphe~\ref{sec:instances_RCPSP}. La limite de temps est fixée à
+les expérimentations ont été conduites sur les instances de Koné {\it
+et al.}~\cite{modele_RCPSP} et décrites dans la
+sous-section~\ref{sec:instances_RCPSP} avec un pré-calcul des fenêtres
+de temps des activités aussi décrit dans la
+sous-section~\ref{sec:instances_RCPSP}. La limite de temps est fixée à
 1000 secondes.
 
 Pour ces instances, le tableau~\ref{tab:OO_PSP} présente le
@@ -514,7 +514,7 @@ ajoutées au modèle.
      \hline
        \multirow{2}{*}{\backslashbox{ineg.}{\#act.}} & \multicolumn{2}{c|}{$1^{ère}$ sol.}& \multicolumn{3}{c|}{Sol. finale}\\ 
 	\cline{2-6}
-     & time(s) & gap & time & gap &\%opt  \\ 
+     & tps(s) & gap & tps(s) & gap &\%opt.  \\ 
  \hline 
      $Aucune$ &$0,19$& $3,4 $&$ 34,8$ &$ 0 $& $100$\\
      $Sep.$ & $0,17 $& $3,2 $&$ 30,3$ &$ 0 $& $100$ \\ 
@@ -538,9 +538,9 @@ simultanément.
 
 \subsection{Comparaison des différentes approches}
 
-Dans ce paragraphe, nous allons effectuer des comparaisons entre
+Dans cette sous-section, nous allons effectuer des comparaisons entre
 les différentes méthodes décrites ci-dessus. Dans un premier temps et
-pour montrer que dans certains cas, le modèle indexé par le temps peut
+pour montrer que, dans certains cas, le modèle indexé par le temps peut
 produire des solutions sous-optimales, nous comparons les résultats de
 ce dernier avec ceux du modèle On/Off (sans ajout de coupes
 particulières) sur la Famille d'instances 1.   
@@ -563,7 +563,7 @@ plus élevée que celle retournée par le modèle à événements.
     & \multicolumn{3}{c|}{Modèle On/Off} &  \multicolumn{3}{c|}{Modèle
                                            indexé par le temps} &\\
     \hline
-    \#act.&tps(s)&\%optimal&\%feas.&tps(s)&\%optimal
+    \#act.&tps(s)&\%opt.&\%feas.&tps(s)&\%opt.
                               &\%feas.&\%dev. obj. \\
     \hline
     20 &7200 &0 &100 &7200 &0 &100 & 10,08\\
@@ -578,7 +578,7 @@ plus élevée que celle retournée par le modèle à événements.
 Tout d'abord, nous pouvons remarquer que le modèle indexé par le temps
 permet de trouver une solution réalisable pour plus d'instances que le
 modèle On/Off. Cependant, aucun des deux modèles n'est capable de
-résoudre les instances de manière optimale. Enfin, le modèle On/off
+résoudre les instances de manière optimale. Enfin, le modèle On/Off
 trouve clairement de meilleures solutions que le modèle indexé par le
 temps ce qui tend à montrer que la considération du temps continu est
 profitable en pratique pour économiser les ressources utilisées.
@@ -586,7 +586,7 @@ profitable en pratique pour économiser les ressources utilisées.
 Les modèles présentés dans ce manuscrit ont de grandes difficultés à
 trouver des solutions optimales. En particulier lorsque des fonctions
 de rendement, même seulement affines, entrent en jeu. De plus, les
-méthodes testées dans le paragraphe suivant, portant sur les techniques
+méthodes testées dans la section suivante, portant sur les techniques
 issues de la programmation par contraintes, ne le sont que pour la
 variante décisionnelle du \CECSP, i.e. sans objectif. De ce fait, nous
 allons présenter les résultats des trois différents modèles dans le
@@ -606,8 +606,8 @@ temps sur-contraint bien de manière significative le problème initial.
 
 \begin{table}[ht] \centering
   \begin{tabular}{|c|ccc|ccc|ccc|}
-\hline & \multicolumn{3}{c}{Indexé par le tps} & \multicolumn{3}{|c}{On/off} & \multicolumn{3}{|c|}{Start/End}\\ \hline
-\#act. & tps (s) & \%solv. &
+\hline & \multicolumn{3}{c}{Indexé par le temps} & \multicolumn{3}{|c}{On/Off} & \multicolumn{3}{|c|}{Start/End}\\ \hline
+\#act. & tps(s) & \%solv. &
 \%feas. & tps(s) & \%solv. &
 \%feas. & tps(s) & \%solv. &
 \%feas. \\ \hline 

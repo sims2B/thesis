@@ -1,15 +1,17 @@
 \section{Renforcement des modèles}
 \label{sec:amelioration_modele}
-Dans ce paragraphe, nous présentons des améliorations mises en place
+Dans cette section, nous présentons des améliorations mises en place
 pour les modèles indexés par le temps et les modèles à événements du
 \RCPSP~et du \CECSP. 
 
 Dans un premier temps, nous nous sommes intéressé aux modèles à temps
 discret pour lesquels nous proposons des inégalités valides déduites
-directement du raisonnement énergétique présenté aux
-paragraphes~\ref{sec:cumu_propag} et~\ref{sec:ER_CECSP}. En effet, ces modèles restent les modèles 
-les plus efficaces pour résoudre le \CECSP~ou le \RCPSP, ceci étant
-principalement dû à la qualité relative de leur relaxation. 
+directement du raisonnement énergétique présenté à la
+sous-section~\ref{sec:cumu_propag} pour le \CUSP~et à la
+section~\ref{sec:ER_CECSP} pour le \CECSP. En effet, ces modèles
+restent les modèles les plus efficaces pour résoudre le \CECSP~ou le
+\RCPSP, ceci étant principalement dû à la qualité relative de leur
+relaxation.
 
 Cependant, les limitations de ces modèles nous ont poussé à nous
 intéresser plus particulièrement à l'amélioration des modèles à
@@ -32,8 +34,8 @@ modèles à événements.
  
 \subsection{Amélioration des modèles indexés par le temps}
 \label{sec:ER_TI}
-Dans ce paragraphe, nous montrons comment est utilisé le
-raisonnement énergétique décrit au paragraphe~\ref{sec:ER_CECSP} pour
+Dans cette sous-section, nous montrons comment est utilisé le
+raisonnement énergétique décrit à la section~\ref{sec:ER_CECSP} pour
 exhiber des inégalités valides pour les modèles de programmation
 linéaire mixte indexés par le temps du \RCPSP~et du \CECSP. Nous
 commençons par détailler le cas du \CECSP~avant de montrer comment
@@ -148,25 +150,26 @@ considérer: l'activité est calée à gauche, l'activité est calée à
 droite et l'activité est en cours d'exécution durant l'intervalle
 $[t_1,t_2]$. Ceci donne les inégalités suivantes:
 \begin{multline} \left(x_{i,\ES} + \sum_{t=t_1}^{t_2}y_{it} -1\right)
-\, r_{ik}p_i^+(t_1)+ \sum_{j\neq i} \bb[j] \le R\left(t_2-t_1\right)
+\, \bbLS + \sum_{j\neq i} \bb[j] \le R_k\left(t_2-t_1\right)
 \qquad \\ \forall i \in {\cal A},\ \forall k \in \R ,\ \forall
 [t_1,t_2] \in \I
     \label{RCPSP_left}
 \end{multline} \vspace{-1.3cm}
 \begin{multline} \left(\sum_{t=t_1}^{t_2}x_{it} + y_{i,\LE}-1\right)
-\, b_ip_i^-(t_2) + \sum_{j\neq i} \bb[j] \le R\left(t_2-t_1\right)
+\, \bbRS + \sum_{j\neq i} \bb[j] \le R_k\left(t_2-t_1\right)
 \qquad \\ \forall i \in {\cal A},\ \forall k \in \R ,\ \forall
 [t_1,t_2] \in \I
     \label{RCPSP_right}
 \end{multline} \vspace{-1.3cm}
 \begin{multline} \left(\sum_{t\le t_1}x_{it} + \sum_{t\ge t_2}y_{it}
--1 \right) \, b_i\left(t_2-t_1\right) + \sum_{j\neq i} \bb[j] \le
-R\left(t_2-t_1\right) \qquad \\ \forall i \in {\cal A},\ \forall k \in
+-1 \right) \, \bbCS + \sum_{j\neq i} \bb[j] \le
+R_k\left(t_2-t_1\right) \qquad \\ \forall i \in {\cal A},\ \forall k \in
 \R ,\ \forall [t_1,t_2] \in \I
     \label{RCPSP_min}
 \end{multline}
-avec $p_i^+(t_1)$ et $p_i^-(t_2)$ comme définis dans le
-paragraphe~\ref{sec:cumu_propag} pour le \CUSP. 
+avec $\bbLS,\ \bbCS$ et $\bbRS$ comme définis dans la
+sous-section~\ref{sec:cumu_propag} pour le \CUSP, en remplaçant $b_i$
+par $r_{ik}$.
 
 De telles inégalités ont été proposées dans le cadre du modèle
 préemptif sur les ensembles admissibles~\cite{BD}. Ces inégalités sont
@@ -182,7 +185,7 @@ qui sont décrites dans la section suivante.
 
 \subsection{Amélioration des modèles à événements}
 \label{sec:amelioration_OO}
-Dans ce paragraphe, nous présentons les améliorations possibles des
+Dans cette sous-section, nous présentons les améliorations possibles des
 modèles à événements. Dans un premier temps, nous montrons que le
 modèle start/end possède de meilleures relaxations que le modèle
 on/off, puis nous présentons un ensemble d'inégalités que nous pouvons
@@ -192,9 +195,9 @@ du polyèdre défini par l'ensemble de toutes les affectations possibles
 des variables binaires $z_{ie}$ pour une seule activité. 
 
 D'autres ensembles d'inégalités, permettant l'ajout de nouvelles
-contraintes au modèle, sont ensuite présentées , la suppression des
+contraintes au modèle, sont ensuite présentées, la suppression des
 coefficients big-$M$ dans les contraintes existantes ou l'amélioration
-des contraintes existantes. Dans ce paragraphe, nous présentons les
+des contraintes existantes. Dans cette sous-section, nous présentons les
 résultats pour le \CECSP~car, dans la plupart des cas, le remplacement
 de $\Em=\{1,\dots,2n-1\}$ par $\{1,\dots,n\}$ suffit à l'adaptation de
 la preuve au \RCPSP. Cependant, lorsque ce n'est pas le cas ou que le
@@ -209,7 +212,7 @@ celles du modèle on/off. Pour cela, il suffit de  montrer que toute solution du
 modèle start/end, entière ou non, est solution du modèle on/off. Ceci
 peut être fait en écrivant les variables $z_{ie}$ en fonction des
 variables $x_{ie}$ et $y_{ie}$ et nous avons la relation suivante,
-décrite dans le paragraphe~\ref{sssection:OO_CECSP}: 
+décrite dans la sous-section~\ref{sssection:OO_CECSP}: 
 \begin{equation}
 \label{SEversOO}
 z_{ie} = \sum_{f=1}^e x_{if} -  \sum_{f=1}^e y_{if} \quad \forall i
