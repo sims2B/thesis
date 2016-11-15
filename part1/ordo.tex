@@ -17,9 +17,9 @@ vise à optimiser ces objectifs.
 Une activité peut être définie par une date de début $st_i$ et une date
 de fin $et_i$ et une durée $p_i$ vérifiant $et_i=st_i+p_i$. Si
 l'activité utilise une ou plusieurs ressources durant son exécution, il
-est nécessaire d'ajouter à cette définition une fonction d'allocation
-de ressource propre à chaque activité $i$ et à chaque
-ressource $k$. Si cette fonction est donnée dans les paramètres du
+est nécessaire d'ajouter à cette définition une fonction permettant de
+modéliser l'allocation de chaque ressource $k$ à chaque activité
+$i$. Si cette fonction est donnée dans les paramètres du 
 problème, on la note $r_{ik}(t)$. Si, au contraire, elle fait partie
 des variables de décision du problème, on la note $b_{ik}(t)$. Enfin,
 si cette fonction ne dépend pas du temps, i.e. est constante, le
@@ -78,9 +78,12 @@ Du point de vue de leur divisibilité, les ressources peuvent aussi
 \item les ressources discrètes, i.e. divisibles en temps ou en quantité
   discret: à l'inverse, le premier cas décrit une ressource où la
   ré-allocation de cette dernière ne peut être 
-  exécutée qu'à des temps discrets $t \in \{0,\dots,T\}$; le second
-  cas correspond aux ressources ne pouvant être attribuées aux
-  activités qu'en quantité discrète,  e.g. employés, machines...
+  exécutée qu'à des temps discrets $t \in \{0,\dots,T\}$. Ce cas
+  correspond généralement au cas où l'horizon de temps a été
+  discrétisé, soit pour faciliter le problème, soit sans perte de
+génralité. Le second cas correspond aux ressources ne pouvant être
+attribuées aux activités qu'en quantité discrète, e.g. employés,
+machines...
 \end{itemize}
 
 \subsubsection{Les contraintes}

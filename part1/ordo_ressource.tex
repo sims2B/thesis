@@ -19,7 +19,7 @@ ressources}
 
 Le problème d'ordonnancement de projet à contraintes de ressources
 (\RCPSP) est un problème d'ordonnancement très général, utilisé pour
-modéliser de nombreux problèmes pratiques. Le but est
+modéliser certains problèmes pratiques. Le but est
 d'ordonnancer un ensemble d'activités de telle sorte que les capacités
 des ressources ne soient pas excédées et qu'un certain critière, ou
 {\it  fonction objectif}, soit minimisé. Parmi les ressources
@@ -104,15 +104,15 @@ de chaque activité $i\in \A$ de telle sorte que:
         \node[below right of=O,draw] (Q) {\small $4$};
         \node[right of=D,draw,node distance=4.5cm] (C) {\small $5$};  
 
-        \draw[->,thick] (O) -- (U.south west) node[midway, left=0.5pt] {\small $0$};
-        \draw[->,thick] (O) -- (D.west) node[midway, above=0.5pt] {\small $0$};
-        \draw[->,thick] (O) -- (T.south west) node[midway, below=0.5pt] {\small $0$};
-        \draw[->,thick] (O) -- (Q.west) node[midway, left=0.5pt] {\small $0$};
-        \draw[->,thick] (U) -- (C.north west) node[midway, above=0.5pt] {\small $4$};
-        \draw[->,thick] (D) -- (C.west) node[midway, above=0.5pt] {\small $3$};
-        \draw[->,thick] (D) -- (T.west) node[midway, right=0.5pt] {\small $6$};
-        \draw[->,thick] (T) -- (C.south west) node[midway, above=0.5pt] {\small $5$};
-        \draw[->,thick] (Q) -- (C.south) node[midway, below=0.5pt] {\small $8$};
+        \draw[->,thick] (O) -- (U.south west);
+        \draw[->,thick] (O) -- (D.west);
+        \draw[->,thick] (O) -- (T.south west);
+        \draw[->,thick] (O) -- (Q.west) ;
+        \draw[->,thick] (U) -- (C.north west) ;
+        \draw[->,thick] (D) -- (C.west) ;
+        \draw[->,thick] (D) -- (T.west) ;
+        \draw[->,thick] (T) -- (C.south west) ;
+        \draw[->,thick] (Q) -- (C.south) ;
       \end{tikzpicture}}
     \caption{Exemple d'instance pour le \RCPSP.} 
     \label{instance_ex_RCPSP}
@@ -235,14 +235,16 @@ fort~\cite{NP_RCPSP}. Ce problème a donc été très étudié dans la
 littérature, notamment pour trouver des méthodes efficaces pour sa
 résolution. Dans la section~\ref{sec:PLNE_ordo_res}, nous présentons des
 modèles de programmation linéaire permettant de trouver la solution
-optimale à ce problème. 
+optimale à ce problème. Ces modèles seront alors adaptés dans le cadre
+d'un autre problème d'ordonnancement décrit dans le
+paragraphe~\ref{sec:ordo_nrj}. 
 
 \subsubsection{Le problème cumulatif}
 
 Le problème d'ordonnancement cumulatif (CuSP) permet de caractériser
 le fait que le projet implique une ressource (ou un sous-ensemble de
-ressources) de nature cumulative. Le \CUSP~peut être vu comme une
-relaxation de la variante décisionnelle du RCPSP où l'on ne considère
+ressources) de nature cumulative. Le \CUSP~peut être vu comme un cas
+particulier de la variante décisionnelle du RCPSP où l'on ne considère
 qu'une ressource et où l'on remplace les contraintes de précédence par
 les fenêtres de temps qu'elles induisent.
 
@@ -368,12 +370,12 @@ contraintes.
 
 \subsubsection{Limites des problèmes cumulatifs en termes de modélisation}
 \label{sec:limit_CUSP}
-Une des principales limitations du \CUSP~et du \RCPSP~en termes de
-modélisation est que, dans
-ces problèmes, chaque activité consomme une quantité de ressource
-fixe, connue à l'avance, durant toute sa durée d'exécution. De plus,
-cette durée est aussi supposée fixe. Cependant, pour de nombreux
-problèmes pratiques, ces suppositions reviennent à sur-contraindre le
+Une des principales limitations du \RCPSP~et donc du \CUSP~(qui en est
+un cas particulier) en termes de modélisation est que, dans ces
+problèmes, chaque activité consomme une quantité de ressource fixe,
+connue à l'avance, durant toute sa durée d'exécution. De plus, cette
+durée est aussi supposée fixe. Cependant, pour de nombreux problèmes
+pratiques, ces suppositions reviennent à sur-contraindre le
 problème. En effet, considérons l'exemple suivant, décrit
 dans~\cite{FT}.  Dans cet exemple, une activité représentant la
 peinture d'un bateau est considérée. Pour cette activité, la durée est

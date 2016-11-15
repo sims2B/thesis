@@ -845,18 +845,21 @@ algorithm~\ref{algo1}. Maintenance operations are randomly set in such
 a way that, on each machine, the end of the operation occurs before
 the deadline, i.e. the end of the planning horizon $T$.
 
-\begin{algorithm}[english]
+\begin{algorithm}%[english]
   \caption{Simple heuristic for finding a simple solution.}
 \label{algo1}
   $machLoad_k=0,\ \forall k \in {\cal M}$ 
   
   $aff_j=-1,\ \forall j \in {\cal J} $
+
   \For {every lot $j$}{
     
     $minLoad \gets \infty $ 
     
     $LeastLoadedMach \gets -1$ 
+
     \For {all machine $k$} {
+
       \If {$k \in {\cal M}_j$ and $machLoad_k<minLoad$} {
         
         $minLoad \gets machLoad_k$
