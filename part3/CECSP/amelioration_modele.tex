@@ -15,14 +15,13 @@ relaxation.
 
 Cependant, les limitations de ces modèles nous ont poussé à nous
 intéresser plus particulièrement à l'amélioration des modèles à
-événements. En effet, le nombre de variables et de contraintes de ces
-modèles dépend de la taille de l'horizon de temps du problème. Ce
-nombre peut donc s'avérer très important si l'horizon de temps est grand.
-De plus, dans les modèles indexés par le temps du \CECSP~, la
-discrétisation de l'horizon de temps conduit à une réduction de
-l'espace des solutions et peut donc mener à des solutions
-sous-optimales (voir exemple~\ref{exemple_NE},
-page~\pageref{exemple_NE}). 
+événements. En effet, le nombre de variables et de contraintes des
+modèles discrets dépend de la taille de l'horizon de temps du
+problème. Ce nombre peut donc s'avérer très important si l'horizon de
+temps est grand.  De plus, pour le \CECSP~, la discrétisation de
+l'horizon de temps conduit à une réduction de l'espace des solutions
+et peut donc mener à des solutions sous-optimales (voir
+exemple~\ref{exemple_NE}, page~\pageref{exemple_NE}).
 
 Pour améliorer les relaxations linéaires des modèles à événements, nous
 avons étudié le polyèdre défini par l'ensemble de toutes les
@@ -67,10 +66,10 @@ inégalités suivantes:
   &\left(1-\sum_{t\le t_1}x_{it} - \sum_{t\ge t_2}y_{it}\right) \, \conv[W_i] +
     \sum_{j\neq i} \bb[j] \le R(t_2-t_1) \nonumber\\
   & \hspace{9.55cm} \forall i \in \A,\ \forall [t_1,t_2] \in \I
-    \label{total}
+    \label{total1}
 \end{align}
 
-L'inégalité~\eqref{total} représente le cas où l'intervalle
+L'inégalité~\eqref{total1} représente le cas où l'intervalle
 $[\ES,\LE]$ est complètement inclus dans $[t_1,t_2]$. En effet,
 les différents cas possibles sont: 
 \begin{itemize}
@@ -94,10 +93,10 @@ $\conv[W_i] +\sum_{j\neq i} \bb[j] \le
 &\left(x_{i,\ES} + y_{i,\LE} -1 \right) \, \conv[W_i-f_i(\bmax)\left(t_1-\ES + \LE
 -t_2\right)] \nonumber \\
 &+ \sum_{j\neq i} \bb[j] \le R\left(t_2-t_1\right) \hspace{4.35cm} \forall i \in
-{\cal A},\ \forall [t_1,t_2] \in \I  \label{both}
+{\cal A},\ \forall [t_1,t_2] \in \I  \label{both1}
 \end{align}
 
-L'inégalité~\eqref{both} correspond au cas où l'activité est centrée,
+L'inégalité~\eqref{both1} correspond au cas où l'activité est centrée,
 i.e. $\ES\le t_1<t_2 \le \LE$ et $W_i-\left(t_1-\ES + \LE -t_2\right)
 \ge f_i(\bmin)(t_2-t_1)$. Dans ce cas, l'inégalité sera activée si et
 seulement si l'activité commence à $\ES$ ($x_{i,\ES}=1$) et finit à
@@ -108,10 +107,10 @@ $\LE$ ($y_{i,\LE}=1$).
 \conv[W_i-f_i\left(\bmax\right)\left(t_1-\ES\right)]+ \nonumber\\
 &\sum_{j\neq i} \bb[j] \le R\left(t_2-t_1\right) \hspace{4.75cm} \forall i \in
   {\cal A},\ \forall [t_1,t_2] \in \I
-\label{left}
+\label{left1}
 \end{align}
 
-L'inégalité~\eqref{left} correspond au cas où l'activité est calée à
+L'inégalité~\eqref{left1} correspond au cas où l'activité est calée à
 gauche, i.e. exécutée à $\bmax$ pendant l'intervalle
 $[\ES,t_1]$. Cette inégalité est activée quand l'activité commence à
 $\ES$ et finit dans l'intervalle $[t_1,t_2]$. 
@@ -121,10 +120,10 @@ $\ES$ et finit dans l'intervalle $[t_1,t_2]$.
 \conv[W_i-f_i\left(\bmax\right)\left(t_2-\LE\right)]\nonumber\\
 & + \sum_{j\neq i} \bb[j] \le R\left(t_2-t_1\right) \hspace{4.29cm} \forall i \in
 {\cal A},\ \forall [t_1,t_2] \in \I
-\label{right}
+\label{right1}
 \end{align} 
 
-L'inégalité~\eqref{right} correspond au cas où l'activité est calée à
+L'inégalité~\eqref{right1} correspond au cas où l'activité est calée à
 droite, i.e. exécutée à $\bmax$ pendant l'intervalle
 $[t_2,\LE]$. Cette inégalité est activée quand l'activité commence
 dans l'intervalle $[t_1,t_2]$ et finit a $\LE$.
@@ -134,15 +133,19 @@ dans l'intervalle $[t_1,t_2]$ et finit a $\LE$.
   \bmin\left(t_2-t_1\right) + \sum_{j\neq i} \bb[j] \nonumber\\
 & \le R\left(t_2-t_1\right)\hspace{7cm} \forall i \in {\cal A},\ \forall [t_1,t_2]
 \in \I
-\label{min}
+\label{min1}
 \end{align}
 
-Enfin, l'inégalité~\eqref{min} correspond au cas où l'activité est
+Enfin, l'inégalité~\eqref{min1} correspond au cas où l'activité est
 exécutée à $\bmin$ durant l'intervalle $[t_1,t_2]$. Cette inégalité
 assure que si l'activité commence à $t_1$ ou avant et finit à $t_2$ ou
 après alors la quantité de ressource disponible dans $[t_1,t_2]$ est
 suffisante pour exécuter l'activité à $\bmin$ durant tout cet
 intervalle.
+
+Le nombre d'inégalités ajoutées aux modèles est donc de l'ordre de
+$5|\R|n$ avec $|\R|$ le nombre d'intervalles d'intérêt du raisonnement
+énergétique, i.e. $|\R| \in O(n^2)$.
 
 
 Notons que ces inégalités peuvent aussi être définies dans le cas du
@@ -173,11 +176,16 @@ avec $\bbLS,\ \bbCS$ et $\bbRS$ comme définis dans la
 sous-section~\ref{sec:cumu_propag} pour le \CUSP, en remplaçant $b_i$
 par $r_{ik}$.
 
+Le nombre d'inégalités ajoutées aux modèles est ici de l'ordre de
+$3|\R|n$ avec $|\R|$ le nombre d'intervalles d'intérêt du raisonnement
+énergétique pour le \RCPSP.
+
 De telles inégalités ont été proposées dans le cadre du modèle
 préemptif sur les ensembles admissibles~\cite{BD}. Ces inégalités sont
 ajoutées au modèle indexé par le temps du \CECSP~et du \RCPSP~et les
 performances de ces modèles avec ou sans ces inégalités sont évaluées
 dans le chapitre~\ref{sec:expe} afin de montrer leur intérêt.
+
  
 Les modèles à temps discret sont particulièrement efficaces pour le
 \RCPSP~et le \CECSP. Cependant, ces modèles possèdent des limitations
@@ -283,8 +291,8 @@ une contradiction avec la contrainte~(\ref{c10}) puisque $0+0,6+y_{a2}+0,7>1$.
 Donc, nous avons bien montré que le modèle start/end possède en
 théorie de meilleures relaxations que le modèle on/off. Cependant, si
 nous ajoutons un ensemble particulier d'inégalités à ce modèle, ceci
-n'est plus le cas. Ces inégalités sont décrites dans le paragraphe
-suivant.
+n'est peut ne pas être le cas. De telles inégalités sont décrites dans
+le paragraphe suivant.
 
 
 \subsubsection{Inégalités de non préemption}

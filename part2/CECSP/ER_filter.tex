@@ -88,15 +88,15 @@ dans la figure~\ref{fig:conso_CECSP}, peuvent être regroupées en trois
 catégories:
 \begin{itemize}
 \item l'activité est {\it calée à
-    gauche} (figure~\ref{fig:conso_CECSPa}, \ref{fig:conso_CECSPb},
+    gauche} (figure~\ref{fig:conso_CECSPa}, 
   \ref{fig:conso_CECSPd} et \ref{fig:conso_CECSPg}): l'activité démarre
   à $\ES$ et est ordonnancée à $\bmax$ pendant l'intervalle
   $[\ES,t_1{[}$;
 \item l'activité est {\it calée à
-    droite} (figure~\ref{fig:conso_CECSPb}, \ref{fig:conso_CECSPc},
+    droite} (figure~\ref{fig:conso_CECSPc},
   \ref{fig:conso_CECSPf} et \ref{fig:conso_CECSPi}): l'activité finit à
   $\LE$ et est ordonnancée à $\bmax$ pendant l'intervalle $[t_2,\LE{[}$;
-\item l'activité est {\it centrée} (figure~\ref{fig:conso_CECSPe} et
+\item l'activité est {\it centrée} (figure~\ref{fig:conso_CECSPb}, \ref{fig:conso_CECSPe} et
   \ref{fig:conso_CECSPh}): l'activité occupe tout l'intervalle
   $[t_1,t_2[$, soit en étant ordonnancée à $\bmax$ pendant l'intervalle
   $[\ES,t_1{[} \cup [t_2,\LE{[}$, soit en étant ordonnancée à $\bmin$
@@ -453,7 +453,7 @@ ce cas-là, nous avons:
 \]
 et donc, si $\bmin\neq 0$: 
 \begin{equation}
-  \bb= \max\left(b_i^{min} \frac{\wb}{f_i(b_i^{min})} \, ,\,  
+  \bb= \max\left(\bmin \frac{\wb}{f_i(\bmin)} \, ,\,  
     \frac{1}{a_i}\left(\wb-|I|c_{i})\right)\right)
 \end{equation}
 et si $\bmin=0$: 
@@ -463,11 +463,10 @@ et si $\bmin=0$:
 Notons que le premier cas correspond au cas où l'intervalle $I$ est
 suffisamment grand pour ordonnancer l'activité $i$ à $\bmin$ et lui
 apporter l'énergie requise, i.e. $\wb$. En effet, comme ordonnancer
-$i$ à $\bmin$ a le meilleur rendement, si l'on peut, i.e. l'intervalle
-est assez grand, c'est cette valeur que l'on va choisir pour
-$b_i$. Si, au contraire, l'intervalle n'est pas suffisamment grand,
-c'est $f_i^{-1}(\wb/|I|) $ que l'on va choisir. Ceci est illustré dans
-l'exemple~\ref{ex:convLin_CECSP}. 
+$i$ à $\bmin$ a le meilleur rendement, si cela est possible, on
+exécutera $i$ à $b_i=\bmin$. Si, au contraire, l'intervalle n'est pas
+suffisamment grand, c'est $f_i^{-1}(\wb/|I|) $ que l'on va
+choisir. Ceci est illustré dans l'exemple~\ref{ex:convLin_CECSP}.
 
 \begin{ex}
   \label{ex:convLin_CECSP}
@@ -1869,7 +1868,7 @@ de points d'intersection. En théorie, la complexité du second
 algorithme peut être plus élevée ($k$ peut être de l'ordre de
 $O(n^2)$), mais en pratique, cette complexité peut devenir très faible
 si le nombre de points d'intersection est petit. Une comparaison de
-ces deux algorithmes sera effectué dans le chapitre~\ref{sec:expe}.
+ces deux algorithmes sera effectuée dans le chapitre~\ref{sec:expe}.
 
 \subsubsection{Analyses des variations de la fonction de marge et des
   fonctions d'ajustements}

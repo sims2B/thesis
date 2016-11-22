@@ -40,10 +40,10 @@ d'une et une seule ressource. Il s'agit de la même ressource pour
 toutes les activités. Dans ce problème, il n'y a pas de relation de
 précédence entre les activités mais chaque activité dispose d'une
 fenêtre de temps dans laquelle elle doit s'exécuter. Ce problème
-correspond à une relaxation de la variante décisionnelle du problème d'ordonnancement de projet avec contraintes de
-ressource.
+correspond à une relaxation de la variante décisionnelle du problème
+d'ordonnancement de projet avec contraintes de ressource.
 
-La plus grande limite de ces problèmes est que les activités sont
+La plus grande limite des problèmes ci-dessus est que les activités sont
 supposées de durée fixe et consommant une quantité de ressource
 constante au cours du temps. Cependant, il existe de nombreuses
 applications pratiques dans lesquelles ces hypothèses ne sont pas
@@ -55,7 +55,7 @@ cette propriété sont dites {\it malléables} dans le sens où leur
 forme, définie par leur durée et consommation de ressource pendant
 leur exécution, doit être décidée pendant le processus de
 résolution. Des exemples de telles activités sont variés lorsque les
-activités doivent consommer, par exemple, une ressource de type
+activités doivent consommer, par exemple, une ressource de nature 
 énergétique comme 
 l'électricité.  La quantité de ressource 
 allouée à une activité peut alors être modulée à tout instant pour
@@ -99,7 +99,7 @@ techniques utilisent des concepts et théories pouvant être très
 variés. Cependant, deux de celles figurant parmi les plus utilisées
 demeurent les techniques issues de la programmation par contraintes et
 de la programmation linéaire mixte (ou en nombres entiers). En effet,
-ces techniques se sont révélées très efficace dans le processus de
+ces techniques se sont révélées très efficaces dans le processus de
 résolution de ces deux problèmes. Ce sont quelques-unes de ces
 méthodes que nous nous proposons d'étendre au problème considéré dans
 cette thèse.
@@ -166,16 +166,17 @@ possibles des variables binaires correspondant à une seule activité.
 \item le chapitre~\ref{sec:expe} présente les résultats expérimentaux
   conduits pour valider les notions théoriques décrites dans les
   chapitres précédents. Dans un premier temps, nous présentons les
-  instances sur lesquelles les algorithmes ont été appliqués (voir
-  section~\ref{sec:instance}). La section~\ref{sec:expe_PLNE}
-  présente les performances des différents modèles de programmation
-  linéaire mixte définis pour le \CECSP. De plus, l'influence des 
-  inégalités définies pour renforcer les modèles est évaluée. La
-  section suivante (\ref{sec:expe_PPC}) présente les résultats obtenus
-  lors des expérimentations portant sur la programmation par
-  contraintes. Les raisonnements présentés dans le manuscrit sont
-  intégrés dans une méthode de branchement hybride utilisant un modèle
-  de programmation linéaire.  
+instances sur lesquelles les algorithmes ont été appliqués (voir
+section~\ref{sec:instance}). La section~\ref{sec:expe_PLNE} présente
+les performances des différents modèles de programmation linéaire
+mixte définis pour le problème d'ordonnancement continu à contrainte
+énergétique. De plus, l'influence des inégalités définies pour
+renforcer les modèles est évaluée. La section suivante
+(\ref{sec:expe_PPC}) présente les résultats obtenus lors des
+expérimentations portant sur la programmation par contraintes. Les
+raisonnements présentés dans le manuscrit sont intégrés dans une
+méthode de branchement hybride utilisant un modèle de programmation
+linéaire.
 \item les annexes~\ref{ann:JFPC} et~\ref{ann:IESM} présentent des
   travaux réalisés pendant la thèse mais pas assez aboutis ou trop
   éloignés du sujet de ce manuscrit pour y figurer à part entière.

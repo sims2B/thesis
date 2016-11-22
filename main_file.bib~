@@ -1,3 +1,17 @@
+@techreport{LAASreport,
+  TITLE = {{Polyhedral results and valid inequalities for the Continuous Energy-Constrained Scheduling Problem}},
+  AUTHOR = {Nattaf, Margaux and Kis, Tam{\'a}s and Artigues, Christian and Lopez, Pierre},
+  URL = {https://hal.archives-ouvertes.fr/hal-01391403},
+  TYPE = {Research Report},
+  INSTITUTION = {{laas - cnrs}},
+  YEAR = {2016},
+  MONTH = Nov,
+  KEYWORDS = {continuous scheduling ; continuous resources ; linear efficiency functions ; mixed-integer programming ; valid inequalities ; polyhedral combinatorics},
+  PDF = {https://hal.archives-ouvertes.fr/hal-01391403/file/rapport_LAAS.pdf},
+  HAL_ID = {hal-01391403},
+  HAL_VERSION = {v1},
+}
+
 @article{min_dom,
 title = "Increasing tree search efficiency for constraint satisfaction problems",
 journal = "Artificial Intelligence",
@@ -127,6 +141,17 @@ doi = "http://dx.doi.org/10.1016/j.ijpe.2010.09.030",
 url = "http://www.sciencedirect.com/science/article/pii/S0925527310003683",
 author = "Christian Artigues and Pierre Lopez and Alain Haït"
 }
+
+@misc{Ex1,
+  author = {M.N. Hung, C. Le Van and P. Michel},
+  title = {{Non-convex aggregative technology and optimal economic growth}},
+  howpublished = "\url{ftp://www-bsg.univ-paris1.fr/pub/mse/cahiers2005/B05095.pdf}",
+  year = {2005}}
+  
+  @misc{Ex2,
+  author = {J. Lewis},
+  title = {{Algebra symposium: Optimizing fuel consumption}},
+  howpublished = "\url{http://homepages.math.uic.edu/~jlewis/math165/asavgcost.pdf}"}
 
 @article{CAVT,
 title = "Project scheduling with resource constraints: A branch and bound approach",
@@ -261,7 +286,7 @@ author = "Rainer Kolisch"
  keywords = {Mixed integer linear programming, Project management, Resource-constrained project scheduling},
 } 
 @inproceedings{Bonifas,
-  TITLE = {{A {\$}{\$}{\backslash}mathcal O(n^2 {\backslash}log n){\$}{\$} propagation for the Energy Reasoning}},
+  TITLE = {{A {$O(n^2{\,}\log{n})$} propagation for the Energy Reasoning}},
   AUTHOR = {Bonifas, Nicolas},
   BOOKTITLE = {{ROADEF - 17{\`e}me congr{\`e}s annuel de la Soci{\'e}t{\'e} fran{\c c}aise de recherche op{\'e}rationnelle et d'aide {\`a} la d{\'e}cision}},
   ADDRESS = {Compi{\`e}gne, France},
@@ -271,7 +296,7 @@ author = "Rainer Kolisch"
 }
 @Inbook{Tesch2016,
 author="Tesch, Alexander",
-title="A Nearly Exact Propagation Algorithm for Energetic Reasoning in {\$}{\$}{\backslash}mathcal O(n^2 {\backslash}log n){\$}{\$}                    ",
+title="A Nearly Exact Propagation Algorithm for Energetic Reasoning in {$O(n^2{\,}\log{n})$}                 ",
 bookTitle="Principles and Practice of Constraint Programming: 22nd International Conference, CP 2016, Toulouse, France, September 5-9, 2016, Proceedings",
 year="2016",
 publisher="Springer International Publishing",

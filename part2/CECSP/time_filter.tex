@@ -210,7 +210,7 @@ capacité $3$ suivante:
 \begin{center}
 \begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{2cm}|}
     \hline
-    act & \ES & \LE & W_i & \bmin & \bmax & f_i(b_i(t))  \\
+    act & \ES[\ell] & \LE[\ell] & W_{\ell} & \bmin[\ell] & \bmax[\ell] & f_{\ell}(b_{\ell}(t))  \\
     \hline
    i & 2 & 11 & 28 & 2 & 3 & 2*b_i(t) +1\\
    j & 1 & 20 & 49 & 2 & 4 & voir fig.~\ref{fig:fonct_CECSP}\\
@@ -236,14 +236,14 @@ et décrite dans la figure~\ref{fig:fonct_CECSP}
 
 \path[draw] (2,4) -- (3,6) -- (4,7) ;
 
-\draw[dotted] (2,2) node[below] {\footnotesize $2$} -- (2,8);
-\draw[dotted,color=gray!70] (4,2) node[below,color=black] {\footnotesize $4$}
--- (4,8);
-\draw[dotted] (3,2) node[below] {\footnotesize $3$} -- (3,8);
+\draw[dotted] (2,2) node[below] {\footnotesize $2$} -- (2,4);
+\draw[dotted] (4,2) node[below,color=black] {\footnotesize $4$}
+-- (4,7);
+\draw[dotted] (3,2) node[below] {\footnotesize $3$} -- (3,6);
 
-\draw (1,4) node[left] {\footnotesize $4$};
-\draw (1,6) node[left] {\footnotesize $6$};
-\draw (1,7) node[left] {\footnotesize $7$};
+\draw[dotted] (1,4) node[left] {\footnotesize $4$} -- (2,4);
+\draw[dotted] (1,6) node[left] {\footnotesize $6$} -- (3,6);
+\draw[dotted] (1,7) node[left] {\footnotesize $7$} -- (4,7);
 \end{tikzpicture}
 \caption{Fonction $f_j(b_j(t))$.}
 \label{fig:fonct_CECSP}
@@ -439,7 +439,7 @@ définir la règle d'ajustement suivante:
 \label{reg:RDR_CECSP}
   Soient deux activités $i$ et $j$ telles que $i$ ne possède pas de
   partie obligatoire et $\bmin + \bmin[j] > R$. Si $\ES[j] < \EE$ et $
-  \EE[j] \le \LS$ alors $\ES[j] \ge \EE$.
+  \EE[j] > \LS$ alors $\ES[j] \ge \EE$.
 \end{reg}
 
 \begin{ex}
@@ -448,9 +448,9 @@ capacité $3$ suivante:
 \begin{center}
 \begin{tabular}{|P{1cm}|P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{2cm}|}
     \hline
-    act & \ES & \LE & W_i & \bmin & \bmax & f_i(b_i(t))  \\
+    act & \ES[\ell] & \LE[\ell] & W_{\ell} & \bmin[\ell] & \bmax[\ell] & f_{\ell}(b_{\ell}(t))  \\
     \hline
-   i & 0 & 14 & 28 & 2 & 3 & 2*b_i(t) +1\\
+   i & 0 & 13 & 35 & 2 & 3 & 2*b_i(t) +1\\
    j & 2 & 20 & 49 & 2 & 4 & voir fig.~\ref{fig:fonct_CECSP}\\
     \hline
   \end{tabular}
@@ -472,17 +472,17 @@ ne peut commencer avant $\EE$.
       \foreach \i in {1,...,14} {
         \draw (\i,0) -- (\i,-0.1) ;
       }
-      \fill[gray!50] (0,0) rectangle (14,3.4);
+      \fill[gray!50] (0,0) rectangle (13,3.4);
       \fill[gray!50] (2,3.6) rectangle (14,8);
       
-      \draw[fill=white] (0,0.2) -- (0,3.2)   -- (2,3.2) -- (2,2) --node[midway,below=0.2cm] {$i$}
-      (4.6,2) -- (4.6,0.2) -- cycle;
+      \draw[fill=white] (0,0.2) -- (0,3.2)   -- (2,3.2) -- (2,2.2) --node[midway,below=0.2cm] {$i$}
+      (6.2,2.2) -- (6.2,0.2) -- cycle;
       
       \draw[fill=white] (2,3.8) -- (2,7.8)  node[midway,right=0.6cm] {$j$} -- (7,7.8) -- (7,5.8) --
       (10.5,5.8) -- (10.5,3.8) -- cycle;
 
-        \draw[fill=black!70!] (3.9,3.2) rectangle
-        (10,3.8) node[midway,white] {$\mathbf{moi_i}$};
+        \draw[fill=black!70!] (4.9,3.2) rectangle
+        (8,3.8) node[midway,white] {$\mathbf{moi_i}$};
 
       \draw[->] (0,0) -- (14,0) node[below] {$t$};
       \draw[->] (0,0) -- (0,8) ;
@@ -490,9 +490,9 @@ ne peut commencer avant $\EE$.
       \draw[densely dotted] (2,-0.1) -- (2,8) node[above] {$\ES[j]$};
       \draw[densely dotted] (9,-0.1) -- (9,8) node[above] {$\EE[j]$};
       \draw[densely dotted] (0,-0.1)  node[below] {$\ES$}-- (0,8);
-      \draw[densely dotted] (4,-0.1 ) node[below=0.4cm] {$\EE$}-- (4,8) ;
-      \draw[densely dotted] (10,-0.1) node[below] {$\LS$} -- (10,8) ;
-      \draw[densely dotted] (14,-0.1) node[below right] {$\LE$} -- (14,8) ;
+      \draw[densely dotted] (5,-0.1 ) node[below] {$\EE$}-- (5,8) ;
+      \draw[densely dotted] (8,-0.1) node[below] {$\LS$} -- (8,8) ;
+      \draw[densely dotted] (13,-0.1) node[below] {$\LE$} -- (13,8) ;
       \draw[<->] (14.5,0.2) -- (14.5,3.2) node[midway,right] {$\bmax$} ;
       \draw[<->] (14.5,3.8) -- (14.5,7.8) node[midway,right] {$\bmax[j]$} ;   
     \end{tikzpicture}
@@ -504,15 +504,15 @@ ne peut commencer avant $\EE$.
       \foreach \i in {1,...,14} {
         \draw (\i,0) -- (\i,-0.1) ;
       }
-      \fill[gray!50] (0,0) rectangle (14,3.4);
+      \fill[gray!50] (0,0) rectangle (13,3.4);
       \fill[gray!50] (2,3.6) rectangle (14,8);
       
-      \draw[fill=white] (0,0.2) rectangle (4,3.2) node[midway]
+      \draw[fill=white] (0,0.2) rectangle (5,3.2) node[midway]
       {$i$};
       \draw[fill=white] (2,3.8) rectangle (9,7.8) node[midway]
       {$j$}; 
-      \draw[fill=black!70!] (3.9,3.2) rectangle
-        (10,3.8) node[midway,white] {$\mathbf{moi_i}$};
+      \draw[fill=black!70!] (4.9,3.2) rectangle
+        (8,3.8) node[midway,white] {$\mathbf{moi_i}$};
 
       
       \draw[->] (0,0) -- (14,0) node[below] {$t$};
@@ -521,9 +521,9 @@ ne peut commencer avant $\EE$.
       \draw[densely dotted] (2,-0.1) -- (2,8) node[above] {$\ES[j]$};
       \draw[densely dotted] (9,-0.1) -- (9,8) node[above] {$\EE[j]$};
       \draw[densely dotted] (0,-0.1)  node[below] {$\ES$}-- (0,8);
-      \draw[densely dotted] (4,-0.1 ) node[below=0.4cm] {$\EE$}-- (4,8) ;
-      \draw[densely dotted] (10,-0.1) node[below] {$\LS$} -- (10,8) ;
-      \draw[densely dotted] (14,-0.1) node[below right] {$\LE$} -- (14,8) ;
+      \draw[densely dotted] (5,-0.1 ) node[below] {$\EE$}-- (5,8) ;
+      \draw[densely dotted] (8,-0.1) node[below] {$\LS$} -- (8,8) ;
+      \draw[densely dotted] (13,-0.1) node[below] {$\LE$} -- (13,8) ;
       % \draw[densely dotted] (6,-0.1) -- (6,8) node[above] {$\ES[j]^{'}$};
       % \draw[->] (1.8,5.8) -- (5.2,5.8);
       \draw[<->] (14.5,0.2) -- (14.5,3.2) node[midway,right] {$\bmax$} ;
@@ -537,26 +537,26 @@ ne peut commencer avant $\EE$.
       \foreach \i in {1,...,14} {
         \draw (\i,0) -- (\i,-0.1);
       }
-      \fill[gray!50] (0,0) rectangle (14,3.4);
-      \fill[gray!50] (4,3.6) rectangle (14,8);
+      \fill[gray!50] (0,0) rectangle (13,3.4);
+      \fill[gray!50] (5,3.6) rectangle (14,8);
       
-      \draw[fill=white] (0,0.2) rectangle (4,3.2) node[midway]
+      \draw[fill=white] (0,0.2) rectangle (5,3.2) node[midway]
       {$i$};
-      \draw[fill=white] (4,3.8) rectangle (11,7.8) node[midway]
+      \draw[fill=white] (5,3.8) rectangle (12,7.8) node[midway]
       {$j$};
-      \draw[fill=black!70!] (3.9,3.2) rectangle
-        (10,3.8) node[midway,white] {$\mathbf{moi_i}$};
+      \draw[fill=black!70!] (4.9,3.2) rectangle
+        (8,3.8) node[midway,white] {$\mathbf{moi_i}$};
 
       \draw[->] (0,0) -- (14,0) node[below] {$t$};
       \draw[->] (0,0) -- (0,8) ;
       \draw (0,3) node[left] {$R=3$};
-      \draw[densely dotted] (4,-0.1) -- (4,8) node[above] {$\ES[j]$};
+      \draw[densely dotted] (5,-0.1) -- (5,8) node[above] {$\ES[j]$};
       \draw[densely dotted] (11,-0.1) -- (11,8) node[above] {$\EE[j]$};
       \draw[densely dotted] (0,-0.1)  node[below] {$\ES$}-- (0,8);
-      \draw[densely dotted] (4,-0.1 ) node[below=0.4cm] {$\EE$}-- (4,8) ;
-      \draw[densely dotted] (10,-0.1) node[below] {$\LS$} -- (10,8) ;
-      \draw[densely dotted] (14,-0.1) node[below right] {$\LE$} --
-      (14,8) ;
+      \draw[densely dotted] (5,-0.1 ) node[below=0.4cm] {$\EE$}-- (5,8) ;
+      \draw[densely dotted] (8,-0.1) node[below] {$\LS$} -- (8,8) ;
+      \draw[densely dotted] (13,-0.1) node[below right] {$\LE$} --
+      (13,8) ;
       \draw[<->] (14.5,0.2) -- (14.5,3.2) node[midway,right] {$\bmax$} ;
       \draw[<->] (14.5,3.8) -- (14.5,7.8) node[midway,right] {$\bmax[j]$} ;
 
@@ -578,7 +578,7 @@ ressource.
 \label{reg:TTDR_CECSP}
 Soient $i$ et $j$ deux activités qui ne possèdent pas de partie
 obligatoire et telles que $ \bmin +\bmin[j] + \min_{\EE \le t \le \LS}
-TT_{\A}(t) > R$. Si $\ES[j] < \EE$ et $ \EE[j] \le \LS$ alors $\ES[j]
+TT_{\A}(t) > R$. Si $\ES[j] < \EE$ et $ \EE[j] > \LS$ alors $\ES[j]
 \ge \EE$.
 \end{reg}
 
@@ -645,7 +645,7 @@ L'intervalle $moi_i=[4,8]$ est complètement inclus dans l'intervalle
 formé par $\ES[j]$ et $\EE[j]$, i.e. $[1,10[$. De plus, le minimum du
 profil de consommation de la ressource dans $moi_i$ est de $2$. Donc,
 les activités $i$ et $j$, consommant  au minimum  $1$ unité
-de ressource, ne peuvent se chevaucher l'intervalle $[4,8]$. Donc
+de ressource, ne peuvent se chevaucher dans l'intervalle $[4,8]$. Donc
 $\ES[j]$ peut être ajustée à $5$. 
 \end{ex}
 
@@ -658,7 +658,7 @@ cas ``extrêmes'', elles demeurent moins efficaces que dans le cas du
 avons choisi d'adapter un des raisonnements les plus forts pour le
 \CUSP~dans le cadre du \CECSP: le raisonnement énergétique.
 
-La prochaine sous-section présente quant à lui un raisonnement couplant
+La prochaine sous-section présente quant à elle un raisonnement couplant
 modélisation de problème de flots et Time-Table. 
 
 \subsection{Le Time-Table basé sur les flots}
@@ -735,8 +735,8 @@ modéliser l’énergie apportée à l’activité $i$ en fonction de la
 quantité de ressource consommée par cette même activité dans
 l’intervalle $[t_q , t_{q+1}]$. Notons d’abord l’utilisation d’une
 inégalité dans la contrainte~\eqref{eq:flot5} et non d’une égalité. La
-justification de la validité de cette contrainte est faite dans le 
-chapitre~\ref{sec:PLNE_CECSP}. La contrainte~\eqref{eq:flot6}
+justification de la validité de cette contrainte est faite dans la
+section~\ref{sec:modele_CECSP}. La contrainte~\eqref{eq:flot6}
 stipule quant à elle que, pour une constante $M$ suffisament grande,
 si l'activité ne consomme pas de ressource, i.e. $b_{iq}=0$, alors
 elle ne reçoit pas d'énergie, i.e. $w_{iq}=0$. Notons que cette

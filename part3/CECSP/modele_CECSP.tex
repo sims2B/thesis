@@ -92,7 +92,7 @@ H},\ \forall i \in \A \label{Bxy_CECSP_TI} \end{align}
 } 
 Ce modèle s'inspire grandement du modèle de~\cite{ALR}, la principale
 différence résidant dans la considération de fenêtres de temps plus
-fine pour les variables, i.e. $[\ES,\LS]$ pour $x_{it}$ au lieu de
+fines pour les variables, i.e. $[\ES,\LS]$ pour $x_{it}$ au lieu de
 $[\ES,\LE-1]$ et $[\EE,\LE]$ pour $y_{it}$ au lieu de
 $[\ES-1,\LE]$. Ces fenêtres de temps pouvant être raffinées à l'aide
 d'heuristiques, de la programmation par contraintes (cf.
@@ -110,7 +110,7 @@ formulation à temps discret ne nous permet pas de s'assurer que la
 quantité de ressource consommée par une activité soit exactement égale
 à la quantité nécessaire pour apporter l'énergie requise,
 i.e. $\sum_{t=\ES}^{\LE} b_{it} \ge W_i$, cet objectif reste valide
-dans le cas des fonctions identités.
+dans le cas des fonctions rendement identités.
 
 Si l'on souhaite modifier l'objectif pour minimiser la date de fin
 du projet, il suffit d'introduire une variable $C_{max}$ ainsi que
@@ -255,11 +255,11 @@ supposons que dans une solution optimale renvoyée par le PLNE, il
 existe $(i,t)$ tel que $w_{it} < f_i(b_{it})$, alors, deux cas sont
 possibles:
 \begin{itemize}
-\item $\bmin \ge f_i^{-1}(w_{it})$ et dans ce cas-là, $b_{it}$ peut
+\item $\bmin < f_i^{-1}(w_{it})$ et dans ce cas-là, $b_{it}$ peut
 prendre la valeur $f_i^{-1}(w_{it})$ et cette solution aura un coût,
 i.e. une consommation totale de ressource, plus faible que la solution
 précédente et ceci contredit l'optimalité de la solution.
-\item $\bmin < f_i^{-1}(w_{it})$ et dans ce cas-là, $b_i(t)$ prend la
+\item $\bmin \ge  f_i^{-1}(w_{it})$ et dans ce cas-là, $b_i(t)$ prend la
 valeur $\bmin$ et $et_i=\min \{t \in\mathbb{N}\ |\ \\
 \int_{\tau=st_i}^{t} f_i(b_i(t))dt \le W_i\}$. Ici, deux cas sont
 possibles: le premier correspond au cas où $et_i=\{t\ | \ y_{it}=1\}$
@@ -282,9 +282,9 @@ le \CECSP. Ces deux formulations sont grandement inspirées des
 formulations start/end et on/off du \RCPSP, présentées dans la
 section~\ref{sec:PLNE_ordo_res} et issues 
 de~\cite{modele_RCPSP}. Comme dans le cas du \RCPSP, ces modèles se
-justifient par leur nombres polynomial de variables et de contraintes
-qui peut s'avérer très pertinent dans la cas de grands horizons de
-temps. Pour le \CECSP, un argument supplémentaire vient s'ajouter pour
+justifient par leur nombre polynomial de variables et de contraintes,
+ce qui peut s'avérer très pertinent dans la cas de grands horizons de
+temps. Un argument supplémentaire vient s'ajouter pour
 le \CECSP. En effet, il peut arriver qu'une instance de ce problème ne
 possède que des solutions à valeurs non entières et ce, même si toutes
 les données sont entières (voir exemple~\ref{exemple_NE},
@@ -318,11 +318,11 @@ Dans le modèle start/end, deux variables binaires $x_{ie}$ et
 $y_{ie}$, $\forall (i,e) \in \A\times \E$, 
 servent à affecter les dates des différents événements, modélisés par
 les variables $t_e$, aux débuts et fins des activités. En effet, la
-variable $x_{ie}$ prendra la valeur $1$ si et seulement si l'événement
+variable $x_{ie}$ prend la valeur $1$ si et seulement si l'événement
 $e$ correspond au début de l'activité $i$, i.e. l'activité $i$
-commence à la date $t_e$, et sera égale à $0$ sinon. De même, la
-variable $y_{ie}$ sera égale à $1$ si et seulement si l'événement $e$
-correspond à la fin de l'activité $i$, et vaudra $0$ sinon.
+commence à la date $t_e$, et est égale à $0$ sinon. De même, la
+variable $y_{ie}$ est égale à $1$ si et seulement si l'événement $e$
+correspond à la fin de l'activité $i$, et vaut $0$ sinon.
 
 \paragraph{Fonction de rendement identité}
 

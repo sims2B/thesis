@@ -16,11 +16,13 @@ ressource qui doit être comprise entre une valeur minimale, $\bmin \in
 d'une activité correspond au moment où cette dernière a reçu une
 certaine quantité d'énergie $W_i$. Cette énergie est reçue via la
 ressource et calculée à l'aide d'une fonction $f_i: \{0\} \cup
-[\bmin,\bmax]\longrightarrow\{0\} \cup [f(\bmin),f(\bmax)]$, supposée
-continue et strictement croissante et appelée fonction de rendement. La quantité
-d'énergie reçue par $i$ à l'instant $t$ est donc $\int_{0}^t
-f_i(b_i(s))ds$. La dernière contrainte du problème précise que chaque activité doit
-être exécutée dans sa fenêtre de temps $[\ES,\LE]$.
+[\bmin,\bmax]\longrightarrow\{0\} \cup [f(\bmin),f(\bmax)]$
+($f_i(0)=0$ est imposé). Ces fonctions, appelées fonctions de
+rendement, font partie de la donnée du problème et sont supposées
+continues et strictement croissantes. La quantité d'énergie reçue par
+$i$ à l'instant $t$ est donc $\int_{0}^t f_i(b_i(s))ds$. La dernière
+contrainte du problème précise que chaque activité doit être exécutée
+dans sa fenêtre de temps $[\ES,\LE]$. 
 
 L'objectif du \CECSP~est donc de déterminer la date de début $st_i$ et
 de fin $et_i$ de chaque activité $i \in \A$, ainsi que la fonction
@@ -66,33 +68,38 @@ cette activité telle que:
   contraints à prendre des valeurs entières.
 \end{itemize}
 
-Dans ce manuscrit, nous considérons les trois cas suivants:
+Dans ce manuscrit, nous considérons les cas où les fonctions $f_i$
+sont continues, croissantes et:
 \begin{itemize}
-\item $f_i$ est la fonction identité, $\forall i \in \A$,
-\item $f_i$ est une fonction affine, $\forall i \in \A$,
-\item $f_i$ est une fonction concave et affine par morceaux, $\forall
+\item égales à la fonction identité, $\forall i \in \A$,
+\item affines, $\forall i \in \A$,
+\item concaves et affines par morceaux, $\forall
   i \in \A$.
 \end{itemize}
 
-L'intérêt de considérer de telles fonctions de rendement est qu'elles
-nous permettent d'approcher un grand nombre de fonctions de
-rendement réelles non linéaires. Un exemple présentant de telles
-approximations sera présenté (cf. exemple~\ref{ex_approx_CECSP}). 
-
+L'intérêt de considérer de telles fonctions de rendement est
+double. Premièrement, un certain nombre de fonctions de rendement
+réelles ont une forme concave~\cite{Ex1,Ex2} due au fait, qu'à partir
+d'un certain seuil, il n'est plus aussi ``rentable'' d'allouer plus de
+ressource à une activité. Deuxièmement, les fonctions affines et
+concaves affines par morceaux nous permettent d'approcher un grand
+nombre de fonctions de rendement réelles non linéaires. Un exemple
+présentant de telles approximations sera présenté
+(cf. exemple~\ref{ex_approx_CECSP}).
 
 Soit $P_i$ le nombre d'intervalles de définition de la fonction $f_i$,
 i.e. le nombre d'intervalles où la fonction $f_i$ a une expression
 différente, et $\P_i=\{1,\dots,P_i\}$ l'ensemble des indices de ces
 intervalles. Les points de cassures de la fonctions $f_i$ sont notés
-$x_\ell^i$, $\forall \l \in \P_i$. La fonction $f_i$ peut alors
+$x_\ell^i$, $\forall \ell \in \P_i$. La fonction $f_i$ peut alors
 s'écrire de la manière suivante: 
-\[f_i(b_i(t))=\left\{
+\[f_i(b)=\left\{
     \begin{array}{ll}
-      0 & \quad \text{si }b_i(t)=0\\
-      a_{i1}*b_i(t)+c_{i1} &\quad \text{si }\bmin=0\text{ et }b_i(t) \in ]\bmin,x_{2}^i] \\
-      a_{i1}*b_i(t)+c_{i1} &\quad \text{si }\bmin\neq 0 \text{ et }b_i(t) \in
+      0 & \quad \text{si }b=0\\
+      a_{i1}*b+c_{i1} &\quad \text{si }\bmin=0\text{ et }b \in ]\bmin,x_{2}^i] \\
+      a_{i1}*b+c_{i1} &\quad \text{si }\bmin\neq 0 \text{ et }b \in
                             [\bmin,x_{2}^i] \\
-      a_{i\ell}*b_i(t)+c_{i\ell} &\quad \text{si } b_i(t) \in
+      a_{i\ell}*b+c_{i\ell} &\quad \text{si } b \in
                                   ]x_{\ell}^i,x_{\ell+1}^i], \ell \in \P_i\setminus\{1\}
     \end{array}
   \right.\]
@@ -107,31 +114,35 @@ propriétés suivantes:
 \item $a_{i\ell}*b+c_{i\ell}=a_{i\ell+1}*b+c_{i\ell+1}$
   pour assurer la continuité de la fonction.
 \end{itemize}
-Dans le cas où $f_i(b_i(t))$ est une fonction affine, on pourra noter:
+Dans le cas où $f_i(b)$ est une fonction affine, on pourra noter:
 $f_i$:
-\[f_i(b_i(t))=\left\{
+\[f_i(b)=\left\{
 \begin{array}{ll}
-  0 & \quad \text{if }b_i(t)=0\\
-  a_i*b_i(t)+c_i &\quad \text{if }\bmin=0\text{ and }b_i(t) \in ]\bmin,\bmax] \\
-  a_i*b_i(t)+c_i &\quad \text{if }\bmin\neq 0 \text{ and }b_i(t) \in [\bmin,\bmax]
+  0 & \quad \text{if }b=0\\
+  a_i*b+c_i &\quad \text{if }\bmin=0\text{ and }b \in ]\bmin,\bmax] \\
+  a_i*b+c_i &\quad \text{if }\bmin\neq 0 \text{ and }b \in [\bmin,\bmax]
 \end{array}
 \right.
 \]
-De plus, en l'absence de toute ambiguïté et pour simplifier les
-notations, en particulier lors de on pourra écrire $f_i(b)$ au lieu de $f_i(b_i(t))$.
+
+
 
 \begin{ex}
   \label{ex_approx_CECSP}
   Considérons l'instance à  quatre activités suivante:
   \begin{itemize}
   \item $B=2$
-  \item $est={[}0,2,0,5{]}$
-  \item $let={[}6,10,9,13{]}$
-  \item $b^{min}={[}0,0.25,2,1{]}$
-  \item $b^{max}={[}1,1,2,1.5{]}$
-  \item $W={[}1,5,7,8{]}$
-  \item $f(b)={[}b,\sqrt{b},b,\sqrt{b}{]}$
+  \item $est=(0,2,0,5)$
+  \item $let=(6,10,9,13)$
+  \item $r^{min}=(0,0.25,2,1)$
+  \item $r^{max}=(1,1,2,1.5)$
+  \item $W=(1,5,7,8)$
+  \item $f(b)=(b,\sqrt{b},b,\sqrt{b})$
   \end{itemize}
+  Le but de cet exemple étant d'illustrer l'approximation d'une
+  fonction non affine ou concave affine par morceaux par une fonction
+  vérifiant cette propriété, aucune fonction objectif n'est définie pour
+  cette instance.
 
   Nous devons approcher les fonctions $f_2(b)$ et $f_4(b)$. Commençons
   par approcher l'activité $2$ par une fonction affine. Pour
@@ -243,7 +254,7 @@ où ${\bf 1}_{NZ}(t):=\left\{
 \right.$ est la fonction caractéristique de l'ensemble $\mathbb{R}^+$.
 
 La difficulté du \CECSP~repose, entre autres choses, sur le fait que la
-fonction d'allocation de ressource peut n'être ni constante, ni
+fonction d'allocation de ressource $b_i(t)$ peut n'être ni constante, ni
 constante par morceaux. De ce fait, la représentation temps/ressource
 d'une activité peut prendre n'importe quelle forme
 (cf. figure~\ref{figure_forme_conso}). 
@@ -511,13 +522,14 @@ dans~\cite{FT}.
 
 Enfin, la dernière extension du \RCPSP~présentée est celle où les
 activités ont une intensité variable~\cite{Kis}. Ici, chaque activité
-requiert une certaine quantité d'énergie durant son exécution et, dans
-chaque période de temps, il est possible de donner une certaine partie
-de cette quantité à l'activité, proportionnelle à l'{\it intensité} à
-laquelle est exécutée l'activité. Dans ce cas, on peut introduire des
+requiert une certaine quantité d'énergie durant toute son
+exécution. Pour apporter cette énergie à l'activité, il faut décider,
+dans chaque période de temps, l'{\it intensité} à laquelle est
+exécutée l'activité. L'énergie apportée à l'activité est alors
+proportionnelle à cette intensité. Dans ce cas, on peut introduire des
 fonctions de rendement mais ces fonctions seraient alors contraintes à
 être linéaires, i.e. $b \rightarrow a*b$. De plus, aucune borne
-inférieure sur la consommation d'une activité n'est considérée. 
+inférieure sur la consommation d'une activité n'est considérée.
 
 Dans le cadre du \CUSP, d'autre variantes ainsi que des algorithmes de
 filtrages dédiés ont été proposés. Parmi ceux-ci, on retrouve le cas
@@ -640,8 +652,18 @@ manuscrit, nous avons donc considérer ce problème sans fonction
 objectif mais aussi avec la fonction objectif suivante: 
 \[\text{minimiser } \sum_{i \in \A} \int_{st_i}^{et_i} b_i(t)dt\]
 Cette fonction consiste en la minimisation de la consommation totale
-de ressource. Dans la suite, si rien n'est précisé, cela veut dire que
-nous considérons le \CECSP~ sans fonction objectif.
+de ressource. L'intérêt de cette fonction objectif dans le cas où les
+fonctions de rendement sont égales à la fonction identité est discuté
+dans le chapitre~\ref{sec:PLNE_CECSP}. Dans le cas où les fonctions de
+rendement sont affines ou concaves et affines par morceaux, cet
+objectif est pertinent puisque, même si la quantité d'énergie apportée
+à une activité est fixée, la quantité de ressource que l'activité doit
+consommer ne l'est pas et plusieurs profil de consommation peuvent
+conduire à la même quantité d'énergie apportée. Trouver le profil qui
+consomme le moins de ressource possible tout en apportant l'énergie
+requise est donc un vrai problème.  Dans la suite, si rien n'est
+précisé, cela veut dire que nous considérons le \CECSP~ sans fonction
+objectif.
 
 Nous présentons un exemple d'instance ne comprenant que des données
 entières et ne possédant que des solutions non entières. Ceci permet
@@ -673,8 +695,8 @@ L'unique solution est décrite par la figure~\ref{figure_exemple_NE}.
       \draw (1.5,0)  node[below=0.1cm] {$1.5$};
       \draw (3,0) node[below=0.1cm] {$3$};
       \node (T) at (3.5,0) {};
-      \node at (0.75,1) {0};
-      \node at (2.25,1) {1};
+      \node at (0.75,1) {$1$};
+      \node at (2.25,1) {$2$};
       \draw(0,2)  node[left,node
       distance=1.5pt] {$R=2$}; 
       \draw (O) rectangle (1.5,2);
@@ -692,7 +714,11 @@ pour que la seconde activité puisse finir avant sa date échue
 $\LE[2]=3$. En effet, l'activité $2$ doit commencer avant sa date de
 début au plus tard, ici $\LS[2]= \LE[2] - W_i/f_i(\bmax) = 3 - 3/2=
 1.5$, et l'activité $1$ ne peut finir avant sa date de fin au plus
-tôt, $\EE[1]= \ES[1] + W_i / f_i(\bmax) = 0 + 18/12 = 1.5$.
+tôt, $\EE[1]= \ES[1] + W_i / f_i(\bmax) = 0 + 18/12 = 1.5$. De plus,
+l'activité $1$ consomme forcément $2$ unités de ressource durant son
+exécution ($\bmin=\bmax=2$). Pour apporter exactement l'énergie
+requise à l'activité $1$, il faut obligatoirement l'ordonnancer comme
+sur la figure~\ref{figure_exemple_NE}.
 \end{ex}
 
 De ce fait, l'espace des solutions peut être réduit par l'utilisation
@@ -714,22 +740,21 @@ rendement.
 
 \begin{theo}[\cite{Nattaf_CPDP}]
 \label{theo_LPM_CECSP}
-Soit $\Pi$ une instance réalisable du \CECSP~telle que:
-\begin{itemize}
-\item $\forall i \in \A,\ f_i$ est croissante, continue, concave et
-  affine par morceaux. 
-\item $\forall i \in \A,\ f_i(0)=0.$
-\end{itemize}
-Une solution ayant la propriété que, $\forall i \in \A,\ b_i(t)$ soit
-constante par morceaux, existe.
+Soit $\Pi$ une instance réalisable du \CECSP~telle que: $\forall i \in
+\A,\ f_i(0) =0$ et $f_i$ est croissante, continue, concave et affine
+par morceaux. Une solution ayant la propriété que, $\forall i \in \A,\
+b_i(t)$ soit constante par morceaux, existe.
 \end{theo}
 
 Afin de prouver le théorème~\ref{theo_LPM_CECSP}, nous commençons par
-prouver que, pour chaque intervalle $[t_1,t_2]$ tel que $b_i(t), t \in
-[t_1,t_2]$, n'est pas constante, il existe une constante $b_{iq}$ pour
-laquelle exécuter $i$ à $b_{iq}$ dans $[t_1,t_2]$ apporte au moins
-autant d'énergie tout en consommant la même quantité de
-ressource. C'est ce qu'affirme le lemme suivant:
+prouver l'affirmation suivante. Soit un intervalle $[t_1,t_2]$ et une
+fonction d'allocation de ressource $b_i(t)$ non constante dans cet
+intervalle, alors il existe une constante $b_{iq}$ pour laquelle
+exécuter $i$ à $b_{iq}$ dans l'intervalle $[t_1,t_2]$,
+i.e. $b'_i(t)=b_{iq},\ \forall t \in [t_1,t_2]$, apporte au moins
+autant d'énergie tout en consommant la même quantité de ressource
+qu'exécuter $i$ à $b_i(t)$ durant l'intervalle $[t_1,t_2]$. C'est ce
+qu'affirme le lemme suivant:
 
 \begin{lemma}
 \label{lemmaEn}
@@ -810,14 +835,14 @@ la propriété que chaque fonction $b'_i(t)$ est constante par morceaux.
     La solution $S'$ est alors construite de la manière suivante: 
     \begin{itemize}
     \item $st'_i=st_i$ 
+    \item $et'_i=\min(\tau | \int_{st_i}^{\tau} f_i(\tilde{b}_i(t))dt=W_i)$
     \item $b'_i(t)= \left\{ 
         \begin{array}{lll}
           \tilde{b}_i(t) &\quad& \text{si $t \in [st_i,et'_i]$}\\
           0 &\quad& \text{sinon}\\
         \end{array}
       \right.$
-  \item $et'_i=\min(\tau | \int_{st_i}^{\tau} f_i(\tilde{b}_i(t))dt=W_i)$
-  \end{itemize}
+    \end{itemize}
 
   Il est facile de voir que $S'$ satisfait les contraintes de fenêtres de
   temps~\eqref{tw_CECSP}, puisque, par le Lemme~\ref{lemmaEn},
@@ -828,7 +853,7 @@ la propriété que chaque fonction $b'_i(t)$ est constante par morceaux.
   réalisable, nous avons $\forall q \in \{1,\dots,Q\}$ et $\forall t
   \in [t_q,t_{q+1}]$:  
   $\sum_{i\in \A}b_i(t) \le R \Rightarrow  
-  \sum_{i\in \A} \int_{t_q}^{t_{q+1}} b_i(t)dt \le B(t_{q+1}-t_q)$.
+  \sum_{i\in \A} \int_{t_q}^{t_{q+1}} b_i(t)dt \le R(t_{q+1}-t_q)$.
  
   Donc, 
   \begin{align*}
@@ -838,7 +863,7 @@ la propriété que chaque fonction $b'_i(t)$ est constante par morceaux.
                             \sum_{i\in \A} b_{iq}\\
                           &=
                             \sum_{i\in \A} \frac{\int_{t_q}^{t_{q+1}} b_i(t)dt}{t_{q+1}-t_q} \\
-                          &\le B
+                          &\le R
   \end{align*}
   Nous pouvons montrer que $S'$ vérifie les contraintes de
   consommation minimale et maximale de la ressource d'une façon
@@ -913,7 +938,7 @@ ressource/énergie. De plus la contrainte~\eqref{poly8} fixe $w_{iq}$ à
 $0$ si $b_{iq}=0$, i.e. modélise $f_i(0)=0$.
 
 On peut remarquer que si $\forall i \in \A,\ \bmin=0$, alors le
-problème devient polynomial. En effet, il suffit de prendre 
+\CECSP~devient polynomial. En effet, il suffit de prendre 
 $(t_q)_{q=1..Q}$ la suite des différentes dates de début (resp. fin)
 au plus tôt (resp. tard). Alors, le programme linéaire précédent nous
 donne une solution réalisable. 

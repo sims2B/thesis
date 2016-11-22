@@ -7,14 +7,14 @@ d'ordonnancement cumulatif. Parmi ces derniers, deux des plus
 ressource (RCPSP) et le problème cumulatif (CuSP). Nous allons donc
 commencer par présenter ces deux problèmes. En effet, beaucoup des
 travaux décrits dans ce manuscrit s'appuient sur des résultats mis en
-place pour l'un d'entre eux. 
+évidence pour eux. 
 
 Dans un second temps, nous montrerons les limites de ces modélisations
 pour exprimer certains problèmes cumulatifs réels et
 les modèles alternatifs mis en place dans la littérature pour pallier ces
 limitations.
 
-\subsubsection{Le problème d'ordonnancement de projet à contraintes de
+\subsubsection{Le problème d'ordonnancement de projet à contraintes de 
 ressources}
 
 Le problème d'ordonnancement de projet à contraintes de ressources
@@ -178,7 +178,7 @@ de chaque activité $i\in \A$ de telle sorte que:
         {\draw (0,\i) -- (-0.1,\i);}
       \end{tikzpicture}}
     \hfill
-    \subcaptionbox{La solution optimale\label{solution_ex_RCPSP_opt}}[0.4\linewidth]{
+    \subcaptionbox{Une solution optimale\label{solution_ex_RCPSP_opt}}[0.4\linewidth]{
       \begin{tikzpicture}
         [xscale=0.4,yscale=0.3]
         \node (O) at (0,0) {};
@@ -230,11 +230,11 @@ de chaque activité $i\in \A$ de telle sorte que:
   \end{figure}
 \end{ex}
 
-Le \RCPSP~est un problème qui a été prouvé NP-complet au sens
+Le \RCPSP~a été prouvé NP-complet au sens
 fort~\cite{NP_RCPSP}. Ce problème a donc été très étudié dans la
 littérature, notamment pour trouver des méthodes efficaces pour sa
 résolution. Dans la section~\ref{sec:PLNE_ordo_res}, nous présentons des
-modèles de programmation linéaire permettant de trouver la solution
+modèles de programmation linéaire permettant de trouver une solution
 optimale à ce problème. Ces modèles seront alors adaptés dans le cadre
 d'un autre problème d'ordonnancement décrit dans le
 paragraphe~\ref{sec:ordo_nrj}. 
@@ -274,11 +274,11 @@ chaque activité $i \in \A$ telle que:
 \end{itemize}
 
 Trouver une solution réalisable pour ce problème -- étant
-une extension de la variante de décision du problème à une machine
+une généralisation de la variante de décision du problème à une machine
 ($R=1$ et $r_i=1$) et du problème à $m$ machines ($R=m$ et $r_i=1$) -- 
 est NP-complet au sens fort~\cite{NP_bible}. De ce fait, dans la
 littérature, ce problème est souvent étudié sans fonction
-objectif. Sauf précision du contraire, nous ferons de même dans la
+objectif. Sauf indication contraire, nous ferons de même dans la
 suite du manuscrit. 
 
 \begin{ex}
@@ -377,7 +377,7 @@ connue à l'avance, durant toute sa durée d'exécution. De plus, cette
 durée est aussi supposée fixe. Cependant, pour de nombreux problèmes
 pratiques, ces suppositions reviennent à sur-contraindre le
 problème. En effet, considérons l'exemple suivant, décrit
-dans~\cite{FT}.  Dans cet exemple, une activité représentant la
+dans~\cite{FT} pour lequel une activité représentant la
 peinture d'un bateau est considérée. Pour cette activité, la durée est
 remplacée par une quantité de travail, ou énergie, représentant le
 travail de $3$ personnes sur une journée. Cette activité peut, au
@@ -391,14 +391,14 @@ L'exemple décrit ci-dessus peut facilement être généralisé à de
 nombreux cas pratiques. Un autre exemple venant d'un problème
 industriel est présenté dans~\cite{HaitArtiguesLopez}. Dans cet
 article, une application dans une fonderie où du métal est fondu dans
-des fournaises à induction est détaillé. La puissance de chaque
-fournaise utilisée pour faire fondre le métal peut être réglée, à tout
-moment, afin d'éviter un dépassement d'un certain niveau d'énergie
-(généralement dû à une limite suggérée par le fournisseur
-d'énergie). De ce fait, si chaque opération de fonte est vue comme une
-activité, nous avons besoin de pouvoir moduler la quantité d'énergie
-donnée à cette activité à chaque instant et la durée de l'activité
-dépend de cette quantité d'énergie.
+des fours à induction est détaillé. La puissance de chaque four
+utilisée pour faire fondre le métal peut être réglée, à tout moment,
+afin d'éviter un dépassement d'un certain niveau de ressource
+(généralement dû à une limite suggérée par le fournisseur). De ce
+fait, si chaque opération de fonte est vue comme une activité, nous
+avons besoin de pouvoir moduler la quantité de ressource donnée à
+cette activité à chaque instant et la durée de l'activité dépend de
+cette quantité de ressource.
 
 Pour représenter ces variations dans le profil de consommation des
 activités, nous avons choisi de modéliser la ressource comme une
@@ -414,13 +414,24 @@ activités en parallèle~\cite{W80,NK}.
 De plus, les problèmes à ressources continues peuvent aussi servir de
 relaxation pour les problèmes avec des ressources discrètes. En effet,
 le caractère discret du problème peut parfois amener à considérer de
-nombreuses possibilités d'affectations de la ressource. Ce grand nombre
-d'affectation peut grandement complexifier le problème. Donc,
-considérer des ressources continues peut permettre l'agrégation des
-raisonnements dédiés à ces problèmes. 
+nombreuses possibilités d'affectations de la ressource. Dans certains
+cas, ce grand nombre d'affectation peut grandement complexifier le
+problème. Donc, considérer des ressources continues peut permettre
+l'agrégation des raisonnements dédiés à ces problèmes.
 
-La modélisation complète du problème considéré dans cette thèse est
-décrit dans la section suivante. Cette modélisation sera ensuite
-comparée aux extensions du \CUSP~et du \RCPSP, déjà existantes dans la
-littérature. 
+Une autre particularité du problème de la fonderie décrit
+dans~\cite{HaitArtiguesLopez} vient du fait que la quantité de
+ressource allouée à un four doit être comprise dans un certain
+intervalle pendant toute la durée d'exécution de l'activité.  En
+effet, pour des raisons opérationnelles et/ou physiques, la puissance
+des fours permettant la fonte du métal ne peut être ni trop élevée, ni
+trop basse et, de ce fait, ne peut ni dépasser un certain seuil dit
+maximum, ni descendre en dessous d'un seuil minimum.
+
+Enfin, la quantité d'énergie fournie peut ne pas être
+proportionnelle à la quantité de ressource consommée. Le problème
+considéré dans cette thèse et décrit dans la section suivante permet
+de modéliser ces contraintes particulières. Cette modélisation sera
+ensuite comparée aux extensions du \CUSP~et du \RCPSP, déjà existantes
+dans la littérature.
 

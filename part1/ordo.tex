@@ -14,16 +14,20 @@ vise à optimiser ces objectifs.
  
 \subsubsection{Les activités}
 
-Une activité peut être définie par une date de début $st_i$ et une date
-de fin $et_i$ et une durée $p_i$ vérifiant $et_i=st_i+p_i$. Si
-l'activité utilise une ou plusieurs ressources durant son exécution, il
-est nécessaire d'ajouter à cette définition une fonction permettant de
-modéliser l'allocation de chaque ressource $k$ à chaque activité
-$i$. Si cette fonction est donnée dans les paramètres du 
+Une activité peut être définie par une date de début $st_i$ et une
+date de fin $et_i$ et une durée $p_i$ vérifiant $et_i=st_i+p_i$. Cette
+date de début (respectivement fin) doit être comprise entre sa date
+de début (resp. fin) au plus tôt, $est_i$ (resp. $eet_i$) et sa date
+de début (resp. fin) au plus tard, $lst_i$ (resp. $let_i$).
+
+Si l'activité utilise une ou plusieurs ressources durant son
+exécution, il est nécessaire d'ajouter à cette définition une fonction
+permettant de modéliser l'allocation de chaque ressource $k$ à chaque
+activité $i$. Si cette fonction est donnée dans les paramètres du
 problème, on la note $r_{ik}(t)$. Si, au contraire, elle fait partie
 des variables de décision du problème, on la note $b_{ik}(t)$. Enfin,
 si cette fonction ne dépend pas du temps, i.e. est constante, le
-paramètre $t$ pourra être omis. 
+paramètre $t$ pourra être omis.
 
 Selon les problèmes, une activité peut être contrainte à s'exécuter en
 un seul morceau. On parle alors d'activité non préemptive et dans le
@@ -123,9 +127,9 @@ principales, on distingue:
 Lors de la résolution d'un problème d'ordonnancement, deux buts
 différents peuvent être poursuivis. Le premier vise à trouver une solution
 réalisable pour le problème tandis que le second cherche à trouver une
-solution optimisant un ou plusieurs critères ou objectifs.
+solution réalisable optimisant un ou plusieurs critères ou objectifs.
 
-Ces objectifs peuvent être liés à différents aspect de la solution. On
+Ces objectifs peuvent être liés à différents aspects de la solution. On
 distingue par exemple:
 \begin{itemize}
 \item les objectifs liés au temps: le temps total d'exécution ou le temps moyen

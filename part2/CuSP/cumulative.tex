@@ -39,7 +39,7 @@ quant à elle définie comme la différence entre sa date de fin et sa
 date de début, i.e. $p_i=et_i-st_i$.
 
 Les problèmes préemptifs sont plus difficiles à modéliser. En effet,
-dans ce cas-là, un ordonnancement valide peut être uniquement 
+dans ce cas-là, un ordonnancement valide ne peut être uniquement 
 représenté par une date de début, de fin et une durée pour chaque
 activité. Pour ces problèmes, au moins deux modélisations différentes
 existent. La première consiste à associer à chaque activité une
@@ -125,7 +125,7 @@ des variables, i.e. retirant toutes les valeurs incohérentes des
 domaines des variables, ne peut s'exécuter en temps polynomial. De
 plus, assurer seulement la cohérence des bornes des domaines étant
 aussi NP-complet, les algorithmes utilisés permettent seulement
-d'ajuster seulement certaines bornes des domaines en fonction des
+d'ajuster certaines bornes des domaines en fonction des
 données et contraintes du problème sans s'assurer de la cohérence de
 toutes les bornes. Ces algorithmes de filtrage se présentent le plus
 souvent sous la forme de règles, appelées {\it règles d'ajustement},
@@ -154,11 +154,10 @@ définies pour la contrainte cumulative.
 
 Le problème cumulatif étant un problème symétrique, les règles
 d'ajustement sont souvent définies pour une seule des deux variables
-$st_i$ et $et_i$. En effet, une fois ces règles étant définies pour
-une de ces deux variables, les règles symétriques peuvent être
-déduites pour l'autre variable. Les raisonnements et algorithmes
-décrits dans cette sous-section ne présentent que le filtrage du début au
-plus tôt.
+$st_i$ et $et_i$. En effet, une fois ces règles définies pour une de
+ces deux variables, les règles symétriques peuvent être déduites pour
+l'autre variable. Les raisonnements et algorithmes décrits dans cette
+sous-section ne présentent que le filtrage des dates de début au plus tôt.
 
 Dans un premier temps, nous présentons des règles simples permettant
 l'ajustement des bornes des variables. Ensuite, une partie sera
@@ -168,7 +167,7 @@ des algorithmes permettant un filtrage plus fort des domaines des
 variables.
 
 Plusieurs des règles présentées dans cette sous-section seront ensuite
-adaptées dans le cas du \CECSP~dans le chapitre~\ref{sec:PPC_CECSP}.
+adaptées au cas du \CECSP~dans le chapitre~\ref{sec:PPC_CECSP}.
 
 \subsubsection{Règles de filtrages simples}
 
@@ -402,7 +401,7 @@ Beldiceanu {\it et al.}~\cite{BC} ont introduit un algorithme de
 balayage permettant d'appliquer les ajustements décrits ci-dessus en
 $O(n^2)$. D'autres algorithmes ont aussi été mis en place pour ce
 raisonnement~\cite{OQ,LBC,GHS}. Ces algorithmes possèdent des
-complexités théoriques moins élevées ou équivalentes avec l'algorithme
+complexités théoriques moins élevées ou équivalentes à celle de l'algorithme
 de balayage de Beldiceanu {\it et al.} en proposant des filtrages
 moins importants.
 
@@ -545,8 +544,8 @@ concept d'{\it énergie}.
  
 \subsubsection{Règles de filtrage énergétiques}
  \label{sec:nrj_CUSP}
-Parmi les règles de filtrage utilisant le concept d'énergie on
-retrouve le Edge-Finding\cite{VilimEF,theseNuijten}, le raisonnement
+Parmi les règles de filtrage utilisant le concept d'énergie on trouve
+le Edge-Finding~\cite{VilimEF,theseNuijten}, le raisonnement
 énergétique~\cite{RELopez} ou encore les activités
 élastiques~\cite{BLPN}.  Nous présenterons en détail le second cas,
 tandis que les autres cas seront brièvement discutés. La raison
@@ -561,22 +560,22 @@ de calculer cette énergie et sur les intervalles considérés.
 
  Le raisonnement Edge-Finding s'applique sur un sous-ensemble
 d'activités $\Omega \subseteq \A$, le but étant de décider si une
-activité $j$ doit commencer avant $\Omega$ dans toute solution
-réalisable. Dans ce cas, l'énergie d'une activité $i$ représente sa
-charge de travail $W_i$ et est simplement exprimée comme
+activité $j$ doit obligatoirement commencer avant $\Omega$ dans toute
+solution réalisable. Dans ce cas, l'énergie d'une activité $i$
+représente sa charge de travail $W_i$ et est simplement exprimée comme
 $W_i=p_i\times b_i$. L'énergie nécessaire pour un ensemble d'activités
 $\Omega$ est alors $\sum_{i\in \Omega} W_i$. Les intervalles
-considérés dans ce raisonnement correspondent aux fenêtres de temps des
-activités $[\ES,\LE{[}$. Cette notion est étendue à $\Omega$ de la façon
-suivante: $[\ES[\Omega],\LE[\Omega]{[}=[\min_{j \in \Omega}\ES[j],\max_{j
-\in \Omega} \LE[j] {[}$. L'idée du raisonnement est alors  de vérifier
-que la ressource disponible permet de faire débuter l'activité $i$
-dans la fenêtre de temps correspondant à $\Omega$. Pour cela,
-l'énergie requise par $\Omega \cup \{ i\}$ est comparée à la quantité
-de ressource disponible dans l'intervalle $[\ES[\Omega],\LE[\Omega\cup
-\{i\}]{[}$. Si la quantité de ressource n'est pas suffisante, alors
-l'activité $i$ doit commencer avant $\ES[\Omega]$ et un ajustement
-peut être effectué.
+considérés dans ce raisonnement correspondent aux fenêtres de temps
+des activités $[\ES,\LE{[}$. Cette notion est étendue à $\Omega$ de la
+façon suivante: $[\ES[\Omega],\LE[\Omega]{[}=[\min_{j \in
+\Omega}\ES[j],\max_{j \in \Omega} \LE[j] {[}$. L'idée du raisonnement
+est alors de vérifier que la ressource disponible permet de faire
+débuter l'activité $i$ dans la fenêtre de temps correspondant à
+$\Omega$. Pour cela, l'énergie requise par $\Omega \cup \{ i\}$ est
+comparée à la quantité de ressource disponible dans l'intervalle
+$[\ES[\Omega],\LE[\Omega\cup \{i\}]{[}$. Si la quantité de ressource
+n'est pas suffisante, alors l'activité $i$ doit commencer avant
+$\ES[\Omega]$ et un ajustement peut être effectué.
 
 Dans le cas des activités partiellement et totalement élastiques, les
 contraintes de consommation de ressource sont relâchées et une
@@ -612,7 +611,7 @@ toutes les activités.
 
 \begin{defi}
 La fonction de marge $SL(t_1,t_2)$ est définie de la façon suivante: 
-\[  SL(t_1,t_2) = R (t_2-t_1) - \sum_{i \in \A} \bb \]
+\[  SL(t_1,t_2) = R*(t_2-t_1) - \sum_{i \in \A} \bb \]
 \end{defi}
 
 Avec cette définition, nous pouvons maintenant énoncer le théorème
@@ -800,7 +799,7 @@ entendons que, si une incohérence n'est pas détectée sur cet ensemble
 d'intervalles, alors aucun autre intervalle ne permettra de conclure à
 l'insatisfiabilité de l'instance. La taille de cet ensemble
 d'intervalles d'{\it intérêt} est de l'ordre de $O(n^2)$. Le calcul de
-la fonction de marge pouvant s'effectuer incrémentalement, la
+la fonction de marge pouvant s'effectuer de manière incrémentale, la
 complexité du checker énergétique est donc de $O(n^2)$.
 
 Récemment, Derrien {\it et al.}~\cite{DP} ont proposé une
@@ -826,21 +825,21 @@ chapitre~\ref{sec:PPC_CECSP}.
 
 Pour étudier les minima locaux de la fonction de marge, les auteurs
 de~\cite{DP} étudient les variations de cette dernière. L'expression
-de la fonction de marge dépendant de $R(t_2-t_1)$ et de $\sum_{i \in
+de la fonction de marge dépendant de $R*(t_2-t_1)$ et de $\sum_{i \in
   \A} \bb$, ses variations dépendent des variations de la fonction
 $(t_1,t_2) \rightarrow \sum_{i \in \A} \bb$. En particulier, ils
 remarquent que tous les changements de variation de cette fonction ne
-peuvent impliquer un minimum local. Pour qu'une variation implique un
-tel minimum il faut que la dérivée à gauche de cette fonction soit
-négative, que la dérivée à droite soit positive et qu'au moins l'une
-d'entre elles soit non nulle. En effet, dans l'expression de la
-fonction de marge, cette fonction est multipliée par $-1$.
+peuvent impliquer un minimum local. Pour une fonction quelconque, une
+variation implique un tel minimum seulement si la dérivée à gauche de
+la fonction est négative, sa dérivée à droite est positive et au moins
+l'une d'entre elles est non nulle. 
 
-Cette propriété, induite par le {\it test de la dérivée seconde}, leur
-permet de décrire des conditions sur les consommations individuelles
-des activités, $\bb$, sous lesquelles le point $(t_1,t_2)$ peut être
-un minimum local de la fonction de marge. Ces conditions sont
-exprimées dans le lemme~\ref{lem:min_CUSP}.
+Cette propriété, induite par le {\it test de la dérivée seconde} et
+appliquée au cas du problème cumulatif, leur permet de décrire des
+conditions sur les consommations individuelles des activités, $\bb$,
+sous lesquelles le point $(t_1,t_2)$ peut être un minimum local de la
+fonction de marge. Ces conditions sont exprimées dans le
+lemme~\ref{lem:min_CUSP}.
 
 \begin{lemma}
 \label{lem:min_CUSP}
@@ -852,12 +851,15 @@ conditions ci-dessous sont satisfaites.
 \frac{\delta^{-}\bb[j]}{\delta t_2}
 & > \frac{\delta^{+}\bb[j]}{\delta t_2} \label{eq:deriv2_CUSP}
 \end{align}
+avec $\frac{\delta^{+} \underline{b}(j,t_1,t_2)}{\delta
+t_2}$ (resp. $\frac{\delta^{-} \underline{b}(j,t_1,t_2)}{\delta t_2}$)
+la dérivée à droite (resp. gauche) de $t_2\rightarrow \underline{b}(j,t_1,t_2)$.
 \end{lemma}
 
 \begin{proof}
 Soit $(t_1,t_2) \in \mathbb{N}^2$ tel qu'il n'existe aucune activité
 $i$ vérifiant la condition~\eqref{eq:deriv1_CUSP}. Alors, $\sum_{i \in
-  \A} \bb$ a sa dérivée à gauche supérieure à sa dérivée à droite. Par
+  \A} \bb$ a sa dérivée à gauche inférieure ou égale à sa dérivée à droite. Par
 le test de la dérivée seconde, un minimum local d'une fonction ne peut
 exister que si la dérivée à gauche est plus grande que la dérivée à
 droite. Donc le point $(t_1,t_2)$ ne peut pas être un minimum local. 
@@ -868,7 +870,7 @@ ne peut pas être un minimum local.
 \end{proof}
 
 Le lemme~\ref{lem:min_CUSP} peut ensuite être utilisé pour établir 
-les conditions nécessaires permettant de déterminer un l'ensemble des
+les conditions nécessaires permettant de déterminer un ensemble des
 intervalles d'intérêt. Pour cela, une étude des fonctions $t_1
 \rightarrow \bb$ et $t_2 \rightarrow \bb$ est nécessaire. Nous montrons
 comment obtenir une caractérisation des différentes dates de début
@@ -968,7 +970,7 @@ lemme suivant.
 \begin{lemma}
   Si le point $(t_1,t_2)$ est un minimum local de la fonction de marge
 $SL(t_1,t_2)$, alors il existe deux activités $i$ et $j$ telles que
-$(t_1,t_2) \in \O_C(i,j)$ avec:
+$[t_1,t_2[ = \O_C(i,j)$ avec:
   
   \[ \O_C(i,j)= \left\{ 
       \begin{aligned} 
@@ -1026,26 +1028,27 @@ sont suffisants pour détecter toute incohérence due au raisonnement
 
 Grâce à cette caractérisation, l'algorithme de détection d'incohérence
 de Baptiste {\it et al.} peut être amélioré. Pour cela, nous
-considérons l'ensemble $\O_1=\cup_{i \in \A} \{\ES,\LS\}$ des dates de
+considérons l'ensemble $\O_1=\cup_{i \in \A} \{\langle i,\ES\rangle,\langle i,\LS\rangle\}$ des dates de
 début possibles d'un intervalle et l'ensemble $\O_2=\cup_{i \in \A}
-\{\EE,\LE \}$ correspondant aux dates de fin. Ceci nous permet de
-décrire l'algorithme (cf.~\ref{algo:check_CUSP}) de détection
-d'incohérence en $O(n^2)$ de Derrien~\cite{Alb}.
+\{\langle i,\EE\rangle,\langle i,\LE\rangle \}$ correspondant aux dates de fin. De plus, nous
+définissons l'ensemble $O_{t}=\cup_{i\in \A} \{\langle i,\ES+\LE -t\rangle\}$. Ceci
+nous permet de décrire l'algorithme (cf.~\ref{algo:check_CUSP}) de
+détection d'incohérence en $O(n^2)$ de Derrien~\cite{Alb}.
 \begin{algorithm}[!htb]
 \setstretch{1.35}
   \caption{Algorithme de détection d'incohérence énergétique pour le \CUSP.}
   \label{algo:check_CUSP}
-  \PourTous {$(i,t_1) \in \O_1$}{
+  \PourTous {$\langle i,t_1\rangle \in \O_1$}{
 
     $pente=\sum_j \bb[j][t_1][t_1+1]$
 
     $SL_{ER}=0$, $t_2^{old}=t_1$
 
-  \PourTous {$(j,t_2) \in \O_2 \cup \O_{t_1}$ par ordre croissant}{
+  \PourTous {$\langle j,t_2\rangle \in \O_2 \cup \O_{t_1}$ par ordre croissant}{
 
     $SL_{ER}=SL_{ER}+pente*(t_2-t_2^{old})$
 
-    \Si {$SL_{ER } > R(t_2-t_1)$}{
+    \Si {$SL_{ER } > R*(t_2-t_1)$}{
       Le problème est incohérent.}
 
     $pente=pente + \bb[j][t_1][t_2-1] - 2\bb[j] +  \bb[j][t_1][t_2+1]$
@@ -1232,7 +1235,7 @@ $b_i*\max\Big(\, 0\, , \, \min(\, \LE\, ,\, t_2\,) - \max(\, \LS\, ,
 D'autres algorithmes ont été mis en place pour améliorer le
 raisonnement énergétique. Ces derniers possèdent souvent une
 complexité théorique moins élevée que celle de l'algorithme de Derrien
-{\it et al.} mais les ajustements appilqués par ces derniers sont
+{\it et al.} mais les ajustements appliqués par ces derniers sont
 souvent incomplets~\cite{Tesch2016,Berthold2011,Bonifas}.
 
 Les différentes règles de filtrages présentées dans les paragraphes
@@ -1359,7 +1362,8 @@ en parallèle à cause de la capacité de la ressource. Si l'activité $j$
 commence à $\ES[j]$, alors elle intersecterait complètement $moi_i$ et
 il serait impossible d'ordonnancer $i$. Sur la partie droite de la
 figure, $\ES[j]$ a été ajusté et l'activité $j$ ne peut commencer
-avant $\min\{t \in \H|t \in moi_i \}$.
+avant $\min\{t \in \H|t \in moi_i \}$ ($\H$ étant l'horizon de temps
+du problème).
   \begin{figure}[!htb]
     \centering
     \begin{tikzpicture}
